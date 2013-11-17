@@ -12,35 +12,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/p2p/lib/eventbus.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/gluegen-rt.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/j-ogg-oggd.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/j-ogg-vorbisd.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jbullet.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jglfont-core.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jinput.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-blender.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-core.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-desktop.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-effects.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-jbullet.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-jogg.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-lwjgl-natives.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-lwjgl.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-networking.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-niftygui.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-openal-soft-natives-android.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-plugins.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jME3-terrain.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/joal.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/jogl-all.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/lwjgl.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/nifty-default-controls.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/nifty-style-black.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/nifty.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/stack-alloc.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/vecmath.jar"/>
-	<classpathentry kind="lib" path="/p2p/lib/xmlpull-xpp3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
@@ -51,5 +22,34 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/p2p/Libs/eventbus.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/j-ogg-oggd.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/j-ogg-vorbisd.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jbullet.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jglfont-core.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jinput.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-blender.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-core.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-desktop.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-effects.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-jbullet.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-jogg.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-lwjgl-natives.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-lwjgl.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-networking.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-niftygui.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-openal-soft-natives-android.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-plugins.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jME3-terrain.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/joal.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/jogl-all.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/lwjgl.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/nifty-default-controls.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/nifty-style-black.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/nifty.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/stack-alloc.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/vecmath.jar"/>
+	<classpathentry kind="lib" path="/p2p/Libs/xmlpull-xpp3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
