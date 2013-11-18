@@ -26,6 +26,7 @@
   <modules>
     <module>client</module>
     <module>server</module>
+    <module>application</module>
   </modules>
 
 <repositories>
