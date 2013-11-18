@@ -15,6 +15,17 @@ import com.jme3.math.ColorRGBA;
 /** Sample 1 - how to get started with the most simple JME 3 application.
  * Display a blue 3D cube and view from all sides by
  * moving the mouse and pressing the WASD keys. */
+
+/*
+ * Authors
+ * Joshua Bergsma
+ * Remco de Bruin
+ * Yme van der Graaf
+ * Jeffrey Harders
+ * Arjen Pander
+ * Melinda de Roo
+ * */
+
 public class Client extends SimpleApplication {
 
     public static void main(String[] args){
