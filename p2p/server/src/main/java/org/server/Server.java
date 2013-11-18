@@ -24,10 +24,12 @@ public class Server
         xmlParser parser = new xmlParser();
         try {
         List<Container> containers = parser.parse("data/xml1.xml");
-System.out.println("aa");
+
+            for (Container c : containers)
+                System.out.println("("+c.id+")Name: " + c.name + " is carrying " + c.contentName + " which is " + c.contentDanger);
         }
         catch (Exception e){
-            System.out.println("eorr!");
+            System.out.println("EORR!");
         }
 
         System.out.println( "Hello World!" );
