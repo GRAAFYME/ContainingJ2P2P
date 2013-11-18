@@ -1,9 +1,6 @@
 package org.server;
 
-import javafx.geometry.Point3D;
-
-import java.awt.*;
-import java.util.Date;
+import javax.vecmath.Point3d;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,14 +10,14 @@ import java.util.Date;
  * To change this template use File | Settings | File Templates.
  */
 public class Container {
-    public Point3D location;
-    public Date arrivalDate;
-    public Date leaveDate;
+    public Point3d location;
+    public Point3d arrivalDate;
+    public Point3d leaveDate;
     public String name;
     //Additional attributes go here, not sure they are relevant at all
 
 
-    public Container(Point3D location, Date arrival, Date leave, String name)
+    public Container(Point3d location, Point3d arrival, Point3d leave, String name)
     {
         this.location = location;
         this.arrivalDate = arrival;

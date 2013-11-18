@@ -1,5 +1,7 @@
 package org.server;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -21,7 +23,8 @@ public class Server
     {
         xmlParser parser = new xmlParser();
         try {
-        parser.parse("data/xml1.xml");
+        List<Container> containers = parser.parse("data/xml1.xml");
+System.out.println("aa");
         }
         catch (Exception e){
             System.out.println("eorr!");
