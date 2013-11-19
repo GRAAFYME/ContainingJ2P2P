@@ -31,3 +31,4 @@ local.properties
 *~
 *.swp
 *.swo
+p2p/application/bin/jarlist.cache
