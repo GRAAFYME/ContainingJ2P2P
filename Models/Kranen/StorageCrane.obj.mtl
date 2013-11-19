@@ -1,0 +1,97 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.0.1270)
+
+newmtl ID1002
+kd 0.392157 0.584314 0.929412
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+Ns 10
+illum 2
+
+newmtl ID2557
+kd 1 0 0
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+
+newmtl ID2975
+kd 1 0.6 0.196078
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+
+newmtl ID3019
+kd 1 0.498039 0
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+
+newmtl ID3060
+kd 0.6 0.6 0.6
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+Ns 10
+illum 2
+
+newmtl ID3078
+kd 0.6 0.6 0.6
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+Ns 10
+illum 2
+
+newmtl ID312
+kd 0.890196 0.882353 0.870588
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+
+newmtl ID316
+kd 0 0 0
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+
+newmtl ID321
+kd 0.8 0 0
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+
+newmtl ID395
+kd 0.666667 0.666667 0.666667
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+
+newmtl ID5
+kd 1 1 1
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+
+newmtl ID601
+kd 0.6 0.6 0.6
+ka 0.1 0.1 0.1
+ks 0.4 0.4 0.4
+d 1
+Ns 10
+illum 2
+map_kd StorageCrane/Fencing_Mesh_Blue.png
+
