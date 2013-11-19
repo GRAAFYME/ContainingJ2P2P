@@ -36,10 +36,6 @@ import com.jme3.ui.Picture;
 import com.jme3.water.WaterFilter;
 import java.math.BigDecimal;
 
-/** Sample 1 - how to get started with the most simple JME 3 application.
- * Display a blue 3D cube and view from all sides by
- * moving the mouse and pressing the WASD keys. */
-
 /*
  * Authors
  * Joshua Bergsma
@@ -52,11 +48,11 @@ import java.math.BigDecimal;
 
 public class Client extends SimpleApplication {
 	
-	public Node waterNode;
-	BulletAppState bulletAppState;
+	public Node waterNode;  //Different nodes have different physics
+	BulletAppState bulletAppState;  //Physics machine
 	RigidBodyControl rbc;
-	CollisionShape sceneShape;
-	Spatial scene;
+	CollisionShape sceneShape;   //gives collisions to the scene
+	Spatial sceneModel;
 
     public static void main(String[] args){
         Client app = new Client();
@@ -72,11 +68,13 @@ public class Client extends SimpleApplication {
         Water water = new Water(assetManager, waterNode);
         water.initPPcWater();
         viewPort.addProcessor(water.fpp); 
-        rootNode.attachChild(waterNode);
-    	flyCam.setMoveSpeed(10f);
-    	viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
+        rootNode.attachChild(waterNode);  //adds water to the world
+    	flyCam.setMoveSpeed(10f);         // sets the speed at which the cam can fly around.
+        cam.setLocation(new Vector3f(0f,15f,0f));   // changes the starting location of the fly cam
+    	viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));     //sets the sky to a blue color.
         }
     
+    //creates a blue box for testing
     public void testBox(){
     	Box b = new Box(1, 1, 1); // create cube shape
         Geometry geom = new Geometry("Box", b);  // create cube geometry from the shape
@@ -86,17 +84,23 @@ public class Client extends SimpleApplication {
         rootNode.attachChild(geom);              // make the cube appear in the scene	
     }
     
+    //creates most of the physics logic
     public void initPhysics(){
     	bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState); 
     }
+    //creates and loads the scene
     public void initScene(){
-    	scene = assetManager.loadModel("/Scenes/ClientScene.j3o");
-        sceneShape = CollisionShapeFactory.createMeshShape(scene);
+    	sceneModel = assetManager.loadModel("/Scenes/ClientScene.j3o");
+        sceneShape = CollisionShapeFactory.createMeshShape(sceneModel);
         rbc = new RigidBodyControl(sceneShape, 0);
-        scene.addControl(rbc); 
-        bulletAppState.getPhysicsSpace().add(rbc);
-        rootNode.attachChild(scene);   
+        rootNode.attachChild(sceneModel);   //adds the sceneModel to the world
+        sceneModel.addControl(rbc); 
+        bulletAppState.getPhysicsSpace().add(rbc); 
+        
+        AmbientLight ambient = new AmbientLight();  //creates a light in the scene, which lights everything from all angles
+        ambient.setColor(ColorRGBA.White.mult(4f));
+        rootNode.addLight(ambient);     //adds the light to the world. 
     }
 
 }

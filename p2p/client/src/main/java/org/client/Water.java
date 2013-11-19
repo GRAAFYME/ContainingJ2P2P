@@ -30,21 +30,21 @@ public class Water {
     public Water(AssetManager am, Node node)
     {
         assetManager = am;
-        lightDir =  new Vector3f(-4,-1,5);
+        lightDir =  new Vector3f(-4,-1,5);  //coordinates of the specific location of the light.
         waterNode = node;
     }
-     
+    //Creates water at a specific level 
     public FilterPostProcessor initPPcWater(){ 
         fpp = new FilterPostProcessor(assetManager); 
         water = new WaterFilter(waterNode, lightDir); 
         water.setCenter(Vector3f.ZERO); 
         water.setRadius(2600); 
-        water.setWaveScale(0.003f); 
+        water.setWaveScale(0.003f);   // Height of the waves
         water.setMaxAmplitude(2f); 
         water.setFoamExistence(new Vector3f(1f, -0.5f, 1f)); 
         water.setFoamTexture((Texture2D) assetManager.loadTexture("Common/MatDefs/Water/Textures/foam2.jpg")); 
         water.setRefractionStrength(0.2f); 
-        water.setWaterHeight(10f); 
+        water.setWaterHeight(10f);  // Water Height.
         fpp.addFilter(water); 
         return fpp;
     }
