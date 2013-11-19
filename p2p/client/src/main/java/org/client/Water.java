@@ -33,7 +33,8 @@ public class Water {
         lightDir =  new Vector3f(-4,-1,5);
         waterNode = node;
     }
-     public FilterPostProcessor initPPcWater(){ 
+     
+    public FilterPostProcessor initPPcWater(){ 
         fpp = new FilterPostProcessor(assetManager); 
         water = new WaterFilter(waterNode, lightDir); 
         water.setCenter(Vector3f.ZERO); 
