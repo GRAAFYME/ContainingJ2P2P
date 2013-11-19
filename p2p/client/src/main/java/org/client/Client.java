@@ -65,6 +65,8 @@ public class Client extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+    	initPhysics();
+    	initScene();
     	testBox();
         waterNode = new Node("Water");
         Water water = new Water(assetManager, waterNode);
@@ -73,22 +75,23 @@ public class Client extends SimpleApplication {
         rootNode.attachChild(waterNode);
     	flyCam.setMoveSpeed(10f);
     	viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
-    	bulletAppState = new BulletAppState();
-        stateManager.attach(bulletAppState); 
-    	scene = assetManager.loadModel("/Scenes/ClientScene.j3o");
         }
     
     public void testBox(){
     	Box b = new Box(1, 1, 1); // create cube shape
         Geometry geom = new Geometry("Box", b);  // create cube geometry from the shape
-        Material mat = new Material(assetManager,
-                "Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
+        Material mat = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
         mat.setColor("Color", ColorRGBA.Blue);   // set color of material to blue
         geom.setMaterial(mat);                   // set the cube's material
         rootNode.attachChild(geom);              // make the cube appear in the scene	
     }
     
+    public void initPhysics(){
+    	bulletAppState = new BulletAppState();
+        stateManager.attach(bulletAppState); 
+    }
     public void initScene(){
+    	scene = assetManager.loadModel("/Scenes/ClientScene.j3o");
         sceneShape = CollisionShapeFactory.createMeshShape(scene);
         rbc = new RigidBodyControl(sceneShape, 0);
         scene.addControl(rbc); 
