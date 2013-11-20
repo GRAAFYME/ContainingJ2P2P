@@ -20,8 +20,13 @@
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
-
     </dependency>
+      <dependency>
+          <groupId>org.eclipse.persistence</groupId>
+          <artifactId>org.eclipse.persistence.moxy</artifactId>
+          <version>2.5.1-RC3</version>
+      </dependency>
+
   </dependencies>
   <modules>
     <module>client</module>
