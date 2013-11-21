@@ -37,7 +37,9 @@ import com.jme3.texture.Texture;
 import com.jme3.texture.Texture2D;
 import com.jme3.ui.Picture;
 import com.jme3.water.WaterFilter;
+
 import java.math.BigDecimal;
+
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -46,8 +48,11 @@ import com.jme3.light.AmbientLight;
 import com.jme3.light.PointLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
+import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+
+import de.lessvoid.nifty.Nifty;
 
 /*
  * Authors
@@ -84,6 +89,16 @@ public class Client extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+    	
+    	NiftyMenu niftyMenu = new NiftyMenu();
+        stateManager.attach(niftyMenu);
+        
+        NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
+                assetManager, inputManager, audioRenderer, guiViewPort);
+        Nifty nifty = niftyDisplay.getNifty();
+        nifty.fromXml("Interface/MainMenu.xml", "start");
+        guiViewPort.addProcessor(niftyDisplay);
+        
     	try 
     	{
 			c = new networkClient();
