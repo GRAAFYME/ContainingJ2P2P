@@ -1,5 +1,7 @@
 package org.client;
 
+import java.io.IOException;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.scene.Geometry;
@@ -42,17 +44,26 @@ public class Client extends SimpleApplication {
     CameraSettings cs = new CameraSettings();
     private CharacterControl player;
     private Boolean sprint = false;
+    private networkClient c;
 
 	
 	
 	
     public static void main(String[] args){
-        Client app = new Client();
+        Client app = new Client();       
         app.start(); // start the game
     }
 
     @Override
     public void simpleInitApp() {
+    	try 
+    	{
+			c = new networkClient();
+		} 
+    	catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	initPhysics();
     	initScene();
     	testBox();
