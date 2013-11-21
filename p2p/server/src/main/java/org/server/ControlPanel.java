@@ -12,14 +12,25 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import java.awt.Panel;
+import java.awt.BorderLayout;
+
+import javax.swing.JTextPane;
+
+import java.awt.Color;
+
+import javax.swing.JTextArea;
+
 public class ControlPanel 
 {
 	
    private static final JFileChooser fc = new JFileChooser();
+   private static JTextArea textArea = new JTextArea();
    
    public static void main(String args[]) {
     JFrame frame = new JFrame("Controller");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.getContentPane().setBackground(Color.WHITE);
+    
 
     JMenuBar menu = new JMenuBar();
 
@@ -47,8 +58,13 @@ public class ControlPanel
     helpMenu.add(Help);
     Help.addActionListener(actionListener);
 
+    //TextArea
+    frame.getContentPane().add(textArea, BorderLayout.NORTH);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    textArea.setEditable(false);
+    
     frame.setJMenuBar(menu);
-    frame.setSize(300, 150);
+    frame.setSize(600, 700);
     frame.setVisible(true);
   }
    
@@ -75,7 +91,8 @@ public class ControlPanel
 	    	 if (returnVal == JFileChooser.APPROVE_OPTION) {
 	             File file = fc.getSelectedFile();
 	             String FileLocation = file.getPath();
-	             System.out.println(FileLocation);
+	             textArea.append(FileLocation + "\n");
+	             XMLLaad(FileLocation);
 	         } 
 	    	 else 
 	    	 {
@@ -93,4 +110,21 @@ public class ControlPanel
 	     }
 	   }
 	 };
+	 
+	 
+	 private static void XMLLaad(String Filelocatie)
+	 {
+		 	xmlParser parser = new xmlParser();
+	        ContainerSet containers;
+	        try {
+	            long time = System.nanoTime();
+	            containers = parser.parse(Filelocatie);
+	            System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
+
+	        }
+	        catch (Exception e){
+	            System.out.println("EORR!");
+	        }
+	 }
+	 
 }
