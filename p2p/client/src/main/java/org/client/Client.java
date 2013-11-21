@@ -66,18 +66,16 @@ public class Client extends SimpleApplication {
 	RigidBodyControl rbc;
 	CollisionShape sceneShape;   //gives collisions to the scene
 	Spatial sceneModel;
-<<<<<<< HEAD
+
     Box b;
     Geometry geom;
     private Vector3f walkDirection = new Vector3f();
     private Vector3f camDir = new Vector3f();
     private Vector3f camLeft = new Vector3f();
-    CameraSettings cs = new CameraSettings();
-    private CharacterControl player;
     private Boolean sprint = false;
     private networkClient c;
-=======
->>>>>>> 8e8bf291e9ef54343b49b2473a6492cb96f4de24
+    FlyByCamera FBC;
+
 
     public static void main(String[] args){
         Client app = new Client();       
@@ -104,6 +102,7 @@ public class Client extends SimpleApplication {
 	    rootNode.attachChild(waterNode);  //adds water to the world
 	    cam.setLocation(new Vector3f(0f,150f,0f)); 
 	    flyCam.setMoveSpeed(30f);
+	    FBC = new FlyByCamera(cam);
         }
     
     @Override
