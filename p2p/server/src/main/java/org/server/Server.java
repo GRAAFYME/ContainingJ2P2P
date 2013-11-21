@@ -1,5 +1,12 @@
 package org.server;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 /**
  * Hello world!
  *
@@ -17,21 +24,37 @@ package org.server;
 
 public class Server 
 {
-    public static void main( String[] args )
+    private ServerSocket serverSocket;
+    private Socket clientSocket;
+
+    public String getMessages() throws IOException
     {
-        xmlParser parser = new xmlParser();
-        ContainerSet containers;
+        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+        //Gotta love java... copied from stackoverflow
+        java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
+        return s.hasNext() ? s.next() : "";
+    }
+
+    public boolean start(int port)
+    {
         try {
-            long time = System.nanoTime();
-            containers = parser.parse("data/xml1.xml");
-            System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
-            //for (Container c : containers)
-            //    System.out.println("("+c.id+")Name: " + c.name + " is carrying " + c.contentName + " which is " + c.contentDanger);
+            //Set the server up
+            serverSocket = new ServerSocket(port);
+            //Wait till someone connects; this is a blocking method!!!!!!!!
+            clientSocket = serverSocket.accept();
+            //random debug stuff
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            out.print("YO");
+
+
         }
-        catch (Exception e){
-            System.out.println("EORR!");
+        catch (Exception e) {
+            return false;
         }
 
-        System.out.println( "Hello World!" );
+        return true;
     }
 }
+
+
