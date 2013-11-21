@@ -6,7 +6,7 @@
   <useStyles filename="nifty-default-styles.xml" />
   <useControls filename="nifty-default-controls.xml" />
     
-  <screen id="start" controller="mygame.NiftyMenu">
+  <screen id="start" controller="org.client.NiftyMenu">
     <layer id="background" height="100%" width="100%" childLayout="center">
         <image filename="Interface/Containing.jpg" height="100%" width="100%"></image>
     </layer>
