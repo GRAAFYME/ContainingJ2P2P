@@ -1,0 +1,48 @@
+#Materials exported from Google Sketchup
+
+newmtl __Carpet_Plush_Charcoal__Carpet_Plush_Charcoal_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Carpet_Plush_Charcoal.jpg
+
+newmtl __Asphalt_New__Asphalt_New_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Asphalt_New.jpg
+
+newmtl __Concrete_Aggregate_Smoke__Concrete_Aggregate_Smoke_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Concrete_Aggregate_Smoke.jpg
+
+newmtl __Stone_Granite_Midnite__Stone_Granite_Midnite_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Stone_Granite_Midnite.jpg
+
+newmtl __Concrete_Scored_Jointless__Concrete_Scored_Jointless_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Concrete_Scored_Jointless.jpg
+
+newmtl Default_Material 
+Ka 0.000000 0.000000 0.000000
+Kd 1.0 1.0 1.0 
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.2
