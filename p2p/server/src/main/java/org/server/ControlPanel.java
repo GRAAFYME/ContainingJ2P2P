@@ -12,10 +12,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import java.awt.Panel;
 import java.awt.BorderLayout;
 
-import javax.swing.JTextPane;
 
 import java.awt.Color;
 
@@ -92,7 +90,7 @@ public class ControlPanel
 	             File file = fc.getSelectedFile();
 	             String FileLocation = file.getPath();
 	             textArea.append(FileLocation + "\n");
-	             XMLLaad(FileLocation);
+
 	         } 
 	    	 else 
 	    	 {
@@ -112,19 +110,6 @@ public class ControlPanel
 	 };
 	 
 	 
-	 private static void XMLLaad(String Filelocatie)
-	 {
-		 	xmlParser parser = new xmlParser();
-	        ContainerSet containers;
-	        try {
-	            long time = System.nanoTime();
-	            containers = parser.parse(Filelocatie);
-	            System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
 
-	        }
-	        catch (Exception e){
-	            System.out.println("EORR!");
-	        }
-	 }
 	 
 }
