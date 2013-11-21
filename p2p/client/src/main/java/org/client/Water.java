@@ -32,6 +32,7 @@ public class Water {
         assetManager = am;
         lightDir =  new Vector3f(-4,-1,5);  //coordinates of the specific location of the light.
         waterNode = node;
+        initPPcWater();
     }
     //Creates water at a specific level 
     public FilterPostProcessor initPPcWater(){ 
