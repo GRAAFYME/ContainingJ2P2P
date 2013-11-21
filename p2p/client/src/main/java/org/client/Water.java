@@ -23,7 +23,7 @@ import com.jme3.water.WaterFilter;
 public class Water {
     private AssetManager assetManager;    
     private WaterFilter water;
-    private Node waterNode;    
+    public Node waterNode;    
     private Vector3f lightDir;
     public FilterPostProcessor fpp;
     
@@ -32,6 +32,7 @@ public class Water {
         assetManager = am;
         lightDir =  new Vector3f(-4,-1,5);  //coordinates of the specific location of the light.
         waterNode = node;
+        initPPcWater();
     }
     //Creates water at a specific level 
     public FilterPostProcessor initPPcWater(){ 
@@ -44,7 +45,7 @@ public class Water {
         water.setFoamExistence(new Vector3f(1f, -0.5f, 1f)); 
         water.setFoamTexture((Texture2D) assetManager.loadTexture("Common/MatDefs/Water/Textures/foam2.jpg")); 
         water.setRefractionStrength(0.2f); 
-        water.setWaterHeight(10f);  // Water Height.
+        water.setWaterHeight(110f);  // Water Height.
         fpp.addFilter(water); 
         return fpp;
     }
