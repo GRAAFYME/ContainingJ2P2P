@@ -19,6 +19,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+*.cache
 
 # External tool builders
 .externalToolBuilders/
@@ -31,4 +32,6 @@ local.properties
 *~
 *.swp
 *.swo
-p2p/application/bin/jarlist.cache
+
+#word shiz
+~$*.doc*
