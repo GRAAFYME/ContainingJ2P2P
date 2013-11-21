@@ -5,6 +5,7 @@
 package org.client;
 
 import com.jme3.asset.AssetManager;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.scene.Node;
@@ -26,12 +27,14 @@ public class Water {
     public Node waterNode;    
     private Vector3f lightDir;
     public FilterPostProcessor fpp;
+    public ColorRGBA deepWaterColor;
     
     public Water(AssetManager am, Node node)
     {
         assetManager = am;
         lightDir =  new Vector3f(-4,-1,5);  //coordinates of the specific location of the light.
         waterNode = node;
+        deepWaterColor = new ColorRGBA(0.0f, 0.45f, 0.81f, 0.1f);
         initPPcWater();
     }
     //Creates water at a specific level 
@@ -45,7 +48,8 @@ public class Water {
         water.setFoamExistence(new Vector3f(1f, -0.5f, 1f)); 
         water.setFoamTexture((Texture2D) assetManager.loadTexture("Common/MatDefs/Water/Textures/foam2.jpg")); 
         water.setRefractionStrength(0.2f); 
-        water.setWaterHeight(110f);  // Water Height.
+        water.setWaterHeight(100f);  // Water Height.
+        water.setDeepWaterColor(deepWaterColor);
         fpp.addFilter(water); 
         return fpp;
     }

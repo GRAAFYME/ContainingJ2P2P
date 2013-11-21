@@ -78,9 +78,10 @@ public class Client extends SimpleApplication {
 	    waterNode = new Node("Water");
 	    Water water = new Water(assetManager, waterNode);  //creates water
 	    viewPort.addProcessor(water.fpp); 
+	    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
 	    rootNode.attachChild(waterNode);  //adds water to the world
 	    cam.setLocation(new Vector3f(0f,150f,0f)); 
-	    flyCam.setMoveSpeed(10f);
+	    flyCam.setMoveSpeed(30f);
         }
     
     @Override
