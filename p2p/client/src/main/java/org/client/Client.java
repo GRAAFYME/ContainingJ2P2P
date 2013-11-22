@@ -50,7 +50,7 @@ public class Client extends SimpleApplication {
     	
     	NiftyMenu niftyMenu = new NiftyMenu();
         stateManager.attach(niftyMenu);
-        
+
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
                 assetManager, inputManager, audioRenderer, guiViewPort);
         Nifty nifty = niftyDisplay.getNifty();
@@ -73,6 +73,13 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleUpdate(float tpf) {
+
+        String message = c.getMessages();
+        if(message != "")
+        {
+            System.out.println(message);
+            //TODO: deserialize objects (xml->obj)
+        }
     }    
 
     //creates a blue box for testing

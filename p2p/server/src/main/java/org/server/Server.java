@@ -21,32 +21,54 @@ import java.net.Socket;
  * Melinda de Roo
  * */
 
-public class Server 
+public class Server
 {
     private ServerSocket serverSocket;
     private Socket clientSocket;
-    private PrintWriter socketStream;
+    private PrintWriter writer;
+    private BufferedReader reader;
 
+    public static void main(String[] args) throws Exception
+    {
+        Server server = new Server();
+        server.start(6666);
+        String a = "";
+
+        for(int i = 0; ; i++)
+        {
+            Thread.sleep(1000);
+             a += server.getMessages();
+            server.sendMessage("It werks: " + i + "\n");
+        }
+    }
     public String getMessages()
     {
+        String message = "";
+
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
-            //Gotta love java... copied from stackoverflow
-            java.util.Scanner s = new java.util.Scanner(in).useDelimiter("\\A");
-            return s.hasNext() ? s.next() : "";
-        }
-        catch (Exception e) {
+            while(reader.ready())
+            {
+                //Gotta love java... copied from stackoverflow
+                //Reading these streams is hell
+                java.util.Scanner s = new java.util.Scanner(reader).useDelimiter("\r\r");
+                message = s.hasNext() ? s.next() : "";
+                System.out.println(message);
+                return message;
+            }
+        } catch (Exception e)
+        {
             System.out.println(e.getMessage());
+            return "";
         }
 
-        return null;
+        return message;
     }
 
     public void sendMessage(String message)
     {
         try {
-        socketStream.print(message);
+            writer.write(message + "\r\r");
+            writer.flush();
         }
         catch (Exception e) {
             System.out.println("Message" + message + "\n----------------\nGave exception:\n-----------\n" + e.getMessage());
@@ -58,9 +80,12 @@ public class Server
         try {
             //Set the server up
             serverSocket = new ServerSocket(port);
+
             //Wait till someone connects; this is a blocking method!!!!!!!!
             clientSocket = serverSocket.accept();
-            socketStream = new PrintWriter(clientSocket.getOutputStream(), true);
+            writer = new PrintWriter(clientSocket.getOutputStream(), true);
+            reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            //socketStream.println("yoyo");
             return true;
         }
         catch (Exception e) {
