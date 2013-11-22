@@ -10,18 +10,18 @@ import java.util.List;
 
 public class xmlParser
 {
-    public ContainerSet parse(String path) throws FileNotFoundException
+    public ContainerSetXml parse(String path) throws FileNotFoundException
     {
-        List<Container> containerList = new ArrayList<Container>();
-        ContainerSet containers = null;
+        List<ContainerXml> containerList = new ArrayList<ContainerXml>();
+        ContainerSetXml containers = null;
 
 
         try {
             File file = new File(path);
-            JAXBContext jaxbContext = JAXBContext.newInstance(ContainerSet.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(ContainerSetXml.class);
             System.out.println(jaxbContext.getClass());
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-           containers = (ContainerSet) jaxbUnmarshaller.unmarshal(file);
+           containers = (ContainerSetXml) jaxbUnmarshaller.unmarshal(file);
 
         }
         catch (Exception e)

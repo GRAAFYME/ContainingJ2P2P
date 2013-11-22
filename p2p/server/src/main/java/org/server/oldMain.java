@@ -16,7 +16,7 @@ public class oldMain {
         server.start(6666);
 
         xmlParser parser = new xmlParser();
-        ContainerSet containers;
+        ContainerSetXml containers;
         try {
             long time = System.nanoTime();
             containers = parser.parse("data/xml1.xml");
