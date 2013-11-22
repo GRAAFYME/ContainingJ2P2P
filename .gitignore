@@ -27,6 +27,8 @@ local.properties
 # Locally stored "Eclipse launch configurations"
 *.launch
 
+#idea intellij
+*.iws
 
 #vim shiz
 *~

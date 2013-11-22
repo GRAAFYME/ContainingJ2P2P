@@ -14,14 +14,12 @@ public class xmlParser
     {
         List<ContainerXml> containerList = new ArrayList<ContainerXml>();
         ContainerSetXml containers = null;
-
-
         try {
             File file = new File(path);
             JAXBContext jaxbContext = JAXBContext.newInstance(ContainerSetXml.class);
             System.out.println(jaxbContext.getClass());
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-           containers = (ContainerSetXml) jaxbUnmarshaller.unmarshal(file);
+            containers = (ContainerSetXml) jaxbUnmarshaller.unmarshal(file);
 
         }
         catch (Exception e)

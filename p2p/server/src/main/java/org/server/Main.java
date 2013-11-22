@@ -1,5 +1,6 @@
 package org.server;
 
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -16,10 +17,8 @@ public class Main
    public static void main(String args[]) {
     JFrame frame = new JFrame("Controller");
     frame.getContentPane().setBackground(Color.WHITE);
-    
-
     JMenuBar menu = new JMenuBar();
-
+    
     // File Menu
     JMenu fileMenu = new JMenu("File");
     menu.add(fileMenu);

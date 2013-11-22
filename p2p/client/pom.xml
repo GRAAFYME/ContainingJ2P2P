@@ -22,5 +22,12 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>p2p</groupId>
+    	<artifactId>protocol</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    	<scope>provided</scope>
+    </dependency>
   </dependencies>
+  <packaging>pom</packaging>
 </project>

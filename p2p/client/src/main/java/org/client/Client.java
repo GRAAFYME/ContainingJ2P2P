@@ -1,59 +1,21 @@
 package org.client;
 
-import java.io.IOException;
-
 import com.jme3.app.SimpleApplication;
+import com.jme3.bullet.BulletAppState;
+import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
-import com.jme3.scene.Geometry;
-import com.jme3.scene.shape.Box;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Quaternion;
-import com.jme3.scene.Node;
-import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.PhysicsCollisionEvent;
-import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.light.AmbientLight;
-import com.jme3.math.Vector3f;
-import com.jme3.scene.Spatial;
-import com.jme3.asset.AssetManager;
-import com.jme3.audio.AudioNode;
-import com.jme3.collision.CollisionResult;
-import com.jme3.collision.CollisionResults;
-import com.jme3.font.BitmapText;
-import com.jme3.input.KeyInput;
-import com.jme3.input.MouseInput;
-import com.jme3.input.controls.ActionListener;
-import com.jme3.input.controls.AnalogListener;
-import com.jme3.input.controls.KeyTrigger;
-import com.jme3.input.controls.MouseAxisTrigger;
-import com.jme3.input.controls.MouseButtonTrigger;
-import com.jme3.math.Ray;
-import com.jme3.post.FilterPostProcessor;
-import com.jme3.post.filters.BloomFilter;
-import com.jme3.renderer.RenderManager;
-import com.jme3.texture.Texture;
-import com.jme3.texture.Texture2D;
-import com.jme3.ui.Picture;
-import com.jme3.water.WaterFilter;
-
-import java.math.BigDecimal;
-
-import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.bullet.util.CollisionShapeFactory;
-import com.jme3.light.AmbientLight;
-import com.jme3.light.PointLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-
+import com.jme3.scene.shape.Box;
 import de.lessvoid.nifty.Nifty;
+import org.protocol.Agv;
 
+import java.io.IOException;
 /*
  * Authors
  * Joshua Bergsma
@@ -65,13 +27,12 @@ import de.lessvoid.nifty.Nifty;
  * */
 
 public class Client extends SimpleApplication {
-	
 	public Node waterNode;  //Different nodes have different physics
 	private BulletAppState bulletAppState;  //Physics machine
 	RigidBodyControl rbc;
 	CollisionShape sceneShape;   //gives collisions to the scene
 	Spatial sceneModel;
-
+	Protocol p;
     Box b;
     Geometry geom;
     private Vector3f walkDirection = new Vector3f();
