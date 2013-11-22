@@ -34,17 +34,19 @@ public class Main
     fileMenu.add(Start);
     Start.addActionListener(actionListener);
     
-    // Move help menu to right side
-    //menu.add(Box.createHorizontalGlue());
+    //Quit
+    JMenuItem Quit = new JMenuItem("Quit");
+    fileMenu.add(Quit);
+    Quit.addActionListener(actionListener);
 
     // Help Menu
     JMenu helpMenu = new JMenu("Help");
     menu.add(helpMenu);
-    
+    //About
     JMenuItem About = new JMenuItem("About");
     helpMenu.add(About);
     About.addActionListener(actionListener);
-    
+    //Help
     JMenuItem Help = new JMenuItem("Help");
     helpMenu.add(Help);
     Help.addActionListener(actionListener);
@@ -53,6 +55,10 @@ public class Main
     frame.getContentPane().add(textArea, BorderLayout.NORTH);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     textArea.setEditable(false);
+    //Scroll!!
+    JScrollPane scroll = new JScrollPane (textArea, 
+    		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    frame.add(scroll);
     
     frame.setJMenuBar(menu);
     frame.setSize(600, 700);
@@ -82,10 +88,9 @@ public class Main
 	    	 if (returnVal == JFileChooser.APPROVE_OPTION) {
 	             File file = fc.getSelectedFile();
 	             String FileLocation = file.getPath();
-	             textArea.append(FileLocation + "\n");
+	             textArea.append(FileLocation + "\n" + "\n");
 	    	 
-	         
-	    	 
+	             
              //Parse XML
              xmlParser parser = new xmlParser();
              ContainerSetXml containers;
@@ -94,11 +99,14 @@ public class Main
                  long time = System.nanoTime();
                  containers = parser.parse(FileLocation);
                  System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
-                 //for (Container c : containers)
-                 //    System.out.println("("+c.id+")Name: " + c.name + " is carrying " + c.contentName + " which is " + c.contentDanger);
+                 for (ContainerXml c : containers.containers)
+                 {
+                	 textArea.append(c.id + " Owner Name: " + c.ownerName +  "\n");
+                 }
+                     
              }
              catch (Exception ex){
-                 System.out.println("EORR!");
+                 System.out.println(ex);
              }
 	    	 }
 	             
@@ -116,6 +124,10 @@ public class Main
 	     else if (NameItem == "Help")
 	     {
 	    	 JOptionPane.showMessageDialog(null,"Moet nog ingevuld worden!","Help",JOptionPane.INFORMATION_MESSAGE);
+	     }
+	     else if (NameItem == "Quit")
+	     {
+	    	 System.exit(0);
 	     }
 	   }
 	 };
