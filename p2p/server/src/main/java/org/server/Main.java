@@ -106,7 +106,15 @@ public class Main
 	     {
 	    	 Server server = new Server();
 	         server.start(6666);
-	         System.out.println("Client connected");
+             System.out.println("Client connected");
+
+             while(true)
+             {
+                 try {
+                 Thread.sleep(1000);
+                 } catch (Exception exception){}
+                 server.sendMessage("YOOOOOOOO");
+             }
 	     }
 	     else if (NameItem == "About")
 	     {

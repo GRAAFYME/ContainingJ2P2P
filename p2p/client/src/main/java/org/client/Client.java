@@ -13,9 +13,6 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import de.lessvoid.nifty.Nifty;
-import org.protocol.Agv;
-
-import java.io.IOException;
 /*
  * Authors
  * Joshua Bergsma
@@ -32,7 +29,7 @@ public class Client extends SimpleApplication {
 	RigidBodyControl rbc;
 	CollisionShape sceneShape;   //gives collisions to the scene
 	Spatial sceneModel;
-	Protocol p;
+
     Box b;
     Geometry geom;
     private Vector3f walkDirection = new Vector3f();
@@ -60,14 +57,7 @@ public class Client extends SimpleApplication {
         nifty.fromXml("Interface/MainMenu.xml", "start");
         guiViewPort.addProcessor(niftyDisplay);
         
-    	try 
-    	{
-			c = new networkClient();
-		} 
-    	catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        c = new networkClient(6666);
     	initPhysics();
     	Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
     	rootNode.attachChild(scene.sceneNode);  //adds the scene to the game
