@@ -27,7 +27,7 @@
     	<artifactId>protocol</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
     	<scope>compile</scope>
-    	<type>pom</type>
+    	<type>jar</type>
     </dependency>
   </dependencies>
   <packaging>pom</packaging>
