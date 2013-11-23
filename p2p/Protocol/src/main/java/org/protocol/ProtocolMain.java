@@ -1,42 +1,23 @@
 package org.protocol;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.nio.charset.Charset;
-
 //Temporary test class
+//Run this if you want to check if everything gets (de)serialized properly
+// without starting server/client pair or hacking around in either modules
 public class ProtocolMain {
     public static void main(String args[]) {
 
+        ProtocolParser parser = new ProtocolParser();
         Protocol p = new Protocol();
+        Protocol p2 = null;
         p.containers.add(new Container());
         String xmlOutput = "";
 
         try {
-            //---Generate Xml
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-            JAXBContext jaxbContext = JAXBContext.newInstance(Protocol.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-            //Pretty printing enabled
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            jaxbMarshaller.marshal(p, stream);
-            xmlOutput = new String(stream.toByteArray(), Charset.defaultCharset());
-
+            xmlOutput = parser.serialize(p);
             System.out.println(xmlOutput);
-            //---Create Class from Xml
-            Protocol p2 = new Protocol();
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            InputStream stream2 = new ByteArrayInputStream(xmlOutput.getBytes("UTF-8"));
 
-            p2 = (Protocol) jaxbUnmarshaller.unmarshal(stream2);
-            System.out.println(p2.containers.get(0).d);
+            p2 = parser.deserialize(xmlOutput);
+            System.out.println(p2.getContainers().get(0).name);
 
         } catch (Exception e)
         {

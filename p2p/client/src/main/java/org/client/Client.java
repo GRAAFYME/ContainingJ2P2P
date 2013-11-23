@@ -13,6 +13,11 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import de.lessvoid.nifty.Nifty;
+import org.protocol.Container;
+import org.protocol.Protocol;
+import org.protocol.ProtocolParser;
+
+import javax.vecmath.Point3d;
 /*
  * Authors
  * Joshua Bergsma
@@ -24,11 +29,15 @@ import de.lessvoid.nifty.Nifty;
  * */
 
 public class Client extends SimpleApplication {
+	private ProtocolParser protocolParser;
 	public Node waterNode;  //Different nodes have different physics
 	private BulletAppState bulletAppState;  //Physics machine
 	RigidBodyControl rbc;
 	CollisionShape sceneShape;   //gives collisions to the scene
 	Spatial sceneModel;
+    //Temporary network test
+    private Geometry tempContainer;
+    //</test>
 
     Box b;
     Geometry geom;
@@ -47,7 +56,7 @@ public class Client extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-    	
+
     	NiftyMenu niftyMenu = new NiftyMenu();
         stateManager.attach(niftyMenu);
 
@@ -69,6 +78,16 @@ public class Client extends SimpleApplication {
 	    cam.setLocation(new Vector3f(0f,150f,0f)); 
 	    flyCam.setMoveSpeed(30f);
 	    FBC = new FlyByCamera(cam);
+
+
+        protocolParser = new ProtocolParser();
+        //TODO: Remove this Network test code
+        Box t = new Box(5, 5, 5);
+        tempContainer = new Geometry("Box", t);
+        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.Black);
+        tempContainer.setMaterial(mat);
+        rootNode.attachChild(tempContainer);
         }
     
     @Override
@@ -79,6 +98,24 @@ public class Client extends SimpleApplication {
         {
             System.out.println(message);
             //TODO: deserialize objects (xml->obj)
+            try {
+                Protocol p = protocolParser.deserialize(message);
+                Container container = null;
+                for (Container c : p.getContainers())
+                {
+                    container = c;
+                    System.out.println(c.getLocation().toString());
+                }
+
+                Point3d l = container.getLocation();
+                tempContainer.setLocalTranslation((float)l.x, (float)l.y, (float)l.z);
+
+            }
+            catch (Exception e)
+            {
+                System.out.println("Received incorrect package: \n\n" +  e.getMessage());
+            }
+            
         }
     }    
 

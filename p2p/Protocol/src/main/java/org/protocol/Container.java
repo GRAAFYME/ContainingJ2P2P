@@ -12,7 +12,12 @@ import javax.xml.bind.annotation.XmlElement;
  */
 public class Container {
     @XmlElement
-    String l = "aaa";
+    public String name = "aaa";
     @XmlElement
-    Point3d d = new Point3d(1, 2, 3);
+	public Point3d location = new Point3d(1, 2, 3);
+
+    public Point3d getLocation()
+    {
+    	return location;
+    }
 }

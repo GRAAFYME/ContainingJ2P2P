@@ -35,7 +35,7 @@ public class ProtocolParser {
         return null;
     }
 
-    public Protocol serialize(String packet)
+    public Protocol deserialize(String packet)
     {
         InputStream stream = new ByteArrayInputStream(packet.getBytes());
         Protocol p = null;

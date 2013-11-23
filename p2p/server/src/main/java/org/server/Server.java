@@ -1,8 +1,10 @@
 package org.server;
 
-import org.protocol.*;
 import org.protocol.Container;
+import org.protocol.Protocol;
+import org.protocol.ProtocolParser;
 
+import javax.vecmath.Point3d;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -37,19 +39,21 @@ public class Server
     {
         parser = new ProtocolParser();
         Server server = new Server();
+        Protocol p = null;
+        p = new Protocol();
+        p.getContainers().add(new Container());
+        p.getContainers().get(0).location = new Point3d(50, 130, 50);
         server.start(6666);
-        String a = "";
-        //Create temp Protocol with 1 Container
-        Protocol p = new Protocol();
-        p.containers.add(new Container());
 
-        for(int i = 0; ; i++)
+        while(true)
         {
-            Thread.sleep(1000);
-             a += server.getMessages();
+            Thread.sleep(100);
+            //Add tiny amount
+            p.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
             server.sendMessage(parser.serialize(p));
         }
     }
+
     public String getMessages()
     {
         String message = "";
@@ -94,6 +98,9 @@ public class Server
 
             //Wait till someone connects; this is a blocking method!!!!!!!!
             clientSocket = serverSocket.accept();
+            //Does this do anything at all?
+            clientSocket.setKeepAlive(true);
+            clientSocket.setSoTimeout(500);
             writer = new PrintWriter(clientSocket.getOutputStream(), true);
             reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             return true;

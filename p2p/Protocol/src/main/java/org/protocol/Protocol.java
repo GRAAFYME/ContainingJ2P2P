@@ -15,13 +15,19 @@ import java.util.List;
 @XmlRootElement
 public class Protocol {
 
-    public Protocol()
-    {
-        containers = new ArrayList<Container>();
-    }
-
     @XmlElement
     public boolean isZip;
     @XmlElement
     public List<Container> containers;
+    
+    public Protocol()
+    {
+        containers = new ArrayList<Container>();
+    }
+    
+    public List<Container> getContainers()
+    {
+    	return containers;
+    }
+
 }
