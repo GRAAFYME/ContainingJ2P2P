@@ -77,7 +77,7 @@ public class Client extends SimpleApplication {
 	    rootNode.attachChild(waterNode);  //adds water to the world
 	    cam.setLocation(new Vector3f(0f,150f,0f)); 
 	    flyCam.setMoveSpeed(30f);
-	    FBC = new FlyByCamera(cam);
+	    FBC = new FlyByCamera(inputManager, cam);
 
 
         protocolParser = new ProtocolParser();

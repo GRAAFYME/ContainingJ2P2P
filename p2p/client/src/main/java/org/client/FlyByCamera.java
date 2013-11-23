@@ -31,7 +31,7 @@ public class FlyByCamera implements AnalogListener, ActionListener {
     private Camera cam;
     private Vector3f initialUpVec;
     private float rotationSpeed = 1f;
-    private float moveSpeed = 3f;
+    private float moveSpeed = 100f;
     private MotionAllowedListener motionAllowed = null;
     private boolean enabled = true;
     private boolean dragToRotate = false;
@@ -42,9 +42,12 @@ public class FlyByCamera implements AnalogListener, ActionListener {
      * Creates a new FlyByCamera to control the given Camera object.
      * @param cam
      */
-    public FlyByCamera(Camera cam){
+    public FlyByCamera(InputManager inputManager, Camera cam){
+    	this.inputManager = inputManager;
         this.cam = cam;
         initialUpVec = cam.getUp().clone();
+        
+        registerWithInput();
     }
 
     public void setMotionAllowedListener(MotionAllowedListener listener){
@@ -108,8 +111,7 @@ public class FlyByCamera implements AnalogListener, ActionListener {
      * Dispatcher.
      * @param dispacher
      */
-    public void registerWithInput(InputManager inputManager){
-        this.inputManager = inputManager;
+    public void registerWithInput(){
        
 //        inputManager.registerJoystickAxisBinding("FLYCAM_Left",  2, JoyInput.AXIS_X, true);
 //        inputManager.registerJoystickAxisBinding("FLYCAM_Right", 2, JoyInput.AXIS_X, false);
