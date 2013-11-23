@@ -26,6 +26,7 @@
     	<groupId>p2p</groupId>
     	<artifactId>protocol</artifactId>
     	<version>0.0.1-SNAPSHOT</version>
+    	<type>jar</type>
     </dependency>
   </dependencies>
   <packaging>pom</packaging>
