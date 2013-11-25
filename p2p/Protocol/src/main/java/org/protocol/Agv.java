@@ -7,5 +7,15 @@
  */
 package org.protocol;
 
-public class Agv extends Voertuig{
+import javax.vecmath.Vector3f;
+
+public class Agv extends Voertuig
+{
+	public Agv(Vector3f Location)
+	{
+		super(Location);
+	}
+	
+	
+	
 }
