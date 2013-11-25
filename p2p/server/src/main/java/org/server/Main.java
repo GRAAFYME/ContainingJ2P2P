@@ -62,6 +62,7 @@ public class Main
     frame.setJMenuBar(menu);
     frame.setSize(600, 700);
     frame.setVisible(true);
+    
   }
    
 
@@ -71,6 +72,7 @@ public class Main
 		   String NameItem = (((JMenuItem)e.getSource()).getText());
 	     if (NameItem == "Load File")
 	     {
+	    	 
 	    	 //all files disabled
 	    	 fc.setAcceptAllFileFilterUsed(false);
 	    	 
@@ -87,21 +89,32 @@ public class Main
 	    	 if (returnVal == JFileChooser.APPROVE_OPTION) {
 	             File file = fc.getSelectedFile();
 	             String FileLocation = file.getPath();
-	             textArea.append(FileLocation + "\n" + "\n");
-	    	 
+	             textArea.setText(FileLocation + "\n" + "\n");
 	             
              //Parse XML
              xmlParser parser = new xmlParser();
-             ContainerSetXml containers;
+             final ContainerSetXml containers;
+
              try 
              {
                  long time = System.nanoTime();
                  containers = parser.parse(FileLocation);
                  System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
-                 for (ContainerXml c : containers.containers)
-                 {
-                	 textArea.append(c.id + " Owner Name: " + c.ownerName +  "\n");
-                 }
+                 
+                 Thread t = new Thread() {
+                     @Override
+                     public void run() {  // override the run() for the running behaviors
+                        for (ContainerXml c : containers.containers) {
+                        	textArea.append(c.id + " Owner Name: " + c.ownerName +  "\n");
+                        	textArea.setCaretPosition(textArea.getDocument().getLength());
+                           try {
+                              sleep(50);  // milliseconds
+                           } catch (InterruptedException ex) {}
+                        }
+                     }
+                  };
+                  t.start();  // call back run()
+
                      
              }
              catch (Exception ex){
@@ -138,7 +151,6 @@ public class Main
 	     }
 	   }
 	 };
-	 
 	 
 
 	 
