@@ -5,9 +5,17 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPath;
+import com.jme3.cinematic.MotionPathListener;
 import com.jme3.cinematic.events.MotionEvent;
+import com.jme3.font.BitmapText;
+import com.jme3.input.KeyInput;
+import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
+import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Geometry;
@@ -38,7 +46,7 @@ public class Client extends SimpleApplication {
 	private BulletAppState bulletAppState;  //Physics machine
 	RigidBodyControl rbc;
 	CollisionShape sceneShape;   //gives collisions to the scene
-	Spatial sceneModel;
+	Spatial sceneModel, AGV;
     //Temporary network test
     private Geometry tempContainer;
     //</test>
@@ -53,6 +61,8 @@ public class Client extends SimpleApplication {
     FlyByCamera FBC;
     private MotionPath path;
     private MotionEvent motionControl;
+    private boolean active = true;
+    private boolean playing = false;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -61,19 +71,49 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleInitApp() {
+    	initInputs();
 
-        path = new MotionPath();
-        path.addWayPoint(new Vector3f(60, 117, 130));
-        path.addWayPoint(new Vector3f(60, 117, 240));
-        path.addWayPoint(new Vector3f(124, 117, 240));
-        path.addWayPoint(new Vector3f(124, 117, -141));
-        path.addWayPoint(new Vector3f(-97, 117, -141));
-        path.addWayPoint(new Vector3f(-97, 117, 11));
-        path.addWayPoint(new Vector3f(-141, 117, 11));
-        path.setCurveTension(0.01f);
-        path.enableDebugShape(assetManager, rootNode);
+      //	testBox(new Vector3f(70, 117, 130));
+          path = new MotionPath();
+          path.addWayPoint(new Vector3f(60, 117, 130));
+          path.addWayPoint(new Vector3f(60, 117, 240));
+          path.addWayPoint(new Vector3f(124, 117, 240));
+          path.addWayPoint(new Vector3f(124, 117, -141));
+          path.addWayPoint(new Vector3f(-97, 117, -141));
+          path.addWayPoint(new Vector3f(-97, 117, 11));
+          path.addWayPoint(new Vector3f(-141, 117, 11));
+          path.setCurveTension(0.3f);
+          path.enableDebugShape(assetManager, rootNode);
+          
+          addAGV(new Vector3f(70f,118.5f,130f));
+          motionControl = new MotionEvent(AGV, path);
+          
+          motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
+          motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
+          motionControl.setInitialDuration(10f);
+          motionControl.setSpeed(2f);       
+          guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+          final BitmapText wayPointsText = new BitmapText(guiFont, false);
+          wayPointsText.setSize(guiFont.getCharSet().getRenderedSize());
+
+          guiNode.attachChild(wayPointsText);
+
+          path.addListener(new MotionPathListener() {
+
+              public void onWayPointReach(MotionEvent control, int wayPointIndex) {
+                  if (path.getNbWayPoints() == wayPointIndex + 1) {
+                      wayPointsText.setText(control.getSpatial().getName() + "Finished!!! ");
+                  } else {
+                      wayPointsText.setText(control.getSpatial().getName() + " Reached way point " + wayPointIndex);
+                  }
+                  wayPointsText.setLocalTranslation((cam.getWidth() - wayPointsText.getLineWidth()) / 2, cam.getHeight(), 0);
+              }
+          });
+
+          
+          
         
-        addAGV(new Vector3f(60f,118.5f,130f));
+
 
     	NiftyMenu niftyMenu = new NiftyMenu();
         stateManager.attach(niftyMenu);
@@ -156,13 +196,68 @@ public class Client extends SimpleApplication {
     }
     
     public void addAGV(Vector3f location){
-    	Spatial AGV = assetManager.loadModel("Models/AGV/AGV.obj" );
+    	AGV = assetManager.loadModel("Models/AGV/AGV.obj" );
     	AGV.setLocalTranslation(location);
     	AGV.scale(10);
     	Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", ColorRGBA.Black);
     	AGV.setMaterial(mat);
+    	AGV.setName("Name");
         rootNode.attachChild(AGV);              // make the AGV appear in the scene	
+    }
+    
+    
+    private void initInputs() {
+        inputManager.addMapping("display_hidePath", new KeyTrigger(KeyInput.KEY_P));
+        inputManager.addMapping("SwitchPathInterpolation", new KeyTrigger(KeyInput.KEY_I));
+        inputManager.addMapping("tensionUp", new KeyTrigger(KeyInput.KEY_U));
+        inputManager.addMapping("tensionDown", new KeyTrigger(KeyInput.KEY_J));
+        inputManager.addMapping("play_stop", new KeyTrigger(KeyInput.KEY_SPACE));
+        ActionListener acl = new ActionListener() {
+
+            public void onAction(String name, boolean keyPressed, float tpf) {
+                if (name.equals("display_hidePath") && keyPressed) {
+                    if (active) {
+                        active = false;
+                        path.disableDebugShape();
+                    } else {
+                        active = true;
+                        path.enableDebugShape(assetManager, rootNode);
+                    }
+                }
+                if (name.equals("play_stop") && keyPressed) {
+                    if (playing) {
+                        playing = false;
+                        motionControl.stop();
+                    } else {
+                        playing = true;
+                        motionControl.play();
+                    }
+                }
+
+                if (name.equals("SwitchPathInterpolation") && keyPressed) {
+                    if (path.getPathSplineType() == SplineType.CatmullRom){
+                        path.setPathSplineType(SplineType.Linear);
+                    } else {
+                        path.setPathSplineType(SplineType.CatmullRom);
+                    }
+                }
+
+                if (name.equals("tensionUp") && keyPressed) {
+                    path.setCurveTension(path.getCurveTension() + 0.1f);
+                    System.err.println("Tension : " + path.getCurveTension());
+                }
+                if (name.equals("tensionDown") && keyPressed) {
+                    path.setCurveTension(path.getCurveTension() - 0.1f);
+                    System.err.println("Tension : " + path.getCurveTension());
+                }
+
+
+            }
+        };
+
+        inputManager.addListener(acl, "display_hidePath", "play_stop", "SwitchPathInterpolation", "tensionUp", "tensionDown");
+
     }
     
 }
