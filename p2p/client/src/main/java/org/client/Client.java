@@ -4,6 +4,8 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.cinematic.MotionPath;
+import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -49,6 +51,9 @@ public class Client extends SimpleApplication {
     private Boolean sprint = false;
     private networkClient c;
     FlyByCamera FBC;
+    private MotionPath path;
+    private MotionEvent motionControl;
+
 
 
     public static void main(String[] args){
@@ -59,14 +64,17 @@ public class Client extends SimpleApplication {
     @Override
     public void simpleInitApp() {
 
-    	testBox(new Vector3f(60, 117, 130));
-    	testBox(new Vector3f(60, 117, 240));
-    	testBox(new Vector3f(124, 117, 240));
-    	testBox(new Vector3f(124, 117, -141));
-    	testBox(new Vector3f(-97, 117, -141));
-    	testBox(new Vector3f(-97, 117, 11));
-    	testBox(new Vector3f(-141, 117, 11));
-    	
+        path = new MotionPath();
+        path.addWayPoint(new Vector3f(60, 117, 130));
+        path.addWayPoint(new Vector3f(60, 117, 240));
+        path.addWayPoint(new Vector3f(124, 117, 240));
+        path.addWayPoint(new Vector3f(124, 117, -141));
+        path.addWayPoint(new Vector3f(-97, 117, -141));
+        path.addWayPoint(new Vector3f(-97, 117, 11));
+        path.addWayPoint(new Vector3f(-141, 117, 11));
+        path.setCurveTension(0.01f);
+        path.enableDebugShape(assetManager, rootNode);
+
     	NiftyMenu niftyMenu = new NiftyMenu();
         stateManager.attach(niftyMenu);
 
