@@ -46,7 +46,8 @@ public class Client extends SimpleApplication {
 	private BulletAppState bulletAppState;  //Physics machine
 	RigidBodyControl rbc;
 	CollisionShape sceneShape;   //gives collisions to the scene
-	Spatial sceneModel, AGV;
+	Spatial sceneModel;
+	public Node nodeAGV;
     //Temporary network test
     private Geometry tempContainer;
     //</test>
@@ -72,7 +73,7 @@ public class Client extends SimpleApplication {
     @Override
     public void simpleInitApp() {
     	initInputs();
-
+    	
       //	testBox(new Vector3f(70, 117, 130));
           path = new MotionPath();
           path.addWayPoint(new Vector3f(60, 117, 130));
@@ -85,8 +86,9 @@ public class Client extends SimpleApplication {
           path.setCurveTension(0.3f);
           path.enableDebugShape(assetManager, rootNode);
           
-          addAGV(new Vector3f(70f,118.5f,130f));
-          motionControl = new MotionEvent(AGV, path);
+          AGV agv1 = new AGV(new Vector3f(70f,118.5f,130f), assetManager);
+          rootNode.attachChild(agv1.nodeAGV);
+          motionControl = new MotionEvent(agv1.AGV, path);
           
           motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
           motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
@@ -194,19 +196,7 @@ public class Client extends SimpleApplication {
     	bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState); 
     }
-    
-    public void addAGV(Vector3f location){
-    	AGV = assetManager.loadModel("Models/AGV/AGV.obj" );
-    	AGV.setLocalTranslation(location);
-    	AGV.scale(10);
-    	Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Black);
-    	AGV.setMaterial(mat);
-    	AGV.setName("Name");
-        rootNode.attachChild(AGV);              // make the AGV appear in the scene	
-    }
-    
-    
+   
     private void initInputs() {
         inputManager.addMapping("display_hidePath", new KeyTrigger(KeyInput.KEY_P));
         inputManager.addMapping("SwitchPathInterpolation", new KeyTrigger(KeyInput.KEY_I));
@@ -258,6 +248,5 @@ public class Client extends SimpleApplication {
 
         inputManager.addListener(acl, "display_hidePath", "play_stop", "SwitchPathInterpolation", "tensionUp", "tensionDown");
 
-    }
-    
+    } 
 }
