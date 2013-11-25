@@ -12,7 +12,9 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+
 import de.lessvoid.nifty.Nifty;
+
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
@@ -57,6 +59,14 @@ public class Client extends SimpleApplication {
     @Override
     public void simpleInitApp() {
 
+    	testBox(new Vector3f(60, 117, 130));
+    	testBox(new Vector3f(60, 117, 240));
+    	testBox(new Vector3f(124, 117, 240));
+    	testBox(new Vector3f(124, 117, -141));
+    	testBox(new Vector3f(-97, 117, -141));
+    	testBox(new Vector3f(-97, 117, 11));
+    	testBox(new Vector3f(-141, 117, 11));
+    	
     	NiftyMenu niftyMenu = new NiftyMenu();
         stateManager.attach(niftyMenu);
 
@@ -92,7 +102,7 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleUpdate(float tpf) {
-
+    	System.out.println(cam.getLocation());	
         String message = c.getMessages();
         if(message != "")
         {
@@ -120,10 +130,11 @@ public class Client extends SimpleApplication {
     }    
 
     //creates a blue box for testing
-    public void testBox(){
+    public void testBox(Vector3f location){
     	Box b = new Box(2, 1, 1); // create cube shape
         Geometry geom = new Geometry("Box", b);  // create cube geometry from the shape
         Material mat = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
+        geom.setLocalTranslation(location);
         mat.setColor("Color", ColorRGBA.Red);   // set color of material to blue
         geom.setMaterial(mat);                   // set the cube's material
         rootNode.attachChild(geom);              // make the cube appear in the scene	
