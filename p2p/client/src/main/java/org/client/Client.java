@@ -42,8 +42,8 @@ public class Client extends SimpleApplication {
     //Temporary network test
     private Geometry tempContainer;
     //</test>
-
     Box b;
+    
     Geometry geom;
     private Vector3f walkDirection = new Vector3f();
     private Vector3f camDir = new Vector3f();
@@ -53,14 +53,12 @@ public class Client extends SimpleApplication {
     FlyByCamera FBC;
     private MotionPath path;
     private MotionEvent motionControl;
-
-
-
+    
     public static void main(String[] args){
         Client app = new Client();       
         app.start(); // start the game
     }
-
+    
     @Override
     public void simpleInitApp() {
 
@@ -74,6 +72,8 @@ public class Client extends SimpleApplication {
         path.addWayPoint(new Vector3f(-141, 117, 11));
         path.setCurveTension(0.01f);
         path.enableDebugShape(assetManager, rootNode);
+        
+        addAGV(new Vector3f(60f,118.5f,130f));
 
     	NiftyMenu niftyMenu = new NiftyMenu();
         stateManager.attach(niftyMenu);
@@ -154,4 +154,15 @@ public class Client extends SimpleApplication {
     	bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState); 
     }
+    
+    public void addAGV(Vector3f location){
+    	Spatial AGV = assetManager.loadModel("Models/AGV/AGV.obj" );
+    	AGV.setLocalTranslation(location);
+    	AGV.scale(10);
+    	Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.Black);
+    	AGV.setMaterial(mat);
+        rootNode.attachChild(AGV);              // make the AGV appear in the scene	
+    }
+    
 }
