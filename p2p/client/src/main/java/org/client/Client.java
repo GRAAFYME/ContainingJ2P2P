@@ -46,8 +46,9 @@ public class Client extends SimpleApplication {
 	private BulletAppState bulletAppState;  //Physics machine
 	RigidBodyControl rbc;
 	CollisionShape sceneShape;   //gives collisions to the scene
-	Spatial sceneModel;
 	public Node nodeAGV;
+
+	Spatial sceneModel, AGV, AGV2;
     //Temporary network test
     private Geometry tempContainer;
     //</test>
@@ -61,9 +62,11 @@ public class Client extends SimpleApplication {
     private networkClient c;
     FlyByCamera FBC;
     private MotionPath path;
-    private MotionEvent motionControl;
+    private MotionEvent motionControl, motionControl2;
     private boolean active = true;
     private boolean playing = false;
+    private boolean playing2 = false;
+    private boolean setWireFrame;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -86,9 +89,9 @@ public class Client extends SimpleApplication {
           path.setCurveTension(0.3f);
           path.enableDebugShape(assetManager, rootNode);
           
-          AGV agv1 = new AGV(new Vector3f(70f,118.5f,130f), assetManager);
-          rootNode.attachChild(agv1.nodeAGV);
-          motionControl = new MotionEvent(agv1.AGV, path);
+//          AGV agv1 = new AGV(new Vector3f(70f,118.5f,130f), assetManager);
+//          rootNode.attachChild(agv1.nodeAGV);
+//          motionControl = new MotionEvent(agv1.AGV, path);
           
           motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
           motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
@@ -113,7 +116,8 @@ public class Client extends SimpleApplication {
           });
 
           
-          
+
+     //  Agv agv = new Agv(assetManager, path, motionControl, AGV, setWireFrame, inputManager);
         
 
 
@@ -179,16 +183,6 @@ public class Client extends SimpleApplication {
         }
     }    
 
-    //creates a blue box for testing
-    public void testBox(Vector3f location){
-    	Box b = new Box(2, 1, 1); // create cube shape
-        Geometry geom = new Geometry("Box", b);  // create cube geometry from the shape
-        Material mat = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
-        geom.setLocalTranslation(location);
-        mat.setColor("Color", ColorRGBA.Red);   // set color of material to blue
-        geom.setMaterial(mat);                   // set the cube's material
-        rootNode.attachChild(geom);              // make the cube appear in the scene	
-    }
     
     //creates most of the physics logic
     public void initPhysics(){
@@ -196,6 +190,7 @@ public class Client extends SimpleApplication {
     	bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState); 
     }
+
    
     private void initInputs() {
         inputManager.addMapping("display_hidePath", new KeyTrigger(KeyInput.KEY_P));
