@@ -9,10 +9,10 @@ import javax.vecmath.Vector3f;
  * Time: 14:40
  * To change this template use File | Settings | File Templates.
  */
-public class VrachtautoKraan extends RailKraan
+public class TruckCrane extends RailCrane
 {
 
-	public VrachtautoKraan(Vector3f _location) 
+	public TruckCrane(Vector3f _location) 
 	{
 		super(_location);
 	}

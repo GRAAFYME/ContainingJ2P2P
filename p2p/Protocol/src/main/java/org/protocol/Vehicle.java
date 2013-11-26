@@ -9,11 +9,11 @@ import javax.vecmath.Vector3f;
  * Time: 14:40
  * To change this template use File | Settings | File Templates.
  */
-public class Voertuig 
+public class Vehicle
 {
 	private Vector3f Location;
 	
-	public Voertuig(Vector3f _location)
+	public Vehicle(Vector3f _location)
 	{
 		this.Location = _location;
 	}

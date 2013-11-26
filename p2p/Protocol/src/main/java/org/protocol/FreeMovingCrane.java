@@ -3,10 +3,10 @@ package org.protocol;
 import javax.vecmath.Vector3f;
 
 
-public class VrijBeweegbareKraan extends Kraan 
+public class FreeMovingCrane extends Crane
 {
 
-	public VrijBeweegbareKraan(Vector3f _location) 
+	public FreeMovingCrane(Vector3f _location) 
 	{
 		super(_location);
 	}

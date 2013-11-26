@@ -9,7 +9,7 @@ public class ProtocolMain {
     public static void main(String args[]) {
 
 		Vector3f test = new Vector3f(5,5,5);
-		Agv test1 = new Agv(test);
+		AGV test1 = new AGV(test);
 		System.out.println(test1.GetLocation());
     	
         ProtocolParser parser = new ProtocolParser();

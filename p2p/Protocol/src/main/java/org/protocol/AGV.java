@@ -9,9 +9,9 @@ package org.protocol;
 
 import javax.vecmath.Vector3f;
 
-public class Agv extends Voertuig
+public class AGV extends Vehicle
 {
-	public Agv(Vector3f Location)
+	public AGV(Vector3f Location)
 	{
 		super(Location);
 	}

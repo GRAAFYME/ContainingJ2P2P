@@ -9,9 +9,9 @@ import javax.vecmath.Vector3f;
  * Time: 14:41
  * To change this template use File | Settings | File Templates.
  */
-public class Binnenvaartschip extends Voertuig
+public class Barge extends Vehicle
 {
-	public Binnenvaartschip(Vector3f Location)
+	public Barge(Vector3f Location)
 	{
 		super(Location);
 	}

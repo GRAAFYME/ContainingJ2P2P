@@ -9,10 +9,10 @@ import javax.vecmath.Vector3f;
  * Time: 14:38
  * To change this template use File | Settings | File Templates.
  */
-public class OpslagKraan extends VrijBeweegbareKraan
+public class StorageCrane extends FreeMovingCrane
 {
 
-	public OpslagKraan(Vector3f _location) 
+	public StorageCrane(Vector3f _location) 
 	{
 		super(_location);
 	}
