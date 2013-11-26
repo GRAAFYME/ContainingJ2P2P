@@ -1,5 +1,7 @@
 package org.protocol;
 
+import javax.vecmath.Vector3f;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Remco
@@ -7,5 +9,12 @@ package org.protocol;
  * Time: 14:39
  * To change this template use File | Settings | File Templates.
  */
-public class TreinKraan extends RailKraan{
+public class TreinKraan extends RailKraan
+{
+
+	public TreinKraan(Vector3f _location) 
+	{
+		super(_location);
+	}
+	
 }

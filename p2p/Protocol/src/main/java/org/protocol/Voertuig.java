@@ -13,18 +13,18 @@ public class Voertuig
 {
 	private Vector3f Location;
 	
-	public Voertuig(Vector3f Loc)
+	public Voertuig(Vector3f _location)
 	{
-		this.Location = Loc;
+		this.Location = _location;
 	}
 	
-	public Vector3f GetLocation()
+	protected Vector3f GetLocation()
 	{
 		return Location;
 	}
 	
-	public void SetLocation(Vector3f Loc)
+	protected void SetLocation(Vector3f _location)
 	{
-		Location = Loc;
+		Location = _location;
 	}
 }
