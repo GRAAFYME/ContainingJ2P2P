@@ -34,6 +34,8 @@ import javax.vecmath.Point3d;
 
 public class Client extends SimpleApplication {
 	//TODO: Set in logical order!
+	//TODO: Boolean to activate the animation per crane (1 for the RailCrane & 1 for the FreeMovingCrane)
+	//TODO: Receive the data for calculating the velocity of the animation
 	private ProtocolParser protocolParser;
 	private Geometry tempContainer; //Temporary network test
 	public Node waterNode;  //Different nodes have different physics
