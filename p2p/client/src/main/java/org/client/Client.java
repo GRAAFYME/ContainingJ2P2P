@@ -5,16 +5,11 @@ import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPath;
-import com.jme3.cinematic.MotionPathListener;
-import com.jme3.cinematic.events.MotionEvent;
-import com.jme3.font.BitmapText;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
@@ -22,13 +17,10 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
-
 import de.lessvoid.nifty.Nifty;
-
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
-
 import javax.vecmath.Point3d;
 /*
  * Authors
@@ -41,29 +33,27 @@ import javax.vecmath.Point3d;
  * */
 
 public class Client extends SimpleApplication {
+	//TODO: Set in logical order!
+	//TODO: Boolean to activate the animation per crane (1 for the RailCrane & 1 for the FreeMovingCrane)
+	//TODO: Receive the data for calculating the velocity of the animation
 	private ProtocolParser protocolParser;
+	private Geometry tempContainer; //Temporary network test
 	public Node waterNode;  //Different nodes have different physics
+	public Node allAgvNodes = new Node();
 	private BulletAppState bulletAppState;  //Physics machine
 	RigidBodyControl rbc;
 	CollisionShape sceneShape;   //gives collisions to the scene
-	Spatial sceneModel;
-	public Node nodeAGV;
-    //Temporary network test
-    private Geometry tempContainer;
-    //</test>
-    Box b;
-    
+	Spatial sceneModel, AGV, AGV2;
+	AGV agv1, agv2;
     Geometry geom;
-    private Vector3f walkDirection = new Vector3f();
-    private Vector3f camDir = new Vector3f();
-    private Vector3f camLeft = new Vector3f();
-    private Boolean sprint = false;
     private networkClient c;
     FlyByCamera FBC;
     private MotionPath path;
-    private MotionEvent motionControl;
     private boolean active = true;
     private boolean playing = false;
+    FreeMovingCrane freeMovingCrane;
+    StorageCrane storageCrane;
+    float tpf;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -73,91 +63,41 @@ public class Client extends SimpleApplication {
     @Override
     public void simpleInitApp() {
     	initInputs();
+    	initNifty();
+    	initScene();
+    	initCranes();
     	
-      //	testBox(new Vector3f(70, 117, 130));
-          path = new MotionPath();
-          path.addWayPoint(new Vector3f(60, 117, 130));
-          path.addWayPoint(new Vector3f(60, 117, 240));
-          path.addWayPoint(new Vector3f(124, 117, 240));
-          path.addWayPoint(new Vector3f(124, 117, -141));
-          path.addWayPoint(new Vector3f(-97, 117, -141));
-          path.addWayPoint(new Vector3f(-97, 117, 11));
-          path.addWayPoint(new Vector3f(-141, 117, 11));
-          path.setCurveTension(0.3f);
-          path.enableDebugShape(assetManager, rootNode);
-          
-          AGV agv1 = new AGV(new Vector3f(70f,118.5f,130f), assetManager);
-          rootNode.attachChild(agv1.nodeAGV);
-          motionControl = new MotionEvent(agv1.AGV, path);
-          
-          motionControl.setDirectionType(MotionEvent.Direction.PathAndRotation);
-          motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
-          motionControl.setInitialDuration(10f);
-          motionControl.setSpeed(2f);       
-          guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
-          final BitmapText wayPointsText = new BitmapText(guiFont, false);
-          wayPointsText.setSize(guiFont.getCharSet().getRenderedSize());
-
-          guiNode.attachChild(wayPointsText);
-
-          path.addListener(new MotionPathListener() {
-
-              public void onWayPointReach(MotionEvent control, int wayPointIndex) {
-                  if (path.getNbWayPoints() == wayPointIndex + 1) {
-                      wayPointsText.setText(control.getSpatial().getName() + "Finished!!! ");
-                  } else {
-                      wayPointsText.setText(control.getSpatial().getName() + " Reached way point " + wayPointIndex);
-                  }
-                  wayPointsText.setLocalTranslation((cam.getWidth() - wayPointsText.getLineWidth()) / 2, cam.getHeight(), 0);
-              }
-          });
-
-          
-          
+    	//agv code
+    	agv1 = new AGV(new Vector3f(70f,118.5f,130f), assetManager, allAgvNodes);
+        agv2 = new AGV(new Vector3f(90f,118.5f,130f), assetManager, allAgvNodes);
+        rootNode.attachChild(allAgvNodes);  
         
-
-
-    	NiftyMenu niftyMenu = new NiftyMenu();
-        stateManager.attach(niftyMenu);
-
-        NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
-                assetManager, inputManager, audioRenderer, guiViewPort);
-        Nifty nifty = niftyDisplay.getNifty();
-        nifty.fromXml("Interface/MainMenu.xml", "start");
-        guiViewPort.addProcessor(niftyDisplay);
-        
+        //waypoints code
+        guiNode.attachChild(agv1.wayPointsText);
         c = new networkClient(6666);
-    	initPhysics();
-    	Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
-    	rootNode.attachChild(scene.sceneNode);  //adds the scene to the game
-	    waterNode = new Node("Water");
-	    Water water = new Water(assetManager, waterNode);  //creates water
-	    viewPort.addProcessor(water.fpp); 
-	    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
-	    rootNode.attachChild(waterNode);  //adds water to the world
+    	
+        //Cam code
 	    cam.setLocation(new Vector3f(0f,150f,0f)); 
 	    flyCam.setMoveSpeed(30f);
 	    FBC = new FlyByCamera(cam, inputManager);
-
-
+	    
+	    //Protocol Test code
         protocolParser = new ProtocolParser();
         //TODO: Remove this Network test code
-        Box t = new Box(5, 5, 5);
-        tempContainer = new Geometry("Box", t);
-        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Black);
-        tempContainer.setMaterial(mat);
-        rootNode.attachChild(tempContainer);
+        protocolTest();
         }
     
     @Override
     public void simpleUpdate(float tpf) {
-    	System.out.println(cam.getLocation());	
+    	//Updates the 'Time Per Frame', that's necessary to 
+    	//calculate the velocity of certain objects
+    	this.tpf = tpf;
+    	System.out.println("TPF: " + tpf);
+    	
         String message = c.getMessages();
         if(message != "")
         {
             System.out.println(message);
-            //TODO: deserialize objects (xml->obj)
             try {
                 Protocol p = protocolParser.deserialize(message);
                 Container container = null;
@@ -178,25 +118,28 @@ public class Client extends SimpleApplication {
             
         }
     }    
-
-    //creates a blue box for testing
-    public void testBox(Vector3f location){
-    	Box b = new Box(2, 1, 1); // create cube shape
-        Geometry geom = new Geometry("Box", b);  // create cube geometry from the shape
-        Material mat = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");  // create a simple material
-        geom.setLocalTranslation(location);
-        mat.setColor("Color", ColorRGBA.Red);   // set color of material to blue
-        geom.setMaterial(mat);                   // set the cube's material
-        rootNode.attachChild(geom);              // make the cube appear in the scene	
-    }
-    
-    //creates most of the physics logic
-    public void initPhysics(){
+    //creates most of the physics and scene logic
+    public void initScene(){
 
     	bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState); 
+    	Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
+    	rootNode.attachChild(scene.sceneNode);  //adds the scene to the game
+	    waterNode = new Node("Water");
+	    Water water = new Water(assetManager, waterNode);  //creates water
+	    viewPort.addProcessor(water.fpp); 
+	    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
+	    rootNode.attachChild(waterNode);  //adds water to the world
     }
-   
+    
+    public void initCranes(){
+    	freeMovingCrane = new FreeMovingCrane(assetManager,70f,118.5f,0f);
+        rootNode.attachChild(freeMovingCrane.loadModels());
+        
+        storageCrane = new StorageCrane(assetManager,70f,118.5f,50f);
+        rootNode.attachChild(storageCrane.loadModels());
+    }
+
     private void initInputs() {
         inputManager.addMapping("display_hidePath", new KeyTrigger(KeyInput.KEY_P));
         inputManager.addMapping("SwitchPathInterpolation", new KeyTrigger(KeyInput.KEY_I));
@@ -218,10 +161,10 @@ public class Client extends SimpleApplication {
                 if (name.equals("play_stop") && keyPressed) {
                     if (playing) {
                         playing = false;
-                        motionControl.stop();
+                        agv1.motionControl.stop();
                     } else {
                         playing = true;
-                        motionControl.play();
+                        agv1.motionControl.play();
                     }
                 }
 
@@ -249,4 +192,24 @@ public class Client extends SimpleApplication {
         inputManager.addListener(acl, "display_hidePath", "play_stop", "SwitchPathInterpolation", "tensionUp", "tensionDown");
 
     } 
+
+    public void initNifty(){
+    	NiftyMenu niftyMenu = new NiftyMenu();
+        stateManager.attach(niftyMenu);
+
+        NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(
+                assetManager, inputManager, audioRenderer, guiViewPort);
+        Nifty nifty = niftyDisplay.getNifty();
+        nifty.fromXml("Interface/MainMenu.xml", "start");
+        guiViewPort.addProcessor(niftyDisplay);
+    }
+
+    public void protocolTest(){
+        Box t = new Box(5, 5, 5);
+        tempContainer = new Geometry("Box", t);
+        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.Black);
+        tempContainer.setMaterial(mat);
+        rootNode.attachChild(tempContainer);
+    }
 }

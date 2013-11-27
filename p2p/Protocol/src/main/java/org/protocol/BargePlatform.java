@@ -7,5 +7,5 @@ package org.protocol;
  * Time: 14:36
  * To change this template use File | Settings | File Templates.
  */
-public class TreinPlatform extends Platform{
+public class BargePlatform extends Platform{
 }

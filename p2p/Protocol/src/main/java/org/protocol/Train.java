@@ -1,3 +1,7 @@
+package org.protocol;
+
+import javax.vecmath.Vector3f;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Remco
@@ -5,17 +9,13 @@
  * Time: 14:42
  * To change this template use File | Settings | File Templates.
  */
-package org.protocol;
-
-import javax.vecmath.Vector3f;
-
-public class Agv extends Voertuig
+public class Train extends Vehicle
 {
-	public Agv(Vector3f Location)
+	
+	public Train(Vector3f Location)
 	{
 		super(Location);
 	}
-	
-	
+
 	
 }

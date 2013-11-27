@@ -6,16 +6,15 @@ import javax.vecmath.Vector3f;
  * Created with IntelliJ IDEA.
  * User: Remco
  * Date: 22/11/13
- * Time: 14:42
+ * Time: 14:40
  * To change this template use File | Settings | File Templates.
  */
-public class Trein extends Voertuig
+public class TruckCrane extends RailCrane
 {
-	
-	public Trein(Vector3f Location)
-	{
-		super(Location);
-	}
 
+	public TruckCrane(Vector3f _location) 
+	{
+		super(_location);
+	}
 	
 }
