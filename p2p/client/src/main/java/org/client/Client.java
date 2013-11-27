@@ -51,6 +51,7 @@ public class Client extends SimpleApplication {
     private boolean playing = false;
     FreeMovingCrane freeMovingCrane;
     StorageCrane storageCrane;
+    float tpf;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -86,6 +87,11 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleUpdate(float tpf) {
+    	//Updates the 'Time Per Frame', that's necessary to 
+    	//calculate the velocity of certain objects
+    	this.tpf = tpf;
+    	System.out.println("TPF: " + tpf);
+    	
         String message = c.getMessages();
         if(message != "")
         {

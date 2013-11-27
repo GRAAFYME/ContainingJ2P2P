@@ -11,6 +11,4 @@ public class RailCrane extends Crane
 		super(_location);
 	}
 	
-
-	
 }

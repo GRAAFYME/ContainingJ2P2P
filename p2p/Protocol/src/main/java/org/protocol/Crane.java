@@ -13,10 +13,15 @@ public class Crane
 {
 	protected Vector3f Location;
 	private boolean isBusy = false;
+	private float velocity;
 	
 	public Crane(Vector3f _location)
 	{
 		this.Location = _location;
+	}
+	
+	public float velocity(){
+		return velocity;
 	}
 	
 	protected Vector3f GetLocation()
@@ -24,7 +29,7 @@ public class Crane
 		return Location;
 	}
 	
-	//Only RailKraan can move !?
+	//Only RailCrane can move
 	protected void SetLocation(Vector3f _location)
 	{
 		Location = _location;

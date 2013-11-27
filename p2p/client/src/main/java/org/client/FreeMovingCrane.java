@@ -84,10 +84,10 @@ public class FreeMovingCrane {
         return containerCrane;
     }
     
-    public void animation(float tpf)
+    public void animation(float speed)
     {
         Vector3f c, posSlider, posHook, velocity;
-        final float SPEED = 0.5f;
+        float animationSpeed = speed;
         
         posSlider = zeeKraanSlider.getLocalTranslation();
         posHook = zeeKraanHook.getLocalTranslation();
@@ -141,7 +141,7 @@ public class FreeMovingCrane {
         
         c = end.subtract(start);
         c.normalize();
-        velocity = c.multLocal(SPEED*tpf);
+        velocity = c.multLocal(animationSpeed);
         posHook.addLocal(velocity);
         posSlider.addLocal(velocity);
         
