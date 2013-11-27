@@ -1,0 +1,15 @@
+{
+			"cols": 
+					[
+						{"id": "Platforms", "label": "Platforms", "type": "string"},
+						{"id": "Containers", "label": "Containers", "type": "number"}
+					],
+			"rows": 	
+					[
+						{"c":[{"v": "Trein"}, {"v": 2923}]},
+						{"c":[{"v": "Vrachtauto"}, {"v": 5000}]},
+						{"c":[{"v": "Zeeschip"}, {"v": 8000}]},
+						{"c":[{"v": "Binnenvaartschip"}, {"v": 500}]},
+						{"c":[{"v": "Opslag"}, {"v": 12398}]}
+					]
+		}

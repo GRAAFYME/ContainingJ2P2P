@@ -1,4 +1,4 @@
-<!doctype html>  
+<!DOCTYPE HTML>
 <html lang="en">  
 <head>  
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
@@ -16,26 +16,24 @@
 	<![endif]--> 
   
 	<!--Load the AJAX API-->
-	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
-	<!-- Grab Google CDN's jQuery. fall back to local if necessary -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/libs/jquery-1.4.2.js"%3E%3C/script%3E'))</script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 	<!--Load ColumnChart script-->
-	<script src="js/functions.js"></script>
+	<script src="js/columnchart.js"></script>
 </head>
 <body>
 	<div id="wrapper" itemscope itemtype="http://schema.org/Product">
 		<header class="clearfix">  
 			<div id="info">
 				<h1><span itemprop="name">Containing</span></h1>  
-				<h2><span itemprop="description">Omschrijving..</span></h2>  
+				<h2><span itemprop="description">Management Interface</span></h2>  
 			</div>
 		</header>
 		<section id="ColumnChart">
+			<!--div that holds the chart-->
 			<div id="chart_div"></div>
-		</section>		
+		</section>
 	</div>
 </body>
 </html>
