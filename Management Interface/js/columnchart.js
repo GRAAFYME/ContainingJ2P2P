@@ -72,7 +72,7 @@ $(function ()
 			window.attachEvent('onresize', resizeHandler);
 		}
 		
-		// Renew the chart every 10 seconds.
-		setInterval(drawChart, 10000);
+		// Renew the chart every 60 seconds.
+		setInterval(drawChart, 60000);
 	}
 });
