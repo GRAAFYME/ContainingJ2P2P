@@ -33,6 +33,7 @@ import javax.vecmath.Point3d;
  * */
 
 public class Client extends SimpleApplication {
+	//TODO: Set in logical order!
 	private ProtocolParser protocolParser;
 	private Geometry tempContainer; //Temporary network test
 	public Node waterNode;  //Different nodes have different physics
@@ -48,6 +49,8 @@ public class Client extends SimpleApplication {
     private MotionPath path;
     private boolean active = true;
     private boolean playing = false;
+    FreeMovingCrane freeMovingCrane;
+    StorageCrane storageCrane;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -59,6 +62,7 @@ public class Client extends SimpleApplication {
     	initInputs();
     	initNifty();
     	initScene();
+    	initCranes();
     	
     	//agv code
     	agv1 = new AGV(new Vector3f(70f,118.5f,130f), assetManager, allAgvNodes);
@@ -118,6 +122,14 @@ public class Client extends SimpleApplication {
 	    viewPort.addProcessor(water.fpp); 
 	    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
 	    rootNode.attachChild(waterNode);  //adds water to the world
+    }
+    
+    public void initCranes(){
+    	freeMovingCrane = new FreeMovingCrane(assetManager,70f,118.5f,0f);
+        rootNode.attachChild(freeMovingCrane.loadModels());
+        
+        storageCrane = new StorageCrane(assetManager,70f,118.5f,50f);
+        rootNode.attachChild(storageCrane.loadModels());
     }
 
     private void initInputs() {
