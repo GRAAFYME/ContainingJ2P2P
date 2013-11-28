@@ -54,6 +54,8 @@ public class Client extends SimpleApplication {
     FreeMovingCrane freeMovingCrane;
     StorageCrane storageCrane;
     float tpf;
+    private boolean active2 = true;
+    private boolean playing2 = false;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -63,7 +65,7 @@ public class Client extends SimpleApplication {
     @Override
     public void simpleInitApp() {
     	initInputs();
-    	initNifty();
+    	//initNifty();
     	initScene();
     	initCranes();
     	
@@ -145,7 +147,8 @@ public class Client extends SimpleApplication {
         inputManager.addMapping("SwitchPathInterpolation", new KeyTrigger(KeyInput.KEY_I));
         inputManager.addMapping("tensionUp", new KeyTrigger(KeyInput.KEY_U));
         inputManager.addMapping("tensionDown", new KeyTrigger(KeyInput.KEY_J));
-        inputManager.addMapping("play_stop", new KeyTrigger(KeyInput.KEY_SPACE));
+        inputManager.addMapping("play_stop", new KeyTrigger(KeyInput.KEY_N));
+        inputManager.addMapping("play_stop2", new KeyTrigger(KeyInput.KEY_M));
         ActionListener acl = new ActionListener() {
 
             public void onAction(String name, boolean keyPressed, float tpf) {
@@ -168,6 +171,17 @@ public class Client extends SimpleApplication {
                     }
                 }
 
+                
+                
+                if (name.equals("play_stop2") && keyPressed) {
+                    if (playing2) {
+                        playing2 = false;
+                        agv2.motionControl2.stop();
+                    } else {
+                        playing2 = true;
+                        agv2.motionControl2.play();
+                    }
+                }
                 if (name.equals("SwitchPathInterpolation") && keyPressed) {
                     if (path.getPathSplineType() == SplineType.CatmullRom){
                         path.setPathSplineType(SplineType.Linear);
@@ -189,7 +203,7 @@ public class Client extends SimpleApplication {
             }
         };
 
-        inputManager.addListener(acl, "display_hidePath", "play_stop", "SwitchPathInterpolation", "tensionUp", "tensionDown");
+        inputManager.addListener(acl, "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
 
     } 
 
