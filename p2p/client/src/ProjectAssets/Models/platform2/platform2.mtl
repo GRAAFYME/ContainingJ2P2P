@@ -1,0 +1,50 @@
+#Materials exported from Google Sketchup
+
+newmtl __Asphalt_New__Asphalt_New_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Asphalt_New.jpg
+
+newmtl __Metal_Steel_Textured__Metal_Steel_Textured_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Metal_Steel_Textured.jpg
+
+newmtl __Concrete_Aggregate_Smoke__Concrete_Aggregate_Smoke_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Concrete_Aggregate_Smoke.jpg
+
+newmtl __Concrete_Form_4x8__Concrete_Form_4x8_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Concrete_Form_4x8.jpg
+
+newmtl __Asphalt_Stamped_Brick__Asphalt_Stamped_Brick_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Asphalt_Stamped_Brick.jpg
+
+newmtl __Concrete_Scored_Jointless__Concrete_Scored_Jointless_jpg
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 1.000000 1.000000
+Tr 1.0
+Ks 0.000000 0.000000 0.000000
+Ns 3.200000
+map_Kd Concrete_Scored_Jointless.jpg
+

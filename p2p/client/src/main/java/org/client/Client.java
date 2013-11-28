@@ -17,10 +17,13 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+
 import de.lessvoid.nifty.Nifty;
+
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
+
 import javax.vecmath.Point3d;
 /*
  * Authors
@@ -70,8 +73,8 @@ public class Client extends SimpleApplication {
     	initCranes();
     	
     	//agv code
-    	agv1 = new AGV(new Vector3f(70f,118.5f,130f), assetManager, allAgvNodes);
-        agv2 = new AGV(new Vector3f(90f,118.5f,130f), assetManager, allAgvNodes);
+    	agv1 = new AGV(new Vector3f(70f,260f,130f), assetManager, allAgvNodes);
+        agv2 = new AGV(new Vector3f(90f,260f,130f), assetManager, allAgvNodes);
         rootNode.attachChild(allAgvNodes);  
         
         //waypoints code
@@ -79,7 +82,7 @@ public class Client extends SimpleApplication {
         c = new networkClient(6666);
     	
         //Cam code
-	    cam.setLocation(new Vector3f(0f,150f,0f)); 
+	    cam.setLocation(new Vector3f(0f,300f,0f)); 
 	    flyCam.setMoveSpeed(30f);
 	    FBC = new FlyByCamera(cam, inputManager);
 	    
@@ -91,6 +94,7 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleUpdate(float tpf) {
+    	System.out.println(cam.getLocation());
     	//Updates the 'Time Per Frame', that's necessary to 
     	//calculate the velocity of certain objects
     	this.tpf = tpf;
@@ -135,10 +139,10 @@ public class Client extends SimpleApplication {
     }
     
     public void initCranes(){
-    	freeMovingCrane = new FreeMovingCrane(assetManager,70f,118.5f,0f);
+    	freeMovingCrane = new FreeMovingCrane(assetManager,70f,260f,0f);
         rootNode.attachChild(freeMovingCrane.loadModels());
         
-        storageCrane = new StorageCrane(assetManager,70f,118.5f,50f);
+        storageCrane = new StorageCrane(assetManager,70f,260f,50f);
         rootNode.attachChild(storageCrane.loadModels());
     }
 

@@ -48,7 +48,7 @@ public class Water {
         water.setFoamExistence(new Vector3f(1f, -0.5f, 1f)); 
         water.setFoamTexture((Texture2D) assetManager.loadTexture("Common/MatDefs/Water/Textures/foam2.jpg")); 
         water.setRefractionStrength(0.2f); 
-        water.setWaterHeight(100f);  // Water Height.
+        water.setWaterHeight(200f);  // Water Height.
         water.setDeepWaterColor(deepWaterColor);
         fpp.addFilter(water); 
         return fpp;
