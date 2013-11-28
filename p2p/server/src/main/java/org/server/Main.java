@@ -13,9 +13,9 @@ public class Main
 	
    private static final JFileChooser fc = new JFileChooser();
    private static JTextArea textArea = new JTextArea();
-   
+   private static JFrame frame = new JFrame("Controller");
    public static void main(String args[]) {
-    JFrame frame = new JFrame("Controller");
+    //JFrame frame = new JFrame("Controller");
     frame.getContentPane().setBackground(Color.WHITE);
     JMenuBar menu = new JMenuBar();
     
@@ -72,7 +72,6 @@ public class Main
 		   String NameItem = (((JMenuItem)e.getSource()).getText());
 	     if (NameItem == "Load File")
 	     {
-	    	 
 	    	 //all files disabled
 	    	 fc.setAcceptAllFileFilterUsed(false);
 	    	 
@@ -89,6 +88,7 @@ public class Main
 	    	 if (returnVal == JFileChooser.APPROVE_OPTION) {
 	             File file = fc.getSelectedFile();
 	             String FileLocation = file.getPath();
+	             textArea.setText("");
 	             textArea.setText(FileLocation + "\n" + "\n");
 	             
              //Parse XML
@@ -100,15 +100,14 @@ public class Main
                  long time = System.nanoTime();
                  containers = parser.parse(FileLocation);
                  System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
-                 
+                 //new Thread for display next container after some time
                  Thread t = new Thread() {
-                     @Override
-                     public void run() {  // override the run() for the running behaviors
+                     public void run() {  
                         for (ContainerXml c : containers.containers) {
                         	textArea.append(c.id + " Owner Name: " + c.ownerName +  "\n");
                         	textArea.setCaretPosition(textArea.getDocument().getLength());
                            try {
-                              sleep(50);  // milliseconds
+                              sleep(150);  // milliseconds
                            } catch (InterruptedException ex) {}
                         }
                      }
@@ -139,7 +138,7 @@ public class Main
 	     }
 	     else if (NameItem == "About")
 	     {
-	    	 JOptionPane.showMessageDialog(null,"Moet nog ingevuld worden!","About",JOptionPane.INFORMATION_MESSAGE);
+	    	 JOptionPane.showMessageDialog(null,"Mede mogelijk gemaakt door Groep 5!","About",JOptionPane.INFORMATION_MESSAGE);
 	     }
 	     else if (NameItem == "Help")
 	     {
