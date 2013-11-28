@@ -39,11 +39,6 @@ $(function ()
 		{	
 			'width': '100%',
 			'height': 500,
-			animation:
-			{
-				duration: 1000,
-				easing: 'out',
-			},
 			hAxis: 
 			{
 				title: 	hAxisTitle, 
