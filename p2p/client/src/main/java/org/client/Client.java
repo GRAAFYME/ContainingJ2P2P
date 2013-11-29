@@ -17,6 +17,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+import com.jme3.texture.Texture;
 
 import de.lessvoid.nifty.Nifty;
 
@@ -71,6 +72,7 @@ public class Client extends SimpleApplication {
     	//initNifty();
     	initScene();
     	initCranes();
+    	testContainer();
     	
     	//agv code
     	agv1 = new AGV(new Vector3f(70f,260f,130f), assetManager, allAgvNodes);
@@ -124,6 +126,15 @@ public class Client extends SimpleApplication {
             
         }
     }    
+    
+    public void testContainer(){
+    	Spatial container = assetManager.loadModel("Models/Container/Container.obj");
+        Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        Texture container_tex = assetManager.loadTexture("Models/Container/container.png");
+        container_mat.setTexture("DiffuseMap", container_tex);
+        container.setMaterial(container_mat);
+        rootNode.attachChild(container);
+    }
     //creates most of the physics and scene logic
     public void initScene(){
 

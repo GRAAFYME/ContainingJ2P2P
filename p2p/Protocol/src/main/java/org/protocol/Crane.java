@@ -20,7 +20,8 @@ public class Crane
 		this.Location = _location;
 	}
 	
-	public float velocity(){
+	protected float velocity(){
+		velocity = 1;
 		return velocity;
 	}
 	
