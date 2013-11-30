@@ -16,7 +16,7 @@ import java.io.OutputStream;
  * To change this template use File | Settings | File Templates.
  */
 public class ProtocolParser {
-    public String serialize(Protocol protocol)
+    public String serialize(Object protocol)
     {
         try {
             OutputStream stream = new ByteArrayOutputStream();

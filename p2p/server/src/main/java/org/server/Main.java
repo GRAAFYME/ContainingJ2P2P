@@ -14,7 +14,12 @@ public class Main
    private static final JFileChooser fc = new JFileChooser();
    private static JTextArea textArea = new JTextArea();
    private static JFrame frame = new JFrame("Controller");
+   private static Server server;
+   
    public static void main(String args[]) {
+
+	 server = new Server();
+
     //JFrame frame = new JFrame("Controller");
     frame.getContentPane().setBackground(Color.WHITE);
     JMenuBar menu = new JMenuBar();
@@ -27,6 +32,11 @@ public class Main
     JMenuItem LoadFile = new JMenuItem("Load File");
     fileMenu.add(LoadFile);
     LoadFile.addActionListener(actionListener);
+
+    //Ftp login
+    JMenuItem ftpLogin = new JMenuItem("Login to ftp");
+    fileMenu.add(ftpLogin);
+    ftpLogin.addActionListener(actionListener);
 
     //Start
     JMenuItem Start = new JMenuItem("Start");
@@ -124,7 +134,6 @@ public class Main
 	       }
 	     else if (NameItem == "Start")
 	     {
-	    	 Server server = new Server();
 	         server.start(6666);
              System.out.println("Client connected");
 
@@ -136,6 +145,17 @@ public class Main
                  server.sendMessage("YOOOOOOOO");
              }
 	     }
+	     
+	     else if (NameItem == "Login to ftp")
+	     {
+	    	 FtpLoginView ftpLoginView = new FtpLoginView(server);
+	    	 ftpLoginView.display();
+	    	 String name = ftpLoginView.name;
+	    	 String password = ftpLoginView.name;
+	    	 
+	    	 //server.login() is called in ftpLoginView
+	     }
+	     
 	     else if (NameItem == "About")
 	     {
 	    	 JOptionPane.showMessageDialog(null,"Mede mogelijk gemaakt door Groep 5!","About",JOptionPane.INFORMATION_MESSAGE);
