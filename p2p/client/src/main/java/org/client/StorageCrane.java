@@ -1,6 +1,7 @@
 package org.client;
 
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -56,13 +57,15 @@ public class StorageCrane {
         /** Load a model. Uses model and texture from jme3-test-data library! */ 
         opslagKraanHook = assetManager.loadModel("Models/crane/storageCraneHook.obj");
         Material mat_hook = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat_hook.setColor("Color", ColorRGBA.Green);
+        mat_hook.setColor("Color", ColorRGBA.Black);
         opslagKraanHook.setMaterial(mat_hook);
-        opslagKraanHook.setLocalTranslation(x, y, z);
+        opslagKraanHook.setLocalTranslation(x, y+9, z);
            
         storageCrane = new Node();
         storageCrane.attachChild(opslagKraan);
         storageCrane.attachChild(opslagKraanHook);
+        
+        storageCrane.addControl(new RigidBodyControl(0));
         return storageCrane;
     }
     

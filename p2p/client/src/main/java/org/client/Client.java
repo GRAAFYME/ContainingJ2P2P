@@ -8,6 +8,7 @@ import com.jme3.cinematic.MotionPath;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
+import com.jme3.light.AmbientLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Spline.SplineType;
@@ -68,6 +69,10 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleInitApp() {
+    	bulletAppState = new BulletAppState();
+        stateManager.attach(bulletAppState); 
+        bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, -100, 0));
+        
     	initInputs();
     	//initNifty();
     	initScene();
@@ -92,7 +97,11 @@ public class Client extends SimpleApplication {
         protocolParser = new ProtocolParser();
         //TODO: Remove this Network test code
         protocolTest();
-        }
+        
+        AmbientLight al = new AmbientLight();
+        al.setColor(ColorRGBA.White.mult(1.3f));
+        rootNode.addLight(al);
+    }
     
     @Override
     public void simpleUpdate(float tpf) {
@@ -128,18 +137,19 @@ public class Client extends SimpleApplication {
     }    
     
     public void testContainer(){
-    	Spatial container = assetManager.loadModel("Models/Container/Container.obj");
+    	Spatial container = assetManager.loadModel("Models/container/Container.obj");
         Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        Texture container_tex = assetManager.loadTexture("Models/Container/container.png");
+        Texture container_tex = assetManager.loadTexture("Models/container/container.png");
         container_mat.setTexture("DiffuseMap", container_tex);
         container.setMaterial(container_mat);
+        container.setLocalTranslation(70,260,50);
+        
+        container.addControl(new RigidBodyControl(1f));
+        bulletAppState.getPhysicsSpace().add(container);
         rootNode.attachChild(container);
     }
     //creates most of the physics and scene logic
     public void initScene(){
-
-    	bulletAppState = new BulletAppState();
-        stateManager.attach(bulletAppState); 
     	Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
     	rootNode.attachChild(scene.sceneNode);  //adds the scene to the game
 	    waterNode = new Node("Water");
@@ -150,11 +160,13 @@ public class Client extends SimpleApplication {
     }
     
     public void initCranes(){
-    	freeMovingCrane = new FreeMovingCrane(assetManager,70f,260f,0f);
+    	freeMovingCrane = new FreeMovingCrane(assetManager,70f,256f,0f);
         rootNode.attachChild(freeMovingCrane.loadModels());
+    	bulletAppState.getPhysicsSpace().add(freeMovingCrane.containerCrane);
         
-        storageCrane = new StorageCrane(assetManager,70f,260f,50f);
+        storageCrane = new StorageCrane(assetManager,70f,256f,50f);
         rootNode.attachChild(storageCrane.loadModels());
+        bulletAppState.getPhysicsSpace().add(storageCrane.storageCrane);
     }
 
     private void initInputs() {
