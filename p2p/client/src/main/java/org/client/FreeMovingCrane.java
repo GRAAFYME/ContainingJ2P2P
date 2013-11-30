@@ -69,16 +69,16 @@ public class FreeMovingCrane {
         /** Load a model. Uses model and texture from jme3-test-data library! */ 
         zeeKraanSlider = assetManager.loadModel("Models/crane/zeeKraanSlider.obj");
         Material mat_slider = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat_slider.setColor("Color", ColorRGBA.Green);
+        mat_slider.setColor("Color", ColorRGBA.DarkGray);
         zeeKraanSlider.setMaterial(mat_slider);
         zeeKraanSlider.setLocalTranslation(x, y, z);
         
         /** Load a model. Uses model and texture from jme3-test-data library! */ 
         zeeKraanHook = assetManager.loadModel("Models/crane/zeeKraanHook.obj");
         Material mat_hook = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat_hook.setColor("Color", ColorRGBA.Blue);
+        mat_hook.setColor("Color", ColorRGBA.Black);
         zeeKraanHook.setMaterial(mat_hook);
-        zeeKraanHook.setLocalTranslation(x, y+10, z);
+        zeeKraanHook.setLocalTranslation(x, y+9, z);
         
         containerCrane = new Node();
         containerCrane.attachChild(zeeKraan);
