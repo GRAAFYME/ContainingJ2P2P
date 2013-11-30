@@ -1,11 +1,13 @@
 package org.client;
 
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.texture.Texture;
 
 /**
  *
@@ -30,6 +32,7 @@ public class FreeMovingCrane {
     Spatial zeeKraan;
     Spatial zeeKraanSlider;
     Spatial zeeKraanHook;
+    Node containerCrane;
     
     public FreeMovingCrane(AssetManager assetManager, float x, float y, float z)
     {
@@ -57,8 +60,9 @@ public class FreeMovingCrane {
     {
         /** Load a model. Uses model and texture from jme3-test-data library! */ 
         zeeKraan = assetManager.loadModel("Models/crane/zeeKraan.obj");
-        Material mat_kraan = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat_kraan.setColor("Color", ColorRGBA.Red);
+        Material mat_kraan = new Material( assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        Texture zeeKraan_tex = assetManager.loadTexture("Models/crane/zeekraan.png");
+        mat_kraan.setTexture("DiffuseMap", zeeKraan_tex);
         zeeKraan.setMaterial(mat_kraan);
         zeeKraan.setLocalTranslation(x, y, z);
         
@@ -74,13 +78,14 @@ public class FreeMovingCrane {
         Material mat_hook = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat_hook.setColor("Color", ColorRGBA.Blue);
         zeeKraanHook.setMaterial(mat_hook);
-        zeeKraanHook.setLocalTranslation(x, y, z);
+        zeeKraanHook.setLocalTranslation(x, y+10, z);
         
-        Node containerCrane = new Node();
+        containerCrane = new Node();
         containerCrane.attachChild(zeeKraan);
         containerCrane.attachChild(zeeKraanSlider);
         containerCrane.attachChild(zeeKraanHook);
         
+        containerCrane.addControl(new RigidBodyControl(0));
         return containerCrane;
     }
     
