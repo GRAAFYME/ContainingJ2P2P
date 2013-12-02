@@ -80,7 +80,6 @@ public class Server
         }
         try
         {
-            statistics = new Statistics(5, 4, 3, 2, 1);
             InputStream stream = new ByteArrayInputStream(statistics.serializeJson().getBytes());
             ftpClient.storeFile("httpdocs/uploads/statistics.json", stream);
         }
@@ -157,7 +156,7 @@ public class Server
 	            
 	            if (counter % 15 == 0)
 	            {
-	            	statistics.trein++;
+	            	statistics.trein = statistics.trein % 15; //cycle 0-15
 	            	uploadStatistics();
 	            }
 	            counter++;

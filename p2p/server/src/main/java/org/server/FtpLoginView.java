@@ -1,15 +1,8 @@
 package org.server;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 public class FtpLoginView {
 
@@ -76,7 +69,8 @@ public class FtpLoginView {
 	     if (NameItem == "Login")
 	     {
 	    	name = userText.getText();
-	    	password = passwordText.getPassword().toString();
+             //getPassword.toString() returns weird strings, have to use depricated getText()
+	    	password = passwordText.getText();
 	        server.loginToStatisticsServer("j2p2p.ymevandergraaf.nl", name, password);
 	    	frame.setVisible(false);
 	     }
