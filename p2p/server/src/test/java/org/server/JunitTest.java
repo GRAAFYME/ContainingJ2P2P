@@ -2,21 +2,27 @@ package org.server;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class JunitTest {
 
+	Main main = new Main();
+	
+	@SuppressWarnings("static-access")
 	@Test
 	public void testMain() 
 	{
-		//Main main = new Main();
-		Main.main(null);
+		main.main(null);
 	}
 	
 	@Test
 	public void Server()
 	{
-		//Dit stuk faalt!
+		//Dit stuk faalt denk ik?
 		Server test = new Server();
 		test.start(6666);
 		test.sendMessage("test");
@@ -39,9 +45,24 @@ public class JunitTest {
     	}
     	
     }
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
 
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
 
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
 
 
 
 }
+

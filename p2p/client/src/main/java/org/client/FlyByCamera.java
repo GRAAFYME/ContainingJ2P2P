@@ -54,78 +54,26 @@ public class FlyByCamera implements AnalogListener, ActionListener {
     }
 
     public void registerWithInput(){
-       
-
-        String[] mappings = new String[]{
-            "FLYCAM_Left",
-            "FLYCAM_Right",
-            "FLYCAM_Up",
-            "FLYCAM_Down",
-
-            "FLYCAM_StrafeLeft",
-            "FLYCAM_StrafeRight",
-            "FLYCAM_Forward",
-            "FLYCAM_Backward",
-
-            "FLYCAM_ZoomIn",
-            "FLYCAM_ZoomOut",
-            "FLYCAM_RotateDrag",
-
-            "FLYCAM_RiseZ",
-            "FLYCAM_LowerX",
-            
-            "FLYCAM_RiseSpace",
-            "FLYCAM_LowerShift"
-         
-        };
-        inputManager.addMapping("FLYCAM_Left", new MouseAxisTrigger(0, true),
-                                               new KeyTrigger(KeyInput.KEY_LEFT));
-
-        inputManager.addMapping("FLYCAM_Right", new MouseAxisTrigger(0, false),
-                                                new KeyTrigger(KeyInput.KEY_RIGHT));
-
-        inputManager.addMapping("FLYCAM_Up", new MouseAxisTrigger(1, false),
-                                             new KeyTrigger(KeyInput.KEY_UP));
-
-        inputManager.addMapping("FLYCAM_Down", new MouseAxisTrigger(1, true),
-                                               new KeyTrigger(KeyInput.KEY_DOWN));
-
-        inputManager.addMapping("FLYCAM_ZoomIn", new MouseAxisTrigger(2, false));
-        inputManager.addMapping("FLYCAM_ZoomOut", new MouseAxisTrigger(2, true));
-        inputManager.addMapping("FLYCAM_RotateDrag", new MouseButtonTrigger(0));
-
-        inputManager.addMapping("FLYCAM_StrafeLeft", new KeyTrigger(KeyInput.KEY_A));
-        inputManager.addMapping("FLYCAM_StrafeRight", new KeyTrigger(KeyInput.KEY_D));
-        inputManager.addMapping("FLYCAM_Forward", new KeyTrigger(KeyInput.KEY_W));
-        inputManager.addMapping("FLYCAM_Backward", new KeyTrigger(KeyInput.KEY_S));
-        
+        String[] mappings = new String[]{"FLYCAM_RiseZ","FLYCAM_LowerX","FLYCAM_RiseSpace","FLYCAM_LowerShift"};       
         inputManager.addMapping("FLYCAM_RiseZ", new KeyTrigger(KeyInput.KEY_Z));
         inputManager.addMapping("FLYCAM_RiseSpace", new KeyTrigger(KeyInput.KEY_SPACE));
-        
         inputManager.addMapping("FLYCAM_LowerX", new KeyTrigger(KeyInput.KEY_X));
         inputManager.addMapping("FLYCAM_LowerShift", new KeyTrigger(KeyInput.KEY_LSHIFT));
-
         inputManager.addListener(this, mappings);
     }
 
     private void rotateCamera(float value, Vector3f axis){
-
-
-        Matrix3f mat = new Matrix3f();
+    	Matrix3f mat = new Matrix3f();
         mat.fromAngleNormalAxis(rotationSpeed * value, axis);
-
         Vector3f up = cam.getUp();
         Vector3f left = cam.getLeft();
         Vector3f dir = cam.getDirection();
-
         mat.mult(up, up);
         mat.mult(left, left);
         mat.mult(dir, dir);
-
         Quaternion q = new Quaternion();
         q.fromAxes(left, up, dir);
         q.normalizeLocal();
-
         cam.setAxes(q);
     }
 
@@ -183,25 +131,9 @@ public class FlyByCamera implements AnalogListener, ActionListener {
 
     public void onAnalog(String name, float value, float tpf) {
         if (!enabled)
-            return;
+        return;
 
-        if (name.equals("FLYCAM_Left")){
-            rotateCamera(value, initialUpVec);
-        }else if (name.equals("FLYCAM_Right")){
-            rotateCamera(-value, initialUpVec);
-        }else if (name.equals("FLYCAM_Up")){
-            rotateCamera(-value, cam.getLeft());
-        }else if (name.equals("FLYCAM_Down")){
-            rotateCamera(value, cam.getLeft());
-        }else if (name.equals("FLYCAM_Forward")){
-            moveCamera(value, false);
-        }else if (name.equals("FLYCAM_Backward")){
-            moveCamera(-value, false);
-        }else if (name.equals("FLYCAM_StrafeLeft")){
-            moveCamera(value, true);
-        }else if (name.equals("FLYCAM_StrafeRight")){
-            moveCamera(-value, true);
-        }else if (name.equals("FLYCAM_RiseZ")){
+        if (name.equals("FLYCAM_RiseZ")){
             riseCamera(value);
         }else if (name.equals("FLYCAM_LowerX")){
         	riseCamera(-value);
@@ -209,11 +141,6 @@ public class FlyByCamera implements AnalogListener, ActionListener {
             riseCamera(value);
         }else if (name.equals("FLYCAM_LowerShift")){
         	riseCamera(-value);
-        }
-        else if (name.equals("FLYCAM_ZoomIn")){
-            zoomCamera(value);
-        }else if (name.equals("FLYCAM_ZoomOut")){
-            zoomCamera(-value);
         }
     }
 
