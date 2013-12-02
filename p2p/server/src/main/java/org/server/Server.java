@@ -1,13 +1,13 @@
 package org.server;
 
+import org.apache.commons.net.ftp.FTPClient;
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
+import org.protocol.Statistics;
 
 import javax.vecmath.Point3d;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -34,6 +34,8 @@ public class Server
     private PrintWriter writer;
     private BufferedReader reader;
     private static ProtocolParser parser;
+    private FTPClient ftpClient;
+    private Statistics statistics;
 
     public static void main(String[] args) throws Exception
     {
@@ -44,13 +46,46 @@ public class Server
         p.getContainers().add(new Container());
         p.getContainers().get(0).location = new Point3d(50, 130, 50);
         server.start(6666);
-
+        
         while(true)
         {
             Thread.sleep(100);
             //Add tiny amount
             p.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
             server.sendMessage(parser.serialize(p));
+        }
+    }
+
+    public void loginToStatisticsServer(String host, String name, String password)
+    {
+        try {
+            ftpClient = new FTPClient();
+            ftpClient.connect(host);
+            ftpClient.login(name, password);
+            System.out.println("Ftp login success!");
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    public void uploadStatistics()
+    {
+        if(ftpClient == null)
+        {
+            System.out.println("Please login first!");
+            return;
+        }
+        try
+        {
+            InputStream stream = new ByteArrayInputStream(statistics.serializeJson().getBytes());
+            ftpClient.storeFile("httpdocs/uploads/statistics.json", stream);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -95,6 +130,8 @@ public class Server
         try {
             //Set the server up
             serverSocket = new ServerSocket(port);
+	        parser = new ProtocolParser();
+	        Protocol protocol = null;
 
             //Wait till someone connects; this is a blocking method!!!!!!!!
             clientSocket = serverSocket.accept();
@@ -103,7 +140,27 @@ public class Server
             clientSocket.setSoTimeout(500);
             writer = new PrintWriter(clientSocket.getOutputStream(), true);
             reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            return true;
+
+	        protocol = new Protocol();
+	        protocol.getContainers().add(new Container());
+	        protocol.getContainers().get(0).location = new Point3d(50, 130, 50);
+        
+	        //Infinite loop, this should go in a new thread
+	        int counter = 0;
+	        while(true)
+	        {
+	            Thread.sleep(100);
+	            //Add tiny amount
+	            protocol.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
+	            sendMessage(parser.serialize(protocol));
+	            
+	            if (counter % 15 == 0)
+	            {
+	            	statistics.trein = statistics.trein % 15; //cycle 0-15
+	            	uploadStatistics();
+	            }
+	            counter++;
+	        }
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

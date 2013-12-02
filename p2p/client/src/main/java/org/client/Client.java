@@ -19,13 +19,10 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
-
 import de.lessvoid.nifty.Nifty;
-
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
-
 import javax.vecmath.Point3d;
 /*
  * Authors
@@ -59,7 +56,6 @@ public class Client extends SimpleApplication {
     FreeMovingCrane freeMovingCrane;
     StorageCrane storageCrane;
     float tpf;
-    private boolean active2 = true;
     private boolean playing2 = false;
     
     public static void main(String[] args){
@@ -105,11 +101,11 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleUpdate(float tpf) {
-    	System.out.println(cam.getLocation());
+//    	System.out.println(cam.getLocation());
+//    	System.out.println("TPF: " + tpf);
     	//Updates the 'Time Per Frame', that's necessary to 
     	//calculate the velocity of certain objects
     	this.tpf = tpf;
-    	System.out.println("TPF: " + tpf);
     	
         String message = c.getMessages();
         if(message != "")
