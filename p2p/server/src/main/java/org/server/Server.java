@@ -134,7 +134,7 @@ public class Server
 	        Protocol protocol = null;
 
             //Wait till someone connects; this is a blocking method!!!!!!!!
-            clientSocket = serverSocket.accept();
+            //clientSocket = serverSocket.accept();
             //Does this do anything at all?
             clientSocket.setKeepAlive(true);
             clientSocket.setSoTimeout(500);
@@ -152,7 +152,7 @@ public class Server
 	            Thread.sleep(100);
 	            //Add tiny amount
 	            protocol.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
-	            sendMessage(parser.serialize(protocol));
+	            //sendMessage(parser.serialize(protocol));
 	            
 	            if (counter % 15 == 0)
 	            {
