@@ -37,7 +37,7 @@ import javax.vecmath.Point3d;
  * */
 public class Client extends SimpleApplication {
 	//TODO: Set in logical order!
-	//TODO: Boolean to activate the animation per crane (1 for the RailCrane & 1 for the FreeMovingCrane)
+	//TODO: Boolean to activate the animation per crane (1 for the RailCrane, 1 for the TruckCrane & 1 for the FreeMovingCrane)
 	//TODO: Receive the data for calculating the velocity of the animation
 	private ProtocolParser protocolParser;
 	private Geometry tempContainer; //Temporary network test
@@ -56,6 +56,7 @@ public class Client extends SimpleApplication {
     private boolean playing = false;
     FreeMovingCrane freeMovingCrane;
     StorageCrane storageCrane;
+    TruckCrane truckCrane;
     Spatial container;
     float tpf;
 	float x = 70f;
@@ -114,6 +115,7 @@ public class Client extends SimpleApplication {
     	System.out.println("TPF: " + tpf);
     	
     	storageCrane.animation(tpf);
+    	truckCrane.animation(tpf);
     	freeMovingCrane.animation(tpf);
     	
     	if(!storageCrane.loseContainer){
@@ -185,6 +187,9 @@ public class Client extends SimpleApplication {
         
         storageCrane = new StorageCrane(assetManager,70f,256f,50f);
         rootNode.attachChild(storageCrane.loadModels());
+        
+        truckCrane = new TruckCrane(assetManager,70f,256f,100f);
+        rootNode.attachChild(truckCrane.loadModels());
     }
 
     private void initInputs() {
