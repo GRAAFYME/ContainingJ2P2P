@@ -1,7 +1,6 @@
 package org.client;
 
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -82,11 +81,12 @@ public class StorageCrane {
     		//Speed you want times the time per frame
         
     		//If the TPF is too high, set it lower
-    		if(speed > 0.5)
-    			speed = 0.5f;
+    		if(speed > 1.0)
+    			speed = 1.0f;
     		float animationSpeed = speed;
         
     		posHook = opslagKraanHook.getLocalTranslation();
+    		System.out.println("Start: " + start + "; End: " + end);
         
     		if(posHook.distance(start) > a.distance(b)){
     			if(upDown){
@@ -98,13 +98,13 @@ public class StorageCrane {
     			}
     			upDown = !upDown;
     			counter++;
+    			System.out.println("Counter: " + counter);
     		}
-    		//if(counter == 2)
-    		//	loseContainer = true;
-    		//if(counter == 3)
-    		//	animate = false;
-    		
-        
+    		if(counter == 2)
+    			loseContainer = true;
+    		if(counter == 3)
+    			animate = false;
+           
     		c = end.subtract(start);
     		c.normalize();      
     		velocity = c.multLocal(animationSpeed * 0.5f);

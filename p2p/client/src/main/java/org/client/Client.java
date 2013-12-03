@@ -69,12 +69,9 @@ public class Client extends SimpleApplication {
     public void simpleInitApp() {
     	bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState); 
-        bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, -100, 0));
         
     	initInputs();
     	//initNifty();
-    	initCranes();
-    	testContainer();
     	
     	//agv code
     	agv1 = new AGV(new Vector3f(70f,260f,130f), assetManager, allAgvNodes);
@@ -83,6 +80,8 @@ public class Client extends SimpleApplication {
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
     	initScene();
+    	initCranes();
+    	testContainer();
         
         //waypoints code
         guiNode.attachChild(agv1.wayPointsText);
