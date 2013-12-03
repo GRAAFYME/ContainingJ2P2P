@@ -58,6 +58,7 @@ public class Client extends SimpleApplication {
     StorageCrane storageCrane;
     float tpf;
     private boolean playing2 = false;
+    Spatial container;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -108,6 +109,17 @@ public class Client extends SimpleApplication {
     	//calculate the velocity of certain objects
     	this.tpf = tpf;
     	
+    	storageCrane.animation(tpf);
+    	freeMovingCrane.animation(tpf);
+    	
+    	if(!storageCrane.loseContainer){
+    		if(container.getLocalTranslation().y > storageCrane.opslagKraanHook.getLocalTranslation().y && storageCrane.upDown){
+    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
+    		} else if(container.getLocalTranslation().y < storageCrane.opslagKraanHook.getLocalTranslation().y && !storageCrane.upDown)
+    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
+    	}
+
+    	
         String message = c.getMessages();
         if(message != "")
         {
@@ -133,15 +145,13 @@ public class Client extends SimpleApplication {
     }    
     
     public void testContainer(){
-    	Spatial container = assetManager.loadModel("Models/container/Container.obj");
+    	container = assetManager.loadModel("Models/container/Container.obj");
         Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
         Texture container_tex = assetManager.loadTexture("Models/container/container.png");
         container_mat.setTexture("DiffuseMap", container_tex);
         container.setMaterial(container_mat);
         container.setLocalTranslation(70,260,50);
-        
-        container.addControl(new RigidBodyControl(1f));
-        bulletAppState.getPhysicsSpace().add(container);
+
         rootNode.attachChild(container);
     }
     
@@ -159,11 +169,9 @@ public class Client extends SimpleApplication {
     public void initCranes(){
     	freeMovingCrane = new FreeMovingCrane(assetManager,70f,256f,0f);
         rootNode.attachChild(freeMovingCrane.loadModels());
-    	bulletAppState.getPhysicsSpace().add(freeMovingCrane.containerCrane);
         
         storageCrane = new StorageCrane(assetManager,70f,256f,50f);
         rootNode.attachChild(storageCrane.loadModels());
-        bulletAppState.getPhysicsSpace().add(storageCrane.storageCrane);
     }
 
     private void initInputs() {
