@@ -41,7 +41,7 @@ public class StorageCrane {
         this.z = z;
         
         a = new Vector3f(x,y,z);
-        b = new Vector3f(x,y+9,z);
+        b = new Vector3f(x,y+13,z);
         start = a;
         end = b;
         
@@ -86,7 +86,6 @@ public class StorageCrane {
     		float animationSpeed = speed;
         
     		posHook = opslagKraanHook.getLocalTranslation();
-    		System.out.println("Start: " + start + "; End: " + end);
         
     		if(posHook.distance(start) > a.distance(b)){
     			if(upDown){
@@ -98,7 +97,6 @@ public class StorageCrane {
     			}
     			upDown = !upDown;
     			counter++;
-    			System.out.println("Counter: " + counter);
     		}
     		if(counter == 2)
     			loseContainer = true;

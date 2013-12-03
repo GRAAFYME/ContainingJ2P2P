@@ -43,8 +43,8 @@ public class FreeMovingCrane {
         this.z = z;
         
         hookA1 = new Vector3f(x,y,z);
-        hookA2 = new Vector3f(x,y+9,z);
-        hookB1 = new Vector3f(x-25,y+9,z);
+        hookA2 = new Vector3f(x,y+15,z);
+        hookB1 = new Vector3f(x-25,y+15,z);
         hookB2 = new Vector3f(x-25,y,z);
         start = hookA1;
         end = hookA2;
@@ -77,7 +77,7 @@ public class FreeMovingCrane {
         Material mat_hook = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat_hook.setColor("Color", ColorRGBA.Black);
         zeeKraanHook.setMaterial(mat_hook);
-        zeeKraanHook.setLocalTranslation(x, y+9, z);
+        zeeKraanHook.setLocalTranslation(x, y+15, z);
         
         containerCrane = new Node();
         containerCrane.attachChild(zeeKraan);
@@ -89,71 +89,80 @@ public class FreeMovingCrane {
     
     public void animation(float speed)
     {
-        Vector3f c, posSlider, posHook, velocity;
+    	if(animate){
+    		Vector3f c, posSlider, posHook, velocity;
         
-        if(speed > 0.5)
-        	speed = 0.5f;
-        float animationSpeed = speed;
+    		if(speed > 0.5)
+    			speed = 0.5f;
+    		float animationSpeed = speed;
         
-        posSlider = zeeKraanSlider.getLocalTranslation();
-        posHook = zeeKraanHook.getLocalTranslation();
+    		posSlider = zeeKraanSlider.getLocalTranslation();
+    		posHook = zeeKraanHook.getLocalTranslation();
         
-        if(!backForwards){
-            if(posHook.distance(start) > start.distance(end)){
-                if(!animateSlider){
-                    if((int)posHook.x == x){
-                        start = hookA1;
-                        end = hookA2;
-                    } else if((int)posHook.x != x){
-                        start = hookB1;
-                        end = hookB2;
-                        if(posHook.distance(start) > start.distance(end)){
-                            backForwards = true;
-                        }
-                    }
-                } else{
-                    start = hookA2;
-                    end = hookB1;
-                }
-                animateSlider = false;
-            }
-            if(posSlider.distance(start) < start.distance(end)){
-                animateSlider = true;
-            }             
-        } else{
-            if(posHook.distance(start) > start.distance(end)){
-                if(!animateSlider){
-                    if((int)posHook.x == x){
-                        start = hookA2;
-                        end = hookA1;
-                        if(posHook.distance(start) > start.distance(end)){
-                            backForwards = false;
-                            //TODO: Set animation stop
-                        }
-                    } else if((int)posHook.x != x){
-                        start = hookB2;
-                        end = hookB1;
-                    }
-                } else{
-                    start = hookB1;
-                    end = hookA2; 
-                }
-                animateSlider = false;
-            }
-            if(posSlider.distance(start) < start.distance(end)){
-                animateSlider = true;
-            }             
-        }
+    		if(!backForwards){
+    			if(posHook.distance(start) > start.distance(end)){
+    				if(!animateSlider){
+    					if((int)posHook.x >= x){
+    						start = hookA1;
+    						end = hookA2;
+    					} else if((int)posHook.x < x){
+    						start = hookB1;
+                        	end = hookB2;
+                        	if(posHook.distance(start) < start.distance(end)){
+                        		backForwards = true;
+                        	}
+    					}
+    				} else{
+    					start = hookA2;
+    					end = hookB1;
+    				}
+    				animateSlider = false;
+    				counter++;
+    			}
+    			if(posSlider.distance(start) < start.distance(end)){
+    				animateSlider = true;
+    			}
+    		} else{
+    			if(posHook.distance(start) > start.distance(end)){
+    				if(!animateSlider){
+    					if((int)posHook.x >= x){
+    						start = hookA2;
+    						end = hookA1;
+    						if(posHook.distance(start) < start.distance(end)){
+    							backForwards = false;
+    						}
+    					} else if((int)posHook.x < x){
+    						start = hookB2;
+    						end = hookB1;
+    					}
+    				} else{
+    					start = hookB1;
+                    	end = hookA2;
+    				}
+    				animateSlider = false;
+    				counter++;
+    			}
+    			if(posSlider.distance(start) < start.distance(end)){
+    				animateSlider = true;
+    			}
+    		}
         
-        c = end.subtract(start);
-        c.normalize();
-        velocity = c.multLocal(animationSpeed);
-        posHook.addLocal(velocity);
-        posSlider.addLocal(velocity);
+    		if(counter == 8)
+    			loseContainer = true;        
+    		if(counter == 9)
+    			animate = false;
+
+    		System.out.println("Counter: " + counter);
+    		c = end.subtract(start);
+        	c.normalize();
+        	velocity = c.multLocal(animationSpeed);
+        	posHook.addLocal(velocity);
+        	posSlider.addLocal(velocity);
         
-        zeeKraanHook.setLocalTranslation(posHook.x,posHook.y,z);
-        if(animateSlider){
-            zeeKraanSlider.setLocalTranslation(posSlider.x,y,z);
-        }
+        	zeeKraanHook.setLocalTranslation(posHook);
+        	if(animateSlider){
+        		zeeKraanSlider.setLocalTranslation(posSlider.x,y,z);
+        	}
+    	}
     }
 }
