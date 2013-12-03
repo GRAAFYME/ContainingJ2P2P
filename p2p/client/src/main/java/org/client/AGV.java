@@ -55,7 +55,7 @@ public class AGV{
     	AGV.setLocalTranslation(location);
     	AGV.scale(10);
     	Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Black);
+        mat.setColor("Color", ColorRGBA.Red);
     	AGV.setMaterial(mat);
     	AGV.setName("Name");
     	nodeAGV = new Node();
