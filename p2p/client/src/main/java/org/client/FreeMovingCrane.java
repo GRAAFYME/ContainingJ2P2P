@@ -21,6 +21,8 @@ public class FreeMovingCrane {
     //For the animation
     boolean animateSlider;
     boolean backForwards;
+    boolean animate, loseContainer;
+    int counter;
     
     //Local translation
     float x, y, z;
@@ -85,13 +87,15 @@ public class FreeMovingCrane {
         containerCrane.attachChild(zeeKraanSlider);
         containerCrane.attachChild(zeeKraanHook);
         
-        containerCrane.addControl(new RigidBodyControl(0));
         return containerCrane;
     }
     
     public void animation(float speed)
     {
         Vector3f c, posSlider, posHook, velocity;
+        
+        if(speed > 0.5)
+        	speed = 0.5f;
         float animationSpeed = speed;
         
         posSlider = zeeKraanSlider.getLocalTranslation();
