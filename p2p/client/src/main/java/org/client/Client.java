@@ -181,7 +181,6 @@ public class Client extends SimpleApplication {
     	Node shipNode = new Node();
     	shipNode.attachChild(seaShip.loadModels());
     	shipNode.scale(2);
-    	shipNode.rotate(0, 45*FastMath.DEG_TO_RAD, 0);
     	rootNode.attachChild(shipNode);
     }
     
