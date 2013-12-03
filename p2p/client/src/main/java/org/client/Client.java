@@ -72,15 +72,16 @@ public class Client extends SimpleApplication {
         
     	initInputs();
     	//initNifty();
-    	initScene();
     	initCranes();
     	testContainer();
     	
     	//agv code
     	agv1 = new AGV(new Vector3f(70f,260f,130f), assetManager, allAgvNodes);
         agv2 = new AGV(new Vector3f(90f,260f,130f), assetManager, allAgvNodes);
-        GeometryBatchFactory.optimize(allAgvNodes); 
+        GeometryBatchFactory.optimize(allAgvNodes);
         rootNode.attachChild(allAgvNodes);  
+        GeometryBatchFactory.optimize(rootNode); 
+    	initScene();
         
         //waypoints code
         guiNode.attachChild(agv1.wayPointsText);
