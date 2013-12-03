@@ -72,6 +72,7 @@ public class FtpLoginView {
              //getPassword.toString() returns weird strings, have to use depricated getText()
 	    	password = passwordText.getText();
 	        server.loginToStatisticsServer("j2p2p.ymevandergraaf.nl", name, password);
+
 	    	frame.setVisible(false);
 	     }
 	     }

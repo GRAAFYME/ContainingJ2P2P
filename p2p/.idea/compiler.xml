@@ -23,6 +23,7 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="protocol" />
+        <module name="Protocol" />
       </profile>
     </annotationProcessing>
   </component>
