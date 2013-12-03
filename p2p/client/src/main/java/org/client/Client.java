@@ -23,7 +23,9 @@ import de.lessvoid.nifty.Nifty;
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
+import jme3tools.optimize.GeometryBatchFactory;
 import javax.vecmath.Point3d;
+
 /*
  * Authors
  * Joshua Bergsma
@@ -33,7 +35,6 @@ import javax.vecmath.Point3d;
  * Arjen Pander
  * Melinda de Roo 
  * */
-
 public class Client extends SimpleApplication {
 	//TODO: Set in logical order!
 	//TODO: Boolean to activate the animation per crane (1 for the RailCrane & 1 for the FreeMovingCrane)
@@ -78,6 +79,7 @@ public class Client extends SimpleApplication {
     	//agv code
     	agv1 = new AGV(new Vector3f(70f,260f,130f), assetManager, allAgvNodes);
         agv2 = new AGV(new Vector3f(90f,260f,130f), assetManager, allAgvNodes);
+        GeometryBatchFactory.optimize(allAgvNodes); 
         rootNode.attachChild(allAgvNodes);  
         
         //waypoints code
@@ -94,15 +96,13 @@ public class Client extends SimpleApplication {
         //TODO: Remove this Network test code
         protocolTest();
         
-        AmbientLight al = new AmbientLight();
-        al.setColor(ColorRGBA.White.mult(1.3f));
-        rootNode.addLight(al);
+//        AmbientLight al = new AmbientLight();
+//        al.setColor(ColorRGBA.White.mult(1.3f));
+//        rootNode.addLight(al);
     }
     
     @Override
     public void simpleUpdate(float tpf) {
-//    	System.out.println(cam.getLocation());
-//    	System.out.println("TPF: " + tpf);
     	//Updates the 'Time Per Frame', that's necessary to 
     	//calculate the velocity of certain objects
     	this.tpf = tpf;
@@ -119,16 +119,15 @@ public class Client extends SimpleApplication {
                     container = c;
                     System.out.println(c.getLocation().toString());
                 }
-
+                
                 Point3d l = container.getLocation();
                 tempContainer.setLocalTranslation((float)l.x, (float)l.y, (float)l.z);
-
+                
             }
             catch (Exception e)
             {
                 System.out.println("Received incorrect package: \n\n" +  e.getMessage());
             }
-            
         }
     }    
     
@@ -144,6 +143,7 @@ public class Client extends SimpleApplication {
         bulletAppState.getPhysicsSpace().add(container);
         rootNode.attachChild(container);
     }
+    
     //creates most of the physics and scene logic
     public void initScene(){
     	Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
