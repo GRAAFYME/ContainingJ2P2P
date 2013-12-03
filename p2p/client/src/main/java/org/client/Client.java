@@ -86,7 +86,7 @@ public class Client extends SimpleApplication {
     	
         //Cam code
 	    cam.setLocation(new Vector3f(0f,300f,0f)); 
-	    flyCam.setMoveSpeed(30f);
+	    flyCam.setMoveSpeed(300f);
 	    FBC = new FlyByCamera(cam, inputManager);
 	    
 	    //Protocol Test code

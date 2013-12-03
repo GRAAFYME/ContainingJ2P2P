@@ -135,6 +135,7 @@ public class FlyByCamera implements AnalogListener, ActionListener {
 
         if (name.equals("FLYCAM_RiseZ")){
             riseCamera(value);
+            System.out.println(cam.getLocation());
         }else if (name.equals("FLYCAM_LowerX")){
         	riseCamera(-value);
         }else if (name.equals("FLYCAM_RiseSpace")){
