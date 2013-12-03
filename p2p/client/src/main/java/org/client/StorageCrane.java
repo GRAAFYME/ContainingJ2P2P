@@ -64,7 +64,7 @@ public class StorageCrane {
         Material mat_hook = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat_hook.setColor("Color", ColorRGBA.Black);
         opslagKraanHook.setMaterial(mat_hook);
-        opslagKraanHook.setLocalTranslation(x, y+9, z);
+        opslagKraanHook.setLocalTranslation(x, y, z);
            
         storageCrane = new Node();
         storageCrane.attachChild(opslagKraan);
