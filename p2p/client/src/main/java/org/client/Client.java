@@ -98,9 +98,9 @@ public class Client extends SimpleApplication {
         //TODO: Remove this Network test code
         protocolTest();
         
-//        AmbientLight al = new AmbientLight();
-//        al.setColor(ColorRGBA.White.mult(1.3f));
-//        rootNode.addLight(al);
+        AmbientLight al = new AmbientLight();
+        al.setColor(ColorRGBA.White.mult(1.3f));
+        rootNode.addLight(al);
     }
     
     @Override
@@ -108,6 +108,7 @@ public class Client extends SimpleApplication {
     	//Updates the 'Time Per Frame', that's necessary to 
     	//calculate the velocity of certain objects
     	this.tpf = tpf;
+    	System.out.println("TPF: " + tpf);
     	
     	storageCrane.animation(tpf);
     	freeMovingCrane.animation(tpf);
@@ -118,7 +119,6 @@ public class Client extends SimpleApplication {
     		} else if(container.getLocalTranslation().y < storageCrane.opslagKraanHook.getLocalTranslation().y && !storageCrane.upDown)
     			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
     	}
-
     	
         String message = c.getMessages();
         if(message != "")

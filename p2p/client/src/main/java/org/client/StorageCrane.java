@@ -75,17 +75,18 @@ public class StorageCrane {
     
     public void animation(float speed)
     {
+    	//Check if the animation is activated, otherwise DO NOTHING;
     	if(animate){
+    		//Create normal vector, position of the hook and the velocity
     		Vector3f c, posHook, velocity;
     		//Speed you want times the time per frame
         
+    		//If the TPF is too high, set it lower
     		if(speed > 0.5)
     			speed = 0.5f;
     		float animationSpeed = speed;
         
     		posHook = opslagKraanHook.getLocalTranslation();
-        
-    		//TODO: Set animation stop (Can do with one boolean)
         
     		if(posHook.distance(start) > a.distance(b)){
     			if(upDown){
@@ -98,15 +99,15 @@ public class StorageCrane {
     			upDown = !upDown;
     			counter++;
     		}
-    		if(counter == 2)
-    			loseContainer = true;
-    		else if(counter == 3)
-    			animate = false;
+    		//if(counter == 2)
+    		//	loseContainer = true;
+    		//if(counter == 3)
+    		//	animate = false;
     		
         
     		c = end.subtract(start);
     		c.normalize();      
-    		velocity = c.multLocal(animationSpeed);
+    		velocity = c.multLocal(animationSpeed * 0.5f);
     		posHook.addLocal(velocity);
         
     		opslagKraanHook.setLocalTranslation(posHook);

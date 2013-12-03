@@ -52,10 +52,8 @@ public class FreeMovingCrane {
         
         animateSlider = false;
         backForwards = false;
-//        animateHook1 = true; //FOR TESTING, MAIN HAS TO ACTIVATE THE ANIMATIONS WHEN THE CONTAINERS ARE BEING REMOVED FROM THE SHIP/TRAIN/TRUCK!
-//        animateSlider1 = false;
-//        animateHook2 = false;
-//        animateSlider2 = false;
+        animate = true;
+        loseContainer = false;
     }
     
     public Node loadModels()
