@@ -23,7 +23,9 @@ import de.lessvoid.nifty.Nifty;
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
+import jme3tools.optimize.GeometryBatchFactory;
 import javax.vecmath.Point3d;
+
 /*
  * Authors
  * Joshua Bergsma
@@ -33,7 +35,6 @@ import javax.vecmath.Point3d;
  * Arjen Pander
  * Melinda de Roo 
  * */
-
 public class Client extends SimpleApplication {
 	//TODO: Set in logical order!
 	//TODO: Boolean to activate the animation per crane (1 for the RailCrane & 1 for the FreeMovingCrane)
@@ -55,8 +56,14 @@ public class Client extends SimpleApplication {
     private boolean playing = false;
     FreeMovingCrane freeMovingCrane;
     StorageCrane storageCrane;
+    Spatial container;
     float tpf;
+	float x = 70f;
+	float z = 130f;
+    private boolean active2 = true;
     private boolean playing2 = false;
+    Vector3f location;
+    String sName;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -67,19 +74,20 @@ public class Client extends SimpleApplication {
     public void simpleInitApp() {
     	bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState); 
-        bulletAppState.getPhysicsSpace().setGravity(new Vector3f(0, -100, 0));
         
     	initInputs();
     	//initNifty();
+    	
+    	//agv code
+//    	agv1 = new AGV(new Vector3f(70f,260f,130f), assetManager, allAgvNodes);
+//        agv2 = new AGV(new Vector3f(90f,260f,130f), assetManager, allAgvNodes);
+        GeometryBatchFactory.optimize(allAgvNodes);
+        rootNode.attachChild(allAgvNodes);  
+        GeometryBatchFactory.optimize(rootNode); 
     	initScene();
     	initCranes();
     	testContainer();
-    	
-    	//agv code
-    	agv1 = new AGV(new Vector3f(70f,260f,130f), assetManager, allAgvNodes);
-        agv2 = new AGV(new Vector3f(90f,260f,130f), assetManager, allAgvNodes);
-        rootNode.attachChild(allAgvNodes);  
-        
+    	addAllAGVs(location);
         //waypoints code
         guiNode.attachChild(agv1.wayPointsText);
         c = new networkClient(6666);
@@ -101,11 +109,20 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleUpdate(float tpf) {
-//    	System.out.println(cam.getLocation());
-//    	System.out.println("TPF: " + tpf);
     	//Updates the 'Time Per Frame', that's necessary to 
     	//calculate the velocity of certain objects
     	this.tpf = tpf;
+    	System.out.println("TPF: " + tpf);
+    	
+    	storageCrane.animation(tpf);
+    	freeMovingCrane.animation(tpf);
+    	
+    	if(!storageCrane.loseContainer){
+    		if(container.getLocalTranslation().y > storageCrane.opslagKraanHook.getLocalTranslation().y && storageCrane.upDown){
+    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
+    		} else if(container.getLocalTranslation().y < storageCrane.opslagKraanHook.getLocalTranslation().y && !storageCrane.upDown)
+    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
+    	}
     	
         String message = c.getMessages();
         if(message != "")
@@ -119,31 +136,41 @@ public class Client extends SimpleApplication {
                     container = c;
                     System.out.println(c.getLocation().toString());
                 }
-
+                
                 Point3d l = container.getLocation();
                 tempContainer.setLocalTranslation((float)l.x, (float)l.y, (float)l.z);
-
+                
             }
             catch (Exception e)
             {
                 System.out.println("Received incorrect package: \n\n" +  e.getMessage());
             }
-            
         }
     }    
+    public void addAllAGVs(Vector3f location){
+
+      	//agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
+      	for (int i=0; i<100; i++){
+      	  	agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AVG");
+      	  	sName = agv1.Name + i;
+      	  	//System.out.println(sName);
+      		//z+= 15;
+      		x+= 25;
+      	}
+      }
+        
     
     public void testContainer(){
-    	Spatial container = assetManager.loadModel("Models/container/Container.obj");
+    	container = assetManager.loadModel("Models/container/Container.obj");
         Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
         Texture container_tex = assetManager.loadTexture("Models/container/container.png");
         container_mat.setTexture("DiffuseMap", container_tex);
         container.setMaterial(container_mat);
         container.setLocalTranslation(70,260,50);
-        
-        container.addControl(new RigidBodyControl(1f));
-        bulletAppState.getPhysicsSpace().add(container);
+
         rootNode.attachChild(container);
     }
+    
     //creates most of the physics and scene logic
     public void initScene(){
     	Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
@@ -158,11 +185,9 @@ public class Client extends SimpleApplication {
     public void initCranes(){
     	freeMovingCrane = new FreeMovingCrane(assetManager,70f,256f,0f);
         rootNode.attachChild(freeMovingCrane.loadModels());
-    	bulletAppState.getPhysicsSpace().add(freeMovingCrane.containerCrane);
         
         storageCrane = new StorageCrane(assetManager,70f,256f,50f);
         rootNode.attachChild(storageCrane.loadModels());
-        bulletAppState.getPhysicsSpace().add(storageCrane.storageCrane);
     }
 
     private void initInputs() {
@@ -184,25 +209,31 @@ public class Client extends SimpleApplication {
                         path.enableDebugShape(assetManager, rootNode);
                     }
                 }
+                
+                if(sName == "AVG99"){
                 if (name.equals("play_stop") && keyPressed) {
                     if (playing) {
                         playing = false;
                         agv1.motionControl.stop();
+                        System.out.println("AVG NR : " + sName);
                     } else {
                         playing = true;
                         agv1.motionControl.play();
+                        System.out.println("AVG NR : " + sName);
+                        
                     }
                 }
-
+                }
+                
                 
                 
                 if (name.equals("play_stop2") && keyPressed) {
                     if (playing2) {
                         playing2 = false;
-                        agv2.motionControl2.stop();
+                        agv1.motionControl2.stop();
                     } else {
                         playing2 = true;
-                        agv2.motionControl2.play();
+                        agv1.motionControl2.play();
                     }
                 }
                 if (name.equals("SwitchPathInterpolation") && keyPressed) {
@@ -229,7 +260,6 @@ public class Client extends SimpleApplication {
         inputManager.addListener(acl, "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
 
     } 
-
     public void initNifty(){
     	NiftyMenu niftyMenu = new NiftyMenu();
         stateManager.attach(niftyMenu);

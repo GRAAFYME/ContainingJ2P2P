@@ -1,7 +1,6 @@
 package org.client;
 
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -21,6 +20,8 @@ public class StorageCrane {
     
     //Check if crane has to go up or down
     boolean upDown;
+    boolean animate, loseContainer;
+    int counter;
     
     //Point A & B
     private Vector3f a, b, start, end;
@@ -40,9 +41,12 @@ public class StorageCrane {
         this.z = z;
         
         a = new Vector3f(x,y,z);
-        b = new Vector3f(x,y+9,z);
+        b = new Vector3f(x,y+13,z);
         start = a;
         end = b;
+        
+        animate = true;
+        loseContainer = false;
     }
     
     public Node loadModels()
@@ -59,42 +63,52 @@ public class StorageCrane {
         Material mat_hook = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat_hook.setColor("Color", ColorRGBA.Black);
         opslagKraanHook.setMaterial(mat_hook);
-        opslagKraanHook.setLocalTranslation(x, y+9, z);
+        opslagKraanHook.setLocalTranslation(x, y, z);
            
         storageCrane = new Node();
         storageCrane.attachChild(opslagKraan);
         storageCrane.attachChild(opslagKraanHook);
-        
-        storageCrane.addControl(new RigidBodyControl(0));
+
         return storageCrane;
     }
     
     public void animation(float speed)
     {
-        Vector3f c, posHook, velocity;
-        //Speed you want times the time per frame
-        float animationSpeed = speed;
+    	//Check if the animation is activated, otherwise DO NOTHING;
+    	if(animate){
+    		//Create normal vector, position of the hook and the velocity
+    		Vector3f c, posHook, velocity;
+    		//Speed you want times the time per frame
         
-        posHook = opslagKraanHook.getLocalTranslation();
+    		//If the TPF is too high, set it lower
+    		if(speed > 1.0)
+    			speed = 1.0f;
+    		float animationSpeed = speed;
         
-        //TODO: Set animation stop (Can do with one boolean)
+    		posHook = opslagKraanHook.getLocalTranslation();
         
-        if(posHook.distance(start) > a.distance(b)){
-            if(upDown){
-                start = a;
-                end = b;   
-            } else{
-                start = b;
-                end = a;
-            }
-            upDown = !upDown;
-        }
+    		if(posHook.distance(start) > a.distance(b)){
+    			if(upDown){
+    				start = a;
+    				end = b;   
+    			} else{
+    				start = b;
+    				end = a;
+    			}
+    			upDown = !upDown;
+    			counter++;
+    		}
+    		if(counter == 2)
+    			loseContainer = true;
+    		if(counter == 3)
+    			animate = false;
+           
+    		c = end.subtract(start);
+    		c.normalize();      
+    		velocity = c.multLocal(animationSpeed * 0.5f);
+    		posHook.addLocal(velocity);
         
-        c = end.subtract(start);
-        c.normalize();      
-        velocity = c.multLocal(animationSpeed);
-        posHook.addLocal(velocity);
-        
-        opslagKraanHook.setLocalTranslation(posHook.x, posHook.y, posHook.z);
+    		opslagKraanHook.setLocalTranslation(posHook);
+    	}
     }
 }

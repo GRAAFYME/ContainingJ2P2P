@@ -1,7 +1,6 @@
 package org.client;
 
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -21,6 +20,8 @@ public class FreeMovingCrane {
     //For the animation
     boolean animateSlider;
     boolean backForwards;
+    boolean animate, loseContainer;
+    int counter;
     
     //Local translation
     float x, y, z;
@@ -42,18 +43,16 @@ public class FreeMovingCrane {
         this.z = z;
         
         hookA1 = new Vector3f(x,y,z);
-        hookA2 = new Vector3f(x,y+9,z);
-        hookB1 = new Vector3f(x-25,y+9,z);
+        hookA2 = new Vector3f(x,y+15,z);
+        hookB1 = new Vector3f(x-25,y+15,z);
         hookB2 = new Vector3f(x-25,y,z);
         start = hookA1;
         end = hookA2;
         
         animateSlider = false;
         backForwards = false;
-//        animateHook1 = true; //FOR TESTING, MAIN HAS TO ACTIVATE THE ANIMATIONS WHEN THE CONTAINERS ARE BEING REMOVED FROM THE SHIP/TRAIN/TRUCK!
-//        animateSlider1 = false;
-//        animateHook2 = false;
-//        animateSlider2 = false;
+        animate = true;
+        loseContainer = false;
     }
     
     public Node loadModels()
@@ -78,81 +77,92 @@ public class FreeMovingCrane {
         Material mat_hook = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat_hook.setColor("Color", ColorRGBA.Black);
         zeeKraanHook.setMaterial(mat_hook);
-        zeeKraanHook.setLocalTranslation(x, y+9, z);
+        zeeKraanHook.setLocalTranslation(x, y+15, z);
         
         containerCrane = new Node();
         containerCrane.attachChild(zeeKraan);
         containerCrane.attachChild(zeeKraanSlider);
         containerCrane.attachChild(zeeKraanHook);
         
-        containerCrane.addControl(new RigidBodyControl(0));
         return containerCrane;
     }
     
     public void animation(float speed)
     {
-        Vector3f c, posSlider, posHook, velocity;
-        float animationSpeed = speed;
+    	if(animate){
+    		Vector3f c, posSlider, posHook, velocity;
         
-        posSlider = zeeKraanSlider.getLocalTranslation();
-        posHook = zeeKraanHook.getLocalTranslation();
+    		if(speed > 0.5)
+    			speed = 0.5f;
+    		float animationSpeed = speed;
         
-        if(!backForwards){
-            if(posHook.distance(start) > start.distance(end)){
-                if(!animateSlider){
-                    if((int)posHook.x == x){
-                        start = hookA1;
-                        end = hookA2;
-                    } else if((int)posHook.x != x){
-                        start = hookB1;
-                        end = hookB2;
-                        if(posHook.distance(start) > start.distance(end)){
-                            backForwards = true;
-                        }
-                    }
-                } else{
-                    start = hookA2;
-                    end = hookB1;
-                }
-                animateSlider = false;
-            }
-            if(posSlider.distance(start) < start.distance(end)){
-                animateSlider = true;
-            }             
-        } else{
-            if(posHook.distance(start) > start.distance(end)){
-                if(!animateSlider){
-                    if((int)posHook.x == x){
-                        start = hookA2;
-                        end = hookA1;
-                        if(posHook.distance(start) > start.distance(end)){
-                            backForwards = false;
-                            //TODO: Set animation stop
-                        }
-                    } else if((int)posHook.x != x){
-                        start = hookB2;
-                        end = hookB1;
-                    }
-                } else{
-                    start = hookB1;
-                    end = hookA2; 
-                }
-                animateSlider = false;
-            }
-            if(posSlider.distance(start) < start.distance(end)){
-                animateSlider = true;
-            }             
-        }
+    		posSlider = zeeKraanSlider.getLocalTranslation();
+    		posHook = zeeKraanHook.getLocalTranslation();
         
-        c = end.subtract(start);
-        c.normalize();
-        velocity = c.multLocal(animationSpeed);
-        posHook.addLocal(velocity);
-        posSlider.addLocal(velocity);
+    		if(!backForwards){
+    			if(posHook.distance(start) > start.distance(end)){
+    				if(!animateSlider){
+    					if((int)posHook.x >= x){
+    						start = hookA1;
+    						end = hookA2;
+    					} else if((int)posHook.x < x){
+    						start = hookB1;
+                        	end = hookB2;
+                        	if(posHook.distance(start) < start.distance(end)){
+                        		backForwards = true;
+                        	}
+    					}
+    				} else{
+    					start = hookA2;
+    					end = hookB1;
+    				}
+    				animateSlider = false;
+    				counter++;
+    			}
+    			if(posSlider.distance(start) < start.distance(end)){
+    				animateSlider = true;
+    			}
+    		} else{
+    			if(posHook.distance(start) > start.distance(end)){
+    				if(!animateSlider){
+    					if((int)posHook.x >= x){
+    						start = hookA2;
+    						end = hookA1;
+    						if(posHook.distance(start) < start.distance(end)){
+    							backForwards = false;
+    						}
+    					} else if((int)posHook.x < x){
+    						start = hookB2;
+    						end = hookB1;
+    					}
+    				} else{
+    					start = hookB1;
+                    	end = hookA2;
+    				}
+    				animateSlider = false;
+    				counter++;
+    			}
+    			if(posSlider.distance(start) < start.distance(end)){
+    				animateSlider = true;
+    			}
+    		}
         
-        zeeKraanHook.setLocalTranslation(posHook.x,posHook.y,z);
-        if(animateSlider){
-            zeeKraanSlider.setLocalTranslation(posSlider.x,y,z);
-        }
+    		if(counter == 8)
+    			loseContainer = true;        
+    		if(counter == 9)
+    			animate = false;
+
+    		System.out.println("Counter: " + counter);
+    		c = end.subtract(start);
+        	c.normalize();
+        	velocity = c.multLocal(animationSpeed);
+        	posHook.addLocal(velocity);
+        	posSlider.addLocal(velocity);
+        
+        	zeeKraanHook.setLocalTranslation(posHook);
+        	if(animateSlider){
+        		zeeKraanSlider.setLocalTranslation(posSlider.x,y,z);
+        	}
+    	}
     }
 }

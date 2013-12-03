@@ -1,6 +1,6 @@
 package org.client;
 
-import com.jme3.app.SimpleApplication;
+//import com.jme3.app.SimpleApplication;
 import com.jme3.material.Material;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
@@ -76,38 +76,14 @@ public class Scene {
     
     //creates and loads the light
     public void initLight(){
-        AmbientLight ambient = new AmbientLight();  //creates a light in the scene, which lights everything from all angles
-        ambient.setColor(ColorRGBA.White.mult(4f));
-        sceneNode.addLight(ambient);     //adds the light to the world. 
-        
-        PointLight cornerLight1 = new PointLight();
-        cornerLight1.setPosition(new Vector3f(-490, 300, 500));
-        cornerLight1.setColor(ColorRGBA.White.mult(.25f));
-        cornerLight1.setRadius(2000f);
-        sceneNode.addLight(cornerLight1); 
-        
-        PointLight cornerLight2 = new PointLight();
-        cornerLight2.setPosition(new Vector3f(-490, 300, -500));
-        cornerLight2.setColor(ColorRGBA.White.mult(.25f));
-        cornerLight2.setRadius(2000f);
-        sceneNode.addLight(cornerLight2); 
-        
-        PointLight cornerLight3 = new PointLight();
-        cornerLight3.setPosition(new Vector3f(500, 300, -500));
-        cornerLight3.setColor(ColorRGBA.White.mult(.25f));
-        cornerLight3.setRadius(2000f);
-        sceneNode.addLight(cornerLight3); 
-        
-        PointLight cornerLight4 = new PointLight();
-        cornerLight4.setPosition(new Vector3f(500, 300, 500));
-        cornerLight4.setColor(ColorRGBA.White.mult(.25f));
-        cornerLight4.setRadius(2000f);
-        sceneNode.addLight(cornerLight4); 
-        
-        PointLight sunLight = new PointLight();
-        sunLight.setPosition(new Vector3f(0, 500, 0));
-        sunLight.setColor(ColorRGBA.White.mult(.25f));
-        sunLight.setRadius(2000f);
+    	PointLight sunLight = new PointLight();
+        sunLight.setPosition(new Vector3f(650, 2000, 40));
+        sunLight.setColor(ColorRGBA.White.mult(1f));
+        sunLight.setRadius(3000f);
         sceneNode.addLight(sunLight); 
+        
+        AmbientLight ambient = new AmbientLight();  //creates a light in the scene, which lights everything from all angles
+        ambient.setColor(ColorRGBA.White.mult(5f));
+        sceneNode.addLight(ambient);     //adds the light to the world. 
     }
 }
