@@ -11,6 +11,7 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
@@ -19,11 +20,15 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
+
 import de.lessvoid.nifty.Nifty;
+
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
+
 import jme3tools.optimize.GeometryBatchFactory;
+
 import javax.vecmath.Point3d;
 
 /*
@@ -86,6 +91,7 @@ public class Client extends SimpleApplication {
     	initScene();
     	initCranes();
     	testContainer();
+    	testShip();
     	addAllAGVs(location);
     	
         //waypoints code
@@ -168,6 +174,15 @@ public class Client extends SimpleApplication {
         container.setLocalTranslation(70,260,50);
 
         rootNode.attachChild(container);
+    }
+    
+    public void testShip(){
+    	SeaShip seaShip = new SeaShip(assetManager,-450,120,0);
+    	Node shipNode = new Node();
+    	shipNode.attachChild(seaShip.loadModels());
+    	shipNode.scale(2);
+    	shipNode.rotate(0, 45*FastMath.DEG_TO_RAD, 0);
+    	rootNode.attachChild(shipNode);
     }
     
     //creates most of the physics and scene logic
