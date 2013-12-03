@@ -78,9 +78,7 @@ public class Client extends SimpleApplication {
     	initInputs();
     	//initNifty();
     	
-    	//agv code
-//    	agv1 = new AGV(new Vector3f(70f,260f,130f), assetManager, allAgvNodes);
-//        agv2 = new AGV(new Vector3f(90f,260f,130f), assetManager, allAgvNodes);
+        //agv code
         GeometryBatchFactory.optimize(allAgvNodes);
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
@@ -88,6 +86,7 @@ public class Client extends SimpleApplication {
     	initCranes();
     	testContainer();
     	addAllAGVs(location);
+    	
         //waypoints code
         guiNode.attachChild(agv1.wayPointsText);
         c = new networkClient(6666);
@@ -147,9 +146,8 @@ public class Client extends SimpleApplication {
             }
         }
     }    
+    
     public void addAllAGVs(Vector3f location){
-
-      	//agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
       	for (int i=0; i<100; i++){
       	  	agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AVG");
       	  	sName = agv1.Name + i;
@@ -159,7 +157,6 @@ public class Client extends SimpleApplication {
       	}
       }
         
-    
     public void testContainer(){
     	container = assetManager.loadModel("Models/container/Container.obj");
         Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
@@ -210,7 +207,7 @@ public class Client extends SimpleApplication {
                     }
                 }
                 
-                if(sName == "AVG99"){
+//                if(sName == "AVG99"){
                 if (name.equals("play_stop") && keyPressed) {
                     if (playing) {
                         playing = false;
@@ -223,7 +220,7 @@ public class Client extends SimpleApplication {
                         
                     }
                 }
-                }
+                //}
                 
                 
                 
@@ -260,6 +257,7 @@ public class Client extends SimpleApplication {
         inputManager.addListener(acl, "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
 
     } 
+    
     public void initNifty(){
     	NiftyMenu niftyMenu = new NiftyMenu();
         stateManager.attach(niftyMenu);
