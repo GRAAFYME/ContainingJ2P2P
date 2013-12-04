@@ -188,10 +188,11 @@ public class Client extends SimpleApplication {
     }
     
     public void testShip(){
-    	SeaShip seaShip = new SeaShip(assetManager,-450,120,0);
+    	SeaShip seaShip = new SeaShip(assetManager,-130,85,150);
     	Node shipNode = new Node();
     	shipNode.attachChild(seaShip.loadModels());
-    	shipNode.scale(2);
+    	shipNode.scale(2.5f);
+    	shipNode.rotate(0,-4*FastMath.DEG_TO_RAD,0);
     	rootNode.attachChild(shipNode);
     }
     
