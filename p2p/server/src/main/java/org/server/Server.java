@@ -64,7 +64,6 @@ public class Server
     {
         ftpClient = new FTPClient();
         ftpClient.setBufferSize(1024 * 1024);
-        ftpClient.enterLocalPassiveMode();
     }
 
     public void loginToStatisticsServer(String host, String name, String password)
@@ -94,6 +93,7 @@ public class Server
         {
             InputStream stream = new ByteArrayInputStream(statistics.serializeJson().getBytes());
             ftpClient.setFileType(FTP.ASCII_FILE_TYPE);//only for txt file ACII mode, for rest binary mode
+            ftpClient.enterLocalPassiveMode();
             ftpClient.storeFile("httpdocs/uploads/statistics.json", stream);
         }
         catch (Exception e)
