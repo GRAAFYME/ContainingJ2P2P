@@ -76,7 +76,7 @@ public class Client extends SimpleApplication {
     String sName;
     List<AGV> AGVList;
     Node shipNode;
-    
+    int j;
     public static void main(String[] args){
         Client app = new Client();       
         app.start(); // start the game
@@ -164,21 +164,22 @@ public class Client extends SimpleApplication {
     }    
      
     public void addAllAGVs(Vector3f location){
-       AGVList = new ArrayList<AGV>();       //agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
-       for (int i=0; i<100; i++){
-        System.out.println("Test" + i);
-       // agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV");
-          AGVList.add(new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV" + i));
-        x+= 25;
+        AGVList = new ArrayList<AGV>();       //agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
+        for (int i=0; i<100; i++){
+         System.out.println("Test" + i);
+        // agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV");
+           AGVList.add(new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV" + i));
+         x+= 25;
+        }
+        for(Iterator<AGV> i = AGVList.iterator(); 
+          i.hasNext(); ) {
+            AGV item = i.next();
+            System.out.println(item);
+            System.out.println("Size " +AGVList.size());
+        }
+        
        }
-       for(Iterator<AGV> i = AGVList.iterator(); 
-         i.hasNext(); ) {
-           AGV item = i.next();
-           System.out.println(item);
-           System.out.println("Size " +AGVList.size());
-       }
-       
-      }
+     
     
     public void testContainer(){
 //    	Spatial cont = assetManager.loadModel("Models/container/Container.obj");
@@ -261,6 +262,7 @@ public class Client extends SimpleApplication {
         inputManager.addMapping("tensionDown", new KeyTrigger(KeyInput.KEY_J));
         inputManager.addMapping("play_stop", new KeyTrigger(KeyInput.KEY_N));
         inputManager.addMapping("play_stop2", new KeyTrigger(KeyInput.KEY_M));
+        inputManager.addMapping("SetWireFrame", new KeyTrigger(KeyInput.KEY_L));
         ActionListener acl = new ActionListener() {
 
             public void onAction(String name, boolean keyPressed, float tpf) {
@@ -273,23 +275,23 @@ public class Client extends SimpleApplication {
                         path.enableDebugShape(assetManager, rootNode);
                     }
                 }
+            	
                 
-//                if(sName == "AVG99"){
+               
                 if (name.equals("play_stop") && keyPressed) {
                     if (playing) {
                         playing = false;
-                        AGVList.get(0).motionControl.stop();
-                        //agv1.motionControl.play();
-                        System.out.println("AVG NR : " + sName);
-                    } else {
+                      //  AGVList.get(0).motionControl.stop();
+                        System.out.println("AGV Index2 : " + j);
+                    } 
+                    else {
                         playing = true;
-                        AGVList.get(0).motionControl.play();
-                        //agv1.motionControl.play();
-                        System.out.println("AVG NR : " + sName);
-                        
+                        AGVList.get(j).motionControl.play();
+                        System.out.println("AGV Index : " + j);
+                        j++;
+                    	}
                     }
-                }
-                //}
+                
                 
                 if (name.equals("play_stop2") && keyPressed) {
                     if (playing2) {
