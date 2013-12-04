@@ -3,10 +3,14 @@ package org.server;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Main 
 {
@@ -104,20 +108,24 @@ public class Main
              //Parse XML
              xmlParser parser = new xmlParser();
              final ContainerSetXml containers;
+             
 
              try 
              {
                  long time = System.nanoTime();
                  containers = parser.parse(FileLocation);
+                 
                  System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
                  //new Thread for display next container after some time
                  Thread t = new Thread() {
                      public void run() {  
-                        for (ContainerXml c : containers.containers) {
-                        	textArea.append(c.id + " Owner Name: " + c.ownerName +  "\n");
+                        for (ContainerXml c : containers.containers) 
+                        {
+                        	textArea.append(c.id + " " + c.ownerName +  "\n");
                         	textArea.setCaretPosition(textArea.getDocument().getLength());
-                           try {
-                              sleep(150);  // milliseconds
+                           try 
+                           {
+                              sleep(1);  // milliseconds
                            } catch (InterruptedException ex) {}
                         }
                      }
