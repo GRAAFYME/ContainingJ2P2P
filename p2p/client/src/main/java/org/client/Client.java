@@ -1,5 +1,9 @@
 package org.client;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -70,6 +74,7 @@ public class Client extends SimpleApplication {
     private boolean playing2 = false;
     Vector3f location;
     String sName;
+    List<AGV> AGVList;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -95,7 +100,6 @@ public class Client extends SimpleApplication {
     	addAllAGVs(location);
     	
         //waypoints code
-        guiNode.attachChild(agv1.wayPointsText);
         c = new networkClient(6666);
     	
         //Cam code
@@ -154,17 +158,24 @@ public class Client extends SimpleApplication {
             }
         }
     }    
-    
+     
     public void addAllAGVs(Vector3f location){
-      	for (int i=0; i<100; i++){
-      	  	agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AVG");
-      	  	sName = agv1.Name + i;
-      	  	//System.out.println(sName);
-      		//z+= 15;
-      		x+= 25;
-      	}
+       AGVList = new ArrayList<AGV>();       //agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
+       for (int i=0; i<100; i++){
+        System.out.println("Test" + i);
+       // agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV");
+          AGVList.add(new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV" + i));
+        x+= 25;
+       }
+       for(Iterator<AGV> i = AGVList.iterator(); 
+         i.hasNext(); ) {
+           AGV item = i.next();
+           System.out.println(item);
+           System.out.println("Size " +AGVList.size());
+       }
+       
       }
-        
+    
     public void testContainer(){
     	container = assetManager.loadModel("Models/container/Container.obj");
         Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
@@ -230,26 +241,28 @@ public class Client extends SimpleApplication {
                 if (name.equals("play_stop") && keyPressed) {
                     if (playing) {
                         playing = false;
-                        agv1.motionControl.stop();
+                        AGVList.get(0).motionControl.stop();
+                        //agv1.motionControl.play();
                         System.out.println("AVG NR : " + sName);
                     } else {
                         playing = true;
-                        agv1.motionControl.play();
+                        AGVList.get(0).motionControl.play();
+                        //agv1.motionControl.play();
                         System.out.println("AVG NR : " + sName);
                         
                     }
                 }
                 //}
                 
-                
-                
                 if (name.equals("play_stop2") && keyPressed) {
                     if (playing2) {
                         playing2 = false;
-                        agv1.motionControl2.stop();
+                        AGVList.get(0).motionControl2.stop();
+                        //agv1.motionControl2.stop();
                     } else {
                         playing2 = true;
-                        agv1.motionControl2.play();
+                        AGVList.get(0).motionControl2.play();
+                        //agv1.motionControl2.play();
                     }
                 }
                 if (name.equals("SwitchPathInterpolation") && keyPressed) {
