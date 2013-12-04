@@ -188,7 +188,7 @@ public class Client extends SimpleApplication {
 //        container_mat.setTexture("DiffuseMap", container_tex);
 //        cont.setMaterial(container_mat);
     	float xCoord,yCoord,zCoord;
-        xCoord = shipNode.getLocalTranslation().x-385;
+        xCoord = shipNode.getLocalTranslation().x-386;
         yCoord = shipNode.getLocalTranslation().y+237.5f;
         zCoord = shipNode.getLocalTranslation().z+390;
 //        
@@ -199,13 +199,13 @@ public class Client extends SimpleApplication {
 //        		shipNode.getLocalTranslation().y+237.5f, shipNode.getLocalTranslation().z+390);
 //        rootNode.attachChild(container);
     	int containerCount = 0;
-    	while(containerCount < 10)
+    	for(int y = 0; y < 18; y++)
     	{
-    		for(int y = 0; y < 6; y++)
+    		for(int x = 0; x < 20; x++)
     		{
-    			for(int x = 0; x < 20; x++)
+    			for(int z = 0; z < 24; z++)
     			{
-    				for(int z = 0; z < 20; z++)
+    				if(containerCount < 8640)
     				{
     					Spatial cont = assetManager.loadModel("Models/container/Container.obj");
     					Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
@@ -214,7 +214,7 @@ public class Client extends SimpleApplication {
     					cont.setMaterial(container_mat);
     					
     					cont.rotate(0,90*FastMath.DEG_TO_RAD,0);
-    					cont.setLocalTranslation(xCoord+(x*3),yCoord+(y*3),zCoord-(z*13));
+    					cont.setLocalTranslation(xCoord+(x*3),yCoord+(y*2.5f),zCoord-(z*13));
     					rootNode.attachChild(cont);
     					
     		    		containerCount++;
