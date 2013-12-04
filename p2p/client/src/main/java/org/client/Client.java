@@ -66,7 +66,7 @@ public class Client extends SimpleApplication {
     FreeMovingCrane freeMovingCrane;
     StorageCrane storageCrane;
     TruckCrane truckCrane;
-    Spatial container;
+    Node container;
     float tpf;
 	float x = 70f;
 	float z = 130f;
@@ -75,6 +75,7 @@ public class Client extends SimpleApplication {
     Vector3f location;
     String sName;
     List<AGV> AGVList;
+    Node shipNode;
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -94,9 +95,12 @@ public class Client extends SimpleApplication {
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
     	initScene();
-    	initCranes();
+    	initCranes();    	
+    	testShip();   
     	testContainer();
-    	testShip();
+
+
+    	
     	addAllAGVs(location);
     	
         //waypoints code
@@ -122,18 +126,18 @@ public class Client extends SimpleApplication {
     	//Updates the 'Time Per Frame', that's necessary to 
     	//calculate the velocity of certain objects
     	this.tpf = tpf;
-    	System.out.println("TPF: " + tpf);
+    	//System.out.println("TPF: " + tpf);
     	
-    	storageCrane.animation(tpf);
-    	truckCrane.animation(tpf);
-    	freeMovingCrane.animation(tpf);
-    	
-    	if(!storageCrane.loseContainer){
-    		if(container.getLocalTranslation().y > storageCrane.opslagKraanHook.getLocalTranslation().y && storageCrane.upDown){
-    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
-    		} else if(container.getLocalTranslation().y < storageCrane.opslagKraanHook.getLocalTranslation().y && !storageCrane.upDown)
-    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
-    	}
+//    	storageCrane.animation(tpf);
+//    	truckCrane.animation(tpf);
+//    	freeMovingCrane.animation(tpf);
+//    	
+//    	if(!storageCrane.loseContainer && storageCrane.animate){
+//    		if(container.getLocalTranslation().y > storageCrane.opslagKraanHook.getLocalTranslation().y && storageCrane.upDown){
+//    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
+//    		} else if(container.getLocalTranslation().y < storageCrane.opslagKraanHook.getLocalTranslation().y && !storageCrane.upDown)
+//    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
+//    	}
     	
         String message = c.getMessages();
         if(message != "")
@@ -177,19 +181,51 @@ public class Client extends SimpleApplication {
       }
     
     public void testContainer(){
-    	container = assetManager.loadModel("Models/container/Container.obj");
-        Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        Texture container_tex = assetManager.loadTexture("Models/container/container.png");
-        container_mat.setTexture("DiffuseMap", container_tex);
-        container.setMaterial(container_mat);
-        container.setLocalTranslation(70,260,50);
-
-        rootNode.attachChild(container);
+//    	Spatial cont = assetManager.loadModel("Models/container/Container.obj");
+//        Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+//        Texture container_tex = assetManager.loadTexture("Models/container/container.png");
+//        container_mat.setTexture("DiffuseMap", container_tex);
+//        cont.setMaterial(container_mat);
+    	float xCoord,yCoord,zCoord;
+        xCoord = shipNode.getLocalTranslation().x-385;
+        yCoord = shipNode.getLocalTranslation().y+237.5f;
+        zCoord = shipNode.getLocalTranslation().z+390;
+//        
+//        container = new Node();
+//        container.attachChild(cont);
+//        container.rotate(0,90*FastMath.DEG_TO_RAD,0);
+//        container.setLocalTranslation(shipNode.getLocalTranslation().x-385,
+//        		shipNode.getLocalTranslation().y+237.5f, shipNode.getLocalTranslation().z+390);
+//        rootNode.attachChild(container);
+    	int containerCount = 0;
+    	while(containerCount < 10)
+    	{
+    		for(int y = 0; y < 6; y++)
+    		{
+    			for(int x = 0; x < 20; x++)
+    			{
+    				for(int z = 0; z < 20; z++)
+    				{
+    					Spatial cont = assetManager.loadModel("Models/container/Container.obj");
+    					Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+    					Texture container_tex = assetManager.loadTexture("Models/container/container.png");
+    					container_mat.setTexture("DiffuseMap", container_tex);
+    					cont.setMaterial(container_mat);
+    					
+    					cont.rotate(0,90*FastMath.DEG_TO_RAD,0);
+    					cont.setLocalTranslation(xCoord+(x*3),yCoord+(y*3),zCoord-(z*13));
+    					rootNode.attachChild(cont);
+    					
+    		    		containerCount++;
+    				}
+    			}
+    		}
+    	}
     }
     
     public void testShip(){
     	SeaShip seaShip = new SeaShip(assetManager,-130,85,150);
-    	Node shipNode = new Node();
+    	shipNode = new Node();
     	shipNode.attachChild(seaShip.loadModels());
     	shipNode.scale(2.5f);
     	shipNode.rotate(0,-4*FastMath.DEG_TO_RAD,0);
