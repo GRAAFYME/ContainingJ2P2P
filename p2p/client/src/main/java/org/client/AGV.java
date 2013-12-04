@@ -37,8 +37,6 @@ public class AGV{
 	Vector3f location;
 	String Name;
 
-
-	
 	public AGV(Vector3f location, AssetManager am, Node allAgvNodes, boolean setWireFrame, String Name){
 		this.AllAgvNodes = allAgvNodes;
 		this.assetManager = am;
@@ -64,8 +62,7 @@ public class AGV{
     	nodeAGV.attachChild(AGV); // make the AGV appear in the scene  	
     	AllAgvNodes.attachChild(nodeAGV); 
     	}
- 
-    
+     
     public void addAGVcar2(Vector3f location){
     	AGV2 = assetManager.loadModel("Models/AGV/AGV.obj" );
     	AGV2.setLocalTranslation(location);
@@ -85,7 +82,7 @@ public class AGV{
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
         motionControl.setInitialDuration(10f);
         motionControl.setSpeed(2f);       
-        guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+        //guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
         
 
     	
@@ -95,19 +92,19 @@ public class AGV{
 //        motionControl2.setInitialDuration(10f);
 //        motionControl2.setSpeed(2f);  
     	
-    	wayPointsText = new BitmapText(guiFont, false);
-        wayPointsText.setSize(guiFont.getCharSet().getRenderedSize());
-    	wayPointsText.setSize(guiFont.getCharSet().getRenderedSize());
+//    	wayPointsText = new BitmapText(guiFont, false);
+//        wayPointsText.setSize(guiFont.getCharSet().getRenderedSize());
+//    	wayPointsText.setSize(guiFont.getCharSet().getRenderedSize());
     	
         path.addListener(new MotionPathListener() {
 
         public void onWayPointReach(MotionEvent control, int wayPointIndex) {
 
-                if (path.getNbWayPoints() == wayPointIndex + 1) {
-                    wayPointsText.setText(control.getSpatial().getName() + "Finished!!! ");
-                } else {
-                    wayPointsText.setText(control.getSpatial().getName() + " Reached way point " + wayPointIndex);
-                }
+//                if (path.getNbWayPoints() == wayPointIndex + 1) {
+//                    wayPointsText.setText(control.getSpatial().getName() + "Finished!!! ");
+//                } else {
+//                    wayPointsText.setText(control.getSpatial().getName() + " Reached way point " + wayPointIndex);
+//                }
                 if (path.getNbWayPoints() == wayPointIndex+ 1){
                 	MotionPath2();
                 	
@@ -116,11 +113,11 @@ public class AGV{
                     motionControl2.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
                     motionControl2.setInitialDuration(10f);
                     motionControl2.setSpeed(2f);       
-                    guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
+                    //guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
                 	motionControl2.play();
                 }
                 //wayPointsText.setLocalTranslation((cam.getWidth() - wayPointsText.getLineWidth()) / 2, cam.getHeight(), 0);
-                wayPointsText.setLocalTranslation(100,100,100);
+//                wayPointsText.setLocalTranslation(100,100,100);
         }});
     }
 

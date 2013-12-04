@@ -1,5 +1,5 @@
 # Blender MTL File: 'None'
-# Material Count: 18
+# Material Count: 16
 
 newmtl material_0_1_0ID
 Ns 92.156863
@@ -128,24 +128,6 @@ d 1.000000
 illum 2
 
 newmtl material_6_7_8ID
-Ns 92.156863
-Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-
-newmtl material_7_8_0ID
-Ns 92.156863
-Ka 0.000000 0.000000 0.000000
-Kd 0.512000 0.512000 0.512000
-Ks 0.500000 0.500000 0.500000
-Ni 1.000000
-d 1.000000
-illum 2
-
-newmtl material_8_9_0ID
 Ns 92.156863
 Ka 0.000000 0.000000 0.000000
 Kd 0.512000 0.512000 0.512000
