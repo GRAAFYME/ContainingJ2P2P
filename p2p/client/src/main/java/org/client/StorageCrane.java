@@ -63,7 +63,7 @@ public class StorageCrane {
         Material mat_hook = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat_hook.setColor("Color", ColorRGBA.Black);
         opslagKraanHook.setMaterial(mat_hook);
-        opslagKraanHook.setLocalTranslation(x, y, z);
+        opslagKraanHook.setLocalTranslation(x, y+13, z);
            
         storageCrane = new Node();
         storageCrane.attachChild(opslagKraan);
@@ -72,7 +72,7 @@ public class StorageCrane {
         return storageCrane;
     }
     
-    public void animation(float speed)
+    public void animation(float speed, int floor)
     {
     	//Check if the animation is activated, otherwise DO NOTHING;
     	if(animate){
@@ -86,14 +86,21 @@ public class StorageCrane {
     		float animationSpeed = speed;
         
     		posHook = opslagKraanHook.getLocalTranslation();
-        
+    		
     		if(posHook.distance(start) > a.distance(b)){
     			if(upDown){
+    				a = new Vector3f(x,y,z);
     				start = a;
-    				end = b;   
+    				end = b;
+    				System.out.println("Going up");
     			} else{
+    				if(counter == 1)
+    					a = new Vector3f(x,y,z);
+    				else
+    					a = new Vector3f(x,y+(floor*2.5f),z);
     				start = b;
     				end = a;
+    				System.out.println("Going down");
     			}
     			upDown = !upDown;
     			counter++;
@@ -101,7 +108,10 @@ public class StorageCrane {
     		if(counter == 2)
     			loseContainer = true;
     		if(counter == 3)
+    		{
     			animate = false;
+    			counter = 0;
+    		}
            
     		c = end.subtract(start);
     		c.normalize();      

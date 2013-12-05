@@ -99,8 +99,6 @@ public class Client extends SimpleApplication {
     	testShip();   
     	testContainer();
 
-
-    	
     	addAllAGVs(location);
     	
         //waypoints code
@@ -128,7 +126,7 @@ public class Client extends SimpleApplication {
     	this.tpf = tpf;
     	//System.out.println("TPF: " + tpf);
     	
-//    	storageCrane.animation(tpf);
+    	storageCrane.animation(tpf, 2);
 //    	truckCrane.animation(tpf);
 //    	freeMovingCrane.animation(tpf);
 //    	
@@ -166,7 +164,7 @@ public class Client extends SimpleApplication {
     public void addAllAGVs(Vector3f location){
         AGVList = new ArrayList<AGV>();       //agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
         for (int i=0; i<100; i++){
-         System.out.println("Test" + i);
+         //System.out.println("Test" + i);
         // agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV");
            AGVList.add(new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV" + i));
          x+= 25;
@@ -174,30 +172,19 @@ public class Client extends SimpleApplication {
         for(Iterator<AGV> i = AGVList.iterator(); 
           i.hasNext(); ) {
             AGV item = i.next();
-            System.out.println(item);
-            System.out.println("Size " +AGVList.size());
+            //System.out.println(item);
+            //System.out.println("Size " +AGVList.size());
         }
         
        }
-     
-    
+         
+    //TODO: Put in a class
     public void testContainer(){
-//    	Spatial cont = assetManager.loadModel("Models/container/Container.obj");
-//        Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-//        Texture container_tex = assetManager.loadTexture("Models/container/container.png");
-//        container_mat.setTexture("DiffuseMap", container_tex);
-//        cont.setMaterial(container_mat);
     	float xCoord,yCoord,zCoord;
         xCoord = shipNode.getLocalTranslation().x-367;
         yCoord = shipNode.getLocalTranslation().y+220;
         zCoord = shipNode.getLocalTranslation().z+310;
-//        
-//        container = new Node();
-//        container.attachChild(cont);
-//        container.rotate(0,90*FastMath.DEG_TO_RAD,0);
-//        container.setLocalTranslation(shipNode.getLocalTranslation().x-385,
-//        		shipNode.getLocalTranslation().y+237.5f, shipNode.getLocalTranslation().z+390);
-//        rootNode.attachChild(container);
+        
     	int containerCount = 0;
     	for(int y = 0; y < 6; y++)
     	{
