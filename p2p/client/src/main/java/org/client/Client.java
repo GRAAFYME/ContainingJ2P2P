@@ -95,7 +95,7 @@ public class Client extends SimpleApplication {
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
     	initScene();
-    	initCranes();    	
+    	initCranes();
     	testShip();   
     	testContainer();
 
@@ -126,8 +126,8 @@ public class Client extends SimpleApplication {
     	this.tpf = tpf;
     	//System.out.println("TPF: " + tpf);
     	
-    	storageCrane.animation(tpf);
-    	storageCrane.move(tpf, 1, 1);
+//    	storageCrane.animation(tpf);
+//    	storageCrane.move(tpf, 1, 1);
 //    	truckCrane.animation(tpf);
 //    	freeMovingCrane.animation(tpf);
 //    	
@@ -185,6 +185,8 @@ public class Client extends SimpleApplication {
         xCoord = shipNode.getLocalTranslation().x-367;
         yCoord = shipNode.getLocalTranslation().y+220;
         zCoord = shipNode.getLocalTranslation().z+310;
+        
+    	//Container container = new Container(assetManager, new Vector3f(xCoord, yCoord, zCoord));
         
     	int containerCount = 0;
     	for(int y = 0; y < 6; y++)
@@ -251,6 +253,8 @@ public class Client extends SimpleApplication {
         inputManager.addMapping("play_stop", new KeyTrigger(KeyInput.KEY_N));
         inputManager.addMapping("play_stop2", new KeyTrigger(KeyInput.KEY_M));
         inputManager.addMapping("SetWireFrame", new KeyTrigger(KeyInput.KEY_L));
+        inputManager.addMapping("startStoreAnimation", new KeyTrigger(KeyInput.KEY_V));
+        inputManager.addMapping("startToVehicleAnimation", new KeyTrigger(KeyInput.KEY_B));
         ActionListener acl = new ActionListener() {
 
             public void onAction(String name, boolean keyPressed, float tpf) {
@@ -264,7 +268,17 @@ public class Client extends SimpleApplication {
                     }
                 }
             	
+                if (name.equals("startStoreAnimation") && keyPressed) {
+                	storageCrane.store = true;
+                    storageCrane.setValues();
+                    storageCrane.setStore(0.01, 1, 1);
+                }
                 
+                if (name.equals("startToVehicleAnimation") && keyPressed) {
+                	storageCrane.store = false;
+                    storageCrane.setValues();
+                    storageCrane.setToVehicle(0.01, 1, 1);
+                }
                
                 if (name.equals("play_stop") && keyPressed) {
                     if (playing) {
@@ -313,7 +327,7 @@ public class Client extends SimpleApplication {
             }
         };
 
-        inputManager.addListener(acl, "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
+        inputManager.addListener(acl, "startStoreAnimation", "startToVehicleAnimation", "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
 
     } 
     

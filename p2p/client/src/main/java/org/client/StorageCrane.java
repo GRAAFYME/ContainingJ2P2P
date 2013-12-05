@@ -1,5 +1,7 @@
 package org.client;
 
+import java.lang.reflect.Array;
+
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -20,7 +22,7 @@ public class StorageCrane {
     
     //Check if crane has to go up or down
     boolean upDown, frontback;
-    boolean animate, loseContainer;
+    boolean store, animate, loseContainer;
     int counter;
     
     //Point A & B
@@ -51,6 +53,7 @@ public class StorageCrane {
         endCrane = e;
         
         animate = true;
+        store = true;
         loseContainer = false;
     }
     
@@ -80,18 +83,19 @@ public class StorageCrane {
     public void animation(double speed)
     {
     	//Check if the animation is activated, otherwise DO NOTHING;
-    	if(animate){
-    		//Create normal vector, position of the hook and the velocity
-    		Vector3f c, posHook, velocity;
-    		//Speed you want times the time per frame
-    
-    		//If the TPF is too high, set it lower
-    		if(speed > 1 || speed == 0)
-    			speed = 0.01;
-    		double animationSpeed = speed * 0.5;
-    
-    		posHook = opslagKraanHook.getLocalTranslation();
-		    		
+    	if(animate)
+    	{
+			//Create normal vector, position of the hook and the velocity
+			Vector3f c, posHook, velocity;
+			//Speed you want times the time per frame
+
+			//If the TPF is too high, set it lower
+			if(speed > 1 || speed == 0)
+				speed = 0.01;
+			double animationSpeed = speed * 0.5;
+
+			posHook = opslagKraanHook.getLocalTranslation();
+			
     		if(posHook.distance(startHook) > a.distance(b))
     		{
     			if(upDown)
@@ -109,15 +113,15 @@ public class StorageCrane {
     		}
     		if(counter == 2)
     			loseContainer = true;
-    		if(counter == 3 || counter == 7)
+    		if(counter == 3)
     			animate = false;
-           
-    		c = endHook.subtract(startHook);
-    		c.normalize();      
-    		velocity = c.multLocal((float)animationSpeed);
-    		posHook.addLocal(velocity);
-        
-    		opslagKraanHook.setLocalTranslation(posHook);
+    	
+      		c = endHook.subtract(startHook);
+     		c.normalize();      
+     		velocity = c.multLocal((float)animationSpeed);
+     		posHook.addLocal(velocity);
+         
+     		opslagKraanHook.setLocalTranslation(posHook);
     	}
     }
     
@@ -149,10 +153,10 @@ public class StorageCrane {
     				endCrane = d;
     			}
     			frontback = !frontback;
+    			animate = true;
     			
     			if(counter < 6)
     			{
-    				animate = true;
     				counter++;
     				upDown = false;
     				a = new Vector3f(posHook.x, y+(floor*2.5f), z);
@@ -174,6 +178,40 @@ public class StorageCrane {
     		opslagKraan.setLocalTranslation(posCrane);
     		opslagKraanHook.setLocalTranslation(posHook.x,opslagKraanHook.getLocalTranslation().y, 
     											opslagKraanHook.getLocalTranslation().z);
+    	}
+    }
+    
+    public void setStore(double speed, int row, int floor)
+    {
+    	if(counter < 7)
+    	{
+    		System.out.println("Counter: " + counter);
+    		animation(speed);
+    		move(speed, row, floor);
+    		setStore(speed, row, floor);
+    	}
+    }
+    
+    public void setToVehicle(double speed, int row, int floor)
+    {
+    	if(counter < 7)
+    	{
+    		System.out.println("Counter: " + counter);
+    		animation(speed);
+    		move(speed, row, floor);
+    		setToVehicle(speed, row, floor);
+    	}
+    }
+    
+    public void setValues()
+    {
+    	if(store)
+    	{
+    		animate = true;
+    	}
+    	else
+    	{
+    		animate = false;
     	}
     }
 }
