@@ -19,12 +19,12 @@ public class StorageCrane {
     float x,y,z;
     
     //Check if crane has to go up or down
-    boolean upDown;
+    boolean upDown, frontback;
     boolean animate, loseContainer;
     int counter;
     
     //Point A & B
-    private Vector3f a, b, start, end;
+    private Vector3f a, b, d, e, startHook, endHook, startCrane, endCrane;
     
     //Two spatials for one model
     Spatial opslagKraan;
@@ -42,8 +42,13 @@ public class StorageCrane {
         
         a = new Vector3f(x,y,z);
         b = new Vector3f(x,y+13,z);
-        start = a;
-        end = b;
+        startHook = a;
+        endHook = b;
+        
+        d = new Vector3f(x,y,z);
+        e = new Vector3f(x+2.5f,y,z);
+        startCrane = d;
+        endCrane = e;
         
         animate = true;
         loseContainer = false;
@@ -72,53 +77,100 @@ public class StorageCrane {
         return storageCrane;
     }
     
-    public void animation(float speed, int floor)
+    public void animation(double speed, int floor)
     {
     	//Check if the animation is activated, otherwise DO NOTHING;
     	if(animate){
     		//Create normal vector, position of the hook and the velocity
     		Vector3f c, posHook, velocity;
     		//Speed you want times the time per frame
-        
+    
     		//If the TPF is too high, set it lower
-    		if(speed > 1.0)
-    			speed = 1.0f;
-    		float animationSpeed = speed;
-        
+    		if(speed > 1 || speed == 0)
+    			speed = 0.01;
+    		double animationSpeed = speed * 0.5;
+    
     		posHook = opslagKraanHook.getLocalTranslation();
-    		
-    		if(posHook.distance(start) > a.distance(b)){
-    			if(upDown){
-    				a = new Vector3f(x,y,z);
-    				start = a;
-    				end = b;
-    				System.out.println("Going up");
-    			} else{
-    				if(counter == 1)
-    					a = new Vector3f(x,y,z);
-    				else
-    					a = new Vector3f(x,y+(floor*2.5f),z);
-    				start = b;
-    				end = a;
-    				System.out.println("Going down");
+		    		
+    		if(posHook.distance(startHook) > a.distance(b))
+    		{
+    			if(upDown)
+    			{
+    				startHook = a;
+    				endHook = b;
+    			} 
+    			else
+    			{    				
+    				startHook = b;
+    				endHook = a;
     			}
+				System.out.println("A: " + posHook + upDown);
     			upDown = !upDown;
     			counter++;
     		}
     		if(counter == 2)
     			loseContainer = true;
-    		if(counter == 3)
-    		{
+    		if(counter == 3 || counter == 6)
     			animate = false;
-    			counter = 0;
-    		}
            
-    		c = end.subtract(start);
+    		c = endHook.subtract(startHook);
     		c.normalize();      
-    		velocity = c.multLocal(animationSpeed * 0.5f);
+    		velocity = c.multLocal((float)animationSpeed);
     		posHook.addLocal(velocity);
         
     		opslagKraanHook.setLocalTranslation(posHook);
+    	}
+    }
+    
+    public void move(double speed, int row)
+    {
+    	if(!animate && counter > 0)
+    	{
+    		Vector3f f, posHook, posCrane, velocity;
+    		
+    		//If the TPF is too high, set it lower
+    		if(speed > 1 || speed == 0)
+    			speed = 0.01;
+    		speed = speed * 0.5;
+    		
+    		posCrane = opslagKraan.getLocalTranslation();
+    		posHook = opslagKraanHook.getLocalTranslation();
+    		
+    		if(posCrane.distance(startCrane) > d.distance(e))
+    		{
+    			if(frontback)
+    			{
+    				startCrane = d;
+    				endCrane = e;
+    			}
+    			else
+    			{
+    				startCrane = e;
+    				endCrane = d;
+    			}
+    			frontback = !frontback;
+    			
+    			if(counter < 6)
+    			{
+    				animate = true;
+    				counter++;
+    			}
+    			else
+    			{
+    				counter = 0;
+    			}
+    		}
+    		
+    		f = endCrane.subtract(startCrane);
+    		f.normalize();
+    		velocity = f.multLocal((float)speed);
+    		posCrane.addLocal(velocity);
+    		posHook.addLocal(velocity);
+    		
+    		opslagKraan.setLocalTranslation(posCrane);
+    		opslagKraanHook.setLocalTranslation(posHook.x,opslagKraanHook.getLocalTranslation().y, 
+    											opslagKraanHook.getLocalTranslation().z);
+    		System.out.println("Animate: " + animate);
     	}
     }
 }

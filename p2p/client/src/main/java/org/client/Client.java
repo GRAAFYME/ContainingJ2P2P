@@ -127,6 +127,7 @@ public class Client extends SimpleApplication {
     	//System.out.println("TPF: " + tpf);
     	
     	storageCrane.animation(tpf, 2);
+    	storageCrane.move(tpf, 2);
 //    	truckCrane.animation(tpf);
 //    	freeMovingCrane.animation(tpf);
 //    	
