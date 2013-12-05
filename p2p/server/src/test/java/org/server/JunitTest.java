@@ -12,13 +12,6 @@ public class JunitTest {
 
 	Main main = new Main();
 	
-	@SuppressWarnings("static-access")
-	@Test
-	public void testMain() 
-	{
-		main.main(null);
-	}
-	
 	@Test
 	public void Server()
 	{
