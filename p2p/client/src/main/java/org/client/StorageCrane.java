@@ -77,7 +77,7 @@ public class StorageCrane {
         return storageCrane;
     }
     
-    public void animation(double speed, int floor)
+    public void animation(double speed)
     {
     	//Check if the animation is activated, otherwise DO NOTHING;
     	if(animate){
@@ -100,17 +100,16 @@ public class StorageCrane {
     				endHook = b;
     			} 
     			else
-    			{    				
+    			{
     				startHook = b;
     				endHook = a;
     			}
-				System.out.println("A: " + posHook + upDown);
     			upDown = !upDown;
     			counter++;
     		}
     		if(counter == 2)
     			loseContainer = true;
-    		if(counter == 3 || counter == 6)
+    		if(counter == 3 || counter == 7)
     			animate = false;
            
     		c = endHook.subtract(startHook);
@@ -122,11 +121,12 @@ public class StorageCrane {
     	}
     }
     
-    public void move(double speed, int row)
+    public void move(double speed, int row, int floor)
     {
     	if(!animate && counter > 0)
     	{
     		Vector3f f, posHook, posCrane, velocity;
+    		e = new Vector3f(x+(row*13f),y,z);
     		
     		//If the TPF is too high, set it lower
     		if(speed > 1 || speed == 0)
@@ -154,10 +154,14 @@ public class StorageCrane {
     			{
     				animate = true;
     				counter++;
+    				upDown = false;
+    				a = new Vector3f(posHook.x, y+(floor*2.5f), z);
+    				b = new Vector3f(posHook.x, y+13,z);
     			}
     			else
     			{
     				counter = 0;
+    				a = new Vector3f(x, y, z);
     			}
     		}
     		
@@ -170,7 +174,6 @@ public class StorageCrane {
     		opslagKraan.setLocalTranslation(posCrane);
     		opslagKraanHook.setLocalTranslation(posHook.x,opslagKraanHook.getLocalTranslation().y, 
     											opslagKraanHook.getLocalTranslation().z);
-    		System.out.println("Animate: " + animate);
     	}
     }
 }
