@@ -253,8 +253,7 @@ public class Client extends SimpleApplication {
         inputManager.addMapping("play_stop", new KeyTrigger(KeyInput.KEY_N));
         inputManager.addMapping("play_stop2", new KeyTrigger(KeyInput.KEY_M));
         inputManager.addMapping("SetWireFrame", new KeyTrigger(KeyInput.KEY_L));
-        inputManager.addMapping("startStoreAnimation", new KeyTrigger(KeyInput.KEY_V));
-        inputManager.addMapping("startToVehicleAnimation", new KeyTrigger(KeyInput.KEY_B));
+        inputManager.addMapping("startAnimation", new KeyTrigger(KeyInput.KEY_V));
         ActionListener acl = new ActionListener() {
 
             public void onAction(String name, boolean keyPressed, float tpf) {
@@ -268,16 +267,9 @@ public class Client extends SimpleApplication {
                     }
                 }
             	
-                if (name.equals("startStoreAnimation") && keyPressed) {
-                	storageCrane.store = true;
-                    storageCrane.setValues();
-                    storageCrane.setStore(0.01, 1, 1);
-                }
-                
-                if (name.equals("startToVehicleAnimation") && keyPressed) {
-                	storageCrane.store = false;
-                    storageCrane.setValues();
-                    storageCrane.setToVehicle(0.01, 1, 1);
+                if (name.equals("startAnimation") && keyPressed) {
+                	storageCrane.setAnimation(0.01, 1, 1);
+                	storageCrane.update();
                 }
                
                 if (name.equals("play_stop") && keyPressed) {
@@ -327,7 +319,7 @@ public class Client extends SimpleApplication {
             }
         };
 
-        inputManager.addListener(acl, "startStoreAnimation", "startToVehicleAnimation", "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
+        inputManager.addListener(acl, "startAnimation", "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
 
     } 
     

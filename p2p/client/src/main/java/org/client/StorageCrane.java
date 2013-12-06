@@ -52,8 +52,8 @@ public class StorageCrane {
         startCrane = d;
         endCrane = e;
         
-        animate = true;
         store = true;
+        animate = true;
         loseContainer = false;
     }
     
@@ -113,7 +113,7 @@ public class StorageCrane {
     		}
     		if(counter == 2)
     			loseContainer = true;
-    		if(counter == 3)
+    		if(counter == 3 || counter == 7)
     			animate = false;
     	
       		c = endHook.subtract(startHook);
@@ -153,12 +153,12 @@ public class StorageCrane {
     				endCrane = d;
     			}
     			frontback = !frontback;
-    			animate = true;
-    			
+			
     			if(counter < 6)
     			{
     				counter++;
     				upDown = false;
+        			animate = true;
     				a = new Vector3f(posHook.x, y+(floor*2.5f), z);
     				b = new Vector3f(posHook.x, y+13,z);
     			}
@@ -181,37 +181,19 @@ public class StorageCrane {
     	}
     }
     
-    public void setStore(double speed, int row, int floor)
+    public void update()
+    {
+    	opslagKraan.getLocalTranslation();
+    	opslagKraanHook.getLocalTranslation();
+    }
+    
+    public void setAnimation(double speed, int row, int floor)
     {
     	if(counter < 7)
     	{
-    		System.out.println("Counter: " + counter);
     		animation(speed);
     		move(speed, row, floor);
-    		setStore(speed, row, floor);
-    	}
-    }
-    
-    public void setToVehicle(double speed, int row, int floor)
-    {
-    	if(counter < 7)
-    	{
-    		System.out.println("Counter: " + counter);
-    		animation(speed);
-    		move(speed, row, floor);
-    		setToVehicle(speed, row, floor);
-    	}
-    }
-    
-    public void setValues()
-    {
-    	if(store)
-    	{
-    		animate = true;
-    	}
-    	else
-    	{
-    		animate = false;
+    		setAnimation(speed, row, floor);
     	}
     }
 }
