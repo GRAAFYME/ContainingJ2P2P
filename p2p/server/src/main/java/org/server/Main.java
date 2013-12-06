@@ -2,6 +2,9 @@ package org.server;
 
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.*;
@@ -16,9 +19,17 @@ public class Main
 {
 	
    private static final JFileChooser fc = new JFileChooser();
-   private static JTextArea textArea = new JTextArea();
+   private static JTextArea textArea = new JTextArea(38,34);
    private static JFrame frame = new JFrame("Controller");
    private static Server server;
+   
+   private static JLabel SpeedText = new JLabel("100");
+   private static int Speed = 100;
+   
+   
+   private static JPanel contentPane = new JPanel();
+   private static JPanel textpanel = new JPanel();
+   private static JPanel boxpanel = new JPanel();
    
    public static void main(String args[]) {
 
@@ -64,21 +75,61 @@ public class Main
     helpMenu.add(Help);
     Help.addActionListener(actionListener);
 
-    //TextArea
-    frame.getContentPane().add(textArea, BorderLayout.NORTH);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    textArea.setEditable(false);
-    //Scroll!!
-    JScrollPane scroll = new JScrollPane (textArea, 
+    //Main panel
+	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+	frame.setContentPane(contentPane);
+	contentPane.setLayout(null);
+	
+	//Text Panel
+	textpanel.setBounds(0, 0, 400, 700);
+	contentPane.add(textpanel);
+	textArea.setEditable(false);
+	textpanel.add(textArea);
+	JScrollPane scroll = new JScrollPane (textArea, 
     		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-    frame.add(scroll);
-    
+	textpanel.add(scroll);
+
+    InfoBox();
     frame.setJMenuBar(menu);
-    frame.setSize(600, 700);
+    frame.setSize(660, 700);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
     
   }
    
+   
+   private static void InfoBox()
+   {
+	   //Info Box for the Slider
+	    final JSlider slider = new JSlider(JSlider.HORIZONTAL,0,200,100);
+	    slider.setMajorTickSpacing(10);
+	    slider.setMinorTickSpacing(1);
+	    slider.addChangeListener(new ChangeListener(){
+	    	public void stateChanged(ChangeEvent e)
+	    	{
+	    		Speed = slider.getValue();
+	    		//if the Speed is lower then 100 then it resize the JPanel?
+	    		if (Speed < 100)
+	    		{
+	    			if (Speed < 10)
+	    			{
+	    				SpeedText.setText( "00" + Integer.toString(Speed) );
+	    			}
+	    			else
+	    				SpeedText.setText( "0" + Integer.toString(Speed) );
+	    		}
+	    		else
+	    			SpeedText.setText(Integer.toString(Speed));
+	    	}
+	    });
+	    boxpanel.setBounds(400, 0, 240,700);
+	    boxpanel.setBackground(Color.WHITE);
+	    boxpanel.add(slider);
+	    boxpanel.add(SpeedText);
+	    boxpanel.setBorder(BorderFactory.createTitledBorder("Speed"));
+	    contentPane.add(boxpanel);
+	    
+   }
 
    private static ActionListener actionListener = new ActionListener() {
 	   public void actionPerformed(ActionEvent e) 
@@ -103,7 +154,7 @@ public class Main
 	             File file = fc.getSelectedFile();
 	             String FileLocation = file.getPath();
 	             textArea.setText("");
-	             textArea.setText(FileLocation + "\n" + "\n");
+	             //textArea.setText(FileLocation + "\n" + "\n");
 	             
              //Parse XML
              xmlParser parser = new xmlParser();
