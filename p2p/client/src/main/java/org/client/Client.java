@@ -63,7 +63,6 @@ public class Client extends SimpleApplication {
     private MotionPath path;
     private boolean active = true;
     private boolean playing = false;
-    FreeMovingCrane freeMovingCrane;
     StorageCrane storageCrane;
     TruckCrane truckCrane;
     Node container;
@@ -79,12 +78,18 @@ public class Client extends SimpleApplication {
     int j;
     Crane crane;
     
-    //Spatials of the storage crane
+    //Spatials of the Storage Crane
     Spatial stCrane;
     Spatial stSCrane;
     Spatial stHCrane;
     
+    //Spatials of the Seaship Crane
+    Spatial ssCrane;
+    Spatial ssSCrane;
+    Spatial ssHCrane;
+    
     Crane [] storageCranes = new Crane [20];
+    Crane [] seaShipCranes = new Crane [10];
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -133,10 +138,10 @@ public class Client extends SimpleApplication {
     {
     	this.tpf = tpf;
     	
-//    	for(Crane c : storageCranes)
-//    	{
-//    		c.update(tpf);
-//    	}
+    	for(Crane c : storageCranes)
+    	{
+    		c.update(tpf);
+    	}
     	
         String message = c.getMessages();
         if(message != "")
@@ -249,7 +254,27 @@ public class Client extends SimpleApplication {
     	stSCrane.setMaterial(mat_stHCrane);
     	stHCrane.setMaterial(mat_stHCrane);
     	
+    	//Initialize Seaship Crane
+    	ssCrane = assetManager.loadModel("Models/crane/zeeKraan.obj");
+    	ssSCrane = assetManager.loadModel("Models/crane/zeeKraanSlider.obj");
+    	ssHCrane = assetManager.loadModel("Models/crane/zeeKraanHook.obj");
+    	Material mat_ssCrane, mat_ssHCrane;
+    	mat_ssCrane = new Material( assetManager, "Common/MatDefs/Light/Lighting.j3md");
+    	mat_ssHCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    	Texture crane_tex = assetManager.loadTexture("Models/crane/zeekraan.png");
+    	mat_ssCrane.setTexture("DiffuseMap", crane_tex);
+    	mat_ssHCrane.setColor("Color", ColorRGBA.Black);
+    	ssCrane.setMaterial(mat_ssCrane);
+    	ssSCrane.setMaterial(mat_ssHCrane);
+    	ssHCrane.setMaterial(mat_ssHCrane);
+    	
+    	//Initialize Truck Crane
+//    	tCrane;
+//    	tSCrane;
+//    	tHCrane;
+    	
     	init_StorageCrane();
+    	init_SeaShipCrane();
     	
     	//TODO: Load other assets in this method, use comments to tell what asset you're loading!
     }
@@ -265,6 +290,19 @@ public class Client extends SimpleApplication {
             rootNode.attachChild(c);
             c.setLocalTranslation(pos);
         }
+    }
+    
+    private void init_SeaShipCrane()
+    {
+    	for(int i = 1; i <= 10; i++)
+    	{
+    		String id = String.valueOf(i);
+    		Vector3f pos = new Vector3f(-275,260,-400+(80*i));
+    		Crane c = new SeaShipCrane(id, pos, ssCrane, ssSCrane, ssHCrane);
+    		seaShipCranes[i-1] = c;
+    		rootNode.attachChild(c);
+    		c.setLocalTranslation(pos);
+    	}
     }
 
     private void initInputs() {

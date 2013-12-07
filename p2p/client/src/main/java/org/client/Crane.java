@@ -9,10 +9,12 @@ import com.jme3.scene.Spatial;
 
 public abstract class Crane extends Node implements MotionPathListener
 {
-	private MotionPath pathCrane;
-	private MotionPath pathSlider;
-	private MotionPath pathHook;
-	private MotionEvent motionControl;
+	private MotionPath pathCrane = new MotionPath();
+	private MotionPath pathSlider = new MotionPath();
+	private MotionPath pathHook = new MotionPath();
+	private MotionEvent craneControl;
+	private MotionEvent sliderControl;
+	private MotionEvent hookControl;
 	
 	protected Spatial crane;
 	protected Spatial slider;
@@ -45,13 +47,13 @@ public abstract class Crane extends Node implements MotionPathListener
 		pathCrane.setCycle(false);
 		pathSlider.setCycle(false);
 		pathHook.setCycle(false);
-		
-		motionControl = new MotionEvent();
 	}
 	
 	public void update(float tpf)
 	{
 		crane.updateLogicalState(tpf);
+		slider.updateLogicalState(tpf);
+		hook.updateLogicalState(tpf);
 	}
 	
 	public String getId()
