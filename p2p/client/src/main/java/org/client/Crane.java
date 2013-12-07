@@ -4,24 +4,72 @@ import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.math.Vector3f;
+import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 
-public class Crane implements MotionPathListener
+public abstract class Crane extends Node implements MotionPathListener
 {
-	//TODO: Add methods here for crane movement/motionpath
-	//Vectors come in the specific classes
+	private MotionPath pathCrane;
+	private MotionPath pathSlider;
+	private MotionPath pathHook;
+	private MotionEvent motionControl;
 	
-	MotionPath path;
-	Vector3f posCrane, posHook, posSlider, destination;
+	protected Spatial crane;
+	protected Spatial slider;
+	protected Spatial hook;
+	protected Node hookNode = new Node();
+	protected Node sliderNode = new Node();
 	
-	public Crane()
+	private String id;
+	
+	private Vector3f position, posCrane, posHook, posSlider, destination;
+	
+	public Crane(String id, Vector3f position, Spatial crane, Spatial slider, Spatial hook)
 	{
-		moveCrane(new Vector3f(10,0,0), 0.01f);
+		super(id);
+		
+		this.id = id;
+		this.position = position;
+		this.crane = crane.clone();
+		this.slider = slider.clone();
+		this.hook = hook.clone();
+		
+		this.attachChild(this.crane);
+		
+		hookNode.attachChild(this.hook);
+		sliderNode.attachChild(hookNode);
+		sliderNode.attachChild(this.slider);
+		
+		this.attachChild(this.sliderNode);
+		
+		pathCrane.setCycle(false);
+		pathSlider.setCycle(false);
+		pathHook.setCycle(false);
+		
+		motionControl = new MotionEvent();
+	}
+	
+	public void update(float tpf)
+	{
+		crane.updateLogicalState(tpf);
+	}
+	
+	public String getId()
+	{
+		return this.id;
+	}
+	
+	public Vector3f getPosition()
+	{
+		return this.position;
 	}
 	
 	public void moveCrane(Vector3f des, float sp)
 	{
-		path.addWayPoint(des);
-		System.out.println(des);
+		pathCrane.addWayPoint(des);		
+		//System.out.println("Number of WayPoints: " + path.getNbWayPoints());
+		
+		pathCrane.removeWayPoint(des);
 	}
 	
 	public void moveHook(Vector3f des, float sp)
@@ -34,9 +82,15 @@ public class Crane implements MotionPathListener
 		
 	}
 
-	public void onWayPointReach(MotionEvent arg0, int arg1) {
+	public void onWayPointReach(MotionEvent control, int wayPointIndex) {
 		// TODO Auto-generated method stub
-		
+		if (pathCrane.getNbWayPoints() == wayPointIndex + 1) 
+		{
+			System.out.println(control.getSpatial().getName() + " has finished moving. ");
+		} 
+		else 
+		{
+			System.out.println(control.getSpatial().getName() + " has reached way point " + wayPointIndex);
+		}
 	}
-
 }

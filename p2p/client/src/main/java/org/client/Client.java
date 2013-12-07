@@ -77,6 +77,15 @@ public class Client extends SimpleApplication {
     List<AGV> AGVList;
     Node shipNode;
     int j;
+    Crane crane;
+    
+    //Spatials of the storage crane
+    Spatial stCrane;
+    Spatial stSCrane;
+    Spatial stHCrane;
+    
+    Crane [] storageCranes = new Crane [20];
+    
     public static void main(String[] args){
         Client app = new Client();       
         app.start(); // start the game
@@ -95,9 +104,9 @@ public class Client extends SimpleApplication {
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
     	initScene();
-    	initCranes();
     	testShip();   
     	testContainer();
+    	loadAssets();
 
     	addAllAGVs(location);
     	
@@ -120,22 +129,13 @@ public class Client extends SimpleApplication {
     }
     
     @Override
-    public void simpleUpdate(float tpf) {
-    	//Updates the 'Time Per Frame', that's necessary to 
-    	//calculate the velocity of certain objects
+    public void simpleUpdate(float tpf) 
+    {
     	this.tpf = tpf;
-    	//System.out.println("TPF: " + tpf);
     	
-//    	storageCrane.animation(tpf);
-//    	storageCrane.move(tpf, 1, 1);
-//    	truckCrane.animation(tpf);
-//    	freeMovingCrane.animation(tpf);
-//    	
-//    	if(!storageCrane.loseContainer && storageCrane.animate){
-//    		if(container.getLocalTranslation().y > storageCrane.opslagKraanHook.getLocalTranslation().y && storageCrane.upDown){
-//    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
-//    		} else if(container.getLocalTranslation().y < storageCrane.opslagKraanHook.getLocalTranslation().y && !storageCrane.upDown)
-//    			container.setLocalTranslation(storageCrane.opslagKraanHook.getLocalTranslation());
+//    	for(Crane c : storageCranes)
+//    	{
+//    		c.update(tpf);
 //    	}
     	
         String message = c.getMessages();
@@ -234,15 +234,37 @@ public class Client extends SimpleApplication {
 	    rootNode.attachChild(waterNode);  //adds water to the world
     }
     
-    public void initCranes(){
-    	freeMovingCrane = new FreeMovingCrane(assetManager,70f,256f,0f);
-        rootNode.attachChild(freeMovingCrane.loadModels());
-        
-        storageCrane = new StorageCrane(assetManager,70f,256f,50f);
-        rootNode.attachChild(storageCrane.loadModels());
-        
-        truckCrane = new TruckCrane(assetManager,70f,256f,100f);
-        rootNode.attachChild(truckCrane.loadModels());
+    public void loadAssets()
+    {
+    	//Initialize Storage Crane
+    	stCrane = assetManager.loadModel("Models/crane/storageCrane.obj");
+    	stSCrane = assetManager.loadModel("Models/crane/storageCraneSlider.obj");
+    	stHCrane = assetManager.loadModel("Models/crane/storageCraneHook.obj");
+    	Material mat_stCrane, mat_stHCrane;
+    	mat_stCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    	mat_stHCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    	mat_stCrane.setColor("Color", ColorRGBA.Red);
+    	mat_stHCrane.setColor("Color", ColorRGBA.Black);
+    	stCrane.setMaterial(mat_stCrane);
+    	stSCrane.setMaterial(mat_stHCrane);
+    	stHCrane.setMaterial(mat_stHCrane);
+    	
+    	init_StorageCrane();
+    	
+    	//TODO: Load other assets in this method, use comments to tell what asset you're loading!
+    }
+    
+    private void init_StorageCrane()
+    {
+        for (int i = 1; i <= 20; i++) 
+        {
+            String id = String.valueOf(i);
+            Vector3f pos = new Vector3f(50+(20*i),260,70);
+            Crane c = new StorageCrane(id, pos, stCrane, stSCrane, stHCrane);
+            storageCranes[i - 1] = c;
+            rootNode.attachChild(c);
+            c.setLocalTranslation(pos);
+        }
     }
 
     private void initInputs() {
@@ -267,10 +289,10 @@ public class Client extends SimpleApplication {
                     }
                 }
             	
-                if (name.equals("startAnimation") && keyPressed) {
-                	storageCrane.setAnimation(0.01, 1, 1);
-                	storageCrane.update();
-                }
+//                if (name.equals("startAnimation") && keyPressed) {
+//                	storageCrane.setAnimation(0.01, 1, 1);
+//                	storageCrane.update();
+//                }
                
                 if (name.equals("play_stop") && keyPressed) {
                     if (playing) {
