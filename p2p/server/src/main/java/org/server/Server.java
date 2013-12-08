@@ -170,21 +170,30 @@ public class Server implements Runnable
     //Thread will periodically check if isRunning is set to false, if so it terminates itself
     public void stop()
     {
-        System.out.println("Server has been stopped");
+        System.out.println("Server is being stopped");
         isRunning = false;
     }
 
     public void restart(int port)
     {
+        int counter = 0;
+
         stop();
         //Wait till the thread noticed it should stop and exited
+
         while(thread.isAlive())
         {
+                if(counter == 10)
+            {
+                thread.destroy();
+                System.out.println("Waited 1 second, server is probably blocked by socket.accept(), force stop!");
+            }
             try {
-                Thread.sleep(50);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            counter++;
         }
 
         start(port);

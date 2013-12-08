@@ -75,6 +75,21 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/server/src/main/java/org/server/Server.java" line="228" class="org.server.Server" package="org.server">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
@@ -89,7 +104,7 @@
       <file leaf-file-name="Client.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/main/java/org/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="191" column="10" selection-start="5659" selection-end="5659" vertical-scroll-proportion="0.0" vertical-offset="3024" max-vertical-offset="5236">
+            <state line="191" column="10" selection-start="5659" selection-end="5659" vertical-scroll-proportion="0.0" vertical-offset="2674" max-vertical-offset="5740">
               <folding />
             </state>
           </provider>
@@ -98,11 +113,8 @@
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/org/server/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="224" column="13" selection-start="6974" selection-end="6974" vertical-scroll-proportion="0.0" vertical-offset="2815" max-vertical-offset="3640">
-              <folding>
-                <element signature="e#4536#7951#0" expanded="true" />
-                <element signature="e#7946#7947#0" expanded="true" />
-              </folding>
+            <state line="236" column="13" selection-start="7346" selection-end="7346" vertical-scroll-proportion="0.0" vertical-offset="3304" max-vertical-offset="4130">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -110,7 +122,7 @@
       <file leaf-file-name="Server.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/org/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="198" column="125" selection-start="5560" selection-end="5560" vertical-scroll-proportion="0.2354049" vertical-offset="2507" max-vertical-offset="3220">
+            <state line="172" column="50" selection-start="4866" selection-end="4866" vertical-scroll-proportion="0.26177025" vertical-offset="2129" max-vertical-offset="3346">
               <folding />
             </state>
           </provider>
@@ -663,7 +675,7 @@
       <recent name="C:\projects\ContainingJ2P2P\p2p\server\src\main\java\org\server" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Client" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.client.Client" />
       <option name="VM_PARAMETERS" />
@@ -758,6 +770,26 @@
       <option name="PROGRAM_PARAMETERS" />
       <method />
     </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -780,32 +812,25 @@
       </MavenSettings>
       <method />
     </configuration>
-    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
-      <module name="" />
-      <option name="TESTING_TYPE" value="0" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
-      <method />
-    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -833,19 +858,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -973,7 +985,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1608" height="880" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -981,7 +993,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24967825" sideWeight="0.6757493" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26902887" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26902887" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26902887" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20911528" sideWeight="0.3305785" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -993,13 +1005,13 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18164313" sideWeight="0.5762943" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32738853" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.6757493" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.6757493" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33242506" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1023,6 +1035,62 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/org/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="191" column="10" selection-start="5659" selection-end="5659" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5740">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/org/server/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="224" column="13" selection-start="6974" selection-end="6974" vertical-scroll-proportion="0.0" vertical-offset="3136" max-vertical-offset="3850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/org/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="198" column="125" selection-start="5560" selection-end="5560" vertical-scroll-proportion="0.0" vertical-offset="2772" max-vertical-offset="3220">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/org/client/TruckCrane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="13" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="1624">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/xml1.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="29" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="7420">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/org/server/FtpLoginView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="73" column="23" selection-start="1872" selection-end="1872" vertical-scroll-proportion="0.0" vertical-offset="1022" max-vertical-offset="1232">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/org/client/networkClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="4" selection-start="1340" selection-end="1340" vertical-scroll-proportion="0.0" vertical-offset="658" max-vertical-offset="1050">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/org/server/ContainerSetXml.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0" vertical-offset="224" max-vertical-offset="378">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/org/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="152" column="16" selection-start="4828" selection-end="4828" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4802">
@@ -1190,11 +1258,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/org/server/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="13" selection-start="6974" selection-end="6974" vertical-scroll-proportion="0.0" vertical-offset="2815" max-vertical-offset="3640">
-          <folding>
-            <element signature="e#4536#7951#0" expanded="true" />
-            <element signature="e#7946#7947#0" expanded="true" />
-          </folding>
+        <state line="236" column="13" selection-start="7346" selection-end="7346" vertical-scroll-proportion="0.0" vertical-offset="3304" max-vertical-offset="4130">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1207,7 +1272,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/org/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="125" selection-start="5560" selection-end="5560" vertical-scroll-proportion="0.2354049" vertical-offset="2507" max-vertical-offset="3220">
+        <state line="172" column="50" selection-start="4866" selection-end="4866" vertical-scroll-proportion="0.26177025" vertical-offset="2129" max-vertical-offset="3346">
           <folding />
         </state>
       </provider>
