@@ -22,6 +22,7 @@ public class Main
    private static JTextArea textArea = new JTextArea(38,34);
    private static JFrame frame = new JFrame("Controller");
    private static Server server;
+   private static JMenuBar menu;
    
    private static JLabel SpeedText = new JLabel("100");
    private static int Speed = 100;
@@ -34,62 +35,17 @@ public class Main
    public static void main(String args[]) {
 
 	 server = new Server();
-
+  
     //JFrame frame = new JFrame("Controller");
     frame.getContentPane().setBackground(Color.WHITE);
-    JMenuBar menu = new JMenuBar();
-    
-    // File Menu
-    JMenu fileMenu = new JMenu("File");
-    menu.add(fileMenu);
-
-    //Load File
-    JMenuItem LoadFile = new JMenuItem("Load File");
-    fileMenu.add(LoadFile);
-    LoadFile.addActionListener(actionListener);
-
-    //Ftp login
-    JMenuItem ftpLogin = new JMenuItem("Login to ftp");
-    fileMenu.add(ftpLogin);
-    ftpLogin.addActionListener(actionListener);
-
-    //Start
-    JMenuItem Start = new JMenuItem("Start");
-    fileMenu.add(Start);
-    Start.addActionListener(actionListener);
-    
-    //Quit
-    JMenuItem Quit = new JMenuItem("Quit");
-    fileMenu.add(Quit);
-    Quit.addActionListener(actionListener);
-
-    // Help Menu
-    JMenu helpMenu = new JMenu("Help");
-    menu.add(helpMenu);
-    //About
-    JMenuItem About = new JMenuItem("About");
-    helpMenu.add(About);
-    About.addActionListener(actionListener);
-    //Help
-    JMenuItem Help = new JMenuItem("Help");
-    helpMenu.add(Help);
-    Help.addActionListener(actionListener);
-
     //Main panel
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	frame.setContentPane(contentPane);
 	contentPane.setLayout(null);
 	
-	//Text Panel
-	textpanel.setBounds(0, 0, 400, 700);
-	contentPane.add(textpanel);
-	textArea.setEditable(false);
-	textpanel.add(textArea);
-	JScrollPane scroll = new JScrollPane (textArea, 
-    		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	textpanel.add(scroll);
-
-    InfoBox();
+	Menu();
+	TextPanel();
+    InfoPanel();
     frame.setJMenuBar(menu);
     frame.setSize(660, 700);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,7 +54,60 @@ public class Main
   }
    
    
-   private static void InfoBox()
+   private static void Menu()
+   {
+	    menu = new JMenuBar();
+	    
+	    // File Menu
+	    JMenu fileMenu = new JMenu("File");
+	    menu.add(fileMenu);
+
+	    //Load File
+	    JMenuItem LoadFile = new JMenuItem("Load File");
+	    fileMenu.add(LoadFile);
+	    LoadFile.addActionListener(actionListener);
+
+	    //Ftp login
+	    JMenuItem ftpLogin = new JMenuItem("Login to ftp");
+	    fileMenu.add(ftpLogin);
+	    ftpLogin.addActionListener(actionListener);
+
+	    //Start
+	    JMenuItem Start = new JMenuItem("Start");
+	    fileMenu.add(Start);
+	    Start.addActionListener(actionListener);
+	    
+	    //Quit
+	    JMenuItem Quit = new JMenuItem("Quit");
+	    fileMenu.add(Quit);
+	    Quit.addActionListener(actionListener);
+
+	    // Help Menu
+	    JMenu helpMenu = new JMenu("Help");
+	    menu.add(helpMenu);
+	    //About
+	    JMenuItem About = new JMenuItem("About");
+	    helpMenu.add(About);
+	    About.addActionListener(actionListener);
+	    //Help
+	    JMenuItem Help = new JMenuItem("Help");
+	    helpMenu.add(Help);
+	    Help.addActionListener(actionListener);
+   }
+   
+   private static void TextPanel()
+   {
+	   	//Text Panel
+		textpanel.setBounds(0, 0, 400, 700);
+		contentPane.add(textpanel);
+		textArea.setEditable(false);
+		textpanel.add(textArea);
+		JScrollPane scroll = new JScrollPane (textArea, 
+	    		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		textpanel.add(scroll);
+   }
+   
+   private static void InfoPanel()
    {
 	   //Info Box for the Slider
 	    final JSlider slider = new JSlider(JSlider.HORIZONTAL,0,200,100);
@@ -108,7 +117,7 @@ public class Main
 	    	public void stateChanged(ChangeEvent e)
 	    	{
 	    		Speed = slider.getValue();
-	    		//if the Speed is lower then 100 then it resize the JPanel?
+	    		//if the Speed is lower then 100 then it's behind the slider(fix for it)
 	    		if (Speed < 100)
 	    		{
 	    			if (Speed < 10)
@@ -131,6 +140,7 @@ public class Main
 	    
    }
 
+   
    private static ActionListener actionListener = new ActionListener() {
 	   public void actionPerformed(ActionEvent e) 
 	   {
