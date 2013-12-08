@@ -8,10 +8,7 @@ import org.protocol.ProtocolParser;
 import org.protocol.Statistics;
 
 import javax.vecmath.Point3d;
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -31,7 +28,7 @@ import java.net.Socket;
  * Melinda de Roo
  * */
 
-public class Server
+public class Server implements Runnable
 {
     private ServerSocket serverSocket;
     private Socket clientSocket;
@@ -40,6 +37,8 @@ public class Server
     private static ProtocolParser parser;
     private FTPClient ftpClient;
     private Statistics statistics;
+    private Thread thread;
+    private boolean isRunning;
 
     public static void main(String[] args) throws Exception
     {
@@ -64,6 +63,7 @@ public class Server
     {
         ftpClient = new FTPClient();
         ftpClient.setBufferSize(1024 * 1024);
+        thread = new Thread();
     }
 
     public void loginToStatisticsServer(String host, String name, String password)
@@ -138,51 +138,97 @@ public class Server
         }
     }
 
-    public boolean start(int port)
+    //This launches a new thread!
+    public void start(int port)
     {
         try {
+            if(thread.isAlive() == true)
+            {
+                System.out.println("Server is already running!\n Either stop it first or press restart.");
+                return;
+            }
+
+            System.out.println("Server is being started");
             statistics = new Statistics(1, 2, 3, 4, 5);
             //Set the server up
-            //serverSocket = new ServerSocket(port);
-	        //parser = new ProtocolParser();
-	        //Protocol protocol = null;
+            serverSocket = new ServerSocket(port);
+            parser = new ProtocolParser();
+            Protocol protocol = null;
 
-            //Wait till someone connects; this is a blocking method!!!!!!!!
-            //clientSocket = serverSocket.accept();
-            //Does this do anything at all?
-                //clientSocket.setKeepAlive(true);
-                //clientSocket.setSoTimeout(500);
-                //writer = new PrintWriter(clientSocket.getOutputStream(), true);
-                //reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            protocol = new Protocol();
+            protocol.getContainers().add(new Container());
+            protocol.getContainers().get(0).location = new Point3d(50, 130, 50);
 
-                //protocol = new Protocol();
-                //protocol.getContainers().add(new Container());
-                //protocol.getContainers().get(0).location = new Point3d(50, 130, 50);
-
-                //Infinite loop, this should go in a new thread
-	        int counter = 0;
-            while(true)
-            {
-                Thread.sleep(100);
-                //Add tiny amount
-                //protocol.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
-                //sendMessage(parser.serialize(protocol));
-
-                if (counter % 15 == 0)
-                {
-                    statistics.trein++;
-                    statistics.trein = statistics.trein % 15; //cycle 0-15
-                    uploadStatistics();
-                }
-                counter++;
-            }
+            //This will run this.run() in a new thread
+            thread = new Thread(this);
+            thread.start();
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        return false;
     }
+    //Thread will periodically check if isRunning is set to false, if so it terminates itself
+    public void stop()
+    {
+        System.out.println("Server has been stopped");
+        isRunning = false;
+    }
+
+    public void restart(int port)
+    {
+        stop();
+        //Wait till the thread noticed it should stop and exited
+        while(thread.isAlive())
+        {
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        start(port);
+    }
+
+    @Override
+    public void run()
+        {
+            try {
+                isRunning = true;
+                //Wait till someone connects; this is a blocking method!!!!!!!!
+                System.out.println("Waiting till a client connects, I (Server server) won't do anything untill this happens!!!");
+                clientSocket = serverSocket.accept();
+                //Does this do anything at all?
+                clientSocket.setSoTimeout(500);
+                writer = new PrintWriter(clientSocket.getOutputStream(), true);
+                reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+                int counter = 0;
+                while(true)
+                {
+                    //This is the proper way to exit a thread, thread.stop() is bad?
+                    if(isRunning == false)
+                        stop();
+
+                    Thread.sleep(100);
+                    //Add tiny amount
+                    //protocol.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
+                    //sendMessage(parser.serialize(protocol));
+
+                    if (counter % 15 == 0)
+                    {
+                        statistics.trein++;
+                        statistics.trein = statistics.trein % 15; //cycle 0-15
+                        uploadStatistics();
+                    }
+                    counter++;
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
+        }
 }
 
 

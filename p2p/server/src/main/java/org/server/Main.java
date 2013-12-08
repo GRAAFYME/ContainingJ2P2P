@@ -6,8 +6,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -230,16 +228,9 @@ public class Main
 	       }
 	     else if (NameItem == "Start")
 	     {
+             //server.start() launches server.run() in a new thread
+             //Meaning server.start won't freeze the gui anymore
 	         server.start(6666);
-             System.out.println("Client connected");
-
-             while(true)
-             {
-                 try {
-                 Thread.sleep(1000);
-                 } catch (Exception exception){}
-                 server.sendMessage("YOOOOOOOO");
-             }
 	     }
 	     
 	     else if (NameItem == "Login to ftp")
@@ -266,6 +257,12 @@ public class Main
 	     }
 	   }
 	 };
+
+
+    public static void startServer()
+    {
+
+    }
 	 
 
 	 
