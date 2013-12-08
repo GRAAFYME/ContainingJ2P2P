@@ -68,18 +68,28 @@ public abstract class Crane extends Node implements MotionPathListener
 	
 	public void moveCrane(Vector3f des, float sp)
 	{
-		pathCrane.addWayPoint(des);		
+		Vector3f startPosition, desPosition;
+		startPosition = crane.getLocalTranslation();
+		desPosition = des;
+		
+		if(startPosition.distance(desPosition) > 0)
+		{
+			pathCrane.clearWayPoints();
+			
+			pathCrane.addWayPoint(startPosition);
+			pathCrane.addWayPoint(desPosition);	
+		}
 		//System.out.println("Number of WayPoints: " + path.getNbWayPoints());
-		
-		pathCrane.removeWayPoint(des);
-	}
-	
-	public void moveHook(Vector3f des, float sp)
-	{
-		
 	}
 	
 	public void moveSlider(Vector3f des, float sp)
+	{
+		Vector3f startPosition, desPosition;
+		startPosition = sliderNode.getLocalTranslation();
+		desPosition = des;
+	}
+	
+	public void moveHook(Vector3f des, float sp)
 	{
 		
 	}

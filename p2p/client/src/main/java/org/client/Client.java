@@ -88,8 +88,14 @@ public class Client extends SimpleApplication {
     Spatial ssSCrane;
     Spatial ssHCrane;
     
+    //Spatials of the Truck Crane
+    Spatial tCrane;
+    Spatial tSCrane;
+    Spatial tHCrane;
+    
     Crane [] storageCranes = new Crane [20];
     Crane [] seaShipCranes = new Crane [10];
+    Crane [] truckCranes = new Crane [20];
     
     public static void main(String[] args){
         Client app = new Client();       
@@ -269,12 +275,21 @@ public class Client extends SimpleApplication {
     	ssHCrane.setMaterial(mat_ssHCrane);
     	
     	//Initialize Truck Crane
-//    	tCrane;
-//    	tSCrane;
-//    	tHCrane;
+    	tCrane = assetManager.loadModel("Models/crane/TruckCrane.obj");
+    	tSCrane = assetManager.loadModel("Models/crane/TruckCraneSlider.obj");
+    	tHCrane = assetManager.loadModel("Models/crane/TruckCraneHook.obj");
+    	Material mat_tCrane, mat_tSCrane;
+    	mat_tCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    	mat_tSCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    	mat_tCrane.setColor("Color", ColorRGBA.Green);
+    	mat_tSCrane.setColor("Color", ColorRGBA.Black);
+    	tCrane.setMaterial(mat_tCrane);
+    	tSCrane.setMaterial(mat_tSCrane);
+    	tHCrane.setMaterial(mat_tSCrane);
     	
     	init_StorageCrane();
     	init_SeaShipCrane();
+    	init_TruckCrane();
     	
     	//TODO: Load other assets in this method, use comments to tell what asset you're loading!
     }
@@ -284,7 +299,7 @@ public class Client extends SimpleApplication {
         for (int i = 1; i <= 20; i++) 
         {
             String id = String.valueOf(i);
-            Vector3f pos = new Vector3f(50+(20*i),260,70);
+            Vector3f pos = new Vector3f(50+(i*60),260,70);
             Crane c = new StorageCrane(id, pos, stCrane, stSCrane, stHCrane);
             storageCranes[i - 1] = c;
             rootNode.attachChild(c);
@@ -297,9 +312,22 @@ public class Client extends SimpleApplication {
     	for(int i = 1; i <= 10; i++)
     	{
     		String id = String.valueOf(i);
-    		Vector3f pos = new Vector3f(-275,260,-400+(80*i));
+    		Vector3f pos = new Vector3f(-275,260,-400+(i*80));
     		Crane c = new SeaShipCrane(id, pos, ssCrane, ssSCrane, ssHCrane);
     		seaShipCranes[i-1] = c;
+    		rootNode.attachChild(c);
+    		c.setLocalTranslation(pos);
+    	}
+    }
+    
+    private void init_TruckCrane()
+    {
+    	for(int i = 1; i <= 20; i++)
+    	{
+    		String id = String.valueOf(i);
+    		Vector3f pos = new Vector3f(400+(i*50),260,375);
+    		Crane c = new TruckCrane(id, pos, tCrane, tSCrane, tHCrane);
+    		truckCranes[i-1] = c;
     		rootNode.attachChild(c);
     		c.setLocalTranslation(pos);
     	}

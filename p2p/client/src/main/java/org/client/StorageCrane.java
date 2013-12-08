@@ -18,5 +18,9 @@ public class StorageCrane extends Crane implements MotionPathListener
 		this.crane.rotate(0, 90*FastMath.DEG_TO_RAD, 0);
 		this.slider.rotate(0, 90*FastMath.DEG_TO_RAD, 0);
 		this.hook.rotate(0, 90*FastMath.DEG_TO_RAD, 0);
+		
+		this.crane.scale(3);
+		this.slider.scale(3);
+		this.hook.scale(3);
 	}
 }
