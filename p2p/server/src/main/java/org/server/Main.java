@@ -11,9 +11,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class Main 
 {
@@ -31,13 +31,14 @@ public class Main
    private static JPanel contentPane = new JPanel();
    private static JPanel textpanel = new JPanel();
    private static JPanel boxpanel = new JPanel();
+   private static JPanel serverpanel = new JPanel();
    
    public static void main(String args[]) {
 
 	 server = new Server();
   
     //JFrame frame = new JFrame("Controller");
-    frame.getContentPane().setBackground(Color.WHITE);
+    //frame.getContentPane().setBackground(Color.WHITE);
     //Main panel
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	frame.setContentPane(contentPane);
@@ -46,6 +47,7 @@ public class Main
 	Menu();
 	TextPanel();
     InfoPanel();
+    ServerPanel();
     frame.setJMenuBar(menu);
     frame.setSize(660, 700);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +55,9 @@ public class Main
     
   }
    
-   
+   /*
+    * MenuItems
+    */
    private static void Menu()
    {
 	    menu = new JMenuBar();
@@ -95,6 +99,25 @@ public class Main
 	    Help.addActionListener(actionListener);
    }
    
+   
+   /*
+    * Information of the Server
+    */
+   private static void ServerPanel()
+   {
+	   serverpanel.setBounds(400,350,240,280);
+	   serverpanel.setBorder(BorderFactory.createTitledBorder("Server"));
+	   //serverpanel.setBackground(Color.WHITE);'
+	   JLabel server = new JLabel("Server: ");
+	   JLabel serverstatus = new JLabel("Online/Offline");
+	   serverpanel.add(server);
+	   serverpanel.add(serverstatus);
+	   contentPane.add(serverpanel);
+   }
+   
+   /*
+    * TextPanel with the TextArea
+    */
    private static void TextPanel()
    {
 	   	//Text Panel
@@ -103,7 +126,7 @@ public class Main
 		textArea.setEditable(false);
 		textpanel.add(textArea);
 		JScrollPane scroll = new JScrollPane (textArea, 
-	    		   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		textpanel.add(scroll);
    }
    
@@ -131,11 +154,11 @@ public class Main
 	    			SpeedText.setText(Integer.toString(Speed));
 	    	}
 	    });
-	    boxpanel.setBounds(400, 0, 240,700);
-	    boxpanel.setBackground(Color.WHITE);
+	    boxpanel.setBounds(400, 0, 240,350);
+	    //boxpanel.setBackground(Color.WHITE);
 	    boxpanel.add(slider);
 	    boxpanel.add(SpeedText);
-	    boxpanel.setBorder(BorderFactory.createTitledBorder("Speed"));
+	    boxpanel.setBorder(BorderFactory.createTitledBorder("Simulatie"));
 	    contentPane.add(boxpanel);
 	    
    }
@@ -182,11 +205,15 @@ public class Main
                      public void run() {  
                         for (ContainerXml c : containers.containers) 
                         {
-                        	textArea.append(c.id + " " + c.ownerName +  "\n");
+                        	DateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
+                        	Calendar now = Calendar.getInstance();
+                        	String Time = "[" +  dateFormat.format(now.getTime()) + "]";
+                        	
+                        	textArea.append( Time + " " + c.id + " " + c.ownerName +  "\n");
                         	textArea.setCaretPosition(textArea.getDocument().getLength());
                            try 
                            {
-                              sleep(1);  // milliseconds
+                              sleep(150);  // milliseconds
                            } catch (InterruptedException ex) {}
                         }
                      }
