@@ -24,6 +24,9 @@ public class Main
    
    private static JLabel SpeedText = new JLabel("100");
    private static int Speed = 100;
+   private static String ServerStatus = "Offline";
+   private static JLabel serverstatus;
+   
    
    
    private static JPanel contentPane = new JPanel();
@@ -31,7 +34,8 @@ public class Main
    private static JPanel boxpanel = new JPanel();
    private static JPanel serverpanel = new JPanel();
    
-   public static void main(String args[]) {
+   public static void main(String args[]) 
+   {
 
 	 server = new Server();
   
@@ -75,9 +79,17 @@ public class Main
 	    ftpLogin.addActionListener(actionListener);
 
 	    //Start
-	    JMenuItem Start = new JMenuItem("Start");
+	    JMenuItem Start = new JMenuItem("Start server");
 	    fileMenu.add(Start);
 	    Start.addActionListener(actionListener);
+	    //Restart
+	    JMenuItem Restart = new JMenuItem("Restart server");
+	    fileMenu.add(Restart);
+	    Restart.addActionListener(actionListener);
+	    //Stop
+	    JMenuItem Stop = new JMenuItem("Stop server");
+	    fileMenu.add(Stop);
+	    Stop.addActionListener(actionListener);
 	    
 	    //Quit
 	    JMenuItem Quit = new JMenuItem("Quit");
@@ -96,8 +108,7 @@ public class Main
 	    helpMenu.add(Help);
 	    Help.addActionListener(actionListener);
    }
-   
-   
+
    /*
     * Information of the Server
     */
@@ -107,7 +118,7 @@ public class Main
 	   serverpanel.setBorder(BorderFactory.createTitledBorder("Server"));
 	   //serverpanel.setBackground(Color.WHITE);'
 	   JLabel server = new JLabel("Server: ");
-	   JLabel serverstatus = new JLabel("Online/Offline");
+	   serverstatus = new JLabel(ServerStatus);
 	   serverpanel.add(server);
 	   serverpanel.add(serverstatus);
 	   contentPane.add(serverpanel);
@@ -161,6 +172,7 @@ public class Main
 	    
    }
 
+ 
    
    private static ActionListener actionListener = new ActionListener() {
 	   public void actionPerformed(ActionEvent e) 
@@ -226,7 +238,7 @@ public class Main
 	    	 }
 	             
 	       }
-	     else if (NameItem == "Start")
+	     else if (NameItem == "Start server")
 	     {
              //server.start() launches server.run() in a new thread
              //Meaning server.start won't freeze the gui anymore
@@ -254,6 +266,14 @@ public class Main
 	     else if (NameItem == "Quit")
 	     {
 	    	 System.exit(0);
+	     }
+	     else if (NameItem == "Restart server")
+	     {
+	    	 server.restart(6666);
+	     }
+	     else if (NameItem == "Stop server")
+	     {
+	    	 server.stop();
 	     }
 	   }
 	 };
