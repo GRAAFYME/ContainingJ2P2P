@@ -355,10 +355,13 @@ public class Client extends SimpleApplication {
                     }
                 }
             	
-//                if (name.equals("startAnimation") && keyPressed) {
-//                	storageCrane.setAnimation(0.01, 1, 1);
-//                	storageCrane.update();
-//                }
+                if (name.equals("startAnimation") && keyPressed) {
+                	for(Crane c : storageCranes)
+                	{
+                		c.moveCrane(new Vector3f(c.getLocalTranslation().x,
+                				c.getLocalTranslation().y,c.getLocalTranslation().z-200), 2);
+                	}
+                }
                
                 if (name.equals("play_stop") && keyPressed) {
                     if (playing) {
