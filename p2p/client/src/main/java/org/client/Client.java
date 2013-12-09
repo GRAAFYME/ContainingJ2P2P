@@ -336,8 +336,10 @@ public class Client extends SimpleApplication {
     private void initInputs() {
         inputManager.addMapping("display_hidePath", new KeyTrigger(KeyInput.KEY_P));
         inputManager.addMapping("SwitchPathInterpolation", new KeyTrigger(KeyInput.KEY_I));
+        if(!FlyByCamera.coordtest){
         inputManager.addMapping("tensionUp", new KeyTrigger(KeyInput.KEY_U));
         inputManager.addMapping("tensionDown", new KeyTrigger(KeyInput.KEY_J));
+        }
         inputManager.addMapping("play_stop", new KeyTrigger(KeyInput.KEY_N));
         inputManager.addMapping("play_stop2", new KeyTrigger(KeyInput.KEY_M));
         inputManager.addMapping("SetWireFrame", new KeyTrigger(KeyInput.KEY_L));

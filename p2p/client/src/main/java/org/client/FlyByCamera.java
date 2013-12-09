@@ -20,6 +20,8 @@ public class FlyByCamera implements AnalogListener, ActionListener {
     private MotionAllowedListener motionAllowed = null;
     private boolean enabled = true;
     private InputManager inputManager;
+    private boolean coords = true;
+    public static boolean coordtest = false;
    
 
     public FlyByCamera(Camera cam, InputManager inputManager){
@@ -51,8 +53,10 @@ public class FlyByCamera implements AnalogListener, ActionListener {
 
         inputManager.addMapping("FLYCAM_LowerShift", new KeyTrigger(KeyInput.KEY_LSHIFT));
         inputManager.addListener(this, mappings);
+        if (coordtest){
+        registerTempInputs();
+        }
     }
-
 
     private void riseCamera(float value){
         Vector3f vel = new Vector3f(0, value * moveSpeed, 0);
@@ -66,20 +70,50 @@ public class FlyByCamera implements AnalogListener, ActionListener {
         cam.setLocation(pos);
     }
 
-
     public void onAnalog(String name, float value, float tpf) {
         if (!enabled)
         return;
-
-        if (name.equals("FLYCAM_RiseSpace")){
+        if (coordtest){
+        	if (name.equals("FLYCAM_RiseSpace") && coords)
+            {
+                System.out.println(cam.getLocation());
+                coords = false;
+            }
+            else if (name.equals("JUMP FORWARD")){
+            	cam.setLocation(cam.getLocation().add(new Vector3f(10f,0f,0f)));
+            	coords = true;
+            }else if (name.equals("JUMP LEFT")){
+            	cam.setLocation(cam.getLocation().subtract(new Vector3f(0f,0f,10f)));
+            	coords = true;
+            }else if (name.equals("JUMP BACK")){
+            	cam.setLocation(cam.getLocation().subtract(new Vector3f(10f,0f,0f)));
+            	coords = true;
+            }else if (name.equals("JUMP RIGHT")){
+            	cam.setLocation(cam.getLocation().add(new Vector3f(0f,0f,10f)));
+            	coords = true;
+            }
+        }else{
+        	if (name.equals("FLYCAM_RiseSpace")){
             riseCamera(value);
-        }else if (name.equals("FLYCAM_LowerShift")){
+        	}else if (name.equals("FLYCAM_LowerShift")){
         	riseCamera(-value);
+        	}
         }
     }
 
     public void onAction(String name, boolean value, float tpf) {
         if (!enabled)
             return;
+    }
+    
+    public void registerTempInputs(){
+    	inputManager.addMapping("JUMP FORWARD", new KeyTrigger(KeyInput.KEY_U));
+        inputManager.addListener(this, "JUMP FORWARD");
+        inputManager.addMapping("JUMP LEFT", new KeyTrigger(KeyInput.KEY_H));
+        inputManager.addListener(this, "JUMP LEFT");
+        inputManager.addMapping("JUMP BACK", new KeyTrigger(KeyInput.KEY_J));
+        inputManager.addListener(this, "JUMP BACK");
+        inputManager.addMapping("JUMP RIGHT", new KeyTrigger(KeyInput.KEY_K));
+        inputManager.addListener(this, "JUMP RIGHT");
     }
 }
