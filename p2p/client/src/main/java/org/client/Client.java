@@ -232,11 +232,11 @@ public class Client extends SimpleApplication {
     public void initScene(){
     	Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
     	rootNode.attachChild(scene.sceneNode);  //adds the scene to the game
-	    waterNode = new Node("Water");
-	    Water water = new Water(assetManager, waterNode);  //creates water
-	    viewPort.addProcessor(water.fpp); 
-	    viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
-	    rootNode.attachChild(waterNode);  //adds water to the world
+    	 viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
+//	    waterNode = new Node("Water");
+//	    Water water = new Water(assetManager, waterNode);  //creates water
+//	    viewPort.addProcessor(water.fpp);  
+//	    rootNode.attachChild(waterNode);  //adds water to the world
     }
     
     public void loadAssets()

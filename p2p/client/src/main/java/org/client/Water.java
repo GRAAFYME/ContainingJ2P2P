@@ -50,6 +50,7 @@ public class Water {
         water.setRefractionStrength(0.2f); 
         water.setWaterHeight(200f);  // Water Height.
         water.setDeepWaterColor(deepWaterColor);
+        water.setUseRipples(false);
         fpp.addFilter(water); 
         return fpp;
     }
