@@ -355,12 +355,20 @@ public class Client extends SimpleApplication {
                     }
                 }
             	
-                if (name.equals("startAnimation") && keyPressed) {
-                	for(Crane c : storageCranes)
-                	{
-                		c.moveCrane(new Vector3f(c.getLocalTranslation().x,
-                				c.getLocalTranslation().y,c.getLocalTranslation().z-200), 2);
-                	}
+                if (name.equals("startAnimation") && keyPressed) 
+                {
+                	Vector3f [] des = new Vector3f [4];
+                	System.out.println("New Array");
+                	des[0] = new Vector3f(storageCranes[0].getLocalTranslation().x, 
+                			storageCranes[0].getLocalTranslation().y, -200);
+                	des[1] = new Vector3f(storageCranes[0].hookNode.getLocalTranslation().x,
+                			20, storageCranes[0].hookNode.getLocalTranslation().z);
+                	des[2] = new Vector3f(storageCranes[0].getLocalTranslation().x, 
+                			storageCranes[0].getLocalTranslation().y, 70);
+                	des[3] = new Vector3f(storageCranes[0].hookNode.getLocalTranslation().x,
+                			39, storageCranes[0].hookNode.getLocalTranslation().z);
+                	System.out.println("Created array");
+                	storageCranes[0].animation(storageCranes[0].getId(), des, 0.5f);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {

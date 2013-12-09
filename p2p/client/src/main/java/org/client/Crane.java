@@ -11,6 +11,7 @@ import com.jme3.scene.Spatial;
 public abstract class Crane extends Node implements MotionPathListener
 {
 	private final float SPEED = 0.5f;
+	private int action = 2;
 	private MotionPath pathCrane = new MotionPath();
 	private MotionPath pathSlider = new MotionPath();
 	private MotionPath pathHook = new MotionPath();
@@ -57,9 +58,8 @@ public abstract class Crane extends Node implements MotionPathListener
 	
 	public void update(float tpf)
 	{
-		this.crane.setLocalTranslation(this.getLocalTranslation());
-		this.slider.setLocalTranslation(sliderNode.getLocalTranslation());
-		this.hook.setLocalTranslation(hookNode.getLocalTranslation());
+		this.setLocalTranslation(this.getLocalTranslation());
+		this.sliderNode.setLocalTranslation(sliderNode.getLocalTranslation());
 	}
 	
 	public String getId()
@@ -72,10 +72,91 @@ public abstract class Crane extends Node implements MotionPathListener
 		return this.position;
 	}
 	
+	public void animation(String id, final Vector3f[] des, final float sp)
+	{
+		switch(action)
+		{
+			case 1:
+			{
+				//Vehicle to AGV
+//				moveCrane(des[0], sp);
+//				moveSlider(des[1], sp);
+//				moveHook(des[2], sp);
+//				moveSlider(des[3], sp);
+//				moveHook(des[4], sp);
+			}
+			case 2:
+			{
+				//AGV to storage
+				moveCrane(des[0], sp);
+				pathCrane.addListener(new MotionPathListener()
+				{
+					public void onWayPointReach(MotionEvent me, int index) 
+					{
+						if (pathCrane.getNbWayPoints() == index + 1)
+						{
+							moveHook(des[1], sp);
+							pathHook.addListener(new MotionPathListener()
+							{
+								public void onWayPointReach(MotionEvent me, int index) 
+								{
+									if (pathHook.getNbWayPoints() == index + 1)
+									{
+										moveCrane(des[2], sp);
+										pathCrane.addListener(new MotionPathListener()
+										{
+											public void onWayPointReach(MotionEvent me, int index) 
+											{
+												if (pathCrane.getNbWayPoints() == index + 1)
+												{
+													moveHook(des[3], sp);
+													pathHook.addListener(new MotionPathListener()
+													{
+														public void onWayPointReach(MotionEvent me, int index) 
+														{
+															if (pathHook.getNbWayPoints() == index + 1)
+															{
+																craneControl.stop();
+																hookControl.stop();
+															}
+														}
+													});
+												}
+											}
+										});
+									}
+								}
+							});
+						}
+					}
+					
+				});
+				break;
+			}
+			case 3:
+			{
+				//Storage to AGV
+//				moveCrane(des[0], sp);
+//				moveHook(des[1], sp);
+//				moveCrane(des[2], sp);
+//				moveHook(des[3], sp);
+			}
+			case 4:
+			{
+				//AGV to vehicle
+//				moveCrane(des[0], sp);
+//				moveHook(des[1], sp);
+//				moveSlider(des[2], sp);
+//				moveHook(des[4], sp);
+//				moveSlider(des[5], sp);
+			}
+		}
+	}
+	
 	public void moveCrane(Vector3f des, float sp)
 	{
 		Vector3f startPosition, desPosition;
-		startPosition = crane.getLocalTranslation();
+		startPosition = this.getLocalTranslation();
 		desPosition = des;
 		
 		if(startPosition.distance(desPosition) > 0)
@@ -87,7 +168,7 @@ public abstract class Crane extends Node implements MotionPathListener
 			
 			craneControl.play();
 		}
-		//System.out.println("Number of WayPoints: " + path.getNbWayPoints());
+		System.out.println("Number of WayPoints: " + pathCrane.getNbWayPoints());
 	}
 	
 	public void moveSlider(Vector3f des, float sp)
@@ -105,7 +186,7 @@ public abstract class Crane extends Node implements MotionPathListener
 			
 			sliderControl.play();
 		}
-		//System.out.println("Number of WayPoints: " + path.getNbWayPoints());
+		System.out.println("Number of WayPoints: " + pathSlider.getNbWayPoints());
 	}
 	
 	public void moveHook(Vector3f des, float sp)
@@ -120,10 +201,11 @@ public abstract class Crane extends Node implements MotionPathListener
 			
 			pathHook.addWayPoint(startPosition);
 			pathHook.addWayPoint(desPosition);
+			pathHook.addWayPoint(startPosition);
 			
 			hookControl.play();
 		}
-		//System.out.println("Number of WayPoints: " + path.getNbWayPoints());
+		System.out.println("Number of WayPoints: " + pathHook.getNbWayPoints());
 	}
 
 	public void onWayPointReach(MotionEvent control, int wayPointIndex) {
