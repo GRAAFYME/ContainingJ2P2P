@@ -208,14 +208,10 @@ public class Client extends SimpleApplication {
     			{
     				if(containerCount < 1800)
     				{
-    					Spatial cont = assetManager.loadModel("Models/container/Container.obj");
-    					Material container_mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-    					Texture container_tex = assetManager.loadTexture("Models/container/container.png");
-    					container_mat.setTexture("DiffuseMap", container_tex);
-    					cont.setMaterial(container_mat);
-    					
-    					cont.rotate(0,90*FastMath.DEG_TO_RAD,0);
-    					cont.setLocalTranslation(xCoord+(x*3),yCoord+(y*2.5f),zCoord-(z*12.7f));
+    					String id = String.valueOf(containerCount + 1);
+    					Vector3f pos = new Vector3f(xCoord+(x*3),yCoord+(y*2.5f),zCoord-(z*12.7f));
+    					Containers cont = new Containers(id, pos, container);
+    					container.setLocalTranslation(pos);
     					rootNode.attachChild(cont);
     					
     		    		containerCount++;

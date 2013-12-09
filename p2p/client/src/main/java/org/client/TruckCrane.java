@@ -9,8 +9,8 @@ public class TruckCrane extends Crane
     {
     	super(id, position, crane, slider, hook);
     	
-		this.crane.scale(2.5f);
-		this.slider.scale(2.5f);
-		this.hook.scale(2.5f);
+		this.crane.scale(2f);
+		this.slider.scale(2f);
+		this.hook.scale(2f);
     }
 }

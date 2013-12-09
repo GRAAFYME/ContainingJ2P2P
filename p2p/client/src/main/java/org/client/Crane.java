@@ -11,7 +11,6 @@ import com.jme3.scene.Spatial;
 public abstract class Crane extends Node implements MotionPathListener
 {
 	private final float SPEED = 0.5f;
-	private int action = 2;
 	private MotionPath pathCrane = new MotionPath();
 	private MotionPath pathSlider = new MotionPath();
 	private MotionPath pathHook = new MotionPath();
@@ -72,7 +71,7 @@ public abstract class Crane extends Node implements MotionPathListener
 		return this.position;
 	}
 	
-	public void animation(String id, final Vector3f[] des, final float sp)
+	public void animation(String id, int action, final Vector3f[] des, final float sp)
 	{
 		switch(action)
 		{
