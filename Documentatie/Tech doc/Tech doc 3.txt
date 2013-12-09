@@ -1,6 +1,9 @@
 Tech doc 3:
 
--..
+@Remco:
+- typefoutjes in protocol hoofdstuk
+
+
 -..
 
 
