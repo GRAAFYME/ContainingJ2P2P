@@ -116,7 +116,7 @@ public class Client extends SimpleApplication {
         GeometryBatchFactory.optimize(rootNode); 
     	initScene();
     	testShip();   
-    	testContainer();
+    	//testContainer();
     	loadAssets();
 
     	addAllAGVs(location);
@@ -196,8 +196,6 @@ public class Client extends SimpleApplication {
         xCoord = shipNode.getLocalTranslation().x-367;
         yCoord = shipNode.getLocalTranslation().y+220;
         zCoord = shipNode.getLocalTranslation().z+310;
-        
-    	//Container container = new Container(assetManager, new Vector3f(xCoord, yCoord, zCoord));
         
     	int containerCount = 0;
     	for(int y = 0; y < 6; y++)
@@ -355,8 +353,8 @@ public class Client extends SimpleApplication {
             	
                 if (name.equals("startAnimation") && keyPressed) 
                 {
-                	Vector3f [] des = new Vector3f [4];
-                	System.out.println("New Array");
+                	Vector3f [] des = new Vector3f [5];
+                	
                 	des[0] = new Vector3f(storageCranes[0].getLocalTranslation().x, 
                 			storageCranes[0].getLocalTranslation().y, -200);
                 	des[1] = new Vector3f(storageCranes[0].hookNode.getLocalTranslation().x,
@@ -365,8 +363,9 @@ public class Client extends SimpleApplication {
                 			storageCranes[0].getLocalTranslation().y, 70);
                 	des[3] = new Vector3f(storageCranes[0].hookNode.getLocalTranslation().x,
                 			39, storageCranes[0].hookNode.getLocalTranslation().z);
-                	System.out.println("Created array");
-                	storageCranes[0].animation(storageCranes[0].getId(), des, 0.5f);
+                	des[4] = new Vector3f(0,0,0);
+                	
+                	storageCranes[0].animation(storageCranes[0].getId(), 2, des, 0.5f);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {
