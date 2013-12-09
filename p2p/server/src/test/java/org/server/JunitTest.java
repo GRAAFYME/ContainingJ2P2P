@@ -2,6 +2,7 @@ package org.server;
 
 import static org.junit.Assert.*;
 
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,10 +16,9 @@ public class JunitTest {
 	@Test
 	public void Server()
 	{
-		//Dit stuk faalt denk ik?
 		Server test = new Server();
 		test.start(6666);
-		test.sendMessage("test");
+		//test.sendMessage("test");
 	}
 
     @Test
@@ -28,13 +28,14 @@ public class JunitTest {
     	final ContainerSetXml containers;
     	try
     	{
-    		containers = parser.parse("XML_files/xml1.xml");
+    		containers = parser.parse("XML_files/xml7.xml");
     		for (ContainerXml c : containers.containers) {
             	System.out.println(c.id + " Owner Name: " + c.ownerName +  "\n");
     		}
     	}
     	catch(Exception ex)
     	{
+    		fail("Test failed file not found.");
     	}
     	
     }

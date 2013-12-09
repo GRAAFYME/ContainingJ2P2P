@@ -6,9 +6,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,10 +26,9 @@ public class Main
    
    private static JLabel SpeedText = new JLabel("100");
    private static int Speed = 100;
-   private static String ServerStatus = "Offline";
-   private static JLabel serverstatus;
-   
-   
+   private static String ClientStatus = "Offline";
+   private static JLabel clientstatus;
+   private static JRadioButton enableHeartbeat;
    
    private static JPanel contentPane = new JPanel();
    private static JPanel textpanel = new JPanel();
@@ -36,11 +37,7 @@ public class Main
    
    public static void main(String args[]) 
    {
-
-	 server = new Server();
-  
-    //JFrame frame = new JFrame("Controller");
-    //frame.getContentPane().setBackground(Color.WHITE);
+	server = new Server();
     //Main panel
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	frame.setContentPane(contentPane);
@@ -63,7 +60,6 @@ public class Main
    private static void Menu()
    {
 	    menu = new JMenuBar();
-	    
 	    // File Menu
 	    JMenu fileMenu = new JMenu("File");
 	    menu.add(fileMenu);
@@ -114,14 +110,32 @@ public class Main
     */
    private static void ServerPanel()
    {
+	   serverpanel.setLayout(null);
 	   serverpanel.setBounds(400,350,240,280);
 	   serverpanel.setBorder(BorderFactory.createTitledBorder("Server"));
 	   //serverpanel.setBackground(Color.WHITE);'
-	   JLabel server = new JLabel("Server: ");
-	   serverstatus = new JLabel(ServerStatus);
+	   JLabel server = new JLabel("Client: ");
+	   clientstatus = new JLabel(ClientStatus);
+	   server.setBounds(10,20,40,20);
+	   clientstatus.setBounds(50,20,60,20);
 	   serverpanel.add(server);
-	   serverpanel.add(serverstatus);
+	   serverpanel.add(clientstatus);
 	   contentPane.add(serverpanel);
+	   
+		//Heartbeat Button!!
+		enableHeartbeat = new JRadioButton();
+	    JLabel Heartbeat = new JLabel("Heartbeat");
+	    Heartbeat.setBounds(30,45,70,30);
+	    enableHeartbeat.setBounds(10, 45, 20, 30);
+	    enableHeartbeat.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+			}   	
+	    });
+	    serverpanel.add(Heartbeat);
+	    serverpanel.add(enableHeartbeat);
+	    
    }
    
    /*
@@ -141,6 +155,7 @@ public class Main
    
    private static void InfoPanel()
    {
+	   boxpanel.setLayout(null);
 	   //Info Box for the Slider
 	    final JSlider slider = new JSlider(JSlider.HORIZONTAL,0,200,100);
 	    slider.setMajorTickSpacing(10);
@@ -165,6 +180,8 @@ public class Main
 	    });
 	    boxpanel.setBounds(400, 0, 240,350);
 	    //boxpanel.setBackground(Color.WHITE);
+	    slider.setBounds(10, 20, 220, 30);
+	    SpeedText.setBounds(110,40,30,30);
 	    boxpanel.add(slider);
 	    boxpanel.add(SpeedText);
 	    boxpanel.setBorder(BorderFactory.createTitledBorder("Simulatie"));
