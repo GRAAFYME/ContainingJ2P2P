@@ -6,7 +6,7 @@
 
 html 
 { 
-	height: 101%; 
+	height: 100%; /** used to be 101% **/
 }
 
 body 
