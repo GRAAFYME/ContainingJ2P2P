@@ -1,10 +1,12 @@
 Tech doc 3:
 
-@Remco:
-- typefoutjes in protocol hoofdstuk
-
-
--..
+Toevoegen:
+- Inleiding.. (Systeemoverzicht)
+- Hoofdstuk 5: up to date UML
+- de laatste zin van hoofdstuk protocol aanpassen
+- hoofdstuk algoritmes: uitwerking van A* en sorteerfunctie
+- Hoofdstuk functieoverzicht
++ zie tech doc 2
 
 
 
