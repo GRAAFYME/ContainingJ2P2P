@@ -47,7 +47,6 @@ public class AGV {
 		this.Name = Name;
 		MotionPath1();
 		addAGVcar(location);
-		// addAGVcar2(location);
 		initMotionControl();
 		MotionPath2();
 		MotionPath3();
@@ -67,20 +66,6 @@ public class AGV {
 		mat.getAdditionalRenderState().setWireframe(setWireFrame);
 		nodeAGV = new Node();
 		nodeAGV.attachChild(AGV); // make the AGV appear in the scene
-		AllAgvNodes.attachChild(nodeAGV);
-	}
-
-	public void addAGVcar2(Vector3f location) {
-		AGV2 = assetManager.loadModel("Models/AGV/AGV.obj");
-		AGV2.setLocalTranslation(location);
-		AGV2.scale(10);
-		Material mat = new Material(assetManager,
-				"Common/MatDefs/Misc/Unshaded.j3md");
-		mat.setColor("Color", ColorRGBA.Red);
-		AGV2.setMaterial(mat);
-		AGV2.setName("Name2");
-		nodeAGV = new Node();
-		nodeAGV.attachChild(AGV2); // make the AGV appear in the scene
 		AllAgvNodes.attachChild(nodeAGV);
 	}
 
