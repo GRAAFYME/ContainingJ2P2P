@@ -306,7 +306,7 @@ public class Client extends SimpleApplication {
     	for(int i = 1; i <= 10; i++)
     	{
     		String id = String.valueOf(i);
-    		Vector3f pos = new Vector3f(-275,260,-400+(i*80));
+    		Vector3f pos = new Vector3f(-680, 260, 150+(i*80));
     		Crane c = new SeaShipCrane(id, pos, ssCrane, ssSCrane, ssHCrane);
     		seaShipCranes[i-1] = c;
     		rootNode.attachChild(c);
@@ -325,6 +325,78 @@ public class Client extends SimpleApplication {
     		rootNode.attachChild(c);
     		c.setLocalTranslation(pos);
     	}
+    }
+    
+    private void getMessage()
+    {
+    	Container cont = new Container();
+    	int id = 1;
+    	float [] distance = new float []{};
+    	
+    	float x, y, z;
+    	x = (float) cont.getLocation().x;
+    	y = (float) cont.getLocation().y;
+    	z = (float) cont.getLocation().z;
+    	Vector3f conVector = new Vector3f(x, y, z);
+    	
+    	switch(id)
+    	{
+    		case 1:
+    		{
+    			for(Crane c : seaShipCranes)
+    			{
+    				distance = c.distance(conVector);
+    			}
+    		}
+    		case 2:
+    		{
+    			for(Crane c : truckCranes)
+    			{
+    				distance = c.distance(conVector);
+    			}
+    		}
+    		case 3:
+    		{
+    			for(Crane c : seaShipCranes)
+    			{
+    				distance = c.distance(conVector);
+    			}
+    		}
+    		case 4:
+    		{
+    			for(Crane c : seaShipCranes)
+    			{
+    				distance = c.distance(conVector);
+    			}
+    		}
+    		case 5:
+    		{
+    			for(Crane c : storageCranes)
+    			{
+    				distance = c.distance(conVector);
+    			}
+    		}
+    	}
+    	
+    	Vector3f [] des = new Vector3f [4];
+    	des[0] = new Vector3f(x,y,z); //Destination of the crane
+    	des[1] = new Vector3f(x,y,z); //Destination of the slider (if needed)
+    	des[2] = new Vector3f(x,y,z); //Destination of the hook
+    	des[3] = new Vector3f(x,y,z); //Destination of the slider back (if needed)
+    	des[4] = new Vector3f(x,y,z); //Destination of the hook back
+    	des[5] = new Vector3f(x,y,z); //Destination of the crane to storage (if needed)
+    	
+    	float smallest = 1000;
+    	for(int i = 0; i < distance.length; i++)
+    	{
+    		if(distance[i] < smallest)
+    		{
+    			smallest = distance[i];
+    			id = i;
+    		}
+    	}
+    	
+    	//TODO: Send the Vector3f of where the crane has to go
     }
 
     private void initInputs() {

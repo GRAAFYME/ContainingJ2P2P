@@ -17,6 +17,7 @@ public abstract class Crane extends Node implements MotionPathListener
 	private MotionEvent craneControl;
 	private MotionEvent sliderControl;
 	private MotionEvent hookControl;
+	private float [] distance = new float []{};
 	
 	protected Spatial crane;
 	protected Spatial slider;
@@ -69,6 +70,16 @@ public abstract class Crane extends Node implements MotionPathListener
 	public Vector3f getPosition()
 	{
 		return this.position;
+	}
+	
+	public float [] distance(Vector3f location)
+	{
+		int id = 0;
+		
+		distance[id] = location.distance(getPosition());
+		
+		id++;
+		return distance;
 	}
 	
 	public void animation(String id, int action, final Vector3f[] des, final float sp)
@@ -144,21 +155,21 @@ public abstract class Crane extends Node implements MotionPathListener
 					{
 						if (pathCrane.getNbWayPoints() == index + 1)
 						{
-							moveHook(des[1], sp);
+							moveHook(des[2], sp);
 							pathHook.addListener(new MotionPathListener()
 							{
 								public void onWayPointReach(MotionEvent me, int index) 
 								{
 									if (pathHook.getNbWayPoints() == index + 1)
 									{
-										moveCrane(des[2], sp);
+										moveCrane(des[5], sp);
 										pathCrane.addListener(new MotionPathListener()
 										{
 											public void onWayPointReach(MotionEvent me, int index) 
 											{
 												if (pathCrane.getNbWayPoints() == index + 1)
 												{
-													moveHook(des[3], sp);
+													moveHook(des[4], sp);
 													pathHook.addListener(new MotionPathListener()
 													{
 														public void onWayPointReach(MotionEvent me, int index) 
@@ -185,28 +196,28 @@ public abstract class Crane extends Node implements MotionPathListener
 			case 3:
 			{
 				//Storage to AGV
-				moveCrane(des[0], sp);
+				moveCrane(des[5], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
 					public void onWayPointReach(MotionEvent me, int index) 
 					{
 						if (pathCrane.getNbWayPoints() == index + 1)
 						{
-							moveHook(des[1], sp);
+							moveHook(des[4], sp);
 							pathHook.addListener(new MotionPathListener()
 							{
 								public void onWayPointReach(MotionEvent me, int index) 
 								{
 									if (pathHook.getNbWayPoints() == index + 1)
 									{
-										moveCrane(des[2], sp);
+										moveCrane(des[0], sp);
 										pathCrane.addListener(new MotionPathListener()
 										{
 											public void onWayPointReach(MotionEvent me, int index) 
 											{
 												if (pathCrane.getNbWayPoints() == index + 1)
 												{
-													moveHook(des[3], sp);
+													moveHook(des[2], sp);
 													pathHook.addListener(new MotionPathListener()
 													{
 														public void onWayPointReach(MotionEvent me, int index) 
@@ -240,28 +251,28 @@ public abstract class Crane extends Node implements MotionPathListener
 					{
 						if (pathCrane.getNbWayPoints() == index + 1)
 						{
-							moveHook(des[1], sp);
+							moveHook(des[4], sp);
 							pathHook.addListener(new MotionPathListener()
 							{
 								public void onWayPointReach(MotionEvent me, int index) 
 								{
 									if (pathHook.getNbWayPoints() == index + 1)
 									{
-										moveSlider(des[2], sp);
+										moveSlider(des[1], sp);
 										pathSlider.addListener(new MotionPathListener()
 										{
 											public void onWayPointReach(MotionEvent me, int index) 
 											{
 												if (pathSlider.getNbWayPoints() == index + 1)
 												{
-													moveHook(des[3], sp);
+													moveHook(des[2], sp);
 													pathHook.addListener(new MotionPathListener()
 													{
 														public void onWayPointReach(MotionEvent me, int index) 
 														{
 															if (pathHook.getNbWayPoints() == index + 1)
 															{
-																moveSlider(des[4], sp);
+																moveSlider(des[3], sp);
 																pathSlider.addListener(new MotionPathListener()
 																{
 																	public void onWayPointReach(MotionEvent me, int index) 
