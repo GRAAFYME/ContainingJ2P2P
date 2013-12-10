@@ -104,9 +104,7 @@ public class Client extends SimpleApplication {
     
     @Override
     public void simpleInitApp() {
-    	bulletAppState = new BulletAppState();
-        stateManager.attach(bulletAppState); 
-        
+    	
     	initInputs();
     	//initNifty();
     	
@@ -125,7 +123,7 @@ public class Client extends SimpleApplication {
         c = new networkClient(6666);
     	
         //Cam code
-	    cam.setLocation(new Vector3f(0f,300f,0f)); 
+	    cam.setLocation(new Vector3f(0f,260f,0f)); 
 	    flyCam.setMoveSpeed(300f);
 	    FBC = new FlyByCamera(cam, inputManager);
 	    
@@ -133,10 +131,6 @@ public class Client extends SimpleApplication {
         protocolParser = new ProtocolParser();
         //TODO: Remove this Network test code
         protocolTest();
-        
-        AmbientLight al = new AmbientLight();
-        al.setColor(ColorRGBA.White.mult(1.3f));
-        rootNode.addLight(al);
     }
     
     @Override
@@ -230,9 +224,15 @@ public class Client extends SimpleApplication {
     
     //creates most of the physics and scene logic
     public void initScene(){
-    	Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
+    	bulletAppState = new BulletAppState();
+        stateManager.attach(bulletAppState); 
+        Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
     	rootNode.attachChild(scene.sceneNode);  //adds the scene to the game
-    	 viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
+    	viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
+    	AmbientLight al = new AmbientLight();
+        al.setColor(ColorRGBA.White.mult(1.3f));
+        rootNode.addLight(al); 
+    	
 //	    waterNode = new Node("Water");
 //	    Water water = new Water(assetManager, waterNode);  //creates water
 //	    viewPort.addProcessor(water.fpp);  
