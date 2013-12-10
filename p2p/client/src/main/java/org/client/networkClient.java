@@ -36,6 +36,12 @@ public class networkClient {
 		}
 	}
 
+    //Server knows the magic word for a heartbeat
+    public void SendHeartbeat()
+    {
+        sendMessage("hb");
+    }
+
     //Give me a String and I'll pass it to the server
     public void sendMessage(String message)
     {

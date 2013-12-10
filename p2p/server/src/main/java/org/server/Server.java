@@ -40,6 +40,9 @@ public class Server implements Runnable
     private Thread thread;
     private boolean isRunning;
 
+    public boolean enableHeartbeat;
+    public int heartBeatTimeout;
+
     public static void main(String[] args) throws Exception
     {
         parser = new ProtocolParser();
@@ -203,6 +206,8 @@ public class Server implements Runnable
     public void run()
         {
             try {
+                String message = "";
+
                 isRunning = true;
                 //Wait till someone connects; this is a blocking method!!!!!!!!
                 System.out.println("Waiting till a client connects, I (Server server) won't do anything untill this happens!!!");
@@ -213,11 +218,31 @@ public class Server implements Runnable
                 reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
                 int counter = 0;
+                long lastIterationTime = System.nanoTime();
                 while(true)
                 {
-                    //This is the proper way to exit a thread, thread.stop() is bad?
+                    /////Things that exit this server thread go here
+                    //This is the proper way to exit a thread, thread.stop()/destroy()/etc() is bad?
                     if(isRunning == false)
                         stop();
+
+                    //Heartbeat check, If client hasn't responded for a while, presume disconnection
+                    if(enableHeartbeat || System.nanoTime() - lastIterationTime > heartBeatTimeout * 1000000)//10^-6
+                    {
+                        //exit from this thread
+                        return;
+                    }
+
+
+                    ////Server stuff goes down here
+                    //Check if the client said anything
+                    message = getMessages();
+
+                    //Has the client said anything? if so, reset timer.
+                    if(message != "")
+                    {
+                        lastIterationTime = System.nanoTime();
+                    }
 
                     Thread.sleep(100);
                     //Add tiny amount

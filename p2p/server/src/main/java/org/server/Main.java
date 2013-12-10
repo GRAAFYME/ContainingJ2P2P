@@ -6,11 +6,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -114,11 +112,11 @@ public class Main
 	   serverpanel.setBounds(400,350,240,280);
 	   serverpanel.setBorder(BorderFactory.createTitledBorder("Server"));
 	   //serverpanel.setBackground(Color.WHITE);'
-	   JLabel server = new JLabel("Client: ");
+	   JLabel serverLabel = new JLabel("Client: ");
 	   clientstatus = new JLabel(ClientStatus);
-	   server.setBounds(10,20,40,20);
+	   serverLabel.setBounds(10,20,40,20);
 	   clientstatus.setBounds(50,20,60,20);
-	   serverpanel.add(server);
+	   serverpanel.add(serverLabel);
 	   serverpanel.add(clientstatus);
 	   contentPane.add(serverpanel);
 	   
@@ -130,7 +128,10 @@ public class Main
 	    enableHeartbeat.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) 
 			{
-				
+                JRadioButton radioButton = (JRadioButton) e.getSource();
+                server.enableHeartbeat = radioButton.isSelected();
+                System.out.println("Server heartbeat has been toggled to" + ((radioButton.isSelected()) ? " On" : " Off"));
+
 			}   	
 	    });
 	    serverpanel.add(Heartbeat);
