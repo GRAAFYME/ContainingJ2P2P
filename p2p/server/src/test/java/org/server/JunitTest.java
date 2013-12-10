@@ -28,7 +28,7 @@ public class JunitTest {
     	final ContainerSetXml containers;
     	try
     	{
-    		containers = parser.parse("XML_files/xml7.xml");
+    		containers = parser.parse("data/xml7.xml");
     		for (ContainerXml c : containers.containers) {
             	System.out.println(c.id + " Owner Name: " + c.ownerName +  "\n");
     		}
