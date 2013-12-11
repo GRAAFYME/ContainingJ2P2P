@@ -165,7 +165,7 @@ public class Client extends SimpleApplication {
 
         //To let the server know we're still alive, server will get confused and presume disconnection
         //when you've hit a breakpoint, but that's why heartbeat timeout @ server is disabled by default
-        c.SendHeartbeat();
+        //c.SendHeartbeat();
     }
      
     public void addAllAGVs(Vector3f location){
