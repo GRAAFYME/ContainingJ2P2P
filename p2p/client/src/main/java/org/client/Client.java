@@ -1,9 +1,5 @@
 package org.client;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -24,16 +20,16 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
-
 import de.lessvoid.nifty.Nifty;
-
+import jme3tools.optimize.GeometryBatchFactory;
 import org.protocol.Container;
 import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
 
-import jme3tools.optimize.GeometryBatchFactory;
-
 import javax.vecmath.Point3d;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /*
  * Authors
@@ -166,7 +162,11 @@ public class Client extends SimpleApplication {
                 System.out.println("Received incorrect package: \n\n" +  e.getMessage());
             }
         }
-    }    
+
+        //To let the server know we're still alive, server will get confused and presume disconnection
+        //when you've hit a breakpoint, but that's why heartbeat timeout @ server is disabled by default
+        c.SendHeartbeat();
+    }
      
     public void addAllAGVs(Vector3f location){
         AGVList = new ArrayList<AGV>();       //agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
