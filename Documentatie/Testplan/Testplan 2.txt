@@ -8,5 +8,11 @@ Testplan 2:
 - Hoofstuk 2: IEEE zie testplan 1
 
 
+- Test Techniques
+- Test Deliverables
+- Optimalisation
+- Coverage
+
+
 
 Inleveren donderdag 12 december 2013...!
