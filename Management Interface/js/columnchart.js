@@ -36,7 +36,8 @@ $(function ()
 		
 		// Set chart options
 		var options = 
-		{	
+		{
+			'title': 'Deze grafiek wordt elke 30 seconden automatisch ververst.', 		
 			'width': '100%',
 			'height': 500,
 			hAxis: 
@@ -67,7 +68,7 @@ $(function ()
 			window.attachEvent('onresize', resizeHandler);
 		}
 		
-		// Renew the chart every 60 seconds.
-		setInterval(drawChart, 60000);
+		// Renew the chart every 30 seconds.
+		setInterval(drawChart, 30000);
 	}
 });
