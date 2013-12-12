@@ -65,7 +65,8 @@ public class Scene {
 	
     //creates and loads the scene    
     public void initScene(){
-    	sceneModel = assetManager.loadModel("/Scenes/PlatformScene.j3o");
+    	//sceneModel = assetManager.loadModel("/Scenes/PlatformScene.j3o");
+    	sceneModel = assetManager.loadModel("/Models/platformmodel_1/platformmodel.j3o");
         sceneShape = CollisionShapeFactory.createMeshShape(sceneModel);
         rbc = new RigidBodyControl(sceneShape, 0);
         sceneNode.attachChild(sceneModel);   //adds the sceneModel to the world

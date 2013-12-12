@@ -233,10 +233,10 @@ public class Client extends SimpleApplication {
         al.setColor(ColorRGBA.White.mult(1.3f));
         rootNode.addLight(al); 
     	
-//	    waterNode = new Node("Water");
-//	    Water water = new Water(assetManager, waterNode);  //creates water
-//	    viewPort.addProcessor(water.fpp);  
-//	    rootNode.attachChild(waterNode);  //adds water to the world
+	    waterNode = new Node("Water");
+	    Water water = new Water(assetManager, waterNode);  //creates water
+	    viewPort.addProcessor(water.fpp);  
+	    rootNode.attachChild(waterNode);  //adds water to the world
     }
     
     public void loadAssets()
