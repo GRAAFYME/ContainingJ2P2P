@@ -21,7 +21,7 @@ public class FlyByCamera implements AnalogListener, ActionListener {
     private boolean enabled = true;
     private InputManager inputManager;
     private boolean coords = true;
-    public static boolean coordtest = true;
+    public static boolean coordtest = false;
    
 
     public FlyByCamera(Camera cam, InputManager inputManager){
