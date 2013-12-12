@@ -300,7 +300,7 @@ public class Client extends SimpleApplication {
         for (int i = 1; i <= 20; i++) 
         {
             String id = String.valueOf(i);
-            Vector3f pos = new Vector3f(-480+(i*60), 260, 650);
+            Vector3f pos = new Vector3f(-520+(i*60), 255, 715);
             Crane c = new StorageCrane(id, pos, stCrane, stSCrane, stHCrane);
             storageCranes[i - 1] = c;
             rootNode.attachChild(c);
@@ -326,7 +326,7 @@ public class Client extends SimpleApplication {
     	for(int i = 1; i <= 20; i++)
     	{
     		String id = String.valueOf(i);
-    		Vector3f pos = new Vector3f(400+(i*50),260,375);
+    		Vector3f pos = new Vector3f(400+(i*50), 255, 375);
     		Crane c = new TruckCrane(id, pos, tCrane, tSCrane, tHCrane);
     		truckCranes[i-1] = c;
     		rootNode.attachChild(c);
