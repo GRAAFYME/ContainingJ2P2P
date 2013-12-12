@@ -82,7 +82,7 @@ public abstract class Crane extends Node implements MotionPathListener
 		return distance;
 	}
 	
-	public void animation(String id, int action, final Vector3f[] des, final float sp)
+	public void animation(int action, final Vector3f[] des, final float sp)
 	{
 		switch(action)
 		{
@@ -155,21 +155,21 @@ public abstract class Crane extends Node implements MotionPathListener
 					{
 						if (pathCrane.getNbWayPoints() == index + 1)
 						{
-							moveHook(des[2], sp);
+							moveHook(des[1], sp);
 							pathHook.addListener(new MotionPathListener()
 							{
 								public void onWayPointReach(MotionEvent me, int index) 
 								{
 									if (pathHook.getNbWayPoints() == index + 1)
 									{
-										moveCrane(des[5], sp);
+										moveCrane(des[2], sp);
 										pathCrane.addListener(new MotionPathListener()
 										{
 											public void onWayPointReach(MotionEvent me, int index) 
 											{
 												if (pathCrane.getNbWayPoints() == index + 1)
 												{
-													moveHook(des[4], sp);
+													moveHook(des[3], sp);
 													pathHook.addListener(new MotionPathListener()
 													{
 														public void onWayPointReach(MotionEvent me, int index) 
@@ -196,28 +196,28 @@ public abstract class Crane extends Node implements MotionPathListener
 			case 3:
 			{
 				//Storage to AGV
-				moveCrane(des[5], sp);
+				moveCrane(des[0], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
 					public void onWayPointReach(MotionEvent me, int index) 
 					{
 						if (pathCrane.getNbWayPoints() == index + 1)
 						{
-							moveHook(des[4], sp);
+							moveHook(des[1], sp);
 							pathHook.addListener(new MotionPathListener()
 							{
 								public void onWayPointReach(MotionEvent me, int index) 
 								{
 									if (pathHook.getNbWayPoints() == index + 1)
 									{
-										moveCrane(des[0], sp);
+										moveCrane(des[2], sp);
 										pathCrane.addListener(new MotionPathListener()
 										{
 											public void onWayPointReach(MotionEvent me, int index) 
 											{
 												if (pathCrane.getNbWayPoints() == index + 1)
 												{
-													moveHook(des[2], sp);
+													moveHook(des[3], sp);
 													pathHook.addListener(new MotionPathListener()
 													{
 														public void onWayPointReach(MotionEvent me, int index) 
