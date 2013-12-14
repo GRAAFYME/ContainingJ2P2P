@@ -498,23 +498,32 @@ public class Client extends SimpleApplication {
             	
                 if (name.equals("startAnimation") && keyPressed) 
                 {
-                	Vector3f [] des = new Vector3f [5];
-                	int id = 1;
-                	Map<String, Vector3f> spot = storage.storageSpots.get("1");
-                	Vector3f spotje = spot.get("1");
+                	Vector3f [] des = new Vector3f [6];
+                	int id = 0;
+                	Map<String, Vector3f> spot = storage.storageSpots.get("0");
+                	Vector3f spotje = spot.get("52");
                 	
                 	Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());
+                	Vector3f startPosSlider = new Vector3f(storageCranes[id].sliderNode.getLocalTranslation());
                 	Vector3f startPosHook = new Vector3f(storageCranes[id].hookNode.getLocalTranslation());
         			
         			des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,spotje.z); //Destination of the crane
-        	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
-                	if(startPosCrane.z > 400) //Destination of the crane
-                		des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z);
+        			des[1] = new Vector3f(startPosSlider.x + spotje.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
+        	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-33,startPosHook.z); //Destination of the hook
+                	if(startPosCrane.z > 415) //Destination of the crane
+                	{
+                		des[5] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z);
+                		System.out.println("> 415");
+                	}
                 	else
-                		des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z+400);
-        	    	des[3] = new Vector3f(startPosHook.x,startPosHook.y-22+(id*2.5f),startPosHook.z); //Destination of the hook
+                	{
+                		des[5] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-600);
+                		System.out.println("< 415");
+                	}
+                	des[3] = new Vector3f(startPosSlider.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
+        	    	des[4] = new Vector3f(startPosHook.x,startPosHook.y - 33+spotje.y,startPosHook.z); //Destination of the hook
         	    	
-        	    	storageCranes[id].animation(2, des, 0.5f);
+        	    	storageCranes[id].animation(3, des, 0.5f);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {

@@ -27,8 +27,7 @@ public class Storage
 				{
 					for(int z = 0; z < 44; z++)
 					{
-						//TODO: Width isn't right yet (I think :))
-						Vector3f spot = new Vector3f(-470+(i*20)+(x*2.5f),260+(y*2.5f),715+(z*15));
+						Vector3f spot = new Vector3f((i*20)+(x*2.5f),(y*2.5f),715-7.5f-(z*15));
 						spots.put(String.valueOf(counter+1), spot);
 						counter++;
 					}
