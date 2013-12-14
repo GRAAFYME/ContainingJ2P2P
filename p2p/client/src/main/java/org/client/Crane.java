@@ -313,10 +313,62 @@ public abstract class Crane extends Node
 						}
 					}
 				});
+				break;
 			}
 			case 6:
 			{
 				//AGV to Train & Truck
+				moveHook(des[1], sp);
+				pathHook.addListener(new MotionPathListener()
+				{
+					public void onWayPointReach(MotionEvent me, int index) 
+					{
+						if(pathHook.getNbWayPoints() == index + 1)
+						{
+							hookControl.stop();
+							moveCrane(des[2], sp);
+							pathCrane.addListener(new MotionPathListener()
+							{
+								public void onWayPointReach(MotionEvent me2, int index2)
+								{
+									if(pathCrane.getNbWayPoints() == index2 + 1)
+									{
+										craneControl.stop();
+										moveHook(des[1], sp);
+										pathHook.addListener(new MotionPathListener()
+										{
+											public void onWayPointReach(MotionEvent me3, int index3)
+											{
+												if(pathHook.getNbWayPoints() == index3 + 1)
+												{
+													hookControl.stop();
+													craneControl.stop();
+													moveCrane(des[0], sp);
+													pathCrane.addListener(new MotionPathListener()
+													{
+														public void onWayPointReach(MotionEvent me4,int index4)
+														{
+															if(pathCrane.getNbWayPoints() == index4 + 1)
+															{
+																craneControl.stop();
+																hookControl.stop();
+																//System.out.println("CraneControl: " + craneControl.getPlayState());
+																//System.out.println("SliderControl: " + sliderControl.getPlayState());
+																//System.out.println("HookControl: " + hookControl.getPlayState());
+																//System.exit(1);
+															}
+														}
+													});
+												}
+											}
+										});
+									}
+								}
+							});
+						}
+					}
+				});
+				break;
 			}
 		}
 	}

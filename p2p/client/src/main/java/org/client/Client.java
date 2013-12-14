@@ -421,15 +421,17 @@ public class Client extends SimpleApplication {
     		}
     		case 2:
     		{
-    	    	des[0] = new Vector3f(x,y,z); //Destination of the crane
-    	    	des[1] = new Vector3f(x,y,z); //Destination of the hook
-    	    	des[2] = new Vector3f(x,y,z); //Destination of the crane
-    	    	des[3] = new Vector3f(x,y,z); //Destination of the hook
+            	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
+            	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
+            	
+    	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
+    	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
+    	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
     	    	
     			if(direction)
-    				truckCranes[id].animation(2, des, 0.5f);
+    				truckCranes[id].animation(5, des, 0.5f);
     			else
-    				truckCranes[id].animation(3, des, 0.5f);
+    				truckCranes[id].animation(6, des, 0.5f);
     		}
     		case 3:
     		{
@@ -519,14 +521,13 @@ public class Client extends SimpleApplication {
                 	int id = 0;
                 	
                 	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
-                	Vector3f startPosSlider = new Vector3f(truckCranes[id].sliderNode.getLocalTranslation());
                 	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
                 	
         	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
         	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
         	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
         	    	
-        	    	truckCranes[id].animation(5, des, 0.5f);
+        	    	truckCranes[id].animation(6, des, 0.5f);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {
