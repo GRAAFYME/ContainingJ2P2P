@@ -1,6 +1,5 @@
 package org.client;
 
-import com.jme3.cinematic.MotionPathListener;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
@@ -9,7 +8,7 @@ import com.jme3.scene.Spatial;
  *
  * @author Melinda
  */
-public class StorageCrane extends Crane implements MotionPathListener
+public class StorageCrane extends Crane
 {    
 	public StorageCrane(String id, Vector3f position, Spatial crane, Spatial slider, Spatial hook) 
 	{

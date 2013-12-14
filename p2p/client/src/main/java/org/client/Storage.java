@@ -18,21 +18,21 @@ public class Storage
 	
 	private void create()
 	{
-		for(int y = 0; y < 6; y++)
+		
+		for(int i = 0; i < 20; i++)
 		{
-			for(int x = 0; x < 6; x++)
+			for(int y = 0; y < 6; y++)
 			{
-				for(int z = 0; z < 46; z++)
+				for(int x = 0; x < 6; x++)
 				{
-					Vector3f spot = new Vector3f(x,y,z);
-					spots.put(String.valueOf(counter+1), spot);
-					counter++;
+					for(int z = 0; z < 44; z++)
+					{
+						Vector3f spot = new Vector3f((i*20)+(x*2.5f),(y*2.5f),715-7.5f-(z*15));
+						spots.put(String.valueOf(counter+1), spot);
+						counter++;
+					}
 				}
 			}
-		}
-		
-		for(int i = 1; i <=20; i++)
-		{
 			storageSpots.put(String.valueOf(i), spots);
 		}
 	}

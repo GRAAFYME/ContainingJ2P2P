@@ -28,9 +28,8 @@ public class AGV {
 
 	boolean setWireFrame;
 	public MotionPath path, path2, path3, path4;
-	public MotionEvent motionControl, motionControl2, motionControl3,
-			motionControl4;
-	private Spatial AGV, AGV2;
+	public MotionEvent motionControl, motionControl2, motionControl3, motionControl4;
+	private Spatial AGV;
 	public BitmapText wayPointsText;
 	private AssetManager assetManager;
 	private BitmapFont guiFont;
@@ -57,10 +56,9 @@ public class AGV {
 
 		AGV = assetManager.loadModel("Models/AGV/AGV.obj");
 		AGV.setLocalTranslation(location);
-		AGV.scale(10);
-		Material mat = new Material(assetManager,
-				"Common/MatDefs/Misc/Unshaded.j3md");
-		mat.setColor("Color", ColorRGBA.Green);
+		AGV.scale(2.5f);
+		Material mat = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
+		//mat.setColor("Color", ColorRGBA.Green);
 		AGV.setMaterial(mat);
 		AGV.setName(Name);
 		mat.getAdditionalRenderState().setWireframe(setWireFrame);
@@ -72,10 +70,9 @@ public class AGV {
 	public void initMotionControl() {
 		motionControl = new MotionEvent(AGV, path);
 		motionControl.setDirectionType(MotionEvent.Direction.Path);
-		motionControl.setRotation(new Quaternion().fromAngleNormalAxis(
-				-FastMath.HALF_PI, Vector3f.UNIT_Y));
-		motionControl.setInitialDuration(5f);
-		motionControl.setSpeed(2f);
+		motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
+		motionControl.setInitialDuration(0.5f);
+		motionControl.setSpeed(0.5f);
 		// guiFont = assetManager.loadFont("Interface/Fonts/Default.fnt");
 		path.addListener(new MotionPathListener() {
 
@@ -87,8 +84,8 @@ public class AGV {
 					motionControl2.setRotation(new Quaternion()
 							.fromAngleNormalAxis(-FastMath.HALF_PI,
 									Vector3f.UNIT_Y));
-					motionControl2.setInitialDuration(5f);
-					motionControl2.setSpeed(2f);
+					motionControl2.setInitialDuration(0.5f);
+					motionControl2.setSpeed(0.5f);
 					motionControl2.play();
 
 					path2.addListener(new MotionPathListener() {
@@ -101,8 +98,8 @@ public class AGV {
 								motionControl3.setRotation(new Quaternion()
 										.fromAngleNormalAxis(-FastMath.HALF_PI,
 												Vector3f.UNIT_Y));
-								motionControl3.setInitialDuration(10f);
-								motionControl3.setSpeed(2f);
+								motionControl3.setInitialDuration(0.5f);
+								motionControl3.setSpeed(0.5f);
 								motionControl3.play();
 
 								path3.addListener(new MotionPathListener() {
@@ -121,7 +118,7 @@ public class AGV {
 																	-FastMath.HALF_PI,
 																	Vector3f.UNIT_Y));
 											motionControl4
-													.setInitialDuration(10f);
+													.setInitialDuration(1f);
 											motionControl4.setSpeed(2f);
 											motionControl4.play();
 										}
@@ -136,92 +133,56 @@ public class AGV {
 			}
 		});
 	}
-
-//	public void MotionPath1() {
-//		path = new MotionPath();
-//		path.addWayPoint(new Vector3f(26, 260, 261));
-//		path.addWayPoint(new Vector3f(-117, 260, 261));
-//		path.addWayPoint(new Vector3f(-117, 260, 336));
-//		path.setCurveTension(0.3f);
-//		path.enableDebugShape(assetManager, AllAgvNodes);
-//
-//	}
-//
-//	public void MotionPath2() {
-//		path2 = new MotionPath();
-//		path2.addWayPoint(new Vector3f(-118, 260, 338));
-//		path2.addWayPoint(new Vector3f(212, 260, 336));
-//		path2.addWayPoint(new Vector3f(212, 260, 407));
-//		path2.setCurveTension(0.3f);
-//		path2.enableDebugShape(assetManager, AllAgvNodes);
-//
-//	}
-//
-//	public void MotionPath3() {
-//		path3 = new MotionPath();
-//		path3.addWayPoint(new Vector3f(211, 260, 409));
-//		path3.addWayPoint(new Vector3f(435, 260, 336));
-//		path3.addWayPoint(new Vector3f(435, 260, 404));
-//		path3.addWayPoint(new Vector3f(1480, 260, 336));
-//		path3.addWayPoint(new Vector3f(1480, 260, -310));
-//		path3.addWayPoint(new Vector3f(522, 260, -310));
-//		path3.setCurveTension(0.3f);
-//		path3.enableDebugShape(assetManager, AllAgvNodes);
-//
-//	}
-
-//	public void MotionPath4() {
-//	path4 = new MotionPath();
-//	path4.addWayPoint(new Vector3f(523, 260, -312));
-//	path4.addWayPoint(new Vector3f(240, 260f, 50));
-//	path4.addWayPoint(new Vector3f(260, 260f, 80));
-//	path4.addWayPoint(new Vector3f(500, 260f, 250));
-//	path4.setCurveTension(0.3f);
-//	path4.enableDebugShape(assetManager, AllAgvNodes);
-//
-//}
 	
+	public void WayUpFull(){
+	
+	}
+	public void WayUpEmpty(){
+		
+	}
+	public void WayDownFull(){
+		
+	}
+	public void WayDownEmpty(){
+		
+	}
+
 	public void MotionPath1() {
 		path = new MotionPath();
-		path.addWayPoint(new Vector3f(1087.0f, 260.0f, 119.0f));
-		path.addWayPoint(new Vector3f(-510.0f, 260.0f, 119.0f));
-		path.addWayPoint(new Vector3f(-510.0f, 260.0f, 765.0f));
-		path.addWayPoint(new Vector3f(1087.0f, 260.0f, 765.0f));
-		path.setCurveTension(0.3f);
+		path.addWayPoint(new Vector3f(778.0f, 260.0f, 152.0f));
+		path.addWayPoint(new Vector3f(778.0f, 260.0f, 131.0f));
+
+		path.setCurveTension(0.0f);
 		path.enableDebugShape(assetManager, AllAgvNodes);
 
 	}
-
 	public void MotionPath2() {
 		path2 = new MotionPath();
-		path2.addWayPoint(new Vector3f(1082.33f, 260.0f, 126.66f));
-		path2.addWayPoint(new Vector3f(-500.0f, 260.0f, 126.66f));
-		path2.addWayPoint(new Vector3f(-500.0f, 260.0f, 756.66f));
-		path2.addWayPoint(new Vector3f(1082.33f, 260.0f, 756.66f));
-		path2.setCurveTension(0.3f);
+		path2.addWayPoint(new Vector3f(778.0f, 260.0f, 131.0f));
+		path2.addWayPoint(new Vector3f(-685, 260.0f, 131f));
+		path2.setCurveTension(0.f);
 		path2.enableDebugShape(assetManager, AllAgvNodes);
 
 	}
 
 	public void MotionPath3() {
 		path3 = new MotionPath();
-		path3.addWayPoint(new Vector3f(1073.66f, 260.0f, 134.33f));
-		path3.addWayPoint(new Vector3f(-490.0f, 260.0f, 134.33f));
-		path3.addWayPoint(new Vector3f(-490.0f, 260.0f, 748.33f));
-		path3.addWayPoint(new Vector3f(1073.66f, 260.0f, 748.33f));
-		path3.setCurveTension(0.3f);
+		path3.addWayPoint(new Vector3f(-685, 260.0f, 131f));
+		path3.addWayPoint(new Vector3f(-685.0f, 260.0f, 700));
+
+		path3.setCurveTension(0.0f);
 		path3.enableDebugShape(assetManager, AllAgvNodes);
 
 	}
+
 	public void MotionPath4() {
 		path4 = new MotionPath();
 		path4.addWayPoint(new Vector3f(1067.0f, 260.0f, 142.0f));
 		path4.addWayPoint(new Vector3f(-480.0f, 260.0f, 142.0f));
 		path4.addWayPoint(new Vector3f(-480.0f, 260.0f, 740.0f));
 		path4.addWayPoint(new Vector3f(1067.0f, 260.0f, 740.0f));
-		path4.setCurveTension(0.3f);
+		path4.setCurveTension(0.0f);
 		path4.enableDebugShape(assetManager, AllAgvNodes);
 
 	}
-
 }
