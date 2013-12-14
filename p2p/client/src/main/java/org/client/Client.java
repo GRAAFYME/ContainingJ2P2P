@@ -326,7 +326,7 @@ public class Client extends SimpleApplication {
     	for(int i = 1; i <= 20; i++)
     	{
     		String id = String.valueOf(i);
-    		Vector3f pos = new Vector3f(400+(i*50), 255, 375);
+    		Vector3f pos = new Vector3f(250+(i*40), 255, 90);
     		Crane c = new TruckCrane(id, pos, tCrane, tSCrane, tHCrane);
     		truckCranes[i-1] = c;
     		rootNode.attachChild(c);
@@ -417,7 +417,7 @@ public class Client extends SimpleApplication {
     			if(direction)
     				seaShipCranes[id].animation(1, des, 0.5f);
     			else
-    				seaShipCranes[id].animation(4, des, 0.5f);
+    				seaShipCranes[id].animation(2, des, 0.5f);
     		}
     		case 2:
     		{
@@ -433,6 +433,7 @@ public class Client extends SimpleApplication {
     		}
     		case 3:
     		{
+    			//TODO: Train crane
     			des[0] = new Vector3f(x,y,z); //Destination of the crane
     	    	des[1] = new Vector3f(x,y,z); //Destination of the hook
     	    	des[2] = new Vector3f(x,y,z); //Destination of the crane
@@ -445,6 +446,7 @@ public class Client extends SimpleApplication {
     		}
     		case 4:
     		{
+    			//TODO: Barge crane
     			if(direction)
     				truckCranes[id].animation(1, des, 0.5f);
     			else
@@ -452,24 +454,39 @@ public class Client extends SimpleApplication {
     		}
     		case 5:
     		{
-    			Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());
+            	Map<String, Vector3f> spot = storage.storageSpots.get("0"); //TODO: Get the right lane of the crane
+            	Vector3f spotje = spot.get("254"); //TODO: Get the right spot on that lane
+            	
+            	Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());
+            	Vector3f startPosSlider = new Vector3f(storageCranes[id].sliderNode.getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(storageCranes[id].hookNode.getLocalTranslation());
     			
-    			des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z); //Destination of the crane
-    	    	des[1] = new Vector3f(x,y,z); //Destination of the hook
-            	if(cont.location.z > 400) //Destination of the crane
-            		des[2] = new Vector3f(x,y,z);
+    			des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,spotje.z); //Destination of the crane
+    			des[1] = new Vector3f(startPosSlider.x + spotje.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
+    	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-33,startPosHook.z); //Destination of the hook
+            	if(spotje.z > 415) //Destination of the crane
+            	{
+            		des[3] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z);
+            		System.out.println("> 415");
+            	}
             	else
-            		des[2] = new Vector3f(x,y,z);
-    	    	des[3] = new Vector3f(x,y,z); //Destination of the hook
+            	{
+            		des[3] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-555);
+            		System.out.println("< 415");
+            	}
+            	des[4] = new Vector3f(startPosSlider.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
+    	    	des[5] = new Vector3f(startPosHook.x,startPosHook.y - 33+spotje.y,startPosHook.z); //Destination of the hook
     	    	
-    			if(direction)
-    				storageCranes[id].animation(2, des, 0.5f);
-    			else
-    				storageCranes[id].animation(3, des, 0.5f);
+    	    	if(direction)
+    	    	{
+    	    		storageCranes[id].animation(3, des, 0.5f);
+    	    	}
+    	    	else
+    	    	{
+    	    		storageCranes[id].animation(4, des, 0.5f);
+    	    	}
     		}
     	}
-    	//TODO: Send the Vector3f of where the crane has to go
     }
 
     private void initInputs() {
@@ -500,30 +517,16 @@ public class Client extends SimpleApplication {
                 {
                 	Vector3f [] des = new Vector3f [6];
                 	int id = 0;
-                	Map<String, Vector3f> spot = storage.storageSpots.get("0");
-                	Vector3f spotje = spot.get("52");
                 	
-                	Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());
-                	Vector3f startPosSlider = new Vector3f(storageCranes[id].sliderNode.getLocalTranslation());
-                	Vector3f startPosHook = new Vector3f(storageCranes[id].hookNode.getLocalTranslation());
-        			
-        			des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,spotje.z); //Destination of the crane
-        			des[1] = new Vector3f(startPosSlider.x + spotje.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
-        	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-33,startPosHook.z); //Destination of the hook
-                	if(startPosCrane.z > 415) //Destination of the crane
-                	{
-                		des[5] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z);
-                		System.out.println("> 415");
-                	}
-                	else
-                	{
-                		des[5] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-600);
-                		System.out.println("< 415");
-                	}
-                	des[3] = new Vector3f(startPosSlider.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
-        	    	des[4] = new Vector3f(startPosHook.x,startPosHook.y - 33+spotje.y,startPosHook.z); //Destination of the hook
+                	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
+                	Vector3f startPosSlider = new Vector3f(truckCranes[id].sliderNode.getLocalTranslation());
+                	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
+                	
+        	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
+        	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
+        	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
         	    	
-        	    	storageCranes[id].animation(3, des, 0.5f);
+        	    	truckCranes[id].animation(5, des, 0.5f);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {

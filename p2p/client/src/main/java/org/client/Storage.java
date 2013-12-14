@@ -27,7 +27,7 @@ public class Storage
 				{
 					for(int z = 0; z < 44; z++)
 					{
-						Vector3f spot = new Vector3f((i*20)+(x*2.5f),(y*2.5f),715-7.5f-(z*15));
+						Vector3f spot = new Vector3f((i*20)-8.75f+(x*2.5f),(y*2.5f),715-7.5f-(z*15));
 						spots.put(String.valueOf(counter+1), spot);
 						counter++;
 					}

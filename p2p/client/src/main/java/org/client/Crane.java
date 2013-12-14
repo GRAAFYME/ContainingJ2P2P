@@ -4,12 +4,11 @@ import com.jme3.animation.LoopMode;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.cinematic.events.MotionEvent;
-import com.jme3.math.Spline;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
-public abstract class Crane extends Node implements MotionPathListener
+public abstract class Crane extends Node
 {
 	private final float SPEED = 0.5f;
 	private MotionPath pathCrane = new MotionPath();
@@ -82,196 +81,104 @@ public abstract class Crane extends Node implements MotionPathListener
 		return distance;
 	}
 	
-	public void animation(int action, final Vector3f[] des, final float sp)
+	public void animation(int road, final Vector3f[] des, final float sp)
 	{
-		switch(action)
+		switch(road)
 		{
 			case 1:
 			{
-				//Vehicle to AGV
+				//Sea & Barge to AGV
 				moveCrane(des[0], sp);
-				pathCrane.addListener(new MotionPathListener()
-				{
-					public void onWayPointReach(MotionEvent me, int index) 
-					{
-						if (pathCrane.getNbWayPoints() == index + 1)
-						{
-							moveSlider(des[1], sp);
-							pathSlider.addListener(new MotionPathListener()
-							{
-								public void onWayPointReach(MotionEvent me, int index) 
-								{
-									if (pathSlider.getNbWayPoints() == index + 1)
-									{
-										moveHook(des[2], sp);
-										pathHook.addListener(new MotionPathListener()
-										{
-											public void onWayPointReach(MotionEvent me, int index) 
-											{
-												if (pathHook.getNbWayPoints() == index + 1)
-												{
-													moveSlider(des[3], sp);
-													pathSlider.addListener(new MotionPathListener()
-													{
-														public void onWayPointReach(MotionEvent me, int index) 
-														{
-															if (pathSlider.getNbWayPoints() == index + 1)
-															{
-																moveHook(des[4], sp);
-																pathHook.addListener(new MotionPathListener()
-																{
-																	public void onWayPointReach(MotionEvent me, int index) 
-																	{
-																		if (pathHook.getNbWayPoints() == index + 1)
-																		{			
-																			craneControl.stop();
-																			sliderControl.stop();
-																			hookControl.stop();
-																		}
-																	}
-																});
-															}
-														}
-													});
-												}
-											}
-										});
-									}
-								}
-							});
-						}
-					}
-					
-				});
 				break;
 			}
 			case 2:
 			{
-				//AGV to vehicle
+				//AGV to Sea & Barge
 				moveCrane(des[0], sp);
-				System.out.println("moveCrane");
-				pathCrane.addListener(new MotionPathListener()
-				{
-					public void onWayPointReach(MotionEvent me, int index) 
-					{
-						if (pathCrane.getNbWayPoints() == index + 1)
-						{
-							moveHook(des[4], sp);
-							System.out.println("moveHook");
-							pathHook.addListener(new MotionPathListener()
-							{
-								public void onWayPointReach(MotionEvent me, int index) 
-								{
-									if (pathHook.getNbWayPoints() == index + 1)
-									{
-										moveSlider(des[1], sp);
-										
-										pathSlider.addListener(new MotionPathListener()
-										{
-											public void onWayPointReach(MotionEvent me, int index) 
-											{
-												if (pathSlider.getNbWayPoints() == index + 1)
-												{
-													moveHook(des[2], sp);
-													pathHook.addListener(new MotionPathListener()
-													{
-														public void onWayPointReach(MotionEvent me, int index) 
-														{
-															if (pathHook.getNbWayPoints() == index + 1)
-															{
-																moveSlider(des[3], sp);
-																pathSlider.addListener(new MotionPathListener()
-																{
-																	public void onWayPointReach(MotionEvent me, int index) 
-																	{
-																		if (pathSlider.getNbWayPoints() == index + 1)
-																		{			
-																			craneControl.stop();
-																			sliderControl.stop();
-																			hookControl.stop();
-																		}
-																	}
-																});
-															}
-														}
-													});
-												}
-											}
-										});
-									}
-								}
-							});
-						}
-					}
-					
-				});
 				break;
 			}
 			case 3:
 			{
 				//AGV to Storage
-				moveCrane(des[5], sp);
+				moveCrane(des[3], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
 					public void onWayPointReach(MotionEvent me, int index) 
 					{
-						if (pathCrane.getNbWayPoints() == index + 1)
+						if(pathCrane.getNbWayPoints() == index + 1)
 						{
+							craneControl.stop();
 							moveHook(des[2], sp);
 							pathHook.addListener(new MotionPathListener()
 							{
-								public void onWayPointReach(MotionEvent me, int index) 
+								public void onWayPointReach(MotionEvent me2,int index2) 
 								{
-									if (pathHook.getNbWayPoints() == index + 1)
+									if(pathHook.getNbWayPoints() == index2 + 1)
 									{
+										hookControl.stop();
 										moveCrane(des[0], sp);
 										pathCrane.addListener(new MotionPathListener()
 										{
-											public void onWayPointReach(MotionEvent me, int index) 
+											public void onWayPointReach(MotionEvent me3, int index3)
 											{
-												if (pathCrane.getNbWayPoints() == index + 1)
+												if(pathCrane.getNbWayPoints() == index3 + 1)
 												{
+													craneControl.stop();
+													hookControl.stop();
 													moveSlider(des[1], sp);
 													pathSlider.addListener(new MotionPathListener()
 													{
-														public void onWayPointReach(MotionEvent me, int index) 
+														public void onWayPointReach(MotionEvent me4, int index4)
 														{
-															if (pathSlider.getNbWayPoints() == index + 1)
+															if(pathSlider.getNbWayPoints() == index4 + 1)
 															{
-																moveHook(des[4], sp);
+																sliderControl.stop();
+																moveHook(des[5], sp);
 																pathHook.addListener(new MotionPathListener()
 																{
-																	public void onWayPointReach(MotionEvent me, int index) 
+																	public void onWayPointReach(MotionEvent me5, int index5) 
 																	{
-																		if (pathHook.getNbWayPoints() == index + 1)
+																		if(pathHook.getNbWayPoints() == index5 + 1)
 																		{
-																			moveSlider(des[3], sp);
+																			hookControl.stop();
+																			craneControl.stop();
+																			moveSlider(des[4], sp);
 																			pathSlider.addListener(new MotionPathListener()
 																			{
-																				public void onWayPointReach(MotionEvent me, int index) 
+
+																				public void onWayPointReach(MotionEvent me6, int index6)
 																				{
-																					if (pathSlider.getNbWayPoints() == index + 1)
+																					if(pathSlider.getNbWayPoints() == index6 + 1)
 																					{
-																						craneControl.stop();
-																						hookControl.stop();
 																						sliderControl.stop();
+																						hookControl.stop();
+																						//System.out.println("CraneControl: " + craneControl.getPlayState());
+																						//System.out.println("SliderControl: " + sliderControl.getPlayState());
+																						//System.out.println("HookControl: " + hookControl.getPlayState());
+																						//System.exit(1);
 																					}
 																				}
+																				
 																			});
 																		}
+																		
 																	}
+																	
 																});
 															}
 														}
+														
 													});
 												}
-											}
+											}		
 										});
 									}
 								}
+								
 							});
 						}
 					}
+					
 				});
 				break;
 			}
@@ -283,46 +190,56 @@ public abstract class Crane extends Node implements MotionPathListener
 				{
 					public void onWayPointReach(MotionEvent me, int index) 
 					{
-						if (pathCrane.getNbWayPoints() == index + 1)
+						if(pathCrane.getNbWayPoints() == index + 1)
 						{
+							craneControl.stop();
 							moveSlider(des[1], sp);
 							pathSlider.addListener(new MotionPathListener()
 							{
-								public void onWayPointReach(MotionEvent me, int index) 
+								public void onWayPointReach(MotionEvent me2, int index2)
 								{
-									if (pathSlider.getNbWayPoints() == index + 1)
+									if(pathSlider.getNbWayPoints() == index2 + 1)
 									{
-										moveHook(des[4], sp);
+										sliderControl.stop();
+										moveHook(des[5], sp);
 										pathHook.addListener(new MotionPathListener()
 										{
-											public void onWayPointReach(MotionEvent me, int index) 
+											public void onWayPointReach(MotionEvent me3, int index3)
 											{
-												if(pathHook.getNbWayPoints() == index + 1)
+												if(pathHook.getNbWayPoints() == index3 + 1)
 												{
-													moveSlider(des[3], sp);	
+													hookControl.stop();
+													moveSlider(des[4], sp);
 													pathSlider.addListener(new MotionPathListener()
 													{
-														public void onWayPointReach(MotionEvent me, int index) 
+														public void onWayPointReach(MotionEvent me4, int index4)
 														{
-															if (pathSlider.getNbWayPoints() == index + 1)
+															if(pathSlider.getNbWayPoints() == index4 + 1)
 															{
-																moveCrane(des[5], sp);
+																sliderControl.stop();
+																hookControl.stop();
+																moveCrane(des[3], sp);
 																pathCrane.addListener(new MotionPathListener()
 																{
-																	public void onWayPointReach(MotionEvent me, int index) 
+																	public void onWayPointReach(MotionEvent me5, int index5)
 																	{
-																		if (pathCrane.getNbWayPoints() == index + 1)
+																		if(pathCrane.getNbWayPoints() == index5 + 1)
 																		{
+																			craneControl.stop();
+																			sliderControl.stop();
 																			moveHook(des[2], sp);
 																			pathHook.addListener(new MotionPathListener()
 																			{
-																				public void onWayPointReach(MotionEvent me, int index) 
+																				public void onWayPointReach(MotionEvent me6, int index6)
 																				{
-																					if (pathHook.getNbWayPoints() == index + 1)
+																					if(pathHook.getNbWayPoints() == index6 + 1)
 																					{
-																						craneControl.stop();
-																						sliderControl.stop();
 																						hookControl.stop();
+																						sliderControl.stop();
+																						//System.out.println("CraneControl: " + craneControl.getPlayState());
+																						//System.out.println("SliderControl: " + sliderControl.getPlayState());
+																						//System.out.println("HookControl: " + hookControl.getPlayState());
+																						//System.exit(1);
 																					}
 																				}
 																			});
@@ -342,6 +259,64 @@ public abstract class Crane extends Node implements MotionPathListener
 					}
 				});
 				break;
+			}
+			case 5:
+			{
+				//Train & Truck to AGV
+				moveCrane(des[2], sp);
+				pathCrane.addListener(new MotionPathListener()
+				{
+					public void onWayPointReach(MotionEvent me, int index) 
+					{
+						if(pathCrane.getNbWayPoints() == index + 1)
+						{
+							craneControl.stop();
+							moveHook(des[1], sp);
+							pathHook.addListener(new MotionPathListener()
+							{
+								public void onWayPointReach(MotionEvent me2, int index2)
+								{
+									if(pathHook.getNbWayPoints() == index2 + 1)
+									{
+										hookControl.stop();
+										moveCrane(des[0], sp);
+										pathCrane.addListener(new MotionPathListener()
+										{
+											public void onWayPointReach(MotionEvent me3, int index3)
+											{
+												if(pathCrane.getNbWayPoints() == index3 + 1)
+												{
+													craneControl.stop();
+													hookControl.stop();
+													moveHook(des[1], sp);
+													pathHook.addListener(new MotionPathListener()
+													{
+														public void onWayPointReach(MotionEvent me4,int index4)
+														{
+															if(pathHook.getNbWayPoints() == index4 + 1)
+															{
+																hookControl.stop();
+																craneControl.stop();
+																//System.out.println("CraneControl: " + craneControl.getPlayState());
+																//System.out.println("SliderControl: " + sliderControl.getPlayState());
+																//System.out.println("HookControl: " + hookControl.getPlayState());
+																//System.exit(1);
+															}
+														}
+													});
+												}
+											}
+										});
+									}
+								}
+							});
+						}
+					}
+				});
+			}
+			case 6:
+			{
+				//AGV to Train & Truck
 			}
 		}
 	}
@@ -372,7 +347,7 @@ public abstract class Crane extends Node implements MotionPathListener
 	public void moveSlider(Vector3f des, float sp)
 	{
 		Vector3f startPosition, desPosition;
-		startPosition = sliderNode.getLocalTranslation();
+		startPosition = this.sliderNode.getLocalTranslation();
 		desPosition = des;
 		
 		pathSlider.clearWayPoints();
@@ -395,7 +370,7 @@ public abstract class Crane extends Node implements MotionPathListener
 	public void moveHook(Vector3f des, float sp)
 	{
 		Vector3f startPosition, desPosition;
-		startPosition = hookNode.getLocalTranslation();
+		startPosition = this.hookNode.getLocalTranslation();
 		desPosition = des;
 		pathHook.clearWayPoints();
 		
@@ -407,17 +382,5 @@ public abstract class Crane extends Node implements MotionPathListener
 			hookControl.play();
 		}
 		System.out.println("Number of WayPoints: " + pathHook.getNbWayPoints());
-	}
-
-	public void onWayPointReach(MotionEvent control, int wayPointIndex)
-	{
-		if (pathCrane.getNbWayPoints() == wayPointIndex + 1)
-		{
-			System.out.println(control.getSpatial().getName() + " has finished moving. ");
-		} 
-		else 
-		{
-			System.out.println(control.getSpatial().getName() + " has reached way point " + wayPointIndex);
-		}
 	}
 }
