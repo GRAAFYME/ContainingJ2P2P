@@ -93,9 +93,16 @@ public class Client extends SimpleApplication {
     Spatial tSCrane;
     Spatial tHCrane;
     
+    //Spatials of the Train Crane
+    Spatial trCrane;
+    Spatial trSCrane;
+    Spatial trHCrane;
+    
     Crane [] storageCranes = new Crane [20];
     Crane [] seaShipCranes = new Crane [10];
     Crane [] truckCranes = new Crane [20];
+    Crane [] trainCranes = new Crane [4];
+    Crane [] bargeCranes = new Crane [8];
     
     Storage storage = new Storage();
     
@@ -288,9 +295,24 @@ public class Client extends SimpleApplication {
     	tSCrane.setMaterial(mat_tSCrane);
     	tHCrane.setMaterial(mat_tSCrane);
     	
+    	//Initialize Train Crane
+    	trCrane = assetManager.loadModel("Models/crane/TrainCrane.obj");
+    	trSCrane = assetManager.loadModel("Models/crane/TrainCraneSlider.obj");
+    	trHCrane = assetManager.loadModel("Models/crane/TrainCraneHook.obj");
+    	Material mat_trCrane, mat_trSCrane;
+    	mat_trCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    	mat_trSCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    	mat_trCrane.setColor("Color", ColorRGBA.Green);
+    	mat_trSCrane.setColor("Color", ColorRGBA.Black);
+    	trCrane.setMaterial(mat_trCrane);
+    	trSCrane.setMaterial(mat_trSCrane);
+    	trHCrane.setMaterial(mat_trSCrane);
+    	
     	init_StorageCrane();
     	init_SeaShipCrane();
     	init_TruckCrane();
+    	init_TrainCrane();
+    	init_BargeCrane();
     	
     	//TODO: Load other assets in this method, use comments to tell what asset you're loading!
     }
@@ -313,7 +335,7 @@ public class Client extends SimpleApplication {
     	for(int i = 1; i <= 10; i++)
     	{
     		String id = String.valueOf(i);
-    		Vector3f pos = new Vector3f(-680, 255, 150+(i*50));
+    		Vector3f pos = new Vector3f(-685, 255, 150+(i*50));
     		Crane c = new SeaShipCrane(id, pos, ssCrane, ssSCrane, ssHCrane);
     		seaShipCranes[i-1] = c;
     		rootNode.attachChild(c);
@@ -329,6 +351,32 @@ public class Client extends SimpleApplication {
     		Vector3f pos = new Vector3f(250+(i*40), 255, 90);
     		Crane c = new TruckCrane(id, pos, tCrane, tSCrane, tHCrane);
     		truckCranes[i-1] = c;
+    		rootNode.attachChild(c);
+    		c.setLocalTranslation(pos);
+    	}
+    }
+    
+    private void init_TrainCrane()
+    {
+    	for(int i = 1; i <= 4; i++)
+    	{
+    		String id = String.valueOf(i);
+    		Vector3f pos = new Vector3f(-200+(i*200), 255, 800);
+    		Crane c = new TrainCrane(id, pos, trCrane, trSCrane, trHCrane);
+    		trainCranes[i-1] = c;
+    		rootNode.attachChild(c);
+    		c.setLocalTranslation(pos);
+    	}
+    }
+    
+    private void init_BargeCrane()
+    {
+    	for(int i = 1; i <= 8; i++)
+    	{
+    		String id = String.valueOf(i);
+    		Vector3f pos = new Vector3f(-600+(i*100), 255, 25);
+    		Crane c = new BargeCrane(id, pos, ssCrane, ssSCrane, ssHCrane);
+    		bargeCranes[i-1] = c;
     		rootNode.attachChild(c);
     		c.setLocalTranslation(pos);
     	}
