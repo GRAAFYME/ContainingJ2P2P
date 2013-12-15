@@ -78,6 +78,12 @@ public class Client extends SimpleApplication {
     int j;
     Crane crane;
     
+    //Vehicle Spatials
+    Spatial seaShip;
+    Spatial truck;
+    Spatial train;
+    Spatial barge;
+    
     //Spatials of the Storage Crane
     Spatial stCrane;
     Spatial stSCrane;
@@ -121,8 +127,7 @@ public class Client extends SimpleApplication {
         GeometryBatchFactory.optimize(allAgvNodes);
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
-    	initScene();
-    	testShip();   
+    	initScene();  
     	//testContainer();
     	loadAssets();
     	Storage storage = new Storage();
@@ -227,15 +232,6 @@ public class Client extends SimpleApplication {
     	}
     }
     
-    public void testShip(){
-    	SeaShip seaShip = new SeaShip(assetManager,-345,120,350);
-    	shipNode = new Node();
-    	shipNode.attachChild(seaShip.loadModels());
-    	shipNode.scale(2f);
-    	shipNode.rotate(0,-4*FastMath.DEG_TO_RAD,0);
-    	rootNode.attachChild(shipNode);
-    }
-    
     //creates most of the physics and scene logic
     public void initScene(){
     	bulletAppState = new BulletAppState();
@@ -268,7 +264,7 @@ public class Client extends SimpleApplication {
     	stSCrane.setMaterial(mat_stHCrane);
     	stHCrane.setMaterial(mat_stHCrane);
     	
-    	//Initialize Seaship Crane
+    	//Initialize Seaship Crane & Barge Crane
     	ssCrane = assetManager.loadModel("Models/crane/zeeKraan.obj");
     	ssSCrane = assetManager.loadModel("Models/crane/zeeKraanSlider.obj");
     	ssHCrane = assetManager.loadModel("Models/crane/zeeKraanHook.obj");
@@ -313,6 +309,19 @@ public class Client extends SimpleApplication {
     	init_TruckCrane();
     	init_TrainCrane();
     	init_BargeCrane();
+    	
+    	seaShip = assetManager.loadModel("Models/crane/TrainCrane.obj");
+    	truck = assetManager.loadModel("Models/crane/TrainCrane.obj");
+    	train = assetManager.loadModel("Models/crane/TrainCrane.obj");
+    	barge = assetManager.loadModel("Models/crane/TrainCrane.obj");
+    	Material mat_vehicles = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+    	mat_vehicles.setColor("Color", ColorRGBA.Gray);
+    	seaShip.setMaterial(mat_vehicles);
+    	truck.setMaterial(mat_vehicles);
+    	train.setMaterial(mat_vehicles);
+    	barge.setMaterial(mat_vehicles);
+    	
+    	createVehicle();
     	
     	//TODO: Load other assets in this method, use comments to tell what asset you're loading!
     }
@@ -380,6 +389,12 @@ public class Client extends SimpleApplication {
     		rootNode.attachChild(c);
     		c.setLocalTranslation(pos);
     	}
+    }
+    
+    private void createVehicle()
+    {
+    	Vehicle v = new Train(train);
+    	rootNode.attachChild(v);
     }
     
     private void getMessage()
@@ -490,17 +505,17 @@ public class Client extends SimpleApplication {
     	    	des[3] = new Vector3f(x,y,z); //Destination of the hook
     	    	
     			if(direction)
-    				truckCranes[id].animation(2, des, 0.5f);
+    				trainCranes[id].animation(5, des, 0.5f);
     			else
-    				truckCranes[id].animation(3, des, 0.5f);
+    				trainCranes[id].animation(6, des, 0.5f);
     		}
     		case 4:
     		{
     			//TODO: Barge crane
     			if(direction)
-    				truckCranes[id].animation(1, des, 0.5f);
+    				bargeCranes[id].animation(1, des, 0.5f);
     			else
-    				truckCranes[id].animation(4, des, 0.5f);
+    				bargeCranes[id].animation(2, des, 0.5f);
     		}
     		case 5:
     		{
@@ -568,14 +583,15 @@ public class Client extends SimpleApplication {
                 	Vector3f [] des = new Vector3f [6];
                 	int id = 0;
                 	
-                	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
-                	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
+                	Vector3f startPosCrane = new Vector3f(trainCranes[id].getLocalTranslation());
+                	Vector3f startPosHook = new Vector3f(trainCranes[id].hookNode.getLocalTranslation());
                 	
-        	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
-        	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
-        	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
+        			des[0] = new Vector3f(x,y,z); //Destination of the crane
+        	    	des[1] = new Vector3f(x,y,z); //Destination of the hook
+        	    	des[2] = new Vector3f(x,y,z); //Destination of the crane
+        	    	des[3] = new Vector3f(x,y,z); //Destination of the hook
         	    	
-        	    	truckCranes[id].animation(6, des, 0.5f);
+        	    	trainCranes[id].animation(5, des, 0.5f);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {
