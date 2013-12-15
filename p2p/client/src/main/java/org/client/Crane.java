@@ -87,18 +87,6 @@ public abstract class Crane extends Node
 		{
 			case 1:
 			{
-				//Sea & Barge to AGV
-				moveCrane(des[0], sp);
-				break;
-			}
-			case 2:
-			{
-				//AGV to Sea & Barge
-				moveCrane(des[0], sp);
-				break;
-			}
-			case 3:
-			{
 				//AGV to Storage
 				moveCrane(des[3], sp);
 				pathCrane.addListener(new MotionPathListener()
@@ -182,7 +170,7 @@ public abstract class Crane extends Node
 				});
 				break;
 			}
-			case 4:
+			case 2:
 			{
 				//Storage to AVG
 				moveCrane(des[0], sp);
@@ -260,9 +248,9 @@ public abstract class Crane extends Node
 				});
 				break;
 			}
-			case 5:
+			case 3:
 			{
-				//Train & Truck to AGV
+				//Truck to AGV
 				moveCrane(des[2], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
@@ -315,9 +303,9 @@ public abstract class Crane extends Node
 				});
 				break;
 			}
-			case 6:
+			case 4:
 			{
-				//AGV to Train & Truck
+				//AGV to Truck
 				moveHook(des[1], sp);
 				pathHook.addListener(new MotionPathListener()
 				{

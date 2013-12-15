@@ -10,9 +10,9 @@ public class TrainCrane extends Crane
 	{
 		super(id, position, crane, slider, hook);
 		
-		this.crane.scale(2);
-		this.slider.scale(2);
-		this.hook.scale(2);
+		this.crane.scale(3);
+		this.slider.scale(3);
+		this.hook.scale(3);
 	}
 
 }
