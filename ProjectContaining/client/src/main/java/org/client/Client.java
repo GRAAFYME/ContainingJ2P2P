@@ -129,8 +129,7 @@ public class Client extends SimpleApplication {
         GeometryBatchFactory.optimize(allAgvNodes);
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
-    	initScene();  
-    	//testContainer();
+    	initScene();
     	loadAssets();
     	Storage storage = new Storage();
 
@@ -337,7 +336,7 @@ public class Client extends SimpleApplication {
         for (int i = 1; i <= 20; i++) 
         {
             String id = String.valueOf(i);
-            Vector3f pos = new Vector3f(-520+(i*60), 255, 735);
+            Vector3f pos = new Vector3f(-520+(i*60), 255, 715);
             Crane c = new StorageCrane(id, pos, stCrane, stSCrane, stHCrane);
             storageCranes[i - 1] = c;
             rootNode.attachChild(c);
