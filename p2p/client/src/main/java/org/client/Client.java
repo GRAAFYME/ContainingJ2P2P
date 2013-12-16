@@ -331,7 +331,7 @@ public class Client extends SimpleApplication {
         for (int i = 1; i <= 20; i++) 
         {
             String id = String.valueOf(i);
-            Vector3f pos = new Vector3f(-520+(i*60), 255, 715);
+            Vector3f pos = new Vector3f(-520+(i*60), 255, 735);
             Crane c = new StorageCrane(id, pos, stCrane, stSCrane, stHCrane);
             storageCranes[i - 1] = c;
             rootNode.attachChild(c);
