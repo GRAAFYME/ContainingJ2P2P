@@ -67,8 +67,10 @@ public class Client extends SimpleApplication {
     TruckCrane truckCrane;
     Node container;
     float tpf;
-	float x = 70f;
-	float z = 130f;
+	float x1 = -470f;
+	float z1 = 150f;
+	float x2 = -470f;
+	float z2 = 735f;
     private boolean active2 = true;
     private boolean playing2 = false;
     Vector3f location;
@@ -157,7 +159,7 @@ public class Client extends SimpleApplication {
     	{
     		c.update(tpf);
     	}
-    	
+    	System.out.println(cam.getLocation());
         String message = c.getMessages();
         if(message != "")
         {
@@ -188,12 +190,16 @@ public class Client extends SimpleApplication {
      
     public void addAllAGVs(Vector3f location){
         AGVList = new ArrayList<AGV>();       //agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
-        for (int i=0; i<100; i++){
-         //System.out.println("Test" + i);
-        // agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV");
-           AGVList.add(new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes, true, "AGV" + i));
-         x+= 25;
+        for (int i=0; i<50; i++){
+
+           AGVList.add(new AGV(new Vector3f(x1,260f,z1), assetManager, allAgvNodes, false, "AGV" + i));
+         x1+= 25;
         }
+        
+    	for (int j = 0; j<50; j++){
+    		AGVList.add(new AGV(new Vector3f(x2,260f,z2), assetManager, allAgvNodes, true, "AGV" + j));
+    		x2+= 25;
+    	}
         for(Iterator<AGV> i = AGVList.iterator(); 
           i.hasNext(); ) {
             AGV item = i.next();
