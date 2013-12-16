@@ -55,9 +55,6 @@ public class AGV {
 		MotionPath1();
 		addAGVcar(location);
 		initMotionControl();
-	//	MotionPath2();
-	//	MotionPath3();
-	//	MotionPath4();
 		StartPoint();
 		CrossingStart();
 		CrossingToSeaCrane();
@@ -150,15 +147,19 @@ public class AGV {
 	public void WayUpFull(){
 	
 	}
+	
 	public void WayUpEmpty(){
 		
 	}
+	
 	public void WayDownFull(){
 		
 	}
+	
 	public void WayDownEmpty(){
 		
 	}
+	
 	public void StartPoint(){
 
 		for (int i = 0; i<50; i++)
@@ -180,6 +181,7 @@ public class AGV {
 			x5+= 25;
 		}
 	}
+	
 	public void CrossingStart(){
 		
 		for (int i = 0; i<50; i++)
@@ -201,6 +203,7 @@ public class AGV {
 		}
 		
 	}
+	
 	public void CrossingToSeaCrane(){
 		
 		toSeaCrane = new MotionPath();
@@ -211,6 +214,7 @@ public class AGV {
 		toSeaCrane.enableDebugShape(assetManager, AllAgvNodes);
 		
 	}
+	
 	public void CrossingToTrucks(){
 		toTrucks = new MotionPath();
 		toTrucks.addWayPoint(new Vector3f (-470, 260f, 117));
@@ -219,6 +223,7 @@ public class AGV {
 		toTrucks.setCurveTension(0.0f);
 		toTrucks.enableDebugShape(assetManager, AllAgvNodes);
 	}
+	
 	public void CrossingTrucksLoaded(){
 		TrucksLoaded = new MotionPath();
 		TrucksLoaded.addWayPoint(new Vector3f (230, 260f, 80));
@@ -227,7 +232,6 @@ public class AGV {
 		TrucksLoaded.setCurveTension(0.0f);
 		TrucksLoaded.enableDebugShape(assetManager, AllAgvNodes);
 	}
-
 
 	public void MotionPath1() {
 		path = new MotionPath();
@@ -238,6 +242,7 @@ public class AGV {
 		path.enableDebugShape(assetManager, AllAgvNodes);
 
 	}
+	
 	public void MotionPath2() {
 		path2 = new MotionPath();
 		path2.addWayPoint(new Vector3f(778.0f, 260.0f, 131.0f));

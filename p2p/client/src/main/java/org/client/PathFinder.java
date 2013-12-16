@@ -91,7 +91,6 @@ class PathFinder
         return shortestPath;
     }
 
-
     private List<PathNode> getNeighbours(PathNode node, List<PathNode> routes, float connectedThreshold)
     {
         Vector3f sourceEnd = node.nodeValue.getWayPoint(node.nodeValue.getNbWayPoints());

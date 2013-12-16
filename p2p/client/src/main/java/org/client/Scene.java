@@ -62,8 +62,7 @@ public class Scene {
 	    sceneNode = new Node();
 	    initScene();
 	}   	
-	
-    //creates and loads the scene    
+	//creates and loads the scene    
     public void initScene(){
     	//sceneModel = assetManager.loadModel("/Scenes/PlatformScene.j3o");
     	sceneModel = assetManager.loadModel("/Models/platformmodel/platformmodel.j3o");
@@ -74,7 +73,6 @@ public class Scene {
         bulletAppState.getPhysicsSpace().add(rbc); 
         initLight();  
     }
-    
     //creates and loads the light
     public void initLight(){
     	PointLight sunLight = new PointLight();
@@ -83,8 +81,8 @@ public class Scene {
         sunLight.setRadius(3000f);
         sceneNode.addLight(sunLight); 
         
-        AmbientLight ambient = new AmbientLight();  //creates a light in the scene, which lights everything from all angles
-        ambient.setColor(ColorRGBA.White.mult(5f));
-        sceneNode.addLight(ambient);     //adds the light to the world. 
+//        AmbientLight ambient = new AmbientLight();  //creates a light in the scene, which lights everything from all angles
+//        ambient.setColor(ColorRGBA.White.mult(5f));
+//        sceneNode.addLight(ambient);     //adds the light to the world. 
     }
 }
