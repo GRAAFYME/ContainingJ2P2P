@@ -26,6 +26,7 @@ public abstract class Crane extends Node
 	protected Node sliderNode = new Node();
 	
 	private String id;
+	private boolean taken;
 	
 	private Vector3f position;
 	
@@ -64,6 +65,11 @@ public abstract class Crane extends Node
 	public String getId()
 	{
 		return this.id;
+	}
+	
+	public boolean isTaken()
+	{
+		return taken;
 	}
 	
 	public Vector3f getPosition()
@@ -380,6 +386,7 @@ public abstract class Crane extends Node
 			pathCrane.addWayPoint(desPos2);
 		}
 		
+		craneControl.setSpeed(sp);
 		craneControl.play();
 		System.out.println("Number of WayPoints: " + pathCrane.getNbWayPoints());
 	}
@@ -403,6 +410,7 @@ public abstract class Crane extends Node
 			pathSlider.addWayPoint(desPos2);
 		}
 		
+		sliderControl.setSpeed(sp);
 		sliderControl.play();
 		System.out.println("Number of WayPoints: " + pathSlider.getNbWayPoints());
 	}
@@ -419,6 +427,7 @@ public abstract class Crane extends Node
 			pathHook.addWayPoint(startPosition);
 			pathHook.addWayPoint(desPosition);	
 			pathHook.addWayPoint(startPosition);
+			hookControl.setSpeed(sp);
 			hookControl.play();
 		}
 		System.out.println("Number of WayPoints: " + pathHook.getNbWayPoints());

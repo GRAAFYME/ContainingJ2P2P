@@ -132,7 +132,6 @@ public class Client extends SimpleApplication {
     	initScene();  
     	//testContainer();
     	loadAssets();
-    	Storage storage = new Storage();
 
     	//addAllAGVs(location);
     	
@@ -159,7 +158,7 @@ public class Client extends SimpleApplication {
     	{
     		c.update(tpf);
     	}
-    	System.out.println(cam.getLocation());
+    	//System.out.println(cam.getLocation());
         String message = c.getMessages();
         if(message != "")
         {
@@ -406,10 +405,11 @@ public class Client extends SimpleApplication {
     private void getMessage()
     {
     	Container cont = new Container();
-    	int craneType = 1;
-    	boolean direction = false;
-    	int id = 0;
-    	float [] distance = new float []{};
+    	int craneType = 1; //TODO: Send from protocol
+    	boolean direction = false; //TODO: Send from protocol
+    	int id = 0; //Chosen later
+    	float [] distance = new float []{}; 	
+    	float smallest = 1000;
     	
     	float x, y, z;
     	x = (float) cont.getLocation().x;
@@ -425,6 +425,18 @@ public class Client extends SimpleApplication {
     			{
     				distance = c.distance(conVector);
     			}
+    			
+    	    	for(int i = 0; i < distance.length; i++)
+    	    	{
+    	    		if(distance[i] < smallest)
+    	    		{
+    	    			if(!seaShipCranes[i].isTaken())
+    	    			{
+    	    				smallest = distance[i];
+    	    				id = i;
+    	    			}
+    	    		}
+    	    	}
     		}
     		case 2:
     		{
@@ -432,35 +444,60 @@ public class Client extends SimpleApplication {
     			{
     				distance = c.distance(conVector);
     			}
+    			
+    	    	for(int i = 0; i < distance.length; i++)
+    	    	{
+    	    		if(distance[i] < smallest)
+    	    		{
+    	    			if(!truckCranes[i].isTaken())
+    	    			{
+    	    				smallest = distance[i];
+    	    				id = i;
+    	    			}
+    	    		}
+    	    	}
     		}
     		case 3:
     		{
-    			for(Crane c : seaShipCranes)
+    			for(Crane c : trainCranes)
     			{
     				distance = c.distance(conVector);
     			}
+    			
+    	    	for(int i = 0; i < distance.length; i++)
+    	    	{
+    	    		if(distance[i] < smallest)
+    	    		{
+    	    			if(!trainCranes[i].isTaken())
+    	    			{
+    	    				smallest = distance[i];
+    	    				id = i;
+    	    			}
+    	    		}
+    	    	}
     		}
     		case 4:
     		{
-    			for(Crane c : seaShipCranes)
+    			for(Crane c : bargeCranes)
     			{
     				distance = c.distance(conVector);
     			}
+    			
+    	    	for(int i = 0; i < distance.length; i++)
+    	    	{
+    	    		if(distance[i] < smallest)
+    	    		{
+    	    			if(!bargeCranes[i].isTaken())
+    	    			{
+    	    				smallest = distance[i];
+    	    				id = i;
+    	    			}
+    	    		}
+    	    	}
     		}
     		case 5:
     		{
-    			//TODO: Another way, because it has to come from an AGV that is parked in a direct line across
-    			//from the storageCrane;
-    		}
-    	}
-    	
-    	float smallest = 1000;
-    	for(int i = 0; i < distance.length; i++)
-    	{
-    		if(distance[i] < smallest)
-    		{
-    			smallest = distance[i];
-    			id = i;
+    			//TODO: Check if there is an AGV at the beginning point
     		}
     	}
 
@@ -470,42 +507,44 @@ public class Client extends SimpleApplication {
     	{
     		case 1:
     		{
-    			Vector3f startPosCrane = new Vector3f(seaShipCranes[id].getLocalTranslation());
+			    Vector3f startPosCrane = new Vector3f(seaShipCranes[id].getLocalTranslation());
             	Vector3f startPosSlider = new Vector3f(seaShipCranes[id].sliderNode.getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(seaShipCranes[id].hookNode.getLocalTranslation());
-    			int count = seaShipCranes.length;
-    			
-    			//TODO: Do this animation again
-//    			des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z+((count-id)*10)); //Destination of the crane
-//    	    	des[1] = new Vector3f(startPosSlider.x-45-(1*2.5f),startPosSlider.y,startPosSlider.z); //Destination of the slider
-//    	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-(30+(id*2.5f)),startPosHook.z); //Destination of the hook
-//    	    	des[3] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z); //Destination of the slider back
-//    	    	des[4] = new Vector3f(startPosHook.x,startPosHook.y-30,startPosHook.z); //Destination of the hook
+            	float [] speed = new float [] {1, 1};
+            	
+            	des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,conVector.z); //Destination of the crane
+    	    	des[1] = new Vector3f(startPosSlider.x-45-(1*2.5f),startPosSlider.y,startPosSlider.z); //Destination of the slider
+    	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-(30+(id*2.5f)),startPosHook.z); //Destination of the hook
+    	    	des[3] = new Vector3f(startPosCrane.x,startPosCrane.y,conVector.z); //Destination of the crane
+    	    	des[4] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z); //Destination of the slider back
+    	    	des[5] = new Vector3f(startPosHook.x,startPosHook.y-30,startPosHook.z); //Destination of the hook
     	    	
     			if(direction)
-    				seaShipCranes[id].animation(1, des, 0.5f);
+    				seaShipCranes[id].animation(1, des, 5);
     			else
-    				seaShipCranes[id].animation(2, des, 0.5f);
+    				seaShipCranes[id].animation(2, des, 5);
     		}
     		case 2:
     		{
             	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
+            	float [] speed = new float [] {5, 3.75f};
             	
     	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
     	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
     	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
     	    	
     			if(direction)
-    				truckCranes[id].animation(3, des, 0.5f);
+    				truckCranes[id].animation(3, des, 5);
     			else
-    				truckCranes[id].animation(4, des, 0.5f);
+    				truckCranes[id].animation(4, des, 5);
     		}
     		case 3:
     		{
             	Vector3f startPosCrane = new Vector3f(trainCranes[id].getLocalTranslation());
             	Vector3f startPosSlider = new Vector3f(trainCranes[id].sliderNode.getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(trainCranes[id].hookNode.getLocalTranslation());
+            	float [] speed = new float [] { 0.15f, 0.1f};
             	
     	    	des[0] = new Vector3f(conVector.x,startPosCrane.y,startPosCrane.z); //Destination of the crane
     	    	des[1] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z+18); //Destination of the slider
@@ -515,17 +554,28 @@ public class Client extends SimpleApplication {
     	    	des[5] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
     	    	
     			if(direction)
-    				trainCranes[id].animation(1, des, 0.5f);
+    				trainCranes[id].animation(1, des, 5);
     			else
-    				trainCranes[id].animation(2, des, 0.5f);
+    				trainCranes[id].animation(2, des, 5);
     		}
     		case 4:
     		{
-    			//TODO: Barge crane
+            	Vector3f startPosCrane = new Vector3f(bargeCranes[id].getLocalTranslation());
+            	Vector3f startPosSlider = new Vector3f(bargeCranes[id].sliderNode.getLocalTranslation());
+            	Vector3f startPosHook = new Vector3f(bargeCranes[id].hookNode.getLocalTranslation());
+            	float [] speed = new float [] {2, 0.75f};
+            	
+            	des[0] = new Vector3f(conVector.x,startPosCrane.y,startPosCrane.z); //Destination of the crane
+    	    	des[1] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z-45-(1*2.5f)); //Destination of the slider
+    	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-(30+(id*2.5f)),startPosHook.z); //Destination of the hook
+    	    	des[3] = new Vector3f(conVector.x,startPosCrane.y,startPosCrane.z); //Destination of the crane
+    	    	des[4] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z); //Destination of the slider back
+    	    	des[5] = new Vector3f(startPosHook.x,startPosHook.y-30,startPosHook.z); //Destination of the hook
+    	    	
     			if(direction)
-    				bargeCranes[id].animation(1, des, 0.5f);
+    				bargeCranes[id].animation(1, des, 5);
     			else
-    				bargeCranes[id].animation(2, des, 0.5f);
+    				bargeCranes[id].animation(2, des, 5);
     		}
     		case 5:
     		{
@@ -535,7 +585,7 @@ public class Client extends SimpleApplication {
             	Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());
             	Vector3f startPosSlider = new Vector3f(storageCranes[id].sliderNode.getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(storageCranes[id].hookNode.getLocalTranslation());
-    			
+            	
     			des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,spotje.z); //Destination of the crane
     			des[1] = new Vector3f(startPosSlider.x + spotje.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
     	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-33,startPosHook.z); //Destination of the hook
@@ -554,11 +604,11 @@ public class Client extends SimpleApplication {
     	    	
     	    	if(direction)
     	    	{
-    	    		storageCranes[id].animation(1, des, 0.5f);
+    	    		storageCranes[id].animation(1, des, 5);
     	    	}
     	    	else
     	    	{
-    	    		storageCranes[id].animation(2, des, 0.5f);
+    	    		storageCranes[id].animation(2, des, 5);
     	    	}
     		}
     	}
@@ -591,21 +641,17 @@ public class Client extends SimpleApplication {
                 if (name.equals("startAnimation") && keyPressed) 
                 {
                 	Vector3f [] des = new Vector3f [6];
-                	Vector3f conVector = new Vector3f(830, 264, 802);
+                	//Vector3f conVector = new Vector3f(200, 264, 802);
                 	int id = 0;
                 	
-                	Vector3f startPosCrane = new Vector3f(trainCranes[id].getLocalTranslation());
-                	Vector3f startPosSlider = new Vector3f(trainCranes[id].sliderNode.getLocalTranslation());
-                	Vector3f startPosHook = new Vector3f(trainCranes[id].hookNode.getLocalTranslation());
+                	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
+                	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
                 	
-        	    	des[0] = new Vector3f(conVector.x,startPosCrane.y,startPosCrane.z); //Destination of the crane
-        	    	des[1] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z+18); //Destination of the slider
-        	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-26,startPosHook.z); //Destination of the hook
-        	    	des[3] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z); //Destination of the crane
-        	    	des[4] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z); //Destination of the slider
-        	    	des[5] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
+        	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
+        	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
+        	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
         	    	
-        	    	trainCranes[id].animation(1, des, 0.5f);
+        	    	truckCranes[id].animation(3, des, 5);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {
