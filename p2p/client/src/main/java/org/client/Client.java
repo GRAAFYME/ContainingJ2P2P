@@ -44,6 +44,7 @@ import java.util.Map;
  * Arjen Pander
  * Melinda de Roo 
  * */
+
 public class Client extends SimpleApplication {
 	//TODO: Set in logical order!
 	//TODO: Boolean to activate the animation per crane (1 for the RailCrane, 1 for the TruckCrane & 1 for the FreeMovingCrane)
@@ -52,34 +53,34 @@ public class Client extends SimpleApplication {
 	private Geometry tempContainer; //Temporary network test
 	public Node waterNode;  //Different nodes have different physics
 	public Node allAgvNodes = new Node();
+	public Node container;
+	public Node shipNode;
 	private BulletAppState bulletAppState;  //Physics machine
-	RigidBodyControl rbc;
-	CollisionShape sceneShape;   //gives collisions to the scene
-	Spatial sceneModel, AGV, AGV2;
-	AGV agv1, agv2;
-    Geometry geom;
-    private networkClient c;
-    FlyByCamera FBC;
-    MotionPaths mp;
-    private MotionPath path;
+	private networkClient c;
+	private MotionPath path;
     private boolean active = true;
     private boolean playing = false;
-    StorageCrane storageCrane;
-    TruckCrane truckCrane;
-    Node container;
+    private boolean active2 = true;
+    private boolean playing2 = false;
     float tpf;
 	float x1 = -470f;
 	float z1 = 150f;
 	float x2 = -470f;
 	float z2 = 735f;
-    private boolean active2 = true;
-    private boolean playing2 = false;
+	int j;
+	RigidBodyControl rbc;
+	CollisionShape sceneShape;   //gives collisions to the scene
+	AGV agv1, agv2;
+	List<AGV> AGVList;
+    Geometry geom;
+    FlyByCamera FBC;
+    MotionPaths mp;
     Vector3f location;
     String sName;
-    List<AGV> AGVList;
-    Node shipNode;
-    int j;
+    StorageCrane storageCrane;
+    TruckCrane truckCrane;
     Crane crane;
+    Spatial sceneModel, AGV, AGV2;
     
     //Vehicle Spatials
     Spatial seaShip;

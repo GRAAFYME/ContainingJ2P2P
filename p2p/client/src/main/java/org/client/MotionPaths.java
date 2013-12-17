@@ -9,8 +9,6 @@ import com.jme3.scene.Node;
 
 public class MotionPaths {
 	
-	
-	
 	public MotionPath path, path2, path3, path4, StartingPoint, CrossStartPoint, toSeaCrane, toTrucks, TrucksLoaded, OtherSidePlatform,
 	SeaCraneToOtherSide, OtherSideToAGV,OtherWayAround, CrossingStartToTruck;
 	public MotionEvent motionControl, motionControl2, motionControl3, motionControl4;
@@ -45,24 +43,22 @@ public class MotionPaths {
 		CrossingStartToOtherWayAround();
 	}
 	
-
-	
-	
-	
-	
-	
 	public void WayUpFull(){
 		
 	}
+	
 	public void WayUpEmpty(){
 		
 	}
+	
 	public void WayDownFull(){
 		
 	}
+	
 	public void WayDownEmpty(){
 		
 	}
+	
 	public void StartPoint(){
 
 		for (int i = 0; i<50; i++)
@@ -84,6 +80,7 @@ public class MotionPaths {
 			x5+= 25;
 		}
 	}
+	
 	public void CrossingStart(){
 		
 		for (int i = 0; i<31; i++)
@@ -128,6 +125,7 @@ public class MotionPaths {
 		toSeaCrane.enableDebugShape(assetManager, AllAgvNodes);
 		
 	}
+	
 	public void CrossingToTrucks(){
 		toTrucks = new MotionPath();
 		toTrucks.addWayPoint(new Vector3f (-470, 260f, 117));
@@ -136,6 +134,7 @@ public class MotionPaths {
 		toTrucks.setCurveTension(0.0f);
 		toTrucks.enableDebugShape(assetManager, AllAgvNodes);
 	}
+	
 	public void CrossingTrucksLoaded(){
 		TrucksLoaded = new MotionPath();
 		TrucksLoaded.addWayPoint(new Vector3f (230, 260f, 117));
@@ -145,6 +144,7 @@ public class MotionPaths {
 		TrucksLoaded.setCurveTension(0.0f);
 		TrucksLoaded.enableDebugShape(assetManager, AllAgvNodes);
 	}
+	
 	public void CrossingtoOtherSidePlatform(){
 		OtherSidePlatform = new MotionPath();
 		OtherSidePlatform.addWayPoint(new Vector3f (-540, 260f, 117));
@@ -169,6 +169,7 @@ public class MotionPaths {
 		OtherSideToAGV.setCurveTension(0.0f);
 		OtherSideToAGV.enableDebugShape(assetManager, AllAgvNodes);
 	}
+	
 	public void CrossingStartToOtherWayAround(){
 		OtherWayAround = new MotionPath();
 		OtherWayAround.addWayPoint(new Vector3f (755, 260f, 117));
@@ -187,6 +188,7 @@ public class MotionPaths {
 		path.enableDebugShape(assetManager, AllAgvNodes);
 
 	}
+	
 	public void MotionPath2() {
 		path2 = new MotionPath();
 		path2.addWayPoint(new Vector3f(778.0f, 260.0f, 131.0f));
@@ -216,5 +218,4 @@ public class MotionPaths {
 		path4.enableDebugShape(assetManager, AllAgvNodes);
 
 	}
-
 }
