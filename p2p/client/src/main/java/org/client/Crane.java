@@ -18,13 +18,11 @@ public abstract class Crane extends Node
 	private MotionEvent sliderControl;
 	private MotionEvent hookControl;
 	private float [] distance = new float []{};
-	
 	protected Spatial crane;
 	protected Spatial slider;
 	protected Spatial hook;
 	protected Node hookNode = new Node();
 	protected Node sliderNode = new Node();
-	
 	private String id;
 	private boolean busy;
 	

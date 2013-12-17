@@ -244,11 +244,9 @@ public class Client extends SimpleApplication {
         Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
     	rootNode.attachChild(scene.sceneNode);  //adds the scene to the game
     	viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
-    	AmbientLight al = new AmbientLight();
-        al.setColor(ColorRGBA.White.mult(1.3f));
-        rootNode.addLight(al); 
-    	
-	    waterNode = new Node("Water");
+        rootNode.addLight(Scene.sunLight); //adds the light to the world. 
+        rootNode.addLight(Scene.ambient); //adds the light to the world. 
+        waterNode = new Node("Water");
 	    Water water = new Water(assetManager, waterNode);  //creates water
 	    viewPort.addProcessor(water.fpp);  
 	    rootNode.attachChild(waterNode);  //adds water to the world
