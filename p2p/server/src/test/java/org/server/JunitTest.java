@@ -1,5 +1,6 @@
 package org.server;
 
+
 import static org.junit.Assert.*;
 
 
@@ -16,9 +17,16 @@ public class JunitTest {
 	@Test
 	public void Server()
 	{
+		try
+		{
 		Server test = new Server();
 		test.start(6666);
 		//test.sendMessage("test");
+		}
+		catch(Exception ex)
+		{
+			fail("server niet on!");
+		}
 	}
 
     @Test
