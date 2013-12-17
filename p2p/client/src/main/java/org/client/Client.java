@@ -60,6 +60,7 @@ public class Client extends SimpleApplication {
     Geometry geom;
     private networkClient c;
     FlyByCamera FBC;
+    MotionPaths mp;
     private MotionPath path;
     private boolean active = true;
     private boolean playing = false;
@@ -142,6 +143,7 @@ public class Client extends SimpleApplication {
 	    cam.setLocation(new Vector3f(0f,260f,0f)); 
 	    flyCam.setMoveSpeed(300f);
 	    FBC = new FlyByCamera(cam, inputManager);
+	    mp = new MotionPaths(assetManager, allAgvNodes);
 	    
 	    //Protocol Test code
         protocolParser = new ProtocolParser();
@@ -677,7 +679,7 @@ public class Client extends SimpleApplication {
                     } 
                     else {
                         playing = true;
-                        AGVList.get(j).motionControl.play();
+                      //  AGVList.get(j).motionControl.play();
                         System.out.println("AGV Index : " + j);
                         j++;
                     	}
@@ -687,11 +689,11 @@ public class Client extends SimpleApplication {
                 if (name.equals("play_stop2") && keyPressed) {
                     if (playing2) {
                         playing2 = false;
-                        AGVList.get(0).motionControl2.stop();
+                     //   AGVList.get(0).motionControl2.stop();
                         //agv1.motionControl2.stop();
                     } else {
                         playing2 = true;
-                        AGVList.get(0).motionControl2.play();
+                     //   AGVList.get(0).motionControl2.play();
                         //agv1.motionControl2.play();
                     }
                 }
