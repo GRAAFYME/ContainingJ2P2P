@@ -9,7 +9,7 @@ import javax.vecmath.Vector3f;
  * Time: 14:39
  * To change this template use File | Settings | File Templates.
  */
-public class TrainCrane extends RailCrane
+public class TrainCrane extends Crane
 {
 
 	public TrainCrane(Vector3f _location) 
