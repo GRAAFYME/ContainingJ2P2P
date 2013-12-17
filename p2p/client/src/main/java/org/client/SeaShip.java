@@ -8,5 +8,8 @@ public class SeaShip extends Vehicle
 	public SeaShip(Spatial seaShip) 
 	{
 		super(seaShip);
+		
+		seaShip.setLocalTranslation(-710, 255, 680);
+		seaShip.scale(2);
 	}
 }
