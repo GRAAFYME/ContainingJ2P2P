@@ -1,17 +1,33 @@
 package org.server;
 
 
+import org.protocol.Container;
+import org.protocol.Protocol;
+import org.protocol.Vehicle;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class xmlParser
 {
+    public static void main(String[] Args)
+    {
+        xmlParser parser = new xmlParser();
+        ContainerSetXml set = null;
+
+        try {
+            set = parser.load("C:/Users/Remco/Desktop/xml7.xml");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        PriorityQueue<Protocol> messages = parser.parse(set);
+        System.out.println(messages.peek().containers.size());
+    }
+
     public ContainerSetXml load(String path) throws FileNotFoundException
     {
         List<ContainerXml> containerList = new ArrayList<ContainerXml>();
@@ -29,6 +45,91 @@ public class xmlParser
         }
 
         return filterWrongInstances(containers);
+    }
+
+    public PriorityQueue<Protocol> parse(ContainerSetXml containerSet)
+    {
+        //PriorityQueue<Protocol> messages = new PriorityQueue<Protocol>();
+        HashMap<String, Protocol> map = new HashMap<String, Protocol>();
+
+
+        for(ContainerXml c : containerSet.containers)
+        {
+            String uniqueTransportArrivalKey = c.arrivalTransportType + c.arrivalCompany + c.arrivalDay
+                                       + c.arrivalFrom + c.arrivalMonth + c.arrivalTill + c.arrivalYear;
+            Protocol protocol = map.get(uniqueTransportArrivalKey);
+
+            //Not yet added, add now
+            if(protocol == null)
+            {
+                protocol = new Protocol();
+                map.put(uniqueTransportArrivalKey, protocol);
+                protocol.vehicles = new ArrayList<Vehicle>();
+                protocol.vehicles.add(new Vehicle());
+                protocol.vehicles.get(0).containers = new ArrayList<Container>();
+            }
+            else
+            {
+                System.out.print("alelkerf  wesd1!!!!!!11111111111");
+            }
+
+            protocol.vehicles.get(0).containers.add(containerXmlToContainer(c));
+        }
+        PriorityQueue<Protocol> queue = new PriorityQueue<Protocol>(2, new Comparator<Protocol>() {
+            public int compare(Protocol n1, Protocol n2) {
+                // compare n1 and n2
+                Container c1 = n1.vehicles.get(0).containers.get(0);
+                Container c2 = n2.vehicles.get(0).containers.get(0);
+
+                int comparison1 = Integer.compare(c1.arrivalDay, c2.arrivalDay);
+                int comparison2 = Integer.compare(c1.arrivalMonth, c2.arrivalMonth);
+                int comparison3 = Integer.compare(c1.arrivalYear, c2.arrivalYear);
+
+                int comparison4 = c1.arrivalFrom.compareTo(c2.arrivalFrom);
+
+                if(comparison1 >= 0 && comparison2 >= 0 && comparison2 >= 0)
+                    return comparison4;
+                else
+                    return -1;
+            }});
+
+        queue.addAll(map.values());
+        return queue;
+    }
+
+
+    public Container containerXmlToContainer(ContainerXml container)
+    {
+        Container c = new Container();
+
+        c.id = container.id;
+        c.arrivalDay = container.arrivalDay;
+        c.arrivalMonth = container.arrivalMonth;
+        c.arrivalYear = container.arrivalYear;
+        c.arrivalTill = container.arrivalTill;
+        c.arrivalFrom = container.arrivalFrom;
+        c.leaveDay = container.leaveDay;
+        c.leaveMonth = container.leaveMonth;
+        c.leaveYear = container.leaveYear;
+        c.leaveFrom = container.leaveFrom;
+        c.leaveTill = container.leaveTill;
+        c.arrivalPosX = container.arrivalPosX;
+        c.arrivalPosY = container.arrivalPosY;
+        c.arrivalPosZ = container.arrivalPosZ;
+        c.ownerName = container.ownerName;
+        c.nr = container.nr;
+        c.arrivalTransportType = container.arrivalTransportType;
+        c.leaveTransportType = container.leaveTransportType;
+        c.arrivalCompany = container.arrivalCompany;
+        c.leaveCompany = container.leaveCompany;
+        c.emptyWeight = container.emptyWeight;
+        c.fullWeight = container.fullWeight;
+        c.contentName = container.contentName;
+        c.contentType = container.contentType;
+        c.dangerType = container.dangerType;
+        c.iso = container.iso;
+
+        return c;
     }
 
     private ContainerSetXml filterWrongInstances(ContainerSetXml set)

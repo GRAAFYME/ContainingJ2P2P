@@ -19,7 +19,9 @@ public class Protocol {
     public boolean isZip;
     @XmlElement
     public List<Container> containers;
-    
+    @XmlElement
+    public List<Vehicle> vehicles;
+
     public Protocol()
     {
         containers = new ArrayList<Container>();

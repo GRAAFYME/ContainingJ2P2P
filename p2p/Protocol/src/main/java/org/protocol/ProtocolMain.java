@@ -23,7 +23,7 @@ public class ProtocolMain {
             System.out.println(xmlOutput);
 
             p2 = parser.deserialize(xmlOutput);
-            System.out.println(p2.getContainers().get(0).name);
+            //System.out.println(p2.getContainers().get(0).name);
 
         } catch (Exception e)
         {

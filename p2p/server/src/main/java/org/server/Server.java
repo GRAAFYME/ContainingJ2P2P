@@ -7,10 +7,10 @@ import org.protocol.Protocol;
 import org.protocol.ProtocolParser;
 import org.protocol.Statistics;
 
-import javax.vecmath.Point3d;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.PriorityQueue;
 
 
 /**
@@ -50,14 +50,14 @@ public class Server implements Runnable
         Protocol p = null;
         p = new Protocol();
         p.getContainers().add(new Container());
-        p.getContainers().get(0).location = new Point3d(50, 130, 50);
+        //p.getContainers().get(0).location = new Point3d(50, 130, 50);
         server.start(6666);
         
         while(true)
         {
             Thread.sleep(100);
             //Add tiny amount
-            p.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
+            //p.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
             server.sendMessage(parser.serialize(p));
         }
     }
@@ -160,7 +160,7 @@ public class Server implements Runnable
 
             protocol = new Protocol();
             protocol.getContainers().add(new Container());
-            protocol.getContainers().get(0).location = new Point3d(50, 130, 50);
+            //protocol.getContainers().get(0).location = new Point3d(50, 130, 50);
 
             //This will run this.run() in a new thread
             thread = new Thread(this);
@@ -207,6 +207,9 @@ public class Server implements Runnable
         {
             try {
                 String message = "";
+                xmlParser xmlparser = new xmlParser();
+                ContainerSetXml containerset =  xmlparser.load("data/xml1.xml");
+                PriorityQueue<Protocol> queue = xmlparser.parse(containerset);
 
                 isRunning = true;
                 //Wait till someone connects; this is a blocking method!!!!!!!!
@@ -246,8 +249,11 @@ public class Server implements Runnable
 
                     Thread.sleep(100);
                     //Add tiny amount
-                    //protocol.getContainers().get(0).location.add(new Point3d(1f, 0f, 0f));
-                    //sendMessage(parser.serialize(protocol));
+
+                    if (counter % 100 == 0)
+                    {
+                        sendMessage(parser.serialize(queue.poll()));
+                    }
 
                     if (counter % 15 == 0)
                     {

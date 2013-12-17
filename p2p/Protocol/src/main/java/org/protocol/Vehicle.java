@@ -1,6 +1,7 @@
 package org.protocol;
 
 import javax.vecmath.Vector3f;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +13,10 @@ import javax.vecmath.Vector3f;
 public class Vehicle
 {
 	private Vector3f Location;
-	
+    public List<Container> containers;
+
+    public Vehicle() {}
+
 	public Vehicle(Vector3f _location)
 	{
 		this.Location = _location;

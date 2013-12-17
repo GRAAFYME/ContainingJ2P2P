@@ -12,57 +12,57 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ContainerXml
 {
     @XmlAttribute
-    String id;
+    public String id;
 
     @XmlPath("aankomst/datum/d/text()")
-    int arrivalDay;
+    public int arrivalDay;
     @XmlPath("aankomst/datum/m/text()")
-    int arrivalMonth;
+    public int arrivalMonth;
     @XmlPath("aankomst/datum/j/text()")
-    int arrivalYear;
+    public int arrivalYear;
     @XmlPath("aankomst/tijd/van/text()")
-    String arrivalTill;
+    public String arrivalTill;
     @XmlPath("aankomst/tijd/tot/text()")
-    String arrivalFrom;
+    public String arrivalFrom;
 
     @XmlPath("vertrek/datum/d/text()")
-    int leaveDay;
+    public int leaveDay;
     @XmlPath("vertrek/datum/m/text()")
-    int leaveMonth;
+    public int leaveMonth;
     @XmlPath("vertrek/datum/j/text()")
-    int leaveYear;
+    public int leaveYear;
     @XmlPath("vertrek/tijd/van/text()")
-    String leaveFrom;
+    public String leaveFrom;
     @XmlPath("vertrek/tijd/tot/text()")
-    String leaveTill;
+    public String leaveTill;
     @XmlPath("aankomst/positie/x/text()")
-    int arrivalPosX;
+    public int arrivalPosX;
     @XmlPath("aankomst/positie/y/text()")
-    int arrivalPosY;
+    public int arrivalPosY;
     @XmlPath("aankomst/positie/z/text()")
-    int arrivalPosZ;
+    public int arrivalPosZ;
     @XmlPath("eigenaar/naam/text()")
-    String ownerName;
+    public String ownerName;
     @XmlPath("eigenaar/containernr/text()")
-    int nr;
+    public int nr;
     @XmlPath("aankomst/soort_vervoer/text()")
-    String arrivalTransportType;
+    public String arrivalTransportType;
     @XmlPath("vertrek/soort_vervoer/text()")
-    String leaveTransportType;
+    public String leaveTransportType;
     @XmlPath("aankomst/bedrijf/text()")
-    String arrivalCompany;
+    public String arrivalCompany;
     @XmlPath("vertrek/bedrijf/text()")
-    String leaveCompany;
+    public String leaveCompany;
     @XmlPath("gewicht/leeg/text()")
-    int emptyWeight;
+    public int emptyWeight;
     @XmlPath("gewicht/inhoud/text()")
-    int fullWeight;
+    public int fullWeight;
     @XmlPath("inhoud/naam/text()")
-    String contentName;
+    public String contentName;
     @XmlPath("inhoud/soort/text()")
-    String contentType;
+    public String contentType;
     @XmlPath("inhoud/gevaar/text()")
-    String dangerType;
+    public String dangerType;
     @XmlElement(name="ISO")
-    String iso;
+    public String iso;
 }
