@@ -26,7 +26,7 @@ public abstract class Crane extends Node
 	protected Node sliderNode = new Node();
 	
 	private String id;
-	private boolean taken;
+	private boolean busy;
 	
 	private Vector3f position;
 	
@@ -67,9 +67,9 @@ public abstract class Crane extends Node
 		return this.id;
 	}
 	
-	public boolean isTaken()
+	public boolean isBusy()
 	{
-		return taken;
+		return busy;
 	}
 	
 	public Vector3f getPosition()
@@ -94,6 +94,7 @@ public abstract class Crane extends Node
 			case 1:
 			{
 				//AGV to Storage
+				this.busy = true;
 				moveCrane(des[3], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
@@ -174,11 +175,13 @@ public abstract class Crane extends Node
 					}
 					
 				});
+				this.busy = false;
 				break;
 			}
 			case 2:
 			{
 				//Storage to AVG
+				this.busy = true;
 				moveCrane(des[0], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
@@ -252,11 +255,13 @@ public abstract class Crane extends Node
 						}
 					}
 				});
+				this.busy = false;
 				break;
 			}
 			case 3:
 			{
 				//Truck to AGV
+				this.busy = true;
 				moveCrane(des[2], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
@@ -307,11 +312,13 @@ public abstract class Crane extends Node
 						}
 					}
 				});
+				this.busy = false;
 				break;
 			}
 			case 4:
 			{
 				//AGV to Truck
+				this.busy = true;
 				moveHook(des[1], sp);
 				pathHook.addListener(new MotionPathListener()
 				{
@@ -362,6 +369,7 @@ public abstract class Crane extends Node
 						}
 					}
 				});
+				this.busy = false;
 				break;
 			}
 		}
