@@ -53,7 +53,7 @@ public class Client extends SimpleApplication {
 	private Geometry tempContainer; //Temporary network test
 	public Node waterNode;  //Different nodes have different physics
 	public Node allAgvNodes = new Node();
-	public Node container;
+	public Spatial container;
 	public Node shipNode;
 	private BulletAppState bulletAppState;  //Physics machine
 	private networkClient c;
@@ -132,8 +132,8 @@ public class Client extends SimpleApplication {
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
     	initScene();  
-    	testContainer();
     	loadAssets();
+    	testContainer();
 
     	addAllAGVs(location);
     	
@@ -215,9 +215,9 @@ public class Client extends SimpleApplication {
     public void testContainer()
     {
     	float xCoord,yCoord,zCoord;
-        xCoord = shipNode.getLocalTranslation().x-367;
-        yCoord = shipNode.getLocalTranslation().y+220;
-        zCoord = shipNode.getLocalTranslation().z+310;
+        xCoord = seaShip.getLocalTranslation().x-367;
+        yCoord = seaShip.getLocalTranslation().y+220;
+        zCoord = seaShip.getLocalTranslation().z+310;
         
     	int containerCount = 0;
     	for(int y = 0; y < 6; y++)
@@ -328,6 +328,13 @@ public class Client extends SimpleApplication {
     	train.setMaterial(mat_vehicles);
     	barge.setMaterial(mat_vehicles);
     	
+    	container = assetManager.loadModel("Models/container/Container.obj");
+    	Material mat_container;
+    	mat_container = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+    	Texture cont_tex = assetManager.loadTexture("Models/container/container.png");
+    	mat_container.setTexture("DiffuseMap", cont_tex);
+    	container.setMaterial(mat_container);
+    	
     	createVehicle();
     	
     	//TODO: Load other assets in this method, use comments to tell what asset you're loading!
@@ -400,7 +407,7 @@ public class Client extends SimpleApplication {
     
     private void createVehicle()
     {
-    	Vehicle v = new Train(train);
+    	Vehicle v = new SeaShip(seaShip);
     	rootNode.attachChild(v);
     }
     
