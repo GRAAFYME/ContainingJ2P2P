@@ -133,7 +133,7 @@ public class Client extends SimpleApplication {
     	//testContainer();
     	loadAssets();
 
-    	//addAllAGVs(location);
+    	addAllAGVs(location);
     	
         //waypoints code
         c = new networkClient(6666);
@@ -625,6 +625,9 @@ public class Client extends SimpleApplication {
         inputManager.addMapping("play_stop2", new KeyTrigger(KeyInput.KEY_M));
         inputManager.addMapping("SetWireFrame", new KeyTrigger(KeyInput.KEY_L));
         inputManager.addMapping("startAnimation", new KeyTrigger(KeyInput.KEY_V));
+        inputManager.addMapping("speedDown", new KeyTrigger(KeyInput.KEY_E));
+        inputManager.addMapping("speedUp", new KeyTrigger(KeyInput.KEY_T));
+        inputManager.addMapping("speedReset", new KeyTrigger(KeyInput.KEY_R));
         ActionListener acl = new ActionListener() {
 
             public void onAction(String name, boolean keyPressed, float tpf) {
@@ -636,6 +639,24 @@ public class Client extends SimpleApplication {
                         active = true;
                         path.enableDebugShape(assetManager, rootNode);
                     }
+                }
+                
+                if (name.equals("speedDown")&& keyPressed){
+                speed = speed / 2;
+                System.out.println(speed);
+                	
+                } else {
+                if (name.equals("speedUp")&& keyPressed){                
+                speed = speed * 2;
+                System.out.println(speed);
+                	
+                } else{
+                if (name.equals("speedReset")&& keyPressed){
+                speed = 1;
+                System.out.println(speed);
+                	
+                }
+                }
                 }
             	
                 if (name.equals("startAnimation") && keyPressed) 
@@ -651,7 +672,7 @@ public class Client extends SimpleApplication {
         	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
         	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
         	    	
-        	    	truckCranes[id].animation(3, des, 5);
+        	    	truckCranes[id].animation(3, des, 0.5f);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {
@@ -701,7 +722,7 @@ public class Client extends SimpleApplication {
             }
         };
 
-        inputManager.addListener(acl, "startAnimation", "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
+        inputManager.addListener(acl, "startAnimation", "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown", "speedUp", "speedDown", "speedReset");
 
     } 
     
