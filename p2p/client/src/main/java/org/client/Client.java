@@ -44,6 +44,7 @@ import java.util.Map;
  * Arjen Pander
  * Melinda de Roo 
  * */
+
 public class Client extends SimpleApplication {
 	//TODO: Set in logical order!
 	//TODO: Boolean to activate the animation per crane (1 for the RailCrane, 1 for the TruckCrane & 1 for the FreeMovingCrane)
@@ -52,33 +53,34 @@ public class Client extends SimpleApplication {
 	private Geometry tempContainer; //Temporary network test
 	public Node waterNode;  //Different nodes have different physics
 	public Node allAgvNodes = new Node();
+	public Node container;
+	public Node shipNode;
 	private BulletAppState bulletAppState;  //Physics machine
-	RigidBodyControl rbc;
-	CollisionShape sceneShape;   //gives collisions to the scene
-	Spatial sceneModel, AGV, AGV2;
-	AGV agv1, agv2;
-    Geometry geom;
-    private networkClient c;
-    FlyByCamera FBC;
-    private MotionPath path;
+	private networkClient c;
+	private MotionPath path;
     private boolean active = true;
     private boolean playing = false;
-    StorageCrane storageCrane;
-    TruckCrane truckCrane;
-    Node container;
+    private boolean active2 = true;
+    private boolean playing2 = false;
     float tpf;
 	float x1 = -470f;
 	float z1 = 150f;
 	float x2 = -470f;
 	float z2 = 735f;
-    private boolean active2 = true;
-    private boolean playing2 = false;
+	int j;
+	RigidBodyControl rbc;
+	CollisionShape sceneShape;   //gives collisions to the scene
+	AGV agv1, agv2;
+	List<AGV> AGVList;
+    Geometry geom;
+    FlyByCamera FBC;
+    MotionPaths mp;
     Vector3f location;
     String sName;
-    List<AGV> AGVList;
-    Node shipNode;
-    int j;
+    StorageCrane storageCrane;
+    TruckCrane truckCrane;
     Crane crane;
+    Spatial sceneModel, AGV, AGV2;
     
     //Vehicle Spatials
     Spatial seaShip;
@@ -133,7 +135,7 @@ public class Client extends SimpleApplication {
     	//testContainer();
     	loadAssets();
 
-    	//addAllAGVs(location);
+    	addAllAGVs(location);
     	
         //waypoints code
         c = new networkClient(6666);
@@ -142,6 +144,7 @@ public class Client extends SimpleApplication {
 	    cam.setLocation(new Vector3f(0f,260f,0f)); 
 	    flyCam.setMoveSpeed(300f);
 	    FBC = new FlyByCamera(cam, inputManager);
+	    mp = new MotionPaths(assetManager, allAgvNodes);
 	    
 	    //Protocol Test code
         protocolParser = new ProtocolParser();
@@ -244,11 +247,9 @@ public class Client extends SimpleApplication {
         Scene scene = new Scene(bulletAppState, assetManager);  //creates a new scene
     	rootNode.attachChild(scene.sceneNode);  //adds the scene to the game
     	viewPort.setBackgroundColor(new ColorRGBA(0.7f, 0.8f, 1f, 1f));
-    	AmbientLight al = new AmbientLight();
-        al.setColor(ColorRGBA.White.mult(1.3f));
-        rootNode.addLight(al); 
-    	
-	    waterNode = new Node("Water");
+        rootNode.addLight(Scene.sunLight); //adds the light to the world. 
+        rootNode.addLight(Scene.ambient); //adds the light to the world. 
+        waterNode = new Node("Water");
 	    Water water = new Water(assetManager, waterNode);  //creates water
 	    viewPort.addProcessor(water.fpp);  
 	    rootNode.attachChild(waterNode);  //adds water to the world
@@ -430,7 +431,7 @@ public class Client extends SimpleApplication {
     	    	{
     	    		if(distance[i] < smallest)
     	    		{
-    	    			if(!seaShipCranes[i].isTaken())
+    	    			if(!seaShipCranes[i].isBusy())
     	    			{
     	    				smallest = distance[i];
     	    				id = i;
@@ -449,7 +450,7 @@ public class Client extends SimpleApplication {
     	    	{
     	    		if(distance[i] < smallest)
     	    		{
-    	    			if(!truckCranes[i].isTaken())
+    	    			if(!truckCranes[i].isBusy())
     	    			{
     	    				smallest = distance[i];
     	    				id = i;
@@ -468,7 +469,7 @@ public class Client extends SimpleApplication {
     	    	{
     	    		if(distance[i] < smallest)
     	    		{
-    	    			if(!trainCranes[i].isTaken())
+    	    			if(!trainCranes[i].isBusy())
     	    			{
     	    				smallest = distance[i];
     	    				id = i;
@@ -487,7 +488,7 @@ public class Client extends SimpleApplication {
     	    	{
     	    		if(distance[i] < smallest)
     	    		{
-    	    			if(!bargeCranes[i].isTaken())
+    	    			if(!bargeCranes[i].isBusy())
     	    			{
     	    				smallest = distance[i];
     	    				id = i;
@@ -510,7 +511,6 @@ public class Client extends SimpleApplication {
 			    Vector3f startPosCrane = new Vector3f(seaShipCranes[id].getLocalTranslation());
             	Vector3f startPosSlider = new Vector3f(seaShipCranes[id].sliderNode.getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(seaShipCranes[id].hookNode.getLocalTranslation());
-            	float [] speed = new float [] {1, 1};
             	
             	des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,conVector.z); //Destination of the crane
     	    	des[1] = new Vector3f(startPosSlider.x-45-(1*2.5f),startPosSlider.y,startPosSlider.z); //Destination of the slider
@@ -528,7 +528,6 @@ public class Client extends SimpleApplication {
     		{
             	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
-            	float [] speed = new float [] {5, 3.75f};
             	
     	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
     	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
@@ -544,7 +543,6 @@ public class Client extends SimpleApplication {
             	Vector3f startPosCrane = new Vector3f(trainCranes[id].getLocalTranslation());
             	Vector3f startPosSlider = new Vector3f(trainCranes[id].sliderNode.getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(trainCranes[id].hookNode.getLocalTranslation());
-            	float [] speed = new float [] { 0.15f, 0.1f};
             	
     	    	des[0] = new Vector3f(conVector.x,startPosCrane.y,startPosCrane.z); //Destination of the crane
     	    	des[1] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z+18); //Destination of the slider
@@ -563,7 +561,6 @@ public class Client extends SimpleApplication {
             	Vector3f startPosCrane = new Vector3f(bargeCranes[id].getLocalTranslation());
             	Vector3f startPosSlider = new Vector3f(bargeCranes[id].sliderNode.getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(bargeCranes[id].hookNode.getLocalTranslation());
-            	float [] speed = new float [] {2, 0.75f};
             	
             	des[0] = new Vector3f(conVector.x,startPosCrane.y,startPosCrane.z); //Destination of the crane
     	    	des[1] = new Vector3f(startPosSlider.x,startPosSlider.y,startPosSlider.z-45-(1*2.5f)); //Destination of the slider
@@ -625,6 +622,9 @@ public class Client extends SimpleApplication {
         inputManager.addMapping("play_stop2", new KeyTrigger(KeyInput.KEY_M));
         inputManager.addMapping("SetWireFrame", new KeyTrigger(KeyInput.KEY_L));
         inputManager.addMapping("startAnimation", new KeyTrigger(KeyInput.KEY_V));
+        inputManager.addMapping("speedDown", new KeyTrigger(KeyInput.KEY_E));
+        inputManager.addMapping("speedUp", new KeyTrigger(KeyInput.KEY_T));
+        inputManager.addMapping("speedReset", new KeyTrigger(KeyInput.KEY_R));
         ActionListener acl = new ActionListener() {
 
             public void onAction(String name, boolean keyPressed, float tpf) {
@@ -636,6 +636,24 @@ public class Client extends SimpleApplication {
                         active = true;
                         path.enableDebugShape(assetManager, rootNode);
                     }
+                }
+                
+                if (name.equals("speedDown")&& keyPressed){
+                speed = speed / 2;
+                System.out.println(speed);
+                	
+                } else {
+                if (name.equals("speedUp")&& keyPressed){                
+                speed = speed * 2;
+                System.out.println(speed);
+                	
+                } else{
+                if (name.equals("speedReset")&& keyPressed){
+                speed = 1;
+                System.out.println(speed);
+                	
+                }
+                }
                 }
             	
                 if (name.equals("startAnimation") && keyPressed) 
@@ -651,7 +669,7 @@ public class Client extends SimpleApplication {
         	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
         	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
         	    	
-        	    	truckCranes[id].animation(3, des, 5);
+        	    	truckCranes[id].animation(3, des, 0.5f);
                 }
                
                 if (name.equals("play_stop") && keyPressed) {
@@ -662,7 +680,7 @@ public class Client extends SimpleApplication {
                     } 
                     else {
                         playing = true;
-                        AGVList.get(j).motionControl.play();
+                      //  AGVList.get(j).motionControl.play();
                         System.out.println("AGV Index : " + j);
                         j++;
                     	}
@@ -672,11 +690,11 @@ public class Client extends SimpleApplication {
                 if (name.equals("play_stop2") && keyPressed) {
                     if (playing2) {
                         playing2 = false;
-                        AGVList.get(0).motionControl2.stop();
+                     //   AGVList.get(0).motionControl2.stop();
                         //agv1.motionControl2.stop();
                     } else {
                         playing2 = true;
-                        AGVList.get(0).motionControl2.play();
+                     //   AGVList.get(0).motionControl2.play();
                         //agv1.motionControl2.play();
                     }
                 }
@@ -701,7 +719,7 @@ public class Client extends SimpleApplication {
             }
         };
 
-        inputManager.addListener(acl, "startAnimation", "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown");
+        inputManager.addListener(acl, "startAnimation", "display_hidePath", "play_stop", "play_stop2", "SwitchPathInterpolation", "tensionUp", "tensionDown", "speedUp", "speedDown", "speedReset");
 
     } 
     
