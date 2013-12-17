@@ -12,17 +12,11 @@ import javax.vecmath.Vector3f;
 public class Crane 
 {
 	protected Vector3f Location;
-	private boolean isBusy = false;
-	private float velocity;
+	//private boolean isBusy = false;
 	
 	public Crane(Vector3f _location)
 	{
 		this.Location = _location;
-	}
-	
-	protected float velocity(){
-		velocity = 1;
-		return velocity;
 	}
 	
 	protected Vector3f GetLocation()

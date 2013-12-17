@@ -54,6 +54,8 @@ public class Scene {
 	CollisionShape sceneShape;   //gives collisions to the scene
 	Spatial sceneModel;
 	AssetManager assetManager;
+	public static PointLight sunLight;
+	public static AmbientLight ambient;
 	
 	//constructor
 	public Scene(BulletAppState Bull, AssetManager am){
@@ -75,14 +77,12 @@ public class Scene {
     }
     //creates and loads the light
     public void initLight(){
-    	PointLight sunLight = new PointLight();
+    	sunLight = new PointLight();
         sunLight.setPosition(new Vector3f(650, 2000, 40));
         sunLight.setColor(ColorRGBA.White.mult(1f));
         sunLight.setRadius(3000f);
-        sceneNode.addLight(sunLight); 
         
-//        AmbientLight ambient = new AmbientLight();  //creates a light in the scene, which lights everything from all angles
-//        ambient.setColor(ColorRGBA.White.mult(5f));
-//        sceneNode.addLight(ambient);     //adds the light to the world. 
+        ambient = new AmbientLight();  //creates a light in the scene, which lights everything from all angles
+        ambient.setColor(ColorRGBA.White.mult(5f));   
     }
 }

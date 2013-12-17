@@ -18,14 +18,13 @@ public abstract class Crane extends Node
 	private MotionEvent sliderControl;
 	private MotionEvent hookControl;
 	private float [] distance = new float []{};
-	
 	protected Spatial crane;
 	protected Spatial slider;
 	protected Spatial hook;
 	protected Node hookNode = new Node();
 	protected Node sliderNode = new Node();
-	
 	private String id;
+	private boolean busy;
 	
 	private Vector3f position;
 	
@@ -66,6 +65,11 @@ public abstract class Crane extends Node
 		return this.id;
 	}
 	
+	public boolean isBusy()
+	{
+		return busy;
+	}
+	
 	public Vector3f getPosition()
 	{
 		return this.position;
@@ -88,6 +92,7 @@ public abstract class Crane extends Node
 			case 1:
 			{
 				//AGV to Storage
+				this.busy = true;
 				moveCrane(des[3], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
@@ -168,11 +173,13 @@ public abstract class Crane extends Node
 					}
 					
 				});
+				this.busy = false;
 				break;
 			}
 			case 2:
 			{
 				//Storage to AVG
+				this.busy = true;
 				moveCrane(des[0], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
@@ -246,11 +253,13 @@ public abstract class Crane extends Node
 						}
 					}
 				});
+				this.busy = false;
 				break;
 			}
 			case 3:
 			{
 				//Truck to AGV
+				this.busy = true;
 				moveCrane(des[2], sp);
 				pathCrane.addListener(new MotionPathListener()
 				{
@@ -301,11 +310,13 @@ public abstract class Crane extends Node
 						}
 					}
 				});
+				this.busy = false;
 				break;
 			}
 			case 4:
 			{
 				//AGV to Truck
+				this.busy = true;
 				moveHook(des[1], sp);
 				pathHook.addListener(new MotionPathListener()
 				{
@@ -356,6 +367,7 @@ public abstract class Crane extends Node
 						}
 					}
 				});
+				this.busy = false;
 				break;
 			}
 		}
@@ -380,6 +392,7 @@ public abstract class Crane extends Node
 			pathCrane.addWayPoint(desPos2);
 		}
 		
+		craneControl.setSpeed(sp);
 		craneControl.play();
 		System.out.println("Number of WayPoints: " + pathCrane.getNbWayPoints());
 	}
@@ -403,6 +416,7 @@ public abstract class Crane extends Node
 			pathSlider.addWayPoint(desPos2);
 		}
 		
+		sliderControl.setSpeed(sp);
 		sliderControl.play();
 		System.out.println("Number of WayPoints: " + pathSlider.getNbWayPoints());
 	}
@@ -419,6 +433,7 @@ public abstract class Crane extends Node
 			pathHook.addWayPoint(startPosition);
 			pathHook.addWayPoint(desPosition);	
 			pathHook.addWayPoint(startPosition);
+			hookControl.setSpeed(sp);
 			hookControl.play();
 		}
 		System.out.println("Number of WayPoints: " + pathHook.getNbWayPoints());
