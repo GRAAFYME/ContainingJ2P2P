@@ -19,7 +19,7 @@ public class oldMain {
         ContainerSetXml containers;
         try {
             long time = System.nanoTime();
-            containers = parser.parse("data/xml1.xml");
+            containers = parser.load("data/xml1.xml");
             System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
             //for (Container c : containers)
             //    System.out.println("("+c.id+")Name: " + c.name + " is carrying " + c.contentName + " which is " + c.contentDanger);

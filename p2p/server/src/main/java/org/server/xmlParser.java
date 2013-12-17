@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class xmlParser
 {
-    public ContainerSetXml parse(String path) throws FileNotFoundException
+    public ContainerSetXml load(String path) throws FileNotFoundException
     {
         List<ContainerXml> containerList = new ArrayList<ContainerXml>();
         ContainerSetXml containers = null;

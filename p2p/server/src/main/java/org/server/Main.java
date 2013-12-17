@@ -225,7 +225,7 @@ public class Main
              try 
              {
                  long time = System.nanoTime();
-                 containers = parser.parse(FileLocation);
+                 containers = parser.load(FileLocation);
                  
                  System.out.println("It took" + (System.nanoTime() - time) + "ns to parse the xml file");
                  //new Thread for display next container after some time

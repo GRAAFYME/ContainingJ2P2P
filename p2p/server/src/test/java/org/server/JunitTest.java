@@ -1,13 +1,8 @@
 package org.server;
 
-import static org.junit.Assert.*;
+import org.junit.*;
 
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import static org.junit.Assert.fail;
 
 public class JunitTest {
 
@@ -28,7 +23,7 @@ public class JunitTest {
     	final ContainerSetXml containers;
     	try
     	{
-    		containers = parser.parse("data/xml7.xml");
+    		containers = parser.load("data/xml7.xml");
     		for (ContainerXml c : containers.containers) {
             	System.out.println(c.id + " Owner Name: " + c.ownerName +  "\n");
     		}
