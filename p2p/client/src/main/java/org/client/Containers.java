@@ -17,8 +17,8 @@ public class Containers extends Node
 		this.container = container.clone();
 		this.position = position;
 		
-		this.container.rotate(0,90*FastMath.DEG_TO_RAD,0);
+		container.rotate(0,90*FastMath.DEG_TO_RAD,0);
 		
-		this.attachChild(this.container);
+		this.attachChild(container);
 	}
 }

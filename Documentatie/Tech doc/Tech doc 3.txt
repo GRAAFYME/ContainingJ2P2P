@@ -1,12 +1,9 @@
 Tech doc 3:
 
 Toevoegen:
-- Inleiding.. (Systeemoverzicht)
-- Hoofdstuk 5: up to date UML
-- de laatste zin van hoofdstuk protocol aanpassen
+- Inleiding.. (Systeem / functie overzicht)
 - hoofdstuk algoritmes: uitwerking van A* en sorteerfunctie
-- Hoofdstuk functieoverzicht
-+ zie tech doc 2
+- Hoofdstuk 6: up to date UML
 
 
 
