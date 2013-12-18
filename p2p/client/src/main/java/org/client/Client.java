@@ -72,6 +72,7 @@ public class Client extends SimpleApplication {
 	CollisionShape sceneShape;   //gives collisions to the scene
 	AGV agv1, agv2;
 	List<AGV> AGVList;
+	List<Containers> containerList; 
     Geometry geom;
     FlyByCamera FBC;
     MotionPaths mp;
@@ -214,6 +215,7 @@ public class Client extends SimpleApplication {
     //TODO: Put in a class
     public void testContainer()
     {
+    	containerList = new ArrayList<Containers>();
     	float xCoord,yCoord,zCoord;
         xCoord = seaShip.getLocalTranslation().x-367;
         yCoord = seaShip.getLocalTranslation().y+220;
@@ -229,12 +231,14 @@ public class Client extends SimpleApplication {
     				if(containerCount < 1800)
     				{
     					String id = String.valueOf(containerCount + 1);
-    					Vector3f pos = new Vector3f(xCoord+(x*3),yCoord+(y*2.5f),zCoord-(z*12.7f));
-    					Containers cont = new Containers(id, pos, container);
+    					Vector3f pos = new Vector3f(xCoord+(x*2.4f),yCoord+(y*2.5f),zCoord-(z*12.3f));
+   					    //Containers cont = new Containers(id, pos, container);
+    					containerList.add(new Containers(id, pos, container));
     					container.setLocalTranslation(pos);
-    					rootNode.attachChild(cont);
-    					
-    		    		containerCount++;
+    					//rootNode.attachChild(cont);
+    					rootNode.attachChild(containerList.get(containerCount));
+    					System.out.println(container.getLocalTranslation());
+    					containerCount++;
     				}
     			}
     		}
