@@ -9,18 +9,18 @@ import java.io.IOException;
  * Time: 12:55
  * To change this template use File | Settings | File Templates.
  */
- class NetworkManager {
-
- public NetworkManager() throws IOException
- {
-  try
-  {
-  com.jme3.network.Client myClient = com.jme3.network.Network.connectToServer("localhost", 6666);
-  myClient.start();
-  }
-  catch (Exception e)
-  {
-   System.out.println(e.getMessage());
-  }
- }
+class NetworkManager 
+{
+	public NetworkManager() throws IOException
+	{
+		try
+		{
+			com.jme3.network.Client myClient = com.jme3.network.Network.connectToServer("localhost", 6666);
+			myClient.start();
+		}
+		catch (Exception e)
+		{
+		 	System.out.println(e.getMessage());
+	 	}
+ 	}
 }

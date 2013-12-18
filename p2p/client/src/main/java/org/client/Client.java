@@ -2,23 +2,19 @@ package org.client;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.RigidBodyControl;
+//import com.jme3.bullet.collision.shapes.CollisionShape;
+//import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
-import com.jme3.light.AmbientLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
 import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
 
 import de.lessvoid.nifty.Nifty;
@@ -49,8 +45,8 @@ public class Client extends SimpleApplication
     float tpf;
 	
 	//Protocol variables
-	private ProtocolParser protocolParser;
-	private networkClient c;
+//	private ProtocolParser protocolParser;
+//	private networkClient c;
 	
 	//Scene
 	Spatial sceneModel;
@@ -76,7 +72,7 @@ public class Client extends SimpleApplication
 	private Node allAgvNodes = new Node();
     private boolean active = true;
     private boolean playing = false;
-    private boolean active2 = true;
+    //private boolean active2 = true;
     private boolean playing2 = false;
 	private MotionPath path;
 	private boolean setWireFrame = false;
@@ -165,27 +161,27 @@ public class Client extends SimpleApplication
     		c.update(tpf);
     	}
     	//System.out.println(cam.getLocation());
-        String message = c.getMessages();
-        if(message != "")
-        {
-            System.out.println(message);
-            try {
-                Protocol p = protocolParser.deserialize(message);
-                Container container = null;
-                for (Container c : p.getContainers())
-                {
-                    container = c;
-                    System.out.println(c.getLocation().toString());
-                }
-                
-                Point3d l = container.getLocation();
-                
-            }
-            catch (Exception e)
-            {
-                System.out.println("Received incorrect package: \n\n" +  e.getMessage());
-            }
-        }
+//        String message = c.getMessages();
+//        if(message != "")
+//        {
+//            System.out.println(message);
+//            try {
+//                Protocol p = protocolParser.deserialize(message);
+//                Container container;
+//                for (Container c : p.getContainers())
+//                {
+//                    container = c;
+//                    System.out.println(c.getLocation().toString());
+//                }
+//                
+//                //Point3d l = container.getLocation();
+//                
+//            }
+//            catch (Exception e)
+//            {
+//                System.out.println("Received incorrect package: \n\n" +  e.getMessage());
+//            }
+//        }
 
         //To let the server know we're still alive, server will get confused and presume disconnection
         //when you've hit a breakpoint, but that's why heartbeat timeout @ server is disabled by default
@@ -213,7 +209,7 @@ public class Client extends SimpleApplication
     	}    
     }
          
-    //TODO: Put in a class
+    //TODO: Create them when they need to be created
     public void testContainer()
     {
     	containerList = new ArrayList<Containers>();
@@ -347,8 +343,6 @@ public class Client extends SimpleApplication
     	AGV2.setMaterial(mat_agv);
     	
     	createVehicle();
-    	
-    	//TODO: Load other assets in this method, use comments to tell what asset you're loading!
     }
     
     private void init_StorageCrane()
@@ -595,6 +589,7 @@ public class Client extends SimpleApplication
     		}
     		case 5:
     		{
+    			//TODO: Use the sorting function to get the right lane and spot on the storage
             	Map<String, Vector3f> spot = storage.storageSpots.get("0"); //TODO: Get the right lane of the crane
             	Vector3f spotje = spot.get("254"); //TODO: Get the right spot on that lane
             	
@@ -679,8 +674,8 @@ public class Client extends SimpleApplication
                 	//Vector3f conVector = new Vector3f(200, 264, 802);
                 	int id = 0;
                 	
-                	Map<String, Vector3f> spot = storage.storageSpots.get("0"); //TODO: Get the right lane of the crane
-                	Vector3f spotje = spot.get("254"); //TODO: Get the right spot on that lane
+                	Map<String, Vector3f> spot = storage.storageSpots.get("0");
+                	Vector3f spotje = spot.get("254");
                 	
                 	Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());
                 	Vector3f startPosSlider = new Vector3f(storageCranes[id].sliderNode.getLocalTranslation());
