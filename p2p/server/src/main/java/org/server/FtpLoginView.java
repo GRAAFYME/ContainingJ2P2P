@@ -1,8 +1,11 @@
 package org.server;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class FtpLoginView {
 
@@ -15,6 +18,7 @@ public class FtpLoginView {
 	private JTextField userText;
 	private JPasswordField passwordText;
 	
+	private JButton loginButton;
 	//Require to give the server object so we can login here
 	//instead of doing weird magic grabbing back name/password credentials
 	public FtpLoginView(Server server)
@@ -26,7 +30,7 @@ public class FtpLoginView {
 	{
 		frame = new JFrame("Login to ftp");
 		JPanel panel = new JPanel();
-		
+
 		frame.setSize(300, 150);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
@@ -54,14 +58,32 @@ public class FtpLoginView {
 		passwordText.setBounds(100, 40, 160, 25);
 		panel.add(passwordText);
 
-		JButton loginButton = new JButton("Login");
+		loginButton = new JButton("Login");
 		loginButton.setBounds(10, 80, 80, 25);
 		panel.add(loginButton);
 	    loginButton.addActionListener(actionListener);
+	    
+	    //Kan je enter indrukken als je het ingevuld hebt
+	    passwordText.addKeyListener(keylistener);
 		
 	}
 
 
+   private KeyListener keylistener = new KeyListener(){
+	   public void keyTyped(KeyEvent e) {
+           if(e.getKeyChar()==KeyEvent.VK_ENTER)
+           {
+               loginButton.doClick();
+           }
+       }
+		public void keyPressed(KeyEvent arg0) {	
+		}
+
+		public void keyReleased(KeyEvent arg0) {
+		}
+};	
+   
+	
    private ActionListener actionListener = new ActionListener() {
 	   public void actionPerformed(ActionEvent e) 
 	   {
