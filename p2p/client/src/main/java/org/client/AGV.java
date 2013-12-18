@@ -1,14 +1,10 @@
 package org.client;
 
-import com.jme3.asset.AssetManager;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.font.BitmapFont;
 import com.jme3.font.BitmapText;
-import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
@@ -29,39 +25,43 @@ public class AGV extends Node implements MotionPathListener {
 	boolean setWireFrame;
 
 	private Spatial AGV;
-	public BitmapText wayPointsText;
-	private AssetManager assetManager;
-	private BitmapFont guiFont;
-	public Node nodeAGV;
-	private Node AllAgvNodes;
+//	private BitmapText wayPointsText;
+//	private BitmapFont guiFont;
+//	private Node nodeAGV;
+//	private Node AllAgvNodes;
 	Vector3f location;
 	String Name;
 
 
-	public AGV(Vector3f location, AssetManager am, Node allAgvNodes, boolean setWireFrame, String Name) {
-		this.AllAgvNodes = allAgvNodes;
-		this.assetManager = am;
-		this.setWireFrame = setWireFrame;
+	public AGV(String id, Vector3f location, Spatial AGV, String Name) 
+	{
+		super(id);
+		
 		this.Name = Name;
-		addAGVcar(location);
+		this.AGV = AGV.clone();
+		
+		this.scale(2.5f);
+		this.setName(name);
+		
+		this.attachChild(this.AGV);
 	//	initMotionControl();
 
 	}
 
-	public void addAGVcar(Vector3f location) {
-
-		AGV = assetManager.loadModel("Models/AGV/AGV.obj");
-		AGV.setLocalTranslation(location);
-		AGV.scale(2.5f);
-		Material mat = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
-		//mat.setColor("Color", ColorRGBA.Green);
-		AGV.setMaterial(mat);
-		AGV.setName(Name);
-		mat.getAdditionalRenderState().setWireframe(setWireFrame);
-		nodeAGV = new Node();
-		nodeAGV.attachChild(AGV); // make the AGV appear in the scene
-		AllAgvNodes.attachChild(nodeAGV);
-	}
+//	public void addAGVcar(Vector3f location) {
+//
+//		AGV = assetManager.loadModel("Models/AGV/AGV.obj");
+//		AGV.setLocalTranslation(location);
+//		AGV.scale(2.5f);
+//		Material mat = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
+//		//mat.setColor("Color", ColorRGBA.Green);
+//		AGV.setMaterial(mat);
+//		AGV.setName(Name);
+//		mat.getAdditionalRenderState().setWireframe(setWireFrame);
+//		nodeAGV = new Node();
+//		nodeAGV.attachChild(AGV); // make the AGV appear in the scene
+//		AllAgvNodes.attachChild(nodeAGV);
+//	}
 
 //	public void initMotionControl() {
 //		motionControl = new MotionEvent(AGV, path);
