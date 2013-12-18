@@ -205,6 +205,7 @@ public class Server implements Runnable
     @Override
     public void run()
         {
+            boolean ftpDebugOnly = true;
             try {
                 String message = "";
                 xmlParser xmlparser = new xmlParser();
@@ -214,12 +215,14 @@ public class Server implements Runnable
                 isRunning = true;
                 //Wait till someone connects; this is a blocking method!!!!!!!!
                 System.out.println("Waiting till a client connects, I (Server server) won't do anything untill this happens!!!");
+                if(!ftpDebugOnly)
+                {
                 clientSocket = serverSocket.accept();
-                //Does this do anything at all?
-                clientSocket.setSoTimeout(500);
-                writer = new PrintWriter(clientSocket.getOutputStream(), true);
-                reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
+                    //Does this do anything at all?
+                    clientSocket.setSoTimeout(500);
+                    writer = new PrintWriter(clientSocket.getOutputStream(), true);
+                    reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                }
                 int counter = 0;
                 long lastIterationTime = System.nanoTime();
                 while(true)
@@ -230,7 +233,7 @@ public class Server implements Runnable
                         stop();
 
                     //Heartbeat check, If client hasn't responded for a while, presume disconnection
-                    if(enableHeartbeat || System.nanoTime() - lastIterationTime > heartBeatTimeout * 1000000)//10^-6
+                    if(enableHeartbeat && System.nanoTime() - lastIterationTime > heartBeatTimeout * 1000000)//10^-6
                     {
                         //exit from this thread
                         return;
@@ -239,7 +242,8 @@ public class Server implements Runnable
 
                     ////Server stuff goes down here
                     //Check if the client said anything
-                    message = getMessages();
+                    if(!ftpDebugOnly)
+                        message = getMessages();
 
                     //Has the client said anything? if so, reset timer.
                     if(message != "")
@@ -252,7 +256,7 @@ public class Server implements Runnable
 
                     if (counter % 100 == 0)
                     {
-                        sendMessage(parser.serialize(queue.poll()));
+                        if(!ftpDebugOnly) sendMessage(parser.serialize(queue.poll()));
                     }
 
                     if (counter % 15 == 0)

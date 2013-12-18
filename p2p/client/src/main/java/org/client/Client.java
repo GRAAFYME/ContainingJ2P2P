@@ -9,6 +9,7 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.material.Material;
+import com.jme3.material.RenderState.FaceCullMode;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
@@ -51,7 +52,6 @@ public class Client extends SimpleApplication
 	
 	//Scene
 	Spatial sceneModel;
-	BatchNode batch = new BatchNode();
 	public Node waterNode;  //Different nodes have different physics
 	//private RigidBodyControl rbc;
 	//private CollisionShape sceneShape;   //gives collisions to the scene
@@ -219,12 +219,7 @@ public class Client extends SimpleApplication
         xCoord = seaShip.getLocalTranslation().x-367;
         yCoord = seaShip.getLocalTranslation().y+220;
         zCoord = seaShip.getLocalTranslation().z+310;
-        
-        
-        
-        
-        
-        
+
     	int containerCount = 0;
     	for(int y = 0; y < 6; y++)
     	{
@@ -240,15 +235,12 @@ public class Client extends SimpleApplication
     					containerList.add(new Containers(id, pos, container));
     					container.setLocalTranslation(pos);
     					//rootNode.attachChild(cont);
-    					//rootNode.attachChild(containerList.get(containerCount));
-    					batch.attachChild(containerList.get(containerCount));
+    					rootNode.attachChild(containerList.get(containerCount));
     					containerCount++;
     				}
     			}
     		}
-    	}
-    	rootNode.attachChild(batch);
-    	batch.batch();
+    	}    	
     }
     
     //creates most of the physics and scene logic
@@ -277,6 +269,8 @@ public class Client extends SimpleApplication
     	mat_stHCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
     	mat_stCrane.setColor("Color", ColorRGBA.Red);
     	mat_stHCrane.setColor("Color", ColorRGBA.Black);
+    	mat_stCrane.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
+    	mat_stHCrane.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
     	stCrane.setMaterial(mat_stCrane);
     	stSCrane.setMaterial(mat_stHCrane);
     	stHCrane.setMaterial(mat_stHCrane);
@@ -291,6 +285,8 @@ public class Client extends SimpleApplication
     	Texture crane_tex = assetManager.loadTexture("Models/crane/zeekraan.png");
     	mat_ssCrane.setTexture("DiffuseMap", crane_tex);
     	mat_ssHCrane.setColor("Color", ColorRGBA.Black);
+    	mat_ssCrane.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
+    	mat_ssHCrane.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
     	ssCrane.setMaterial(mat_ssCrane);
     	ssSCrane.setMaterial(mat_ssHCrane);
     	ssHCrane.setMaterial(mat_ssHCrane);
@@ -304,6 +300,8 @@ public class Client extends SimpleApplication
     	mat_tSCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
     	mat_tCrane.setColor("Color", ColorRGBA.Green);
     	mat_tSCrane.setColor("Color", ColorRGBA.Black);
+    	mat_tCrane.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
+    	mat_tSCrane.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
     	tCrane.setMaterial(mat_tCrane);
     	tSCrane.setMaterial(mat_tSCrane);
     	tHCrane.setMaterial(mat_tSCrane);
@@ -317,6 +315,8 @@ public class Client extends SimpleApplication
     	mat_trSCrane = new Material( assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
     	mat_trCrane.setColor("Color", ColorRGBA.Green);
     	mat_trSCrane.setColor("Color", ColorRGBA.Black);
+    	mat_trCrane.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
+    	mat_trSCrane.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
     	trCrane.setMaterial(mat_trCrane);
     	trSCrane.setMaterial(mat_trSCrane);
     	trHCrane.setMaterial(mat_trSCrane);
@@ -333,6 +333,7 @@ public class Client extends SimpleApplication
     	barge = assetManager.loadModel("Models/Vehicles/barge.obj");
     	Material mat_vehicles = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
     	mat_vehicles.setColor("Color", ColorRGBA.Gray);
+    	mat_vehicles.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
     	seaShip.setMaterial(mat_vehicles);
     	truck.setMaterial(mat_vehicles);
     	train.setMaterial(mat_vehicles);
@@ -343,12 +344,14 @@ public class Client extends SimpleApplication
     	mat_container = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
     	Texture cont_tex = assetManager.loadTexture("Models/container/container.png");
     	mat_container.setTexture("DiffuseMap", cont_tex);
+    	mat_container.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
     	container.setMaterial(mat_container);
     	
     	AGV = assetManager.loadModel("Models/AGV/AGV.obj");
     	AGV2 = assetManager.loadModel("Models/AGV/AGV.obj");
     	Material mat_agv = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
     	mat_agv.getAdditionalRenderState().setWireframe(setWireFrame);
+    	mat_agv.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
     	AGV.setMaterial(mat_agv);
     	AGV2.setMaterial(mat_agv);
     	
