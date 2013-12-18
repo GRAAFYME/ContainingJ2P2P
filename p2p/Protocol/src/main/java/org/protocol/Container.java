@@ -1,5 +1,6 @@
 package org.protocol;
 
+import javax.vecmath.Point3d;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
@@ -65,9 +66,11 @@ public class Container {
     public String dangerType;
     @XmlElement(name="ISO")
     public String iso;
+    
+    public Point3d location = new Point3d(0,0,0);
 
-    //public Point3d getLocation()
-    //{
-    //	return location;
-    //}
+    public Point3d getLocation()
+    {
+    	return location;
+    }
 }
