@@ -13,6 +13,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
+import com.jme3.scene.BatchNode;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
@@ -50,6 +51,7 @@ public class Client extends SimpleApplication
 	
 	//Scene
 	Spatial sceneModel;
+	BatchNode batch = new BatchNode();
 	public Node waterNode;  //Different nodes have different physics
 	//private RigidBodyControl rbc;
 	//private CollisionShape sceneShape;   //gives collisions to the scene
@@ -139,7 +141,7 @@ public class Client extends SimpleApplication
     	addAllAGVs(location);
     	
         //waypoints code
-        c = new networkClient(6666);
+        //c = new networkClient(6666);
     	
         //Cam code
 	    cam.setLocation(new Vector3f(0f,260f,0f)); 
@@ -148,7 +150,7 @@ public class Client extends SimpleApplication
 	    mp = new MotionPaths(assetManager, allAgvNodes);
 	    
 	    //Protocol Test code
-        protocolParser = new ProtocolParser();
+        //protocolParser = new ProtocolParser();
     }
     
     @Override
@@ -218,6 +220,11 @@ public class Client extends SimpleApplication
         yCoord = seaShip.getLocalTranslation().y+220;
         zCoord = seaShip.getLocalTranslation().z+310;
         
+        
+        
+        
+        
+        
     	int containerCount = 0;
     	for(int y = 0; y < 6; y++)
     	{
@@ -233,12 +240,15 @@ public class Client extends SimpleApplication
     					containerList.add(new Containers(id, pos, container));
     					container.setLocalTranslation(pos);
     					//rootNode.attachChild(cont);
-    					rootNode.attachChild(containerList.get(containerCount));
+    					//rootNode.attachChild(containerList.get(containerCount));
+    					batch.attachChild(containerList.get(containerCount));
     					containerCount++;
     				}
     			}
     		}
     	}
+    	rootNode.attachChild(batch);
+    	batch.batch();
     }
     
     //creates most of the physics and scene logic
