@@ -8,17 +8,27 @@ import com.jme3.scene.Spatial;
 public class Containers extends Node
 {
 	protected Spatial container;
-	protected Vector3f position;
+	
+	private String id;
 	
 	public Containers(String id, Vector3f position, Spatial container)
 	{
 		super(id);
 		
-		this.container = container.clone();
-		this.position = position;
+		this.id = id;
+		this.container = container.clone();	
+		this.container.rotate(0,90*FastMath.DEG_TO_RAD,0);
 		
-		container.rotate(0,90*FastMath.DEG_TO_RAD,0);
-		
-		this.attachChild(container);
+		this.attachChild(this.container);
+	}
+	
+	public String getId()
+	{
+		return this.id;
+	}
+	
+	public void detachContainer()
+	{
+		this.detachChild(this.container);
 	}
 }
