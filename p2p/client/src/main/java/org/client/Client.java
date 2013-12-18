@@ -31,7 +31,6 @@ import org.protocol.ProtocolParser;
 import javax.vecmath.Point3d;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +46,7 @@ import java.util.Map;
 
 public class Client extends SimpleApplication 
 {
-	//TODO: Set in logical order!
+    float tpf;
 	
 	//Protocol variables
 	private ProtocolParser protocolParser;
@@ -59,6 +58,7 @@ public class Client extends SimpleApplication
 	//private RigidBodyControl rbc;
 	//private CollisionShape sceneShape;   //gives collisions to the scene
 	private BulletAppState bulletAppState;  //Physics machine
+    FlyByCamera FBC;
 	
 	//Container
 	public Spatial container;
@@ -66,10 +66,13 @@ public class Client extends SimpleApplication
 	
 	//AGV
     private Spatial AGV, AGV2;
+	private AGV agv1, agv2;
+    Vector3f location;
 	float x1 = -470f;
 	float z1 = 150f;
 	float x2 = -470f;
 	float z2 = 735f;
+	private int j;
 	private Node allAgvNodes = new Node();
     private boolean active = true;
     private boolean playing = false;
@@ -78,17 +81,10 @@ public class Client extends SimpleApplication
 	private MotionPath path;
 	private boolean setWireFrame = false;
 
-    float tpf;
-	int j;
-	AGV agv1, agv2;
-	List<Node> AGVList;
-    Geometry geom_agv;
-    FlyByCamera FBC;
+	//Motionpaths
     MotionPaths mp;
-    Vector3f location;
-    String sName;
-    StorageCrane storageCrane;
-    TruckCrane truckCrane;
+    
+    //Crane
     Crane crane;
     
     //Vehicle Spatials
