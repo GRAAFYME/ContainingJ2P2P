@@ -45,35 +45,44 @@ import java.util.Map;
  * Melinda de Roo 
  * */
 
-public class Client extends SimpleApplication {
+public class Client extends SimpleApplication 
+{
 	//TODO: Set in logical order!
-	//TODO: Boolean to activate the animation per crane (1 for the RailCrane, 1 for the TruckCrane & 1 for the FreeMovingCrane)
-	//TODO: Receive the data for calculating the velocity of the animation
+	
+	//Protocol variables
 	private ProtocolParser protocolParser;
-	private Geometry tempContainer; //Temporary network test
-	public Node waterNode;  //Different nodes have different physics
-	public Node allAgvNodes = new Node();
-	public Spatial container;
-	public Node shipNode;
-	private BulletAppState bulletAppState;  //Physics machine
 	private networkClient c;
-	private MotionPath path;
-    private boolean active = true;
-    private boolean playing = false;
-    private boolean active2 = true;
-    private boolean playing2 = false;
-    float tpf;
+	
+	//Scene
+	Spatial sceneModel;
+	public Node waterNode;  //Different nodes have different physics
+	//private RigidBodyControl rbc;
+	//private CollisionShape sceneShape;   //gives collisions to the scene
+	private BulletAppState bulletAppState;  //Physics machine
+	
+	//Container
+	public Spatial container;
+	List<Containers> containerList; 
+	
+	//AGV
+    private Spatial AGV, AGV2;
 	float x1 = -470f;
 	float z1 = 150f;
 	float x2 = -470f;
 	float z2 = 735f;
+	private Node allAgvNodes = new Node();
+    private boolean active = true;
+    private boolean playing = false;
+    private boolean active2 = true;
+    private boolean playing2 = false;
+	private MotionPath path;
+	private boolean setWireFrame = false;
+
+    float tpf;
 	int j;
-	RigidBodyControl rbc;
-	CollisionShape sceneShape;   //gives collisions to the scene
 	AGV agv1, agv2;
-	List<AGV> AGVList;
-	List<Containers> containerList; 
-    Geometry geom;
+	List<Node> AGVList;
+    Geometry geom_agv;
     FlyByCamera FBC;
     MotionPaths mp;
     Vector3f location;
@@ -81,7 +90,6 @@ public class Client extends SimpleApplication {
     StorageCrane storageCrane;
     TruckCrane truckCrane;
     Crane crane;
-    Spatial sceneModel, AGV, AGV2;
     
     //Vehicle Spatials
     Spatial seaShip;
@@ -149,8 +157,6 @@ public class Client extends SimpleApplication {
 	    
 	    //Protocol Test code
         protocolParser = new ProtocolParser();
-        //TODO: Remove this Network test code
-        protocolTest();
     }
     
     @Override
@@ -177,7 +183,6 @@ public class Client extends SimpleApplication {
                 }
                 
                 Point3d l = container.getLocation();
-                tempContainer.setLocalTranslation((float)l.x, (float)l.y, (float)l.z);
                 
             }
             catch (Exception e)
@@ -191,26 +196,26 @@ public class Client extends SimpleApplication {
         //c.SendHeartbeat();
     }
      
-    public void addAllAGVs(Vector3f location){
-        AGVList = new ArrayList<AGV>();       //agv1 = new AGV(new Vector3f(x,260f,z), assetManager, allAgvNodes);
-        for (int i=0; i<50; i++){
-
-           AGVList.add(new AGV(new Vector3f(x1,260f,z1), assetManager, allAgvNodes, false, "AGV" + i));
-         x1+= 25;
+    public void addAllAGVs(Vector3f location)
+    {
+        for (int i = 0; i < 50; i++)
+        {
+        	location = new Vector3f(x1, 260, z1);
+        	agv1 = new AGV(String.valueOf(i), location, AGV, "AGV" + i);
+        	x1 += 25;
+        	rootNode.attachChild(agv1);
+        	agv1.setLocalTranslation(location);
         }
         
-    	for (int j = 0; j<50; j++){
-    		AGVList.add(new AGV(new Vector3f(x2,260f,z2), assetManager, allAgvNodes, true, "AGV" + j));
-    		x2+= 25;
-    	}
-        for(Iterator<AGV> i = AGVList.iterator(); 
-          i.hasNext(); ) {
-            AGV item = i.next();
-            //System.out.println(item);
-            //System.out.println("Size " +AGVList.size());
-        }
-        
-       }
+    	for (int j = 0; j < 50; j++)
+    	{
+    		location = new Vector3f(x2, 260, z2);
+    		agv2 = new AGV(String.valueOf(j), location, AGV2, "AGV" + j);
+    		x2 += 25;
+    		rootNode.attachChild(agv2);
+        	agv2.setLocalTranslation(location);
+    	}    
+    }
          
     //TODO: Put in a class
     public void testContainer()
@@ -237,7 +242,6 @@ public class Client extends SimpleApplication {
     					container.setLocalTranslation(pos);
     					//rootNode.attachChild(cont);
     					rootNode.attachChild(containerList.get(containerCount));
-    					System.out.println(container.getLocalTranslation());
     					containerCount++;
     				}
     			}
@@ -338,6 +342,13 @@ public class Client extends SimpleApplication {
     	Texture cont_tex = assetManager.loadTexture("Models/container/container.png");
     	mat_container.setTexture("DiffuseMap", cont_tex);
     	container.setMaterial(mat_container);
+    	
+    	AGV = assetManager.loadModel("Models/AGV/AGV.obj");
+    	AGV2 = assetManager.loadModel("Models/AGV/AGV.obj");
+    	Material mat_agv = new Material(assetManager,"Common/MatDefs/Misc/Unshaded.j3md");
+    	mat_agv.getAdditionalRenderState().setWireframe(setWireFrame);
+    	AGV.setMaterial(mat_agv);
+    	AGV2.setMaterial(mat_agv);
     	
     	createVehicle();
     	
@@ -758,14 +769,5 @@ public class Client extends SimpleApplication {
         Nifty nifty = niftyDisplay.getNifty();
         nifty.fromXml("Interface/MainMenu.xml", "start");
         guiViewPort.addProcessor(niftyDisplay);
-    }
-
-    public void protocolTest(){
-        Box t = new Box(5, 5, 5);
-        tempContainer = new Geometry("Box", t);
-        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Black);
-        tempContainer.setMaterial(mat);
-        rootNode.attachChild(tempContainer);
     }
 }
