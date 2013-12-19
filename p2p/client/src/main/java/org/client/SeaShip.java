@@ -1,5 +1,6 @@
 package org.client;
 
+import com.jme3.math.FastMath;
 import com.jme3.scene.Spatial;
 
 public class SeaShip extends Vehicle
@@ -9,7 +10,8 @@ public class SeaShip extends Vehicle
 	{
 		super(seaShip);
 		
-		seaShip.setLocalTranslation(-710, 255, 680);
+		seaShip.setLocalTranslation(-730, 200, 680);
 		seaShip.scale(2);
+		seaShip.rotate(0,-4*FastMath.DEG_TO_RAD,0);
 	}
 }
