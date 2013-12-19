@@ -2,8 +2,8 @@ package org.client;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
-//import com.jme3.bullet.collision.shapes.CollisionShape;
-//import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
@@ -47,8 +47,9 @@ public class Client extends SimpleApplication
     float tpf;
 	
 	//Protocol variables
-//	private ProtocolParser protocolParser;
-//	private networkClient c;
+	private ProtocolParser protocolParser;
+	private Protocol protocol;
+	private networkClient c;
 	
 	//Scene
 	Spatial sceneModel;
@@ -141,7 +142,7 @@ public class Client extends SimpleApplication
     	addAllAGVs(location);
     	
         //waypoints code
-        //c = new networkClient(6666);
+        c = new networkClient(6666);
     	
         //Cam code
 	    cam.setLocation(new Vector3f(0f,260f,0f)); 
@@ -150,7 +151,8 @@ public class Client extends SimpleApplication
 	    mp = new MotionPaths(assetManager, allAgvNodes);
 	    
 	    //Protocol Test code
-        //protocolParser = new ProtocolParser();
+	    protocol = new Protocol();
+        protocolParser = new ProtocolParser();
     }
     
     @Override
@@ -232,7 +234,7 @@ public class Client extends SimpleApplication
     					String id = String.valueOf(containerCount + 1);
     					Vector3f pos = new Vector3f(xCoord+(x*2.4f),yCoord+(y*2.5f),zCoord-(z*12.3f));
    					    //Containers cont = new Containers(id, pos, container);
-    					containerList.add(new Containers(id, pos, container));
+    					containerList.add(new Containers(id, pos, container, false));
     					container.setLocalTranslation(pos);
     					//rootNode.attachChild(cont);
     					rootNode.attachChild(containerList.get(containerCount));
@@ -432,7 +434,30 @@ public class Client extends SimpleApplication
     private void getMessage()
     {
     	Container cont = new Container();
-    	int craneType = 1; //TODO: Send from protocol
+    	int craneType = 0; //TODO: Send from protocol
+    	switch(protocol.vehicles.get(0).type)
+    	{
+    		default:
+    		{
+    			craneType = 5;
+    		}
+    		case "SeaShip":
+    		{
+    			craneType = 1;
+    		}
+    		case "Truck":
+    		{
+    			craneType = 2;
+    		}
+    		case "Train":
+    		{
+    			craneType = 3;
+    		}
+    		case "Barge":
+    		{
+    			craneType = 4;
+    		}
+    	}
     	boolean direction = false; //TODO: Send from protocol
     	int id = 0; //Chosen later
     	float [] distance = new float []{}; 	
