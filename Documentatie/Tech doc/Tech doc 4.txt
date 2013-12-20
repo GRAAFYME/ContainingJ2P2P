@@ -1,9 +1,7 @@
-Tech doc 3:
+Tech doc 4:
 
 Toevoegen:
-- Inleiding.. (Systeem / functie overzicht)
-- hoofdstuk algoritmes: uitwerking van A* en sorteerfunctie
-- Hoofdstuk 6: up to date UML
+- ..
 
 
 
@@ -15,4 +13,4 @@ Note:
 
 
 
-Inleveren donderdag 19 december 2013...!
+Inleveren donderdag ?? januari 2014...!
