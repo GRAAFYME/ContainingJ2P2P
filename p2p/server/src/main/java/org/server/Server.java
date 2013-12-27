@@ -3,7 +3,7 @@ package org.server;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.protocol.Container;
-import org.protocol.Protocol;
+import org.protocol.ServerProtocol;
 import org.protocol.ProtocolParser;
 import org.protocol.Statistics;
 
@@ -47,8 +47,8 @@ public class Server implements Runnable
     {
         parser = new ProtocolParser();
         Server server = new Server();
-        Protocol p = null;
-        p = new Protocol();
+        ServerProtocol p = null;
+        p = new ServerProtocol();
         p.getContainers().add(new Container());
         //p.getContainers().get(0).location = new Point3d(50, 130, 50);
         server.start(6666);
@@ -156,9 +156,9 @@ public class Server implements Runnable
             //Set the server up
             serverSocket = new ServerSocket(port);
             parser = new ProtocolParser();
-            Protocol protocol = null;
+            ServerProtocol protocol = null;
 
-            protocol = new Protocol();
+            protocol = new ServerProtocol();
             protocol.getContainers().add(new Container());
             //protocol.getContainers().get(0).location = new Point3d(50, 130, 50);
 
@@ -210,7 +210,7 @@ public class Server implements Runnable
                 String message = "";
                 xmlParser xmlparser = new xmlParser();
                 ContainerSetXml containerset =  xmlparser.load("data/xml1.xml");
-                PriorityQueue<Protocol> queue = xmlparser.parse(containerset);
+                PriorityQueue<ServerProtocol> queue = xmlparser.parse(containerset);
 
                 isRunning = true;
                 //Wait till someone connects; this is a blocking method!!!!!!!!

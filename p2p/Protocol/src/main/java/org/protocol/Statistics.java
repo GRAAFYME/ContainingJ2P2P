@@ -74,15 +74,15 @@ public class Statistics {
         return null;
     }
 
-    public Protocol deserialize(String packet)
+    public ServerProtocol deserialize(String packet)
     {
         InputStream stream = new ByteArrayInputStream(packet.getBytes());
-        Protocol p = null;
+        ServerProtocol p = null;
 
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(Protocol.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(ServerProtocol.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            p = (Protocol)jaxbUnmarshaller.unmarshal(stream);
+            p = (ServerProtocol)jaxbUnmarshaller.unmarshal(stream);
             return p;
         }
         catch (Exception e)

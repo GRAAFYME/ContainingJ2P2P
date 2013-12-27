@@ -23,7 +23,7 @@ import de.lessvoid.nifty.Nifty;
 import jme3tools.optimize.GeometryBatchFactory;
 
 import org.protocol.Container;
-import org.protocol.Protocol;
+import org.protocol.ServerProtocol;
 import org.protocol.ProtocolParser;
 
 import javax.vecmath.Point3d;
@@ -48,7 +48,7 @@ public class Client extends SimpleApplication
 	
 	//Protocol variables
 	private ProtocolParser protocolParser;
-	private Protocol protocol;
+	private ServerProtocol protocol;
 	private networkClient c;
 	
 	//Scene
@@ -151,7 +151,7 @@ public class Client extends SimpleApplication
 	    mp = new MotionPaths(assetManager, allAgvNodes);
 	    
 	    //Protocol Test code
-	    protocol = new Protocol();
+	    protocol = new ServerProtocol();
         protocolParser = new ProtocolParser();
     }
     
@@ -435,29 +435,29 @@ public class Client extends SimpleApplication
     {
     	Container cont = new Container();
     	int craneType = 0; //TODO: Send from protocol
-    	switch(protocol.vehicles.get(0).type)
-    	{
-    		default:
-    		{
-    			craneType = 5;
-    		}
-    		case "SeaShip":
-    		{
-    			craneType = 1;
-    		}
-    		case "Truck":
-    		{
-    			craneType = 2;
-    		}
-    		case "Train":
-    		{
-    			craneType = 3;
-    		}
-    		case "Barge":
-    		{
-    			craneType = 4;
-    		}
-    	}
+//    	switch(protocol.vehicles.get(0).type)
+//    	{
+//    		default:
+//    		{
+//    			craneType = 5;
+//    		}
+//    		case "SeaShip":
+//    		{
+//    			craneType = 1;
+//    		}
+//    		case "Truck":
+//    		{
+//    			craneType = 2;
+//    		}
+//    		case "Train":
+//    		{
+//    			craneType = 3;
+//    		}
+//    		case "Barge":
+//    		{
+//    			craneType = 4;
+//    		}
+//    	}
     	boolean direction = false; //TODO: Send from protocol
     	int id = 0; //Chosen later
     	float [] distance = new float []{}; 	
@@ -721,17 +721,17 @@ public class Client extends SimpleApplication
                 	
                 	if(spotje.z > 395) //Destination of the crane
                 	{
-                		des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z);
+                		des[3] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z);
                 		System.out.println("> 370");
                 	}
                 	else
                 	{
-                		des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-465);
+                		des[3] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-465);
                 		System.out.println("< 370");
                 	}
         			des[1] = new Vector3f(startPosSlider.x + spotje.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
         	    	des[2] = new Vector3f(startPosHook.x,startPosHook.y-33,startPosHook.z); //Destination of the hook
-        			des[3] = new Vector3f(startPosCrane.x,startPosCrane.y,spotje.z); //Destination of the crane
+        			des[0] = new Vector3f(startPosCrane.x,startPosCrane.y,spotje.z); //Destination of the crane
                 	des[4] = new Vector3f(startPosSlider.x, startPosSlider.y, startPosSlider.z); //Destination of the slider
         	    	des[5] = new Vector3f(startPosHook.x,startPosHook.y - 33+spotje.y,startPosHook.z); //Destination of the hook
         	    	

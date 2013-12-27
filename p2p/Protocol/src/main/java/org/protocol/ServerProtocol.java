@@ -13,7 +13,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @XmlRootElement
-public class Protocol {
+public class ServerProtocol {
 
     @XmlElement
     public boolean isZip;
@@ -22,7 +22,7 @@ public class Protocol {
     @XmlElement
     public List<Vehicle> vehicles;
 
-    public Protocol()
+    public ServerProtocol()
     {
         containers = new ArrayList<Container>();
     }

@@ -13,8 +13,8 @@ public class ProtocolMain {
 		System.out.println(test1.GetLocation());
     	
         ProtocolParser parser = new ProtocolParser();
-        Protocol p = new Protocol();
-        Protocol p2 = null;
+        ServerProtocol p = new ServerProtocol();
+        ServerProtocol p2 = null;
         p.containers.add(new Container());
         String xmlOutput = "";
 

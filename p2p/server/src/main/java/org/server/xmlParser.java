@@ -2,7 +2,7 @@ package org.server;
 
 
 import org.protocol.Container;
-import org.protocol.Protocol;
+import org.protocol.ServerProtocol;
 import org.protocol.Vehicle;
 
 import javax.xml.bind.JAXBContext;
@@ -24,7 +24,7 @@ public class xmlParser
             e.printStackTrace();
         }
 
-        PriorityQueue<Protocol> messages = parser.parse(set);
+        PriorityQueue<ServerProtocol> messages = parser.parse(set);
         System.out.println(messages.peek().containers.size());
     }
 
@@ -47,22 +47,22 @@ public class xmlParser
         return filterWrongInstances(containers);
     }
 
-    public PriorityQueue<Protocol> parse(ContainerSetXml containerSet)
+    public PriorityQueue<ServerProtocol> parse(ContainerSetXml containerSet)
     {
         //PriorityQueue<Protocol> messages = new PriorityQueue<Protocol>();
-        HashMap<String, Protocol> map = new HashMap<String, Protocol>();
+        HashMap<String, ServerProtocol> map = new HashMap<String, ServerProtocol>();
 
 
         for(ContainerXml c : containerSet.containers)
         {
             String uniqueTransportArrivalKey = c.arrivalTransportType + c.arrivalCompany + c.arrivalDay
                                        + c.arrivalFrom + c.arrivalMonth + c.arrivalTill + c.arrivalYear;
-            Protocol protocol = map.get(uniqueTransportArrivalKey);
+            ServerProtocol protocol = map.get(uniqueTransportArrivalKey);
 
             //Not yet added, add now
             if(protocol == null)
             {
-                protocol = new Protocol();
+                protocol = new ServerProtocol();
                 map.put(uniqueTransportArrivalKey, protocol);
                 protocol.vehicles = new ArrayList<Vehicle>();
                 protocol.vehicles.add(new Vehicle());
@@ -75,8 +75,8 @@ public class xmlParser
 
             protocol.vehicles.get(0).containers.add(containerXmlToContainer(c));
         }
-        PriorityQueue<Protocol> queue = new PriorityQueue<Protocol>(2, new Comparator<Protocol>() {
-            public int compare(Protocol n1, Protocol n2) {
+        PriorityQueue<ServerProtocol> queue = new PriorityQueue<ServerProtocol>(2, new Comparator<ServerProtocol>() {
+            public int compare(ServerProtocol n1, ServerProtocol n2) {
                 // compare n1 and n2
                 Container c1 = n1.vehicles.get(0).containers.get(0);
                 Container c2 = n2.vehicles.get(0).containers.get(0);

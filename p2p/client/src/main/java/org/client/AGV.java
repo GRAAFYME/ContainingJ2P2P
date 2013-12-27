@@ -25,6 +25,7 @@ public class AGV extends Node implements MotionPathListener {
 	boolean setWireFrame;
 
 	private Spatial AGV;
+	private String id;
 //	private BitmapText wayPointsText;
 //	private BitmapFont guiFont;
 //	private Node nodeAGV;
@@ -38,6 +39,7 @@ public class AGV extends Node implements MotionPathListener {
 		super(id);
 		
 		this.Name = Name;
+		this.id = id;
 		this.AGV = AGV.clone();
 		
 		this.scale(2.5f);
@@ -46,6 +48,16 @@ public class AGV extends Node implements MotionPathListener {
 		this.attachChild(this.AGV);
 	//	initMotionControl();
 
+	}
+	
+	public String getID()
+	{
+		return id;
+	}
+	
+	public Vector3f getLocation()
+	{
+		return location;
 	}
 
 //	public void addAGVcar(Vector3f location) {
