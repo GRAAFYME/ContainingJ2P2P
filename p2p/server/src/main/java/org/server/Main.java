@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -33,6 +34,7 @@ public class Main
    private static JPanel boxpanel = new JPanel();
    private static JPanel serverpanel = new JPanel();
    
+   
    public static void main(String args[]) 
    {
 	server = new Server();
@@ -40,6 +42,7 @@ public class Main
 	contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	frame.setContentPane(contentPane);
 	contentPane.setLayout(null);
+	
 	
 	Menu();
 	TextPanel();
@@ -49,6 +52,7 @@ public class Main
     frame.setSize(660, 700);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
+    frame.setLocationRelativeTo(null);
     
   }
    
@@ -279,7 +283,8 @@ public class Main
 	     }
 	     else if (NameItem == "Help")
 	     {
-	    	 JOptionPane.showMessageDialog(null,"Moet nog ingevuld worden!","Help",JOptionPane.INFORMATION_MESSAGE);
+	    	 //JOptionPane.showMessageDialog(null,"Moet nog ingevuld worden!","Help",JOptionPane.INFORMATION_MESSAGE);
+	    	 HelpView helpview = new HelpView();
 	     }
 	     else if (NameItem == "Quit")
 	     {
