@@ -54,7 +54,7 @@ public class HelpView
 		//make new tabs with text!
 		tabbedPane.addTab("Help",icon, makePanel("Hello and welcome to the Help Menu!" + "\n" + "\n" + "If you need some help then this is the perfect place for you!"));
 		tabbedPane.addTab("How to get started!",icon, makePanel("How to get started!" + "\n" + "\n" + "1. Load a XML-File from the File -> Load File option" + "\n" + "2. Dont start the server if the Client is not open! (else it does nothing)" + "\n" + "3. If you want to update the website then Login to ftp!" + "\n" + "4. Start the Server!"));
-			
+		tabbedPane.addTab("Contact", icon, makePanel("Contact: \n \n" + "Groep 5 \n" + "Telefoonnummer: no thanks" + "Email: projectcontaining@nhl.nl"));	
 	}
 	
 

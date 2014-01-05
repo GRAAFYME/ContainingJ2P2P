@@ -121,7 +121,7 @@ public class Main
 	   serverLabel.setBounds(10,20,40,20);
 	   clientstatus.setBounds(50,20,60,20);
 	   serverpanel.add(serverLabel);
-	   serverpanel.add(clientstatus);
+	   //serverpanel.add(clientstatus);
 	   contentPane.add(serverpanel);
 	   
 		//Heartbeat Button!!
