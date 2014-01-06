@@ -130,8 +130,8 @@ public class Client extends SimpleApplication
     	
     	initInputs();
     	//initNifty();
-    	
-        //agv code
+       cam.setFrustumFar(2000);  //render distance
+       cam.onFrameChange();
         GeometryBatchFactory.optimize(allAgvNodes);
         rootNode.attachChild(allAgvNodes);  
         GeometryBatchFactory.optimize(rootNode); 
