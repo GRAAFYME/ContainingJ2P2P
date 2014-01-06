@@ -14,7 +14,7 @@ public class Train extends Vehicle
 	
 	public Train(Vector3f Location)
 	{
-		super(Location);
+		super(Location, "Train");
 	}
 
 	

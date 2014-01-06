@@ -3,6 +3,10 @@ package org.protocol;
 import javax.vecmath.Point3d;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created with IntelliJ IDEA.
@@ -72,5 +76,37 @@ public class Container {
     public Point3d getLocation()
     {
     	return location;
+    }
+
+    public GregorianCalendar getArrivalDate()
+    {
+        GregorianCalendar calendar = new GregorianCalendar();
+
+        try {
+            Date date = new SimpleDateFormat("hh:mm").parse(arrivalFrom);
+            calendar.setTime(date);
+            calendar.set(arrivalYear, arrivalMonth, arrivalDay);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return calendar;
+    }
+
+    public GregorianCalendar getLeaveDate()
+    {
+        GregorianCalendar calendar = new GregorianCalendar();
+
+        try {
+            Date date = new SimpleDateFormat("hh:mm").parse(leaveFrom);
+            calendar.setTime(date);
+            calendar.set(leaveYear, leaveMonth, leaveDay);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return calendar;
     }
 }

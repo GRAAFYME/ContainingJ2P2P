@@ -9,11 +9,14 @@ package org.protocol;
 
 import javax.vecmath.Vector3f;
 
-public class AGV extends Vehicle
+public class AGV //no extend from vehicle
 {
+    public boolean available;
+
 	public AGV(Vector3f Location)
 	{
-		super(Location);
+        available = true;
+		//super(Location);
 	}
 	
 	

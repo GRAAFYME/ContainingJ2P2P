@@ -2,10 +2,7 @@ package org.server;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
-import org.protocol.Container;
-import org.protocol.ServerProtocol;
-import org.protocol.ProtocolParser;
-import org.protocol.Statistics;
+import org.protocol.*;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -210,7 +207,8 @@ public class Server implements Runnable
                 String message = "";
                 xmlParser xmlparser = new xmlParser();
                 ContainerSetXml containerset =  xmlparser.load("data/xml1.xml");
-                PriorityQueue<ServerProtocol> queue = xmlparser.parse(containerset);
+                PriorityQueue<Vehicle> queue = xmlparser.parse(containerset);
+                Simulator simulator = new Simulator(queue);
 
                 isRunning = true;
                 //Wait till someone connects; this is a blocking method!!!!!!!!
@@ -250,6 +248,17 @@ public class Server implements Runnable
                     {
                         lastIterationTime = System.nanoTime();
                     }
+
+                    //1 second has passed
+                    //These lines actually transmit code to the client
+                    ServerProtocol protocol = simulator.update(1);
+                    if(protocol != null)
+                    {
+                        sendMessage(parser.serialize(protocol));
+                    }
+
+
+
 
                     Thread.sleep(100);
                     //Add tiny amount

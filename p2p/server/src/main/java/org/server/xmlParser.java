@@ -2,7 +2,6 @@ package org.server;
 
 
 import org.protocol.Container;
-import org.protocol.ServerProtocol;
 import org.protocol.Vehicle;
 
 import javax.xml.bind.JAXBContext;
@@ -24,8 +23,8 @@ public class xmlParser
             e.printStackTrace();
         }
 
-        PriorityQueue<ServerProtocol> messages = parser.parse(set);
-        System.out.println(messages.peek().containers.size());
+        PriorityQueue<Vehicle> vehicles = parser.parse(set);
+        System.out.println(vehicles.peek().containers.size() + ", vehicle #1 contains this many containers");
     }
 
     public ContainerSetXml load(String path) throws FileNotFoundException
@@ -47,39 +46,39 @@ public class xmlParser
         return filterWrongInstances(containers);
     }
 
-    public PriorityQueue<ServerProtocol> parse(ContainerSetXml containerSet)
+    public PriorityQueue<Vehicle> parse(ContainerSetXml containerSet)
     {
         //PriorityQueue<Protocol> messages = new PriorityQueue<Protocol>();
-        HashMap<String, ServerProtocol> map = new HashMap<String, ServerProtocol>();
+        HashMap<String, Vehicle> map = new HashMap<String, Vehicle>();
 
 
+        //TODO: test this
         for(ContainerXml c : containerSet.containers)
         {
             String uniqueTransportArrivalKey = c.arrivalTransportType + c.arrivalCompany + c.arrivalDay
                                        + c.arrivalFrom + c.arrivalMonth + c.arrivalTill + c.arrivalYear;
-            ServerProtocol protocol = map.get(uniqueTransportArrivalKey);
+            Vehicle vehicle = map.get(uniqueTransportArrivalKey);
 
             //Not yet added, add now
-            if(protocol == null)
+            if(vehicle == null)
             {
-                protocol = new ServerProtocol();
-                map.put(uniqueTransportArrivalKey, protocol);
-                protocol.vehicles = new ArrayList<Vehicle>();
-                protocol.vehicles.add(new Vehicle());
-                protocol.vehicles.get(0).containers = new ArrayList<Container>();
+                Vehicle newVehicle = new Vehicle();
+                map.put(uniqueTransportArrivalKey, newVehicle);
+                vehicle.containers = new ArrayList<Container>();
             }
             else
             {
                 System.out.print("alelkerf  wesd1!!!!!!11111111111");
             }
 
-            protocol.vehicles.get(0).containers.add(containerXmlToContainer(c));
+            vehicle.containers.add(containerXmlToContainer(c));
         }
-        PriorityQueue<ServerProtocol> queue = new PriorityQueue<ServerProtocol>(2, new Comparator<ServerProtocol>() {
-            public int compare(ServerProtocol n1, ServerProtocol n2) {
+
+        PriorityQueue<Vehicle> queue = new PriorityQueue<Vehicle>(2, new Comparator<Vehicle>() {
+            public int compare(Vehicle v1, Vehicle v2) {
                 // compare n1 and n2
-                Container c1 = n1.vehicles.get(0).containers.get(0);
-                Container c2 = n2.vehicles.get(0).containers.get(0);
+                Container c1 = v1.containers.get(0);
+                Container c2 = v2.containers.get(0);
 
                 int comparison1 = Integer.compare(c1.arrivalDay, c2.arrivalDay);
                 int comparison2 = Integer.compare(c1.arrivalMonth, c2.arrivalMonth);

@@ -14,7 +14,7 @@ public class Seaship extends Vehicle
 	
 	public Seaship(Vector3f Location)
 	{
-		super(Location);
+		super(Location, "Seaship");
 	}
 
 }

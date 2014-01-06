@@ -13,7 +13,7 @@ public class Barge extends Vehicle
 {
 	public Barge(Vector3f Location)
 	{
-		super(Location);
+		super(Location, "Barge");
 	}
 	
 
