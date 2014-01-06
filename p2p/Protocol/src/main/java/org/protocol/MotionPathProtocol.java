@@ -1,6 +1,6 @@
 package org.protocol;
 
-import javax.vecmath.Point3f;
+import javax.vecmath.Vector3f;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 
@@ -10,17 +10,25 @@ import java.util.List;
 public class MotionPathProtocol
 {
     @XmlElement
-    private List<Point3f> locationNodeList;
+    private List<Vector3f> locationNodeList;
     @XmlElement
     private float length;
 
     public MotionPathProtocol() {};
-    public MotionPathProtocol(List<Point3f> locationNodeList, float length)
+    public MotionPathProtocol(List<Vector3f> locationNodeList, float length)
     {
         this.locationNodeList = locationNodeList;
         this.length = length;
     }
 
-    float getLength() { return length; }
+    public float getLength() { return length; }
 
+    public int getNbWayPoints() {
+        return locationNodeList.size();
+    }
+
+
+    public Vector3f getWayPoint(int index) {
+        return locationNodeList.get(index);
+    }
 }
