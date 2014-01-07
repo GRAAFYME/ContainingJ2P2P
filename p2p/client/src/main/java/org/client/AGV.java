@@ -50,15 +50,6 @@ public class AGV extends Node implements MotionPathListener {
 
 	}
 	
-	public String getID()
-	{
-		return id;
-	}
-	
-	public Vector3f getLocation()
-	{
-		return location;
-	}
 
 //	public void addAGVcar(Vector3f location) {
 //
@@ -142,10 +133,24 @@ public class AGV extends Node implements MotionPathListener {
 //		});
 //	}
 	
-
-
-	public void onWayPointReach(MotionEvent arg0, int arg1) {
+	public String getID()
+	{
+		return id;
+	}
+	
+	public Vector3f getLocation()
+	{
+		return location;
+	}
+	
+	public void onWayPointReach(MotionEvent arg0, int arg1) {}
 		// TODO Auto-generated method stub
+	
+	
+	//arjen temp
+	public void attachContainerAGV(AGV agvtestnode){
+		
+			agvtestnode.attachChild(this);
 		
 	}
 }

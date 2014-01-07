@@ -15,6 +15,7 @@ import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.BatchNode;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
@@ -118,11 +119,32 @@ public class Client extends SimpleApplication
     Crane [] trainCranes = new Crane [4];
     Crane [] bargeCranes = new Crane [8];
     
+    
+    //arjen temp
     Storage storage = new Storage();
+    AGV testAGVs;
     
     public static void main(String[] args){
         Client app = new Client();       
         app.start(); // start the game
+    }
+   
+    public void testcontaineroptestagv(){
+//    	Containers cont2 = new Containers("0", new Vector3f(100, 410, 100), container, true);
+//    	container.setLocalTranslation(new Vector3f(100, 410, 100));
+//    	rootNode.attachChild(cont2);
+    	
+    	AGV containertest = new AGV("0",new Vector3f(100,405,100), AGV, "ContainerTest");
+    	containertest.setLocalTranslation(new Vector3f(100,405,100));
+    	rootNode.attachChild(containertest);
+    	
+    	
+    	testAGVs = new AGV("0",new Vector3f(100,400,100), AGV, "TestAGV");
+    	testAGVs.setLocalTranslation(new Vector3f(100,400,100));
+    	rootNode.attachChild(testAGVs);
+    	
+    	containertest.attachContainerAGV(testAGVs);
+    	
     }
     
     @Override
@@ -145,7 +167,8 @@ public class Client extends SimpleApplication
         c = new networkClient(6666);
     	
         //Cam code
-	    cam.setLocation(new Vector3f(0f,260f,0f)); 
+//	    cam.setLocation(new Vector3f(0f,260f,0f)); 
+        cam.setLocation(new Vector3f(100, 400, 100)); 
 	    flyCam.setMoveSpeed(300f);
 	    FBC = new FlyByCamera(cam, inputManager);
 	    mp = new MotionPaths(assetManager, allAgvNodes);
@@ -153,6 +176,7 @@ public class Client extends SimpleApplication
 	    //Protocol Test code
 	    protocol = new ServerProtocol();
         protocolParser = new ProtocolParser();
+        testcontaineroptestagv();
     }
     
     @Override
@@ -701,7 +725,9 @@ public class Client extends SimpleApplication
                 if (name.equals("speedReset")&& keyPressed){
                 speed = 1;
                 System.out.println(speed);
-                	
+                
+                //arjen temp
+                testAGVs.setLocalTranslation(new Vector3f(110,400,100));
                 }
                 }
                 }
