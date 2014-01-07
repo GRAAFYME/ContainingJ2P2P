@@ -12,10 +12,22 @@ public class JunitTest {
 	@Test
 	public void Server()
 	{
+		Server test = new Server();
 		try
 		{
-		Server test = new Server();
 		test.start(6666);
+		//test.sendMessage("test");
+		}
+		catch(Exception ex)
+		{
+			fail("server niet on!");
+		}
+		
+		test.restart(6666);
+		
+		try
+		{
+		test.stop();
 		//test.sendMessage("test");
 		}
 		catch(Exception ex)
