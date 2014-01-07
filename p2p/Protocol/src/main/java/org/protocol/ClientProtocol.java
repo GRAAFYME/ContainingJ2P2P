@@ -1,9 +1,10 @@
 package org.protocol;
 
+import java.util.List;
+
 import javax.vecmath.Point3d;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
 
 @XmlRootElement
 public class ClientProtocol 
@@ -25,9 +26,6 @@ public class ClientProtocol
 	
 	@XmlElement
 	public List<Float> lengthRoutes;
-
-    @XmlElement
-    public List<MotionPathProtocol> MotionPathList;
 	
 	public ClientProtocol()
 	{
