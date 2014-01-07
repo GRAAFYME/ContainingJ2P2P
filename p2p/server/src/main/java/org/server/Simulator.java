@@ -1,9 +1,9 @@
 package org.server;
 
-import org.protocol.Container;
 import org.protocol.ServerProtocol;
 import org.protocol.Vehicle;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.PriorityQueue;
@@ -18,6 +18,7 @@ public class Simulator {
     public Simulator(PriorityQueue<Vehicle> vehicleQueue)
     {
         this.vehicleQueue = vehicleQueue;
+        currentDate = new GregorianCalendar(2004, 12, 13, 0, 10);
     }
 
 
@@ -26,8 +27,6 @@ public class Simulator {
     public ServerProtocol update(int secondsPassed)
     {
         currentDate.add(Calendar.SECOND, secondsPassed);
-
-        Container previousContainer = null;
         Vehicle vehicle = vehicleQueue.peek();
 
         //Stil vehicles left in the queue?
@@ -36,6 +35,7 @@ public class Simulator {
         {
             //Create protocol object, which the server object will send to the client
             ServerProtocol protocol = new ServerProtocol();
+            protocol.vehicles = new ArrayList<Vehicle>();
             protocol.vehicles.add(vehicleQueue.poll());
             return protocol;
         }

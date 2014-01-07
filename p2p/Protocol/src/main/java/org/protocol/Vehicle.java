@@ -1,6 +1,7 @@
 package org.protocol;
 
 import javax.vecmath.Vector3f;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -36,7 +37,12 @@ public class Vehicle
 	}
 
 
-    public GregorianCalendar getArrivalDate()
+    public String getClassName()
+    {
+        //Is there a container? yes: just copy its arrival date
+        return (containers.size() == 0) ? null : containers.get(0).arrivalTransportType;
+    }
+    public Calendar getArrivalDate()
     {
         //Is there a container? yes: just copy its arrival date
         return (containers.size() == 0) ? null : containers.get(0).getArrivalDate();

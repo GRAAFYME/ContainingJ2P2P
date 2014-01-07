@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -78,14 +79,20 @@ public class Container {
     	return location;
     }
 
-    public GregorianCalendar getArrivalDate()
+    public Calendar getArrivalDate()
     {
-        GregorianCalendar calendar = new GregorianCalendar();
+        Calendar calendar = new GregorianCalendar();
 
         try {
-            Date date = new SimpleDateFormat("hh:mm").parse(arrivalFrom);
+            Date date = new SimpleDateFormat("hh.mm").parse(arrivalFrom);
+            date.setYear(arrivalYear);
+            date.setMonth(arrivalMonth);
+            date.setDate(arrivalDay);
+
             calendar.setTime(date);
-            calendar.set(arrivalYear, arrivalMonth, arrivalDay);
+            System.out.println(calendar.get(Calendar.MONTH));
+            System.out.println(calendar.get(Calendar.YEAR));
+            System.out.println(calendar.get(Calendar.MINUTE));
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -99,7 +106,7 @@ public class Container {
         GregorianCalendar calendar = new GregorianCalendar();
 
         try {
-            Date date = new SimpleDateFormat("hh:mm").parse(leaveFrom);
+            Date date = new SimpleDateFormat("hh.mm").parse(leaveFrom);
             calendar.setTime(date);
             calendar.set(leaveYear, leaveMonth, leaveDay);
 

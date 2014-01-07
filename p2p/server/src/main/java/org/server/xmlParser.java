@@ -62,9 +62,9 @@ public class xmlParser
             //Not yet added, add now
             if(vehicle == null)
             {
-                Vehicle newVehicle = new Vehicle();
-                map.put(uniqueTransportArrivalKey, newVehicle);
+                vehicle = new Vehicle();
                 vehicle.containers = new ArrayList<Container>();
+                map.put(uniqueTransportArrivalKey, vehicle);
             }
             else
             {
@@ -104,12 +104,12 @@ public class xmlParser
         c.id = container.id;
         c.arrivalDay = container.arrivalDay;
         c.arrivalMonth = container.arrivalMonth;
-        c.arrivalYear = container.arrivalYear;
+        c.arrivalYear = container.arrivalYear + 2000;
         c.arrivalTill = container.arrivalTill;
         c.arrivalFrom = container.arrivalFrom;
         c.leaveDay = container.leaveDay;
         c.leaveMonth = container.leaveMonth;
-        c.leaveYear = container.leaveYear;
+        c.leaveYear = container.leaveYear + 2000;
         c.leaveFrom = container.leaveFrom;
         c.leaveTill = container.leaveTill;
         c.arrivalPosX = container.arrivalPosX;
