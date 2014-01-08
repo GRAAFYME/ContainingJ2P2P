@@ -2,8 +2,6 @@ package org.client;
 
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
-import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
@@ -14,20 +12,14 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.scene.BatchNode;
-import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
-
 import de.lessvoid.nifty.Nifty;
 import jme3tools.optimize.GeometryBatchFactory;
-
 import org.protocol.Container;
-import org.protocol.ServerProtocol;
 import org.protocol.ProtocolParser;
-
-import javax.vecmath.Point3d;
+import org.protocol.ServerProtocol;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -189,27 +181,39 @@ public class Client extends SimpleApplication
     		c.update(tpf);
     	}
     	//System.out.println(cam.getLocation());
-//        String message = c.getMessages();
-//        if(message != "")
-//        {
-//            System.out.println(message);
-//            try {
-//                Protocol p = protocolParser.deserialize(message);
-//                Container container;
-//                for (Container c : p.getContainers())
-//                {
-//                    container = c;
-//                    System.out.println(c.getLocation().toString());
-//                }
-//                
-//                //Point3d l = container.getLocation();
-//                
-//            }
-//            catch (Exception e)
-//            {
-//                System.out.println("Received incorrect package: \n\n" +  e.getMessage());
-//            }
-//        }
+        String message = c.getMessages();
+        if(message != "")
+        {
+            System.out.println(message);
+            try {
+                ServerProtocol p = protocolParser.deserialize(message);
+                //more than 0 elements in the list? yes - get(0), no - null
+                org.protocol.Vehicle networkVehicle = (p.vehicles.size() > 0) ? p.vehicles.get(0) : null;
+                System.out.println(networkVehicle.getClassName());
+                //copy-paste this snippet
+                switch(networkVehicle.getClassName())
+                {
+                    case "vrachtauto":
+                        System.out.println(networkVehicle.getClassName());
+                        break;
+                    case "zeeschip":
+                        System.out.println(networkVehicle.getClassName());
+                        break;
+                    default:
+                        System.out.println("wtf is this vehicle");
+                        break;
+                }
+
+
+
+///////////////////////////////////////////////choo-choo, vehicle has arrived, render it
+
+            }
+            catch (Exception e)
+            {
+                System.out.println("Received incorrect package: \n\n" +  e.getMessage());
+            }
+        }
 
         //To let the server know we're still alive, server will get confused and presume disconnection
         //when you've hit a breakpoint, but that's why heartbeat timeout @ server is disabled by default
