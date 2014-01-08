@@ -25,7 +25,7 @@ public abstract class Vehicle extends Node
 		{
 			case "vrachtauto":
 			{
-				position = new Vector3f(270+(x*40), 255, 20);
+				position = new Vector3f(249+(x*40), 255, 50);
 			}
 		}
 		return position;
