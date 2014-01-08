@@ -463,29 +463,29 @@ public class Client extends SimpleApplication
     {
     	Container cont = new Container();
     	int craneType = 0; //TODO: Send from protocol
-//    	switch(protocol.vehicles.get(0).type)
-//    	{
-//    		default:
-//    		{
-//    			craneType = 5;
-//    		}
-//    		case "SeaShip":
-//    		{
-//    			craneType = 1;
-//    		}
-//    		case "Truck":
-//    		{
-//    			craneType = 2;
-//    		}
-//    		case "Train":
-//    		{
-//    			craneType = 3;
-//    		}
-//    		case "Barge":
-//    		{
-//    			craneType = 4;
-//    		}
-//    	}
+    	switch(ServerProtocol.vehicles.get(0).getClassName())
+    	{
+    		default:
+    		{
+    			craneType = 5;
+    		}
+    		case "SeaShip":
+    		{
+    			craneType = 1;
+    		}
+    		case "Truck":
+    		{
+    			craneType = 2;
+    		}
+    		case "Train":
+    		{
+    			craneType = 3;
+    		}
+    		case "Barge":
+    		{
+    			craneType = 4;
+    		}
+    	}
     	boolean direction = false; //TODO: Send from protocol
     	int id = 0; //Chosen later
     	float [] distance = new float []{}; 	
