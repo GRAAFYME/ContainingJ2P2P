@@ -1,0 +1,21 @@
+Eindrapport: 
+
+- Onderdelen_verslag.doc 
+
+
+- Analyse **UPDATEN**
+- Gespreksverslagen
+- Logboeken **UPDATEN**
+- Planning + Taakverdeling + Rolverdeling **UPDATEN**
+- Projectplan
+- Tech doc
+- Testplan
+
+- Wiskunde
+- Keuzes en verantwoording
+- Anders dan gepland
+- Hoe is de software tot stand gekomen?
+- Testing
+- Conclusie (op basis van doelstelling + advies)
+- Teamwork
+- Personelijke evaluatie
