@@ -463,7 +463,7 @@ public class Client extends SimpleApplication
     {
     	Container cont = new Container();
     	int craneType = 0; //TODO: Send from protocol
-    	switch(ServerProtocol.vehicles.get(0).getClassName())
+    	switch(protocol.vehicles.get(0).getClassName())
     	{
     		default:
     		{

@@ -36,7 +36,16 @@ public class Simulator {
             //Create protocol object, which the server object will send to the client
             ServerProtocol protocol = new ServerProtocol();
             protocol.vehicles = new ArrayList<Vehicle>();
-            protocol.vehicles.add(vehicleQueue.poll());
+            Vehicle vehicleToAdd = vehicleQueue.poll();
+            switch(vehicle.getClassName())
+            {
+                case "vrachtauto":
+                    vehicleToAdd.location.x = 1;
+                    break;
+            }
+
+
+            protocol.vehicles.add(vehicleToAdd);
             return protocol;
         }
 

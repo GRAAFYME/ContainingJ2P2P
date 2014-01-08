@@ -1,6 +1,7 @@
 package org.protocol;
 
 import javax.vecmath.Vector3f;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -14,16 +15,20 @@ import java.util.List;
  */
 public class Vehicle
 {
+    @XmlElement
 	private Vector3f Location;
+    @XmlElement
     public List<Container> containers;
-    public String className;
+    @XmlElement
+    public Vector3f location; //truck: only consider values x: 0-19
+    //public String className;
 
     public Vehicle() {}
 
 	public Vehicle(Vector3f _location, String className)
 	{
 		this.Location = _location;
-        this.className = className;
+        //this.className = className;
 	}
 	
 	protected Vector3f GetLocation()
