@@ -6,9 +6,9 @@ import com.jme3.scene.Spatial;
 public class SeaShip extends Vehicle
 {
 
-	public SeaShip(Spatial seaShip) 
+	public SeaShip(String id, Spatial seaShip) 
 	{
-		super(seaShip);
+		super(id, seaShip);
 		
 		seaShip.setLocalTranslation(-730, 200, 680);
 		seaShip.scale(2);

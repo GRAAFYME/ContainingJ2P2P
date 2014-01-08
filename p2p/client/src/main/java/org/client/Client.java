@@ -203,11 +203,8 @@ public class Client extends SimpleApplication
                         System.out.println("wtf is this vehicle");
                         break;
                 }
-
-
-
-///////////////////////////////////////////////choo-choo, vehicle has arrived, render it
-
+                init_vehicle(networkVehicle.getClassName(), networkVehicle.location.x, 
+                		networkVehicle.location.y, networkVehicle.location.z);
             }
             catch (Exception e)
             {
@@ -384,8 +381,6 @@ public class Client extends SimpleApplication
     	mat_agv.getAdditionalRenderState().setFaceCullMode(FaceCullMode.Back);
     	AGV.setMaterial(mat_agv);
     	AGV2.setMaterial(mat_agv);
-    	
-    	createVehicle();
     }
     
     private void init_StorageCrane()
@@ -453,9 +448,15 @@ public class Client extends SimpleApplication
     	}
     }
     
-    private void createVehicle()
+    private void init_vehicle(String vehicle, float x, float y, float z)
     {
-    	Vehicle v = new SeaShip(seaShip);
+    	Vehicle v = null;
+    	switch(vehicle)
+    	{
+    		case "vrachtauto":
+    			v = new Truck(String.valueOf(x+1), truck);
+    	}
+    	v.setLocalTranslation(v.setLocation(vehicle, x, y, z));
     	rootNode.attachChild(v);
     }
     
