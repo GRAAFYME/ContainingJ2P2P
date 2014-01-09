@@ -243,13 +243,11 @@ public class Client extends SimpleApplication
     				{
     					String id = String.valueOf(containerCount + 1);
     					Vector3f pos = new Vector3f(xCoord+(x*2.4f),yCoord+(y*2.5f),zCoord-(z*12.3f));
-   					    //Containers cont = new Containers(id, pos, container);
     					containerList.add(new Containers(id, pos, container, false));
-    					container.setLocalTranslation(pos);
-    					//rootNode.attachChild(cont);
+    					containerList.get(containerCount).container.setLocalTranslation(pos);
     					rootNode.attachChild(containerList.get(containerCount));
-    					containerCount++;
     				}
+					containerCount++;
     			}
     		}
     	}    	
