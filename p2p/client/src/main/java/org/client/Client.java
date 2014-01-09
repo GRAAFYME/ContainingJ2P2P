@@ -459,26 +459,21 @@ public class Client extends SimpleApplication
     	switch(vehicle.getClassName())
     	{
     		default:
-    		{
     			craneType = 5;
-    		}
+    			break;
     		case "zeeschip":
-    		{
     			craneType = 1;
-    		}
+    			break;
     		case "vrachtwagen":
-    		{
     			System.out.println("Right type");
     			craneType = 2;
-    		}
+    			break;
     		case "trein":
-    		{
     			craneType = 3;
-    		}
+    			break;
     		case "binnenvaartsschip":
-    		{
     			craneType = 4;
-    		}
+    			break;
     	}
     	boolean direction = false; //TODO: Send from protocol
     	int id = 0; //Chosen later
