@@ -9,7 +9,6 @@ public class Train extends Vehicle
 		super(id, train);
 		
 		train.scale(5);
-		train.setLocalTranslation(800, 260, 802);
 	}
 
 }

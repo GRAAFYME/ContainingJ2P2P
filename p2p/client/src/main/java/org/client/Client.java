@@ -438,12 +438,16 @@ public class Client extends SimpleApplication
     	{
     		case "vrachtauto":
     			v = new Truck(String.valueOf(x+1), truck);
+    			break;
     		case "zeeschip":
     			v = new SeaShip(String.valueOf(x+1), seaShip);
+    			break;
     		case "trein":
     			v = new Train(String.valueOf(1), train);
+    			break;
     		case "binnenvaartsschip":
     			v = new Barge(String.valueOf(x+1), barge);
+    			break;
     	}
     	v.setLocalTranslation(v.setLocation(vehicle, x, y, z));
     	rootNode.attachChild(v);
