@@ -123,21 +123,13 @@ public class Client extends SimpleApplication
     }
    
     public void testcontaineroptestagv(){
-//    	Containers cont2 = new Containers("0", new Vector3f(100, 410, 100), container, true);
-//    	container.setLocalTranslation(new Vector3f(100, 410, 100));
-//    	rootNode.attachChild(cont2);
-    	
-    	AGV containertest = new AGV("0",new Vector3f(100,405,100), AGV, "ContainerTest");
-    	containertest.setLocalTranslation(new Vector3f(100,405,100));
-    	rootNode.attachChild(containertest);
-    	
+    	Containers cont2 = new Containers("0", container, true);
+    	cont2.container.setLocalTranslation(new Vector3f(100, 410, 100));
+    	rootNode.attachChild(cont2);
     	
     	testAGVs = new AGV("0",new Vector3f(100,400,100), AGV, "TestAGV");
     	testAGVs.setLocalTranslation(new Vector3f(100,400,100));
     	rootNode.attachChild(testAGVs);
-    	
-    	containertest.attachContainerAGV(testAGVs);
-    	
     }
     
     @Override
@@ -243,7 +235,7 @@ public class Client extends SimpleApplication
     				{
     					String id = String.valueOf(containerCount + 1);
     					Vector3f pos = new Vector3f(xCoord+(x*2.4f),yCoord+(y*2.5f),zCoord-(z*12.3f));
-    					containerList.add(new Containers(id, pos, container, false));
+    					containerList.add(new Containers(id, container, false));
     					containerList.get(containerCount).container.setLocalTranslation(pos);
     					rootNode.attachChild(containerList.get(containerCount));
     				}
