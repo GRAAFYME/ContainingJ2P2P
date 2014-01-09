@@ -24,9 +24,11 @@ public abstract class Vehicle extends Node
 		switch(vehicle)
 		{
 			case "vrachtauto":
-			{
-				position = new Vector3f(249+(x*40), 255, 50);
-			}
+				this.position = new Vector3f(249+(x*40), 255, 50);
+				break;
+			case "zeeschip":
+				this.position = new Vector3f();
+				break;
 		}
 		return position;
 	}
