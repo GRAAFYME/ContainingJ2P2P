@@ -1,9 +1,6 @@
 package org.server;
 
-import org.protocol.AGV;
-import org.protocol.ServerProtocol;
-import org.protocol.TruckCrane;
-import org.protocol.Vehicle;
+import org.protocol.*;
 
 import java.util.*;
 
@@ -53,7 +50,7 @@ public class Simulator {
                     //Agv stuff
                     List<AGV> agvList = mapState.getAvailableAgvs();
                     AGV chosenAgv = agvList.get(0);
-                    chosenAgv.routes.add("ToSeaCrane");
+                    chosenAgv.routes.add(new MotionPathProtocol("ToSeaCrane", -1));
                     protocol.agvs.add(chosenAgv);
                     mapState.setUnavailable(chosenAgv, vehicleToAdd.getArrivalBusyTillDate());
                     break;
