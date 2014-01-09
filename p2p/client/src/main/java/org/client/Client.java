@@ -184,10 +184,12 @@ public class Client extends SimpleApplication
                 ServerProtocol p = protocolParser.deserialize(message);
                 //more than 0 elements in the list? yes - get(0), no - null
                 org.protocol.Vehicle networkVehicle = (p.vehicles.size() > 0) ? p.vehicles.get(0) : null;
-                System.out.println(networkVehicle.getClassName());
+                String vehicle = networkVehicle.getClassName();
+                System.out.println(vehicle);
                 
-                init_vehicle(networkVehicle.getClassName(), networkVehicle.location.x, 
+                init_vehicle(vehicle, networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
+                getMessage(networkVehicle);
             }
             catch (Exception e)
             {
@@ -241,13 +243,11 @@ public class Client extends SimpleApplication
     				{
     					String id = String.valueOf(containerCount + 1);
     					Vector3f pos = new Vector3f(xCoord+(x*2.4f),yCoord+(y*2.5f),zCoord-(z*12.3f));
-   					    //Containers cont = new Containers(id, pos, container);
     					containerList.add(new Containers(id, pos, container, false));
-    					container.setLocalTranslation(pos);
-    					//rootNode.attachChild(cont);
+    					containerList.get(containerCount).container.setLocalTranslation(pos);
     					rootNode.attachChild(containerList.get(containerCount));
-    					containerCount++;
     				}
+					containerCount++;
     			}
     		}
     	}    	
@@ -438,34 +438,40 @@ public class Client extends SimpleApplication
     	{
     		case "vrachtauto":
     			v = new Truck(String.valueOf(x+1), truck);
+    		case "zeeschip":
+    			v = new SeaShip(String.valueOf(x+1), seaShip);
+    		case "trein":
+    			v = new Train(String.valueOf(1), train);
+    		case "binnenvaartsschip":
+    			v = new Barge(String.valueOf(x+1), barge);
     	}
     	v.setLocalTranslation(v.setLocation(vehicle, x, y, z));
     	rootNode.attachChild(v);
     }
     
-    private void getMessage()
+    private void getMessage(org.protocol.Vehicle vehicle)
     {
-    	Container cont = new Container();
-    	int craneType = 0; //TODO: Send from protocol
-    	switch(protocol.vehicles.get(0).getClassName())
+    	int craneType = 0;
+    	switch(vehicle.getClassName())
     	{
     		default:
     		{
     			craneType = 5;
     		}
-    		case "SeaShip":
+    		case "zeeschip":
     		{
     			craneType = 1;
     		}
-    		case "Truck":
+    		case "vrachtwagen":
     		{
+    			System.out.println("Right type");
     			craneType = 2;
     		}
-    		case "Train":
+    		case "trein":
     		{
     			craneType = 3;
     		}
-    		case "Barge":
+    		case "binnenvaartsschip":
     		{
     			craneType = 4;
     		}
@@ -476,9 +482,9 @@ public class Client extends SimpleApplication
     	float smallest = 1000;
     	
     	float x, y, z;
-    	x = (float) cont.getLocation().x;
-    	y = (float) cont.getLocation().y;
-    	z = (float) cont.getLocation().z;
+    	x = (float) vehicle.location.x;
+    	y = (float) vehicle.location.y;
+    	z = (float) vehicle.location.z;
     	Vector3f conVector = new Vector3f(x, y, z);
     	
     	switch(craneType)
@@ -504,6 +510,7 @@ public class Client extends SimpleApplication
     		}
     		case 2:
     		{
+    			System.out.println("Check which truck crane has to be used.");
     			for(Crane c : truckCranes)
     			{
     				distance = c.distance(conVector);
@@ -589,6 +596,7 @@ public class Client extends SimpleApplication
     		}
     		case 2:
     		{
+    			System.out.println("Animation starts");
             	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
             	
@@ -596,7 +604,7 @@ public class Client extends SimpleApplication
     	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
     	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
     	    	
-    			if(direction)
+    			if(!direction)
     				truckCranes[id].animation(3, des, 5);
     			else
     				truckCranes[id].animation(4, des, 5);

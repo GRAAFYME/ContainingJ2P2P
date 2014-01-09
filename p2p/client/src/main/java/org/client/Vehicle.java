@@ -27,7 +27,13 @@ public abstract class Vehicle extends Node
 				this.position = new Vector3f(249+(x*40), 255, 50);
 				break;
 			case "zeeschip":
-				this.position = new Vector3f();
+				this.position = new Vector3f(0,255,0);
+				break;
+			case "trein":
+				this.position = new Vector3f(0,255,0);
+				break;
+			case "binnenvaartsschip":
+				this.position = new Vector3f(0,255,0);
 				break;
 		}
 		return position;
