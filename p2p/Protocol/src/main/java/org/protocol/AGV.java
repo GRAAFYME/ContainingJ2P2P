@@ -24,7 +24,7 @@ public class AGV extends ContainerCarrier
     public Vector3f coordinates;
 
     @XmlElement
-    public List<String> routes;
+    public List<MotionPathProtocol> routes;
 
 public AGV()  {}
 
