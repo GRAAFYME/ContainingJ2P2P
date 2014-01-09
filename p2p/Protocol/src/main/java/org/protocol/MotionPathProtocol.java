@@ -13,14 +13,26 @@ public class MotionPathProtocol
     private List<Vector3f> locationNodeList;
     @XmlElement
     private float length;
+    @XmlElement
+    public int driveUntilWaypoint;
+    @XmlElement
+    String name;
 
     public MotionPathProtocol() {};
-    public MotionPathProtocol(List<Vector3f> locationNodeList, float length)
+    //use for client->server
+    public MotionPathProtocol(List<Vector3f> locationNodeList, float length, String name)
     {
         this.locationNodeList = locationNodeList;
         this.length = length;
+        this.name = name;
     }
 
+    //user for server->client, giving Agvs commands
+    public MotionPathProtocol(String name, int driveUntilWaypoint)
+    {
+        this.name = name;
+        this.driveUntilWaypoint = driveUntilWaypoint;
+    }
     public float getLength() { return length; }
 
     public int getNbWayPoints() {

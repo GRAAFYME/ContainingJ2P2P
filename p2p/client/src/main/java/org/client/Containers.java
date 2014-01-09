@@ -11,7 +11,7 @@ public class Containers extends BatchNode
 	protected Spatial container;	
 	private String id;
 	
-	public Containers(String id, Vector3f position, Spatial container, boolean last)
+	public Containers(String id, Spatial container, boolean last)
 	{
 		super(id);
 		
