@@ -116,4 +116,43 @@ public class Container {
 
         return calendar;
     }
+
+
+    public Calendar getArrivalBusyTillDate()
+    {
+        Calendar calendar = new GregorianCalendar();
+
+        try {
+            Date date = new SimpleDateFormat("hh.mm").parse(arrivalTill);
+            date.setYear(arrivalYear);
+            date.setMonth(arrivalMonth);
+            date.setDate(arrivalDay);
+
+            calendar.setTime(date);
+            System.out.println(calendar.get(Calendar.MONTH));
+            System.out.println(calendar.get(Calendar.YEAR));
+            System.out.println(calendar.get(Calendar.MINUTE));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return calendar;
+    }
+
+    public GregorianCalendar getLeaveBusyTillDate()
+    {
+        GregorianCalendar calendar = new GregorianCalendar();
+
+        try {
+            Date date = new SimpleDateFormat("hh.mm").parse(leaveTill);
+            calendar.setTime(date);
+            calendar.set(leaveYear, leaveMonth, leaveDay);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return calendar;
+    }
 }

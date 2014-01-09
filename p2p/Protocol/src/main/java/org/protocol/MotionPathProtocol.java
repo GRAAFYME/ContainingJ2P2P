@@ -13,6 +13,8 @@ public class MotionPathProtocol
     private List<Vector3f> locationNodeList;
     @XmlElement
     private float length;
+    @XmlElement
+    public int driveUntilWaypoint;
 
     public MotionPathProtocol() {};
     public MotionPathProtocol(List<Vector3f> locationNodeList, float length)
