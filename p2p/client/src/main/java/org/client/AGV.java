@@ -147,10 +147,9 @@ public class AGV extends Node implements MotionPathListener {
 		// TODO Auto-generated method stub
 	
 	
-	//arjen temp
-	public void attachContainerAGV(AGV agvtestnode){
-		
-			agvtestnode.attachChild(this);
-		
+	//Attach Container to AGV
+	public void attachContainerAGV(Containers cont2)
+	{
+		this.attachChild(cont2);
 	}
 }

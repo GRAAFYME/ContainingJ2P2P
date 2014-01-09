@@ -122,13 +122,15 @@ public class Client extends SimpleApplication
         app.start(); // start the game
     }
    
-    public void testcontaineroptestagv(){
+    //Test container on agv!
+    public void testcontaineroptestagv()
+    {
     	Containers cont2 = new Containers("0", container, true);
-    	cont2.container.setLocalTranslation(new Vector3f(100, 410, 100));
-    	rootNode.attachChild(cont2);
+    	cont2.container.setLocalTranslation(new Vector3f(0, 2, 0));
     	
     	testAGVs = new AGV("0",new Vector3f(100,400,100), AGV, "TestAGV");
     	testAGVs.setLocalTranslation(new Vector3f(100,400,100));
+    	testAGVs.attachContainerAGV(cont2);
     	rootNode.attachChild(testAGVs);
     }
     
