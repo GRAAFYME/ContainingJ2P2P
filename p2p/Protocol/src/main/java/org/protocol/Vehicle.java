@@ -23,12 +23,11 @@ public class Vehicle
     public Vector3f location; //truck: only consider values x: 0-19
     //public String className;
 
-    public Vehicle() { location = new Vector3f(); }
+    public Vehicle() {}
 
 	public Vehicle(Vector3f _location, String className)
 	{
 		this.Location = _location;
-
         //this.className = className;
 	}
 	
@@ -58,5 +57,15 @@ public class Vehicle
     {
         //Is there a container? yes: just copy its arrival date
         return (containers.size() == 0) ? null : containers.get(0).getLeaveDate();
+    }
+
+    public Calendar getArrivalBusyTillDate()
+    {
+        return (containers.size() == 0) ? null : containers.get(0).getArrivalBusyTillDate();
+    }
+
+    public GregorianCalendar getLeaveBusyTillDate()
+    {
+        return (containers.size() == 0) ? null : containers.get(0).getLeaveBusyTillDate();
     }
 }

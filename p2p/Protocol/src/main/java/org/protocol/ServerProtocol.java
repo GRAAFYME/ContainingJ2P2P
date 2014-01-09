@@ -21,10 +21,13 @@ public class ServerProtocol {
     public List<Container> containers;
     @XmlElement
     public List<Vehicle> vehicles;
+    @XmlElement
+    public List<AGV> agvs;
 
     public ServerProtocol()
     {
         containers = new ArrayList<Container>();
+        agvs = new ArrayList<>();
     }
     
     public List<Container> getContainers()
