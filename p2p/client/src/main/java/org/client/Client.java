@@ -116,7 +116,8 @@ public class Client extends SimpleApplication
     Storage storage = new Storage();
     AGV testAGVs;
     
-    public static void main(String[] args){
+    public static void main(String[] args)
+    {
         Client app = new Client();       
         app.start(); // start the game
     }
@@ -174,35 +175,17 @@ public class Client extends SimpleApplication
     @Override
     public void simpleUpdate(float tpf) 
     {
-    	this.tpf = tpf;
-    	
-    	for(Crane c : storageCranes)
-    	{
-    		c.update(tpf);
-    	}
-    	//System.out.println(cam.getLocation());
         String message = c.getMessages();
         if(message != "")
         {
             System.out.println(message);
-            try {
+            try 
+            {
                 ServerProtocol p = protocolParser.deserialize(message);
                 //more than 0 elements in the list? yes - get(0), no - null
                 org.protocol.Vehicle networkVehicle = (p.vehicles.size() > 0) ? p.vehicles.get(0) : null;
                 System.out.println(networkVehicle.getClassName());
-                //copy-paste this snippet
-                switch(networkVehicle.getClassName())
-                {
-                    case "vrachtauto":
-                        System.out.println(networkVehicle.getClassName());
-                        break;
-                    case "zeeschip":
-                        System.out.println(networkVehicle.getClassName());
-                        break;
-                    default:
-                        System.out.println("wtf is this vehicle");
-                        break;
-                }
+                
                 init_vehicle(networkVehicle.getClassName(), networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
             }
