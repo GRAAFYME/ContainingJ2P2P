@@ -183,7 +183,7 @@ public class Client extends SimpleApplication
                 
                 init_vehicle(vehicle, networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
-                getMessage(networkVehicle);
+                getMessage(vehicle, networkVehicle);
             }
             catch (Exception e)
             {
@@ -447,10 +447,10 @@ public class Client extends SimpleApplication
     	rootNode.attachChild(v);
     }
     
-    private void getMessage(org.protocol.Vehicle vehicle)
+    private void getMessage(String vehicleName, org.protocol.Vehicle vehicle)
     {
     	int craneType = 0;
-    	switch(vehicle.getClassName())
+    	switch(vehicleName)
     	{
     		default:
     			craneType = 5;
