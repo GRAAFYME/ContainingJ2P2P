@@ -11,9 +11,9 @@ import com.jme3.scene.Node;
 
 public class MotionPaths {
 	
-	public MotionPath path, path2, path3, path4, StartingPoint, CrossStartPoint, toSeaCrane, toTrucks, TrucksLoaded, OtherSidePlatform,
+	public MotionPath path, path2, path3, path4, StartingPoint, CrossStartPoint, toSeaCrane, CrossingToTrucks, TrucksLoaded, OtherSidePlatform,
 	SeaCraneToOtherSide, OtherSideToAGV,OtherWayAround, CrossingStartToTruck, AGVStartToOtherSide, CrossingToTrains, CrossingToStorageSide1, 
-	CrossingToStorageCraneSide1,CrossingToStorageSide2 , CrossingToStorageCraneSide2;
+	CrossingToStorageCraneSide1,CrossingToStorageSide2 , CrossingToStorageCraneSide2, CrossingToTruckCrane;
 	public MotionEvent motionControl, motionControl2, motionControl3, motionControl4;
 	private AssetManager assetManager;
 	private BitmapFont guiFont;
@@ -40,7 +40,6 @@ public class MotionPaths {
 		StartPoint();
 		CrossingStart();
 		CrossingToSeaCrane();
-		CrossingToTrucks();
 		CrossingTrucksLoaded();
 		CrossingtoOtherSidePlatform();
 		CrossingSeaCraneToCrossingOtherSide();
@@ -52,11 +51,12 @@ public class MotionPaths {
 		CrossingToStorageCraneSide1();
 		CrossingToStorageSide2();
 		CrossingToStorageCraneSide2();
+		CrossingToTrucks();
+		CrossingToTruckCrane();
 	}
 	
 	public void StartPoint()
 	{
-
 		for (int i = 0; i<50; i++)
 		{
 		StartingPoint = new MotionPath();
@@ -127,17 +127,6 @@ public class MotionPaths {
 		hmMotionPaths.put("ToSeaCrane", toSeaCrane);
 	}
 	
-	public void CrossingToTrucks()
-	{
-		toTrucks = new MotionPath();
-		toTrucks.addWayPoint(new Vector3f (-470, 260f, 117));
-		toTrucks.addWayPoint(new Vector3f (-470, 260f, 80));
-		toTrucks.addWayPoint(new Vector3f (230, 260f, 80));
-		toTrucks.setCurveTension(0.0f);
-		toTrucks.enableDebugShape(assetManager, AllAgvNodes);
-		hmMotionPaths.put("toTrucks", toTrucks);
-	}
-	
 	public void CrossingTrucksLoaded()
 	{
 		TrucksLoaded = new MotionPath();
@@ -186,7 +175,7 @@ public class MotionPaths {
 	public void CrossingStartToOtherWayAround()
 	{
 		OtherWayAround = new MotionPath();
-		OtherWayAround.addWayPoint(new Vector3f (755, 260f, 117));
+		OtherWayAround.addWayPoint(new Vector3f (1050, 260f, 117));
 		OtherWayAround.addWayPoint(new Vector3f (1085, 260f, 117));
 		OtherWayAround.addWayPoint(new Vector3f (1085, 260f, 170));
 		OtherWayAround.addWayPoint(new Vector3f(1085, 260f, 721));
@@ -323,6 +312,64 @@ public class MotionPaths {
 				hmMotionPaths.put("CrossingToStorageCraneSide2", CrossingToStorageCraneSide2);
 				x+= 60;
 				}
+			}
+			
+			public void CrossingToTrucks()
+			{
+				CrossingToTrucks = new MotionPath();
+				CrossingToTrucks.addWayPoint(new Vector3f(280, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(290, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(305, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(330, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(355, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(370, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(380, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(405, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(410, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(430, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(450, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(455, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(480, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(490, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(505, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(530, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(555, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(570, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(580, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(605, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(610, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(630, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(650, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(655, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(680, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(690, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(705, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(730, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(755, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(770, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(810, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(850, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(890, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(930, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(970, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(1010, 260, 117));
+				CrossingToTrucks.addWayPoint(new Vector3f(1050, 260, 117));
+				CrossingToTrucks.setCurveTension(0);
+				CrossingToTrucks.enableDebugShape(assetManager, AllAgvNodes);
+			}
+			
+			public void CrossingToTruckCrane()
+			{
+			float x= 290;
+			for (int i = 0; i<20; i++)
+			{
+			CrossingToTruckCrane = new MotionPath();
+			CrossingToTruckCrane.addWayPoint(new Vector3f(x, 260, 117));
+			CrossingToTruckCrane.addWayPoint(new Vector3f(x, 260, 90));
+			CrossingToTruckCrane.setCurveTension(0);
+			CrossingToTruckCrane.enableDebugShape(assetManager, AllAgvNodes);
+			x+= 40;
+			}
 			}
 	
 	

@@ -70,6 +70,7 @@ public class FlyByCamera implements AnalogListener, ActionListener {
     }
 
     public void onAnalog(String name, float value, float tpf) {
+    	
         if (!enabled)
         return;
         if (coordtest){
