@@ -65,7 +65,7 @@ public class HelpView
 		//JLabel Textlabel = new JLabel(text);
 		//Textlabel.setBounds(5,0,400,400);
 		JTextArea textArea = new JTextArea(text);
-		
+		textArea.setEditable(false);
 		textArea.setBounds(0,0,600,400);
 		panel.add(textArea);
 		//panel.setLayout(new GridLayout(1, 1));
