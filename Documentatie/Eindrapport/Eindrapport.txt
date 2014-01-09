@@ -24,13 +24,13 @@ Onderdelen die in een verslag aan de orde kunnen komen:
 
 Bovenstaande op basis van / aangevuld door:
  
-- 1. Analyse **UPDATEN**
-- 2. Planning + Taakverdeling + Rolverdeling
+- 1. Bijlage: Analyse **UPDATEN**
+- 2. Bijlage: Planning + Taakverdeling + Rolverdeling
 - 3. Projectplan 1
 - 4. Testplan 2
 - 5. Tech doc 3 (4)
-- 6. Gespreksverslagen
-- 7. Logboeken **UPDATEN**
+- 6. Bijlage: Gespreksverslagen
+- 7. Bijlage: Logboeken **UPDATEN**
 
 - Wiskunde
 - Keuzes en verantwoording
