@@ -1,41 +1,11 @@
 Eindrapport: 
 
-- Onderdelen_verslag.doc:
 Onderdelen die in een verslag aan de orde kunnen komen:
 
-- 	Titelpagina
 -	Samenvatting
--	Inhoudsopgave
-
--	Inleiding
--	Probleemstelling 
--	Opdracht/Ontwerp/implementatie
--	Proces(aanpak/planning/samenwerking)
--	Conclusie	** (op basis van doelstelling + advies) **
--	Aanbevelingen(Discussie)
--	Literatuurlijst (bronvermelding)
-
--	Bijlagen (alleen met een verwijzing uit de lopende tekst(body)!) 
--	teksten/programma-onderdelen van Website/boeken
--	(eigen) source code-fragmenten/tekeningen 
--	(alle source code komt  ook op CD)
--	(originele) planning/Plan van Pak
--	(proces) logboek
 
 Bovenstaande op basis van / aangevuld door:
  
-- 1. Bijlage: Analyse **UPDATEN**
-- 2. Bijlage: Planning + Taakverdeling + Rolverdeling
 - 3. Projectplan 1
 - 4. Testplan 2
 - 5. Tech doc 3 (4)
-- 6. Bijlage: Gespreksverslagen
-- 7. Bijlage: Logboeken **UPDATEN**
-
-- Wiskunde
-- Keuzes en verantwoording
-- Anders dan gepland
-- Hoe is de software tot stand gekomen?
-- Testing
-- Teamwork
-- Persoonlijke evaluatie
