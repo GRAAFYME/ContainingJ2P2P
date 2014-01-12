@@ -8,10 +8,12 @@ public abstract class Vehicle extends Node
 {
 	private String id;
 	private Vector3f position;
+	private Spatial vehicle;
 	
 	public Vehicle(String id, Spatial vehicle)
 	{
-		this.attachChild(vehicle);
+		this.vehicle = vehicle.clone();
+		this.attachChild(this.vehicle);
 	}
 	
 	public String getId()
