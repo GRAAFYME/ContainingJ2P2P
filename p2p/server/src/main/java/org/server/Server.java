@@ -128,9 +128,11 @@ public class Server implements Runnable
     public void sendMessage(String message)
     {
         try {
+            if(message == null || message == "") return;
             //\r\r (2x linefeed) is our special "message has ended" sequence, since reading network streams
             //in java sucks we hack around it like this
-            writer.write(message + "\r\r");
+            writer.print(message + "\r\r");
+            Thread.sleep(500);
             writer.flush();
         }
         catch (Exception e) {
@@ -216,7 +218,7 @@ public class Server implements Runnable
                 {
                 clientSocket = serverSocket.accept();
                     //Does this do anything at all?
-                    clientSocket.setSoTimeout(500);
+                    //clientSocket.setSoTimeout(500);
                     writer = new PrintWriter(clientSocket.getOutputStream(), true);
                     reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 }

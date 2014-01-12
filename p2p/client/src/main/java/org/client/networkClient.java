@@ -1,9 +1,9 @@
 package org.client;
 
-import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 //This server class is a horrible mess of conflicting names
 //
@@ -19,7 +19,8 @@ public class networkClient {
 
 	private Socket socket;
     private PrintWriter writer;
-    private BufferedReader reader;
+    private InputStreamReader reader;
+    private Scanner scanner;
 
 	public networkClient(int port)
 	{
@@ -28,7 +29,8 @@ public class networkClient {
             socket = new Socket("127.0.0.1", 6666);
             //socket.setSoTimeout(5);
             writer = new PrintWriter(socket.getOutputStream(), true);
-            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            reader = new InputStreamReader(socket.getInputStream());
+            scanner = new Scanner(reader);
 		}
 		catch (Exception e)
 		{
@@ -58,14 +60,12 @@ public class networkClient {
             while(reader.ready())
             {
                 //Gotta love java... copied from stackoverflow
-                //Reading these streams is hell
-                java.util.Scanner s = new java.util.Scanner(reader).useDelimiter("\r\r");
-                message = s.hasNext() ? s.next() : "";
+                message  = scanner.useDelimiter("\r\r").next();
                 return message;
             }
         } catch (Exception e)
         {
-            //System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
             return "";
         }
 
