@@ -19,14 +19,8 @@ public class MotionPaths {
 	private BitmapFont guiFont;
 	public Node nodeAGV;
 	private Node AllAgvNodes;
-	float x1 = -470f;
-	float z1 = 150f;
-	float x2 = -470f;
-	float x3 = -445f;
-	float x4 = -470f;
-	float x5 = -470f;
-	float x6 = -470f;
-	float z2 = 117;
+
+
 	HashMap<String, MotionPath> hmMotionPaths = new HashMap<String, MotionPath>();
 	
 	public MotionPaths( AssetManager am, Node allAgvNodes) {
@@ -56,50 +50,50 @@ public class MotionPaths {
 	}
 	
 	public void StartPoint()
-	{
+	{	float x1 = -470f;
 		for (int i = 0; i<50; i++)
 		{
 		StartingPoint = new MotionPath();
-		StartingPoint.addWayPoint(new Vector3f(x1, 260f, z1));
-		StartingPoint.addWayPoint(new Vector3f(x1, 260f, z2));
+		StartingPoint.addWayPoint(new Vector3f(x1, 260f, 150));
+		StartingPoint.addWayPoint(new Vector3f(x1, 260f, 117));
 		StartingPoint.enableDebugShape(assetManager, AllAgvNodes);
-		hmMotionPaths.put("StartingPoint", StartingPoint);
+		hmMotionPaths.put("StartingPoint"+String.valueOf(i) , StartingPoint);
 		x1 += 25;
 		}
-		
+		float x5 = -470f;
 		for (int j = 0; j<50; j++)
 		{
 			StartingPoint = new MotionPath();
 			StartingPoint.addWayPoint(new Vector3f(x5, 260f, 735f));
 			StartingPoint.addWayPoint(new Vector3f(x5, 260f, 767f));
 			StartingPoint.enableDebugShape(assetManager, AllAgvNodes);
-			hmMotionPaths.put("StartingPoint", StartingPoint);
+			hmMotionPaths.put("StartingPoint"+String.valueOf(j), StartingPoint);
 			x5+= 25;
 		}
 	}
 	
 	public void CrossingStart()
 	{
-		
+		float x4 = -470f;
 		for (int i = 0; i<31; i++)
 		{
 		CrossStartPoint = new MotionPath();
-		CrossStartPoint.addWayPoint(new Vector3f(-540f, 260f, z2)); //apart MP
-		CrossStartPoint.addWayPoint(new Vector3f(x4, 260f, z2));
-		CrossStartPoint.addWayPoint(new Vector3f(x3, 260f, z2));
+		CrossStartPoint.addWayPoint(new Vector3f(-540f, 260f, 117));
+		CrossStartPoint.addWayPoint(new Vector3f(x4, 260f, 117));
+		CrossStartPoint.addWayPoint(new Vector3f(-445, 260f, 117));
 		CrossStartPoint.enableDebugShape(assetManager, AllAgvNodes);
-		hmMotionPaths.put("CrossStartPoint", CrossStartPoint);
+		hmMotionPaths.put("CrossStartPoint"+String.valueOf(i), CrossStartPoint);
 		x4 += 25;
 		}
-		
+		float x6 = -470f;
 		for (int j = 0; j<50; j++)
 		{
 		CrossStartPoint = new MotionPath();
-		CrossStartPoint.addWayPoint(new Vector3f(-540, 260,767)); //apart MP
+		CrossStartPoint.addWayPoint(new Vector3f(-540, 260,767));
 		CrossStartPoint.addWayPoint(new Vector3f(x6, 260f, 767f));
-		CrossStartPoint.addWayPoint(new Vector3f(x3, 260f, 767f));
+		CrossStartPoint.addWayPoint(new Vector3f(-445, 260f, 767f));
 		CrossStartPoint.enableDebugShape(assetManager, AllAgvNodes);
-		hmMotionPaths.put("CrossStartPoint", CrossStartPoint);
+		hmMotionPaths.put("CrossStartPoint"+String.valueOf(j), CrossStartPoint);
 		x6 += 25;
 		}
 		
@@ -111,7 +105,7 @@ public class MotionPaths {
 			CrossingStartToTruck = new MotionPath();
 			CrossingStartToTruck.addWayPoint(new Vector3f(1,1,1));
 			CrossingStartToTruck.enableDebugShape(assetManager, AllAgvNodes);
-			hmMotionPaths.put("CrossingStartToTruck", CrossingStartToTruck);
+			hmMotionPaths.put("CrossingStartToTruck"+String.valueOf(i), CrossingStartToTruck);
 		}
 	}
 	
@@ -197,7 +191,6 @@ public class MotionPaths {
 	
 	public void CrossingToTrains()
 	{
-
 		CrossingToTrains = new MotionPath();
 		CrossingToTrains.addWayPoint(new Vector3f(-540, 260, 767));
 		CrossingToTrains.addWayPoint (new Vector3f(-540, 260, 786));
@@ -244,8 +237,7 @@ public class MotionPaths {
 		CrossingToStorageSide1.setCurveTension(0);
 		CrossingToStorageSide1.enableDebugShape(assetManager, AllAgvNodes);
 		hmMotionPaths.put("CrossingToStorageSide1", CrossingToStorageSide1);
-		}
-	
+		}	
 	
 		public void CrossingToStorageCraneSide1()
 		{
@@ -257,13 +249,11 @@ public class MotionPaths {
 			CrossingToStorageCraneSide1.addWayPoint(new Vector3f(x, 260, 667));
 			CrossingToStorageCraneSide1.setCurveTension(0);
 			CrossingToStorageCraneSide1.enableDebugShape(assetManager, AllAgvNodes);
-			hmMotionPaths.put("CrossingToStorageCraneSide1", CrossingToStorageCraneSide1);
+			hmMotionPaths.put("CrossingToStorageCraneSide1"+String.valueOf(i), CrossingToStorageCraneSide1);
 			x+= 60;
 			}
 		}
-		
-		
-		
+
 		public void CrossingToStorageSide2()
 		{
 			CrossingToStorageSide2 = new MotionPath();			
@@ -309,7 +299,7 @@ public class MotionPaths {
 				CrossingToStorageCraneSide2.addWayPoint(new Vector3f(x, 260, 224));
 				CrossingToStorageCraneSide2.setCurveTension(0);
 				CrossingToStorageCraneSide2.enableDebugShape(assetManager, AllAgvNodes);
-				hmMotionPaths.put("CrossingToStorageCraneSide2", CrossingToStorageCraneSide2);
+				hmMotionPaths.put("CrossingToStorageCraneSide2"+String.valueOf(i), CrossingToStorageCraneSide2);
 				x+= 60;
 				}
 			}
@@ -356,6 +346,7 @@ public class MotionPaths {
 				CrossingToTrucks.addWayPoint(new Vector3f(1050, 260, 117));
 				CrossingToTrucks.setCurveTension(0);
 				CrossingToTrucks.enableDebugShape(assetManager, AllAgvNodes);
+				hmMotionPaths.put("CrossingToTrucks", CrossingToStorageCraneSide2);
 			}
 			
 			public void CrossingToTruckCrane()
@@ -368,6 +359,7 @@ public class MotionPaths {
 			CrossingToTruckCrane.addWayPoint(new Vector3f(x, 260, 90));
 			CrossingToTruckCrane.setCurveTension(0);
 			CrossingToTruckCrane.enableDebugShape(assetManager, AllAgvNodes);
+			hmMotionPaths.put("CrossingToTruckCranes"+String.valueOf(i), CrossingToStorageCraneSide2);
 			x+= 40;
 			}
 			}
@@ -377,7 +369,7 @@ public class MotionPaths {
 	
 	
 	
-
+//motionpath die crash tegen houdt?
 	public void MotionPath1() {
 		path = new MotionPath();
 		path.addWayPoint(new Vector3f(778.0f, 260.0f, 152.0f));
@@ -385,36 +377,6 @@ public class MotionPaths {
 
 		path.setCurveTension(0.0f);
 		path.enableDebugShape(assetManager, AllAgvNodes);
-
-	}
-	
-	public void MotionPath2() {
-		path2 = new MotionPath();
-		path2.addWayPoint(new Vector3f(778.0f, 260.0f, 131.0f));
-		path2.addWayPoint(new Vector3f(-685, 260.0f, 131f));
-		path2.setCurveTension(0.f);
-		path2.enableDebugShape(assetManager, AllAgvNodes);
-
-	}
-
-	public void MotionPath3() {
-		path3 = new MotionPath();
-		path3.addWayPoint(new Vector3f(-685, 260.0f, 131f));
-		path3.addWayPoint(new Vector3f(-685.0f, 260.0f, 700));
-
-		path3.setCurveTension(0.0f);
-		path3.enableDebugShape(assetManager, AllAgvNodes);
-
-	}
-
-	public void MotionPath4() {
-		path4 = new MotionPath();
-		path4.addWayPoint(new Vector3f(1067.0f, 260.0f, 142.0f));
-		path4.addWayPoint(new Vector3f(-480.0f, 260.0f, 142.0f));
-		path4.addWayPoint(new Vector3f(-480.0f, 260.0f, 740.0f));
-		path4.addWayPoint(new Vector3f(1067.0f, 260.0f, 740.0f));
-		path4.setCurveTension(0.0f);
-		path4.enableDebugShape(assetManager, AllAgvNodes);
 
 	}
 }
