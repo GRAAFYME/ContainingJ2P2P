@@ -111,6 +111,9 @@ public class Client extends SimpleApplication
     Crane [] trainCranes = new Crane [4];
     Crane [] bargeCranes = new Crane [8];
     
+    //Vehicles
+    List<Vehicle> trucks = new ArrayList<Vehicle> ();
+    
     Storage storage = new Storage();
     
     public static void main(String[] args)
@@ -163,14 +166,26 @@ public class Client extends SimpleApplication
                 //more than 0 elements in the list? yes - get(0), no - null
                 org.protocol.Vehicle networkVehicle = (p.vehicles.size() > 0) ? p.vehicles.get(0) : null;
                 String vehicle = networkVehicle.getClassName();
-                System.out.println(vehicle);
                 
                 init_vehicle(vehicle, networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
                 Vector3f location = new Vector3f(networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
-                System.out.println(location);
                 getMessage(vehicle, location);
+                
+                for(Crane c : truckCranes)
+                {
+                	System.out.println(trucks.size());
+                	for(Vehicle v : trucks)
+                	{
+                		System.out.println("Coordinates: " + c.getLocalTranslation() + " :: " + v.getContainer().getLocalTranslation());
+                		if(c.hook.getLocalTranslation() == v.getContainer().getLocalTranslation())
+                		{
+                			v.detachChild(v.getContainer());
+                			c.hookNode.attachChild(v.getContainer());
+                		}
+                	}
+                }
             }
             catch (Exception e)
             {
@@ -419,6 +434,11 @@ public class Client extends SimpleApplication
     	{
     		case "vrachtauto":
     			v = new Truck(String.valueOf(x+1), truck);
+    			Containers cont = new Containers("0", container, false);
+    			cont.setLocalTranslation(v.getLocalTranslation().x-5, v.getLocalTranslation().y+2.5f, v.getLocalTranslation().z+0.5f);
+    			v.attachChild(cont);
+    			trucks.add(v);
+    			System.out.println(trucks.size());
     			break;
     		case "zeeschip":
     			v = new SeaShip(String.valueOf(x+1), seaShip);
@@ -436,16 +456,13 @@ public class Client extends SimpleApplication
     
     private void getMessage(String vehicleName, Vector3f location)
     {
-    	System.out.println("Started to look for the right animation");
     	int craneType = 0;
-    	System.out.println(vehicleName);
     	switch(vehicleName)
     	{
     		case "zeeschip":
     			craneType = 1;
     			break;
     		case "vrachtauto":
-    			System.out.println("Right type");
     			craneType = 2;
     			break;
     		case "trein":
@@ -455,7 +472,6 @@ public class Client extends SimpleApplication
     			craneType = 4;
     			break;
     		default:
-    			System.out.println("No vehicle found");
     			craneType = 5;
     			break;
     	}
@@ -487,12 +503,9 @@ public class Client extends SimpleApplication
     	    	}
     	    	break;
     		case 2:
-    			System.out.println("Check which truck crane has to be used.");
     			for(Crane c : truckCranes)
     			{
     				distance.add(c.distance(vehicleName, conVector));
-    				System.out.println(conVector);
-    				System.out.println(c.distance(vehicleName, conVector));
     			}
     			
     	    	for(int i = 0; i < distance.size(); i++)
@@ -503,7 +516,6 @@ public class Client extends SimpleApplication
     	    			{
     	    				smallest = distance.get(i);
     	    				id = i;
-    	    				System.out.println(smallest);
     	    			}
     	    		}
     	    	}
@@ -549,7 +561,6 @@ public class Client extends SimpleApplication
     			break;
     	}
 
-    	System.out.println("Got all information needed");
     	Vector3f [] des = new Vector3f [4];
     	
     	switch(craneType)
@@ -580,8 +591,8 @@ public class Client extends SimpleApplication
             	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
             	
     	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
-    	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-22,startPosHook.z); //Destination of the hook
-    	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-50); //Destination of the crane
+    	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-16,startPosHook.z); //Destination of the hook
+    	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-30); //Destination of the crane
     	    	
     			if(!direction)
     				truckCranes[id].animation(3, des, 5);

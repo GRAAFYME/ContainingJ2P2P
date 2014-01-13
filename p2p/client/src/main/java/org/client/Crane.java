@@ -80,9 +80,6 @@ public abstract class Crane extends Node
 		switch(vehicleName)
 		{
 			case "vrachtauto":
-				float exactLoc = (location.x-1)*40 + 250;
-				System.out.println(exactLoc);
-				System.out.println(getPosition().x);
 				distance = (location.x*40+250) - getPosition().x;
 				break;
 		}
@@ -399,7 +396,6 @@ public abstract class Crane extends Node
 		
 		//craneControl.setSpeed(sp);
 		craneControl.play();
-		System.out.println("Number of WayPoints: " + pathCrane.getNbWayPoints());
 	}
 	
 	public void moveSlider(Vector3f des, float sp)
@@ -423,7 +419,6 @@ public abstract class Crane extends Node
 		
 		//sliderControl.setSpeed(sp);
 		sliderControl.play();
-		System.out.println("Number of WayPoints: " + pathSlider.getNbWayPoints());
 	}
 	
 	public void moveHook(Vector3f des, float sp)
@@ -441,6 +436,5 @@ public abstract class Crane extends Node
 			//hookControl.setSpeed(sp);
 			hookControl.play();
 		}
-		System.out.println("Number of WayPoints: " + pathHook.getNbWayPoints());
 	}
 }

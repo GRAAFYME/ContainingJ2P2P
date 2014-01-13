@@ -9,6 +9,7 @@ public abstract class Vehicle extends Node
 	private String id;
 	private Vector3f position;
 	private Spatial vehicle;
+	private Spatial container;
 	
 	public Vehicle(String id, Spatial vehicle)
 	{
@@ -26,7 +27,7 @@ public abstract class Vehicle extends Node
 		switch(vehicle)
 		{
 			case "vrachtauto":
-				this.position = new Vector3f(249+(x*40), 255, 50);
+				this.position = new Vector3f(249+(x*40), 257, 50);
 				break;
 			case "zeeschip":
 				this.position = new Vector3f(-730, 200, 680);
@@ -39,5 +40,16 @@ public abstract class Vehicle extends Node
 				break;
 		}
 		return position;
+	}
+	
+	public Spatial getContainer()
+	{
+		return container;
+	}
+	
+	public void setContainer(Spatial cont)
+	{
+		container = cont.clone();
+		this.attachChild(this.container);
 	}
 }

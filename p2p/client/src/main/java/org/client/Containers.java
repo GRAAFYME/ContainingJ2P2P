@@ -16,8 +16,7 @@ public class Containers extends BatchNode
 		super(id);
 		
 		this.id = id;
-		this.container = container.clone();	
-		this.container.rotate(0,90*FastMath.DEG_TO_RAD,0);
+		this.container = container.clone();
 		
 		if(last == true)
 		{
