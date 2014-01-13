@@ -19,6 +19,11 @@ public class Simulator {
         mapState = new HarborMapState();
     }
 
+    public void setRoutes(List<MotionPathProtocol> routes)
+    {
+        mapState.setRoutes(routes);
+    }
+
 
     boolean debugVar = true;
 
@@ -33,6 +38,11 @@ public class Simulator {
         //Is it time to dispatch the vehicle?
         if(vehicle != null && vehicle.getArrivalDate().compareTo(currentDate) >= 0)
         {
+            if(mapState.routeList == null)
+            {
+                System.out.println("No routes set, cannot command AGVs!");
+            }
+
             //Create protocol object, which the server object will send to the client
             ServerProtocol protocol = new ServerProtocol();
             protocol.vehicles = new ArrayList<Vehicle>();

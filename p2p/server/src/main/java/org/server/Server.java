@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 
 
 /**
@@ -39,6 +40,7 @@ public class Server implements Runnable
 
     public boolean enableHeartbeat;
     public int heartBeatTimeout;
+    private java.util.Scanner scanner;
 
     public static void main(String[] args) throws Exception
     {
@@ -110,10 +112,7 @@ public class Server implements Runnable
             while(reader.ready())
             {
                 //Gotta love java... copied from stackoverflow
-                //Reading these streams is hell
-                java.util.Scanner s = new java.util.Scanner(reader).useDelimiter("\r\r");
-                message = s.hasNext() ? s.next() : "";
-                System.out.println(message);
+                message  = scanner.useDelimiter("\r\r").next();
                 return message;
             }
         } catch (Exception e)
@@ -221,6 +220,7 @@ public class Server implements Runnable
                     //clientSocket.setSoTimeout(500);
                     writer = new PrintWriter(clientSocket.getOutputStream(), true);
                     reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    scanner = new Scanner(reader);
                 }
                 int counter = 0;
                 long lastIterationTime = System.nanoTime();
@@ -242,12 +242,25 @@ public class Server implements Runnable
                     ////Server stuff goes down here
                     //Check if the client said anything
                     if(!ftpDebugOnly)
+                    {
                         message = getMessages();
 
-                    //Has the client said anything? if so, reset timer.
-                    if(message != "")
-                    {
-                        lastIterationTime = System.nanoTime();
+                        ClientProtocol clientProtocol = parser.deserializeClient(message);
+                        if(message != null && message != "" && clientProtocol != null && clientProtocol.motionPathList != null)
+                        {
+                            simulator.setRoutes(clientProtocol.motionPathList);
+
+                            for(MotionPathProtocol m : clientProtocol.motionPathList)
+                            {
+                                System.out.println("motionpath " + m.name + " has No. waypoints: " +  m.getNbWayPoints());
+                            }
+                        }
+
+                        //Has the client said anything? if so, reset timer.
+                        if(message != "")
+                        {
+                            lastIterationTime = System.nanoTime();
+                        }
                     }
 
                     //1 second has passed

@@ -21,7 +21,7 @@ public class ProtocolParser {
         try {
             OutputStream stream = new ByteArrayOutputStream();
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(ServerProtocol.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(protocol.getClass());
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.marshal(protocol, stream);
 
@@ -34,6 +34,26 @@ public class ProtocolParser {
         }
         return null;
     }
+
+    public ClientProtocol deserializeClient(String packet)
+    {
+        InputStream stream = new ByteArrayInputStream(packet.getBytes());
+        ClientProtocol p = null;
+
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(ClientProtocol.class);
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            p = (ClientProtocol)jaxbUnmarshaller.unmarshal(stream);
+            return p;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
+
 
     public ServerProtocol deserialize(String packet)
     {
@@ -52,6 +72,4 @@ public class ProtocolParser {
         }
 
         return null;
-    }
-
-}
+    }}

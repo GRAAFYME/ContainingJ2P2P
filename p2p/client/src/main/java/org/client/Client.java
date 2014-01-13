@@ -17,7 +17,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
 import de.lessvoid.nifty.Nifty;
 import jme3tools.optimize.GeometryBatchFactory;
-import org.protocol.Container;
+import org.protocol.ClientProtocol;
 import org.protocol.ProtocolParser;
 import org.protocol.ServerProtocol;
 
@@ -41,7 +41,7 @@ public class Client extends SimpleApplication
 	
 	//Protocol variables
 	private ProtocolParser protocolParser;
-	private ServerProtocol protocol;
+	private ClientProtocol protocol;
 	private networkClient c;
 	
 	//Scene
@@ -148,9 +148,12 @@ public class Client extends SimpleApplication
 	    FBC = new FlyByCamera(cam, inputManager);
 	    mp = new MotionPaths(assetManager, allAgvNodes);
 	    
-	    //Protocol Test code
-	    protocol = new ServerProtocol();
+	    //Send the routes to the server
+	    protocol = new ClientProtocol();
         protocolParser = new ProtocolParser();
+        protocol.motionPathList = mp.getMotionPathProtocols();
+        c.sendMessage(protocolParser.serialize(protocol));
+
         }
     
     @Override
@@ -162,7 +165,7 @@ public class Client extends SimpleApplication
             System.out.println(message);
             try 
             {
-                ServerProtocol p = protocolParser.deserialize(message);
+                ServerProtocol p = (ServerProtocol)protocolParser.deserialize(message);
                 //more than 0 elements in the list? yes - get(0), no - null
                 org.protocol.Vehicle networkVehicle = (p.vehicles.size() > 0) ? p.vehicles.get(0) : null;
                 String vehicle = networkVehicle.getClassName();

@@ -47,9 +47,17 @@ public class networkClient {
     //Give me a String and I'll pass it to the server
     public void sendMessage(String message)
     {
-        writer.write(message);
-        //TODO: remove this?(flush) Not sure if we need this, probably not.
-        writer.flush();
+        try {
+            //checkError() returns true when disconnected, handy!
+            if(socket == null || socket.isConnected() == false || message == null || message == "") return;
+            //\r\r (2x linefeed) is our special "message has ended" sequence, since reading network streams
+            //in java sucks we hack around it like this
+            writer.print(message + "\r\r");
+            writer.flush();
+        }
+        catch (Exception e) {
+            System.out.println("Message" + message + "\n----------------\nGave exception:\n-----------\n" + e.getMessage());
+        }
     }
 
     public String getMessages()

@@ -1,9 +1,6 @@
 package org.server;
 
-import org.protocol.AGV;
-import org.protocol.ContainerCarrier;
-import org.protocol.SeashipCrane;
-import org.protocol.TruckCrane;
+import org.protocol.*;
 
 import javax.vecmath.Vector3f;
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ public class HarborMapState {
     public List<AGV> AgvList;	//List of all Agvs in the harbor
     public List<TruckCrane> truckCraneList;
     public List<SeashipCrane> seashipCraneList;
+    public List<MotionPathProtocol> routeList;
 
 
 
@@ -34,6 +32,7 @@ public class HarborMapState {
         seashipCraneList = new ArrayList<>();
         truckCraneList = new ArrayList<>();
         unavailableList = new ArrayList<>();
+        routeList = new ArrayList<>();
 
         //recreate the hardcoded coordinates in the client
 
@@ -127,5 +126,9 @@ public class HarborMapState {
             }
         }
         return availableList;
+    }
+
+    public void setRoutes(List<MotionPathProtocol> routes) {
+        this.routeList = routes;
     }
 }

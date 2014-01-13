@@ -16,7 +16,7 @@ public class MotionPathProtocol
     @XmlElement
     public int driveUntilWaypoint;
     @XmlElement
-    String name;
+    public String name;
 
     public MotionPathProtocol() {};
     //use for client->server
@@ -33,6 +33,7 @@ public class MotionPathProtocol
         this.name = name;
         this.driveUntilWaypoint = driveUntilWaypoint;
     }
+
     public float getLength() { return length; }
 
     public int getNbWayPoints() {

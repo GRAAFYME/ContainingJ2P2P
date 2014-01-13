@@ -1,13 +1,17 @@
 package org.client;
 
-import java.util.HashMap;
-
 import com.jme3.asset.AssetManager;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.font.BitmapFont;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
+import org.protocol.MotionPathProtocol;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MotionPaths {
 	
@@ -21,7 +25,58 @@ public class MotionPaths {
 	private Node AllAgvNodes;
 
 
-	HashMap<String, MotionPath> hmMotionPaths = new HashMap<String, MotionPath>();
+	private HashMap<String, MotionPath> hmMotionPaths = new HashMap<String, MotionPath>();
+
+    public List<javax.vecmath.Vector3f> getWaypointsJavax(MotionPath path)
+    {
+        List<javax.vecmath.Vector3f> waypointList = new ArrayList<>();
+
+        for(int i = 0; i < path.getNbWayPoints(); i++)
+        {
+            Vector3f v = path.getWayPoint(i);
+            float x = v.x, y = v.y, z = v.z;
+            javax.vecmath.Vector3f point = new javax.vecmath.Vector3f(x, y, z);
+
+            waypointList.add(point);
+        }
+
+        return waypointList;
+    }
+
+    public List<Vector3f> getWaypoints(MotionPath path)
+    {
+        List<Vector3f> waypointList = new ArrayList<>();
+
+        for(int i = 0; i < path.getNbWayPoints(); i++)
+        {
+            Vector3f v = path.getWayPoint(i);
+            float x = v.x, y = v.y, z = v.z;
+            Vector3f point = new Vector3f(x, y, z);
+
+            waypointList.add(point);
+        }
+
+        return waypointList;
+    }
+
+    public List<MotionPathProtocol> getMotionPathProtocols()
+    {
+        List<MotionPathProtocol> motionPathProtocolList = new ArrayList<>();
+
+
+        for(Map.Entry<String, MotionPath> e : hmMotionPaths.entrySet()) {
+            MotionPathProtocol newPath = new MotionPathProtocol(getWaypointsJavax(e.getValue()), path.getLength(), e.getKey());
+
+            motionPathProtocolList.add(newPath);
+        }
+
+        return motionPathProtocolList;
+    }
+
+    public MotionPath[] getMotionPaths()
+    {
+        return (MotionPath[])hmMotionPaths.values().toArray();
+    }
 	
 	public MotionPaths( AssetManager am, Node allAgvNodes) {
 
