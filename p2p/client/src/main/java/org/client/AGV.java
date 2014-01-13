@@ -148,8 +148,8 @@ public class AGV extends Node implements MotionPathListener {
 	
 	
 	//Attach Container to AGV
-	public void attachContainerAGV(Containers cont2)
+	public void attachContainerAGV(Containers container)
 	{
-		this.attachChild(cont2);
+		this.attachChild(container);
 	}
 }

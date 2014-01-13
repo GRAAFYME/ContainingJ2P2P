@@ -111,10 +111,7 @@ public class Client extends SimpleApplication
     Crane [] trainCranes = new Crane [4];
     Crane [] bargeCranes = new Crane [8];
     
-    
-    //arjen temp
     Storage storage = new Storage();
-    AGV testAGVs;
     
     public static void main(String[] args)
     {
@@ -122,18 +119,6 @@ public class Client extends SimpleApplication
         app.start(); // start the game
     }
    
-    //Test container on agv!
-    public void testcontaineroptestagv()
-    {
-    	Containers cont2 = new Containers("0", container, true);
-    	cont2.container.setLocalTranslation(new Vector3f(0, 2, 0));
-    	
-    	testAGVs = new AGV("0",new Vector3f(100,400,100), AGV, "TestAGV");
-    	testAGVs.setLocalTranslation(new Vector3f(100,400,100));
-    	testAGVs.attachContainerAGV(cont2);
-    	rootNode.attachChild(testAGVs);
-    }
-    
     @Override
     public void simpleInitApp() {
     	
@@ -163,8 +148,7 @@ public class Client extends SimpleApplication
 	    //Protocol Test code
 	    protocol = new ServerProtocol();
         protocolParser = new ProtocolParser();
-        testcontaineroptestagv();
-    }
+        }
     
     @Override
     public void simpleUpdate(float tpf) 
@@ -717,8 +701,6 @@ public class Client extends SimpleApplication
                 speed = 1;
                 System.out.println(speed);
                 
-                //arjen temp
-                testAGVs.setLocalTranslation(new Vector3f(110,400,100));
                 }
                 }
                 }
