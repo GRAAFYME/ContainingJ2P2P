@@ -9,6 +9,7 @@ public class Simulator {
     private PriorityQueue<Vehicle> vehicleQueue;
     private GregorianCalendar currentDate;
     private HarborMapState mapState;
+    private PathFinder pathFinder;
 
     //Since all containers arrive by some kind of transport vehicle
     // some sorted list of vehicles is the most compact and elegant way to provide the containers (PriorityQueue<Vehicle>)
@@ -17,6 +18,7 @@ public class Simulator {
         this.vehicleQueue = vehicleQueue;
         currentDate = new GregorianCalendar(2004, 12, 13, 0, 10);
         mapState = new HarborMapState();
+        pathFinder = new PathFinder();
     }
 
     public void setRoutes(List<MotionPathProtocol> routes)
@@ -57,13 +59,20 @@ public class Simulator {
                     vehicleToAdd.location = chosenTruckCrane.Location;
                     mapState.setUnavailable(chosenTruckCrane, vehicleToAdd.getArrivalBusyTillDate());
 
-                    //Agv stuff
-                    List<AGV> agvList = mapState.getAvailableAgvs();
-                    AGV chosenAgv = agvList.get(0);
-                    chosenAgv.routes.add(new MotionPathProtocol("ToSeaCrane", -1));
-                    protocol.agvs.add(chosenAgv);
-                    mapState.setUnavailable(chosenAgv, vehicleToAdd.getArrivalBusyTillDate());
-                    break;
+                    if(mapState.routeList != null && mapState.routeList.size() != 0)
+                    {
+                        //Agv stuff
+                        List<AGV> agvList = mapState.getAvailableAgvs();
+                        AGV chosenAgv = agvList.get(0);
+                        //chosenAgv.routes.add(new MotionPathProtocol("ToSeaCrane", -1));
+                        //JAVA PLS
+                        MotionPathProtocol[] routeArray = mapState.routeList.toArray(new MotionPathProtocol[0]);
+                        MotionPathProtocol[] chosenRoutes = pathFinder.Find(routeArray);
+                        chosenAgv.routes.addAll(Arrays.asList(chosenRoutes));
+                        protocol.agvs.add(chosenAgv);
+                        mapState.setUnavailable(chosenAgv, vehicleToAdd.getArrivalBusyTillDate());
+                        break;
+                    }
             }
 
 
