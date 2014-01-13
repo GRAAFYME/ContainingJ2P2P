@@ -183,7 +183,10 @@ public class Client extends SimpleApplication
                 
                 init_vehicle(vehicle, networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
-                getMessage(vehicle, networkVehicle);
+                Vector3f location = new Vector3f(networkVehicle.location.x, 
+                		networkVehicle.location.y, networkVehicle.location.z);
+                System.out.println(location);
+                getMessage(vehicle, location);
             }
             catch (Exception e)
             {
@@ -447,18 +450,17 @@ public class Client extends SimpleApplication
     	rootNode.attachChild(v);
     }
     
-    private void getMessage(String vehicleName, org.protocol.Vehicle vehicle)
+    private void getMessage(String vehicleName, Vector3f location)
     {
+    	System.out.println("Started to look for the right animation");
     	int craneType = 0;
+    	System.out.println(vehicleName);
     	switch(vehicleName)
     	{
-    		default:
-    			craneType = 5;
-    			break;
     		case "zeeschip":
     			craneType = 1;
     			break;
-    		case "vrachtwagen":
+    		case "vrachtauto":
     			System.out.println("Right type");
     			craneType = 2;
     			break;
@@ -468,103 +470,102 @@ public class Client extends SimpleApplication
     		case "binnenvaartsschip":
     			craneType = 4;
     			break;
+    		default:
+    			System.out.println("No vehicle found");
+    			craneType = 5;
+    			break;
     	}
     	boolean direction = false; //TODO: Send from protocol
     	int id = 0; //Chosen later
-    	float [] distance = new float []{}; 	
+    	List<Float> distance = new ArrayList<Float> (); 	
     	float smallest = 1000;
     	
-    	float x, y, z;
-    	x = (float) vehicle.location.x;
-    	y = (float) vehicle.location.y;
-    	z = (float) vehicle.location.z;
-    	Vector3f conVector = new Vector3f(x, y, z);
+    	Vector3f conVector = location;
     	
     	switch(craneType)
     	{
     		case 1:
-    		{
     			for(Crane c : seaShipCranes)
     			{
-    				distance = c.distance(conVector);
+    				distance.add(c.distance(vehicleName, conVector));
     			}
     			
-    	    	for(int i = 0; i < distance.length; i++)
+    	    	for(int i = 0; i < distance.size(); i++)
     	    	{
-    	    		if(distance[i] < smallest)
+    	    		if(distance.get(i) < smallest)
     	    		{
     	    			if(!seaShipCranes[i].isBusy())
     	    			{
-    	    				smallest = distance[i];
+    	    				smallest = distance.get(i);
     	    				id = i;
     	    			}
     	    		}
     	    	}
-    		}
+    	    	break;
     		case 2:
-    		{
     			System.out.println("Check which truck crane has to be used.");
     			for(Crane c : truckCranes)
     			{
-    				distance = c.distance(conVector);
+    				distance.add(c.distance(vehicleName, conVector));
+    				System.out.println(conVector);
+    				System.out.println(c.distance(vehicleName, conVector));
     			}
     			
-    	    	for(int i = 0; i < distance.length; i++)
+    	    	for(int i = 0; i < distance.size(); i++)
     	    	{
-    	    		if(distance[i] < smallest)
+    	    		if(distance.get(i) == 0)
     	    		{
     	    			if(!truckCranes[i].isBusy())
     	    			{
-    	    				smallest = distance[i];
+    	    				smallest = distance.get(i);
     	    				id = i;
+    	    				System.out.println(smallest);
     	    			}
     	    		}
     	    	}
-    		}
+    	    	break;
     		case 3:
-    		{
     			for(Crane c : trainCranes)
     			{
-    				distance = c.distance(conVector);
+    				distance.add(c.distance(vehicleName, conVector));
     			}
     			
-    	    	for(int i = 0; i < distance.length; i++)
+    	    	for(int i = 0; i < distance.size(); i++)
     	    	{
-    	    		if(distance[i] < smallest)
+    	    		if(distance.get(i) < smallest)
     	    		{
     	    			if(!trainCranes[i].isBusy())
     	    			{
-    	    				smallest = distance[i];
+    	    				smallest = distance.get(i);
     	    				id = i;
     	    			}
     	    		}
     	    	}
-    		}
+    	    	break;
     		case 4:
-    		{
     			for(Crane c : bargeCranes)
     			{
-    				distance = c.distance(conVector);
+    				distance.add(c.distance(vehicleName, conVector));
     			}
     			
-    	    	for(int i = 0; i < distance.length; i++)
+    	    	for(int i = 0; i < distance.size(); i++)
     	    	{
-    	    		if(distance[i] < smallest)
+    	    		if(distance.get(i) < smallest)
     	    		{
     	    			if(!bargeCranes[i].isBusy())
     	    			{
-    	    				smallest = distance[i];
+    	    				smallest = distance.get(i);
     	    				id = i;
     	    			}
     	    		}
     	    	}
-    		}
+    	    	break;
     		case 5:
-    		{
     			//TODO: Check if there is an AGV at the beginning point
-    		}
+    			break;
     	}
 
+    	System.out.println("Got all information needed");
     	Vector3f [] des = new Vector3f [4];
     	
     	switch(craneType)
@@ -586,6 +587,7 @@ public class Client extends SimpleApplication
     				seaShipCranes[id].animation(1, des, 5);
     			else
     				seaShipCranes[id].animation(2, des, 5);
+    			break;
     		}
     		case 2:
     		{
@@ -601,6 +603,7 @@ public class Client extends SimpleApplication
     				truckCranes[id].animation(3, des, 5);
     			else
     				truckCranes[id].animation(4, des, 5);
+    			break;
     		}
     		case 3:
     		{
@@ -619,6 +622,7 @@ public class Client extends SimpleApplication
     				trainCranes[id].animation(1, des, 5);
     			else
     				trainCranes[id].animation(2, des, 5);
+    			break;
     		}
     		case 4:
     		{
@@ -637,6 +641,7 @@ public class Client extends SimpleApplication
     				bargeCranes[id].animation(1, des, 5);
     			else
     				bargeCranes[id].animation(2, des, 5);
+    			break;
     		}
     		case 5:
     		{
@@ -663,13 +668,10 @@ public class Client extends SimpleApplication
     	    	des[5] = new Vector3f(startPosHook.x,startPosHook.y - 33+spotje.y,startPosHook.z); //Destination of the hook
     	    	
     	    	if(direction)
-    	    	{
     	    		storageCranes[id].animation(1, des, 5);
-    	    	}
     	    	else
-    	    	{
     	    		storageCranes[id].animation(2, des, 5);
-    	    	}
+    	    	break;
     		}
     	}
     }

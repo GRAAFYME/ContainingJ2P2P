@@ -17,7 +17,7 @@ public abstract class Crane extends Node
 	private MotionEvent craneControl;
 	private MotionEvent sliderControl;
 	private MotionEvent hookControl;
-	private float [] distance = new float []{};
+	private float distance;
 	protected Spatial crane;
 	protected Spatial slider;
 	protected Spatial hook;
@@ -75,13 +75,18 @@ public abstract class Crane extends Node
 		return this.position;
 	}
 	
-	public float [] distance(Vector3f location)
+	public float distance(String vehicleName, Vector3f location)
 	{
-		int id = 0;
-		
-		distance[id] = location.distance(getPosition());
-		
-		id++;
+		switch(vehicleName)
+		{
+			case "vrachtauto":
+				float exactLoc = (location.x-1)*40 + 250;
+				System.out.println(exactLoc);
+				System.out.println(getPosition().x);
+				distance = (location.x*40+250) - getPosition().x;
+				break;
+		}
+
 		return distance;
 	}
 	
@@ -392,7 +397,7 @@ public abstract class Crane extends Node
 			pathCrane.addWayPoint(desPos2);
 		}
 		
-		craneControl.setSpeed(sp);
+		//craneControl.setSpeed(sp);
 		craneControl.play();
 		System.out.println("Number of WayPoints: " + pathCrane.getNbWayPoints());
 	}
@@ -416,7 +421,7 @@ public abstract class Crane extends Node
 			pathSlider.addWayPoint(desPos2);
 		}
 		
-		sliderControl.setSpeed(sp);
+		//sliderControl.setSpeed(sp);
 		sliderControl.play();
 		System.out.println("Number of WayPoints: " + pathSlider.getNbWayPoints());
 	}
@@ -433,7 +438,7 @@ public abstract class Crane extends Node
 			pathHook.addWayPoint(startPosition);
 			pathHook.addWayPoint(desPosition);	
 			pathHook.addWayPoint(startPosition);
-			hookControl.setSpeed(sp);
+			//hookControl.setSpeed(sp);
 			hookControl.play();
 		}
 		System.out.println("Number of WayPoints: " + pathHook.getNbWayPoints());
