@@ -21,6 +21,7 @@ public abstract class Crane extends Node
 	protected Spatial crane;
 	protected Spatial slider;
 	protected Spatial hook;
+	protected Spatial container;
 	protected Node hookNode = new Node();
 	protected Node sliderNode = new Node();
 	private String id;
@@ -73,6 +74,17 @@ public abstract class Crane extends Node
 	public Vector3f getPosition()
 	{
 		return this.position;
+	}
+	
+	public Spatial getContainer()
+	{
+		return container;
+	}
+	
+	public void setContainer(Spatial cont)
+	{
+		this.container = cont.clone();
+		hookNode.attachChild(this.container);
 	}
 	
 	public float distance(String vehicleName, Vector3f location)

@@ -52,4 +52,14 @@ public abstract class Vehicle extends Node
 		container = cont.clone();
 		this.attachChild(this.container);
 	}
+	
+	public void deleteContainer()
+	{
+		this.detachChild(this.container);
+	}
+	
+	public void setContLocalTranslation(float x, float y, float z)
+	{
+		this.container.setLocalTranslation(x, y, z);
+	}
 }
