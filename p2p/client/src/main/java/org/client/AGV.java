@@ -1,10 +1,15 @@
 package org.client;
 
+import java.util.HashMap;
+
+import org.apache.commons.net.ProtocolCommandEvent;
+
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.font.BitmapFont;
 import com.jme3.font.BitmapText;
+import com.jme3.math.FastMath;
 import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
@@ -20,20 +25,17 @@ import com.jme3.scene.Spatial;
  * Melinda de Roo 
  * */
 
-public class AGV extends Node implements MotionPathListener {
+public class AGV extends Node {
 
 	boolean setWireFrame;
 
 	private Spatial AGV;
 	private String id;
-//	private BitmapText wayPointsText;
-//	private BitmapFont guiFont;
-//	private Node nodeAGV;
-//	private Node AllAgvNodes;
 	Vector3f location;
 	String Name;
+	private MotionEvent motionControl;
 
-
+	
 	public AGV(String id, Vector3f location, Spatial AGV, String Name) 
 	{
 		super(id);
@@ -42,12 +44,23 @@ public class AGV extends Node implements MotionPathListener {
 		this.id = id;
 		this.AGV = AGV.clone();
 		
-		this.scale(2.5f);
+		this.scale(10f);
 		this.setName(name);
 		
 		this.attachChild(this.AGV);
 	//	initMotionControl();
+	}
 
+	public void DriveRoute()
+	{
+		//motionControl = new MotionEvent (AGV, "Insert List with available routes");
+		motionControl.setDirectionType (MotionEvent.Direction.Path);
+		motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
+		motionControl.setSpeed(40f);
+
+		//path.addListener(new MotionPathListener(){
+			//motionpath.play;
+			//dynamisch een lijst toevoegen hoe hij aan het volgende MP moet beginnen)};
 	}
 	
 
@@ -142,14 +155,10 @@ public class AGV extends Node implements MotionPathListener {
 	{
 		return location;
 	}
-	
-	public void onWayPointReach(MotionEvent arg0, int arg1) {}
-		// TODO Auto-generated method stub
-	
-	
+		
 	//Attach Container to AGV
-	public void attachContainerAGV(Containers container)
+	public void attachContainerAGV(Containers cont2)
 	{
-		this.attachChild(container);
+		this.attachChild(cont2);
 	}
 }
