@@ -32,7 +32,6 @@ public class FtpLoginView {
 		JPanel panel = new JPanel();
 
 		frame.setSize(300, 150);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
 		placeComponents(panel);
 		frame.setVisible(true);
