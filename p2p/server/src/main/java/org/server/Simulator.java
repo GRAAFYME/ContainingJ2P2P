@@ -64,11 +64,11 @@ public class Simulator {
                         //Agv stuff
                         List<AGV> agvList = mapState.getAvailableAgvs();
                         AGV chosenAgv = agvList.get(0);
-                        //chosenAgv.routes.add(new MotionPathProtocol("ToSeaCrane", -1));
+                        chosenAgv.routes.add(new MotionPathProtocol("ToSeaCrane", -1));
                         //JAVA PLS
                         MotionPathProtocol[] routeArray = mapState.routeList.toArray(new MotionPathProtocol[0]);
-                        MotionPathProtocol[] chosenRoutes = pathFinder.Find(routeArray);
-                        chosenAgv.routes.addAll(Arrays.asList(chosenRoutes));
+                        //MotionPathProtocol[] chosenRoutes = pathFinder.Find(routeArray);
+                        //chosenAgv.routes.addAll(Arrays.asList(chosenRoutes));
                         protocol.agvs.add(chosenAgv);
                         mapState.setUnavailable(chosenAgv, vehicleToAdd.getArrivalBusyTillDate());
                         break;
