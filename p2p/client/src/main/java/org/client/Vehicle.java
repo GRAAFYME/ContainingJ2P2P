@@ -49,7 +49,7 @@ public abstract class Vehicle extends Node
 	
 	public void setContainer(Spatial cont)
 	{
-		container = cont.clone();
+		this.container = cont.clone();
 		this.attachChild(this.container);
 	}
 	
