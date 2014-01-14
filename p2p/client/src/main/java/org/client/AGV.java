@@ -48,20 +48,8 @@ public class AGV extends Node {
 		this.setName(name);
 		
 		this.attachChild(this.AGV);
-	//	initMotionControl();
 	}
 
-	public void DriveRoute()
-	{
-		//motionControl = new MotionEvent (AGV, "Insert List with available routes");
-		motionControl.setDirectionType (MotionEvent.Direction.Path);
-		motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
-		motionControl.setSpeed(40f);
-
-		//path.addListener(new MotionPathListener(){
-			//motionpath.play;
-			//dynamisch een lijst toevoegen hoe hij aan het volgende MP moet beginnen)};
-	}
 	
 
 //	public void addAGVcar(Vector3f location) {
