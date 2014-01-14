@@ -623,7 +623,7 @@ public class Client extends SimpleApplication
     	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-30); //Destination of the crane
     	    	
     	    	truckCranes[id].setContainer(trucks.get(id).getContainer());
-    	    	//trucks.get(id).deleteContainer();
+    	    	trucks.get(id).deleteContainer();
     	    	System.out.println(truckCranes[id].getContainer());
     	    	
     			if(!direction)
