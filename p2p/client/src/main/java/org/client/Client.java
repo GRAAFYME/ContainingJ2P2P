@@ -186,20 +186,6 @@ public class Client extends SimpleApplication
                 Vector3f location = new Vector3f(networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
                 getMessage(vehicle, location);
-                
-                for(Crane c : truckCranes)
-                {
-                	System.out.println(trucks.size());
-                	for(Vehicle v : trucks)
-                	{
-                		System.out.println("Coordinates: " + c.getLocalTranslation() + " :: " + v.getContainer().getLocalTranslation());
-                		if(c.hook.getLocalTranslation() == v.getContainer().getLocalTranslation())
-                		{
-                			v.detachChild(v.getContainer());
-                			c.hookNode.attachChild(v.getContainer());
-                		}
-                	}
-                }
             }
             catch (Exception e)
             {
@@ -450,11 +436,9 @@ public class Client extends SimpleApplication
     	{
     		case "vrachtauto":
     			v = new Truck(String.valueOf(x+1), truck);
-    			Containers cont = new Containers("0", container, false);
-    			cont.setLocalTranslation(v.getLocalTranslation().x-5, v.getLocalTranslation().y+2.5f, v.getLocalTranslation().z+0.5f);
-    			v.attachChild(cont);
+    			v.setContainer(container);
+    			v.setContLocalTranslation(v.getLocalTranslation().x-5, v.getLocalTranslation().y+2.5f, v.getLocalTranslation().z+0.5f);
     			trucks.add(v);
-    			System.out.println(trucks.size());
     			break;
     		case "zeeschip":
     			v = new SeaShip(String.valueOf(x+1), seaShip);
@@ -609,6 +593,10 @@ public class Client extends SimpleApplication
     	    	des[0] = new Vector3f(startPosCrane.x, startPosCrane.y, startPosCrane.z); //Destination of the crane
     	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-16,startPosHook.z); //Destination of the hook
     	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-30); //Destination of the crane
+    	    	
+    	    	truckCranes[id].setContainer(trucks.get(id).getContainer());
+    	    	//trucks.get(id).deleteContainer();
+    	    	System.out.println(truckCranes[id].getContainer());
     	    	
     			if(!direction)
     				truckCranes[id].animation(3, des, 5);

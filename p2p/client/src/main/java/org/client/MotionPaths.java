@@ -65,7 +65,7 @@ public class MotionPaths {
 
 
         for(Map.Entry<String, MotionPath> e : hmMotionPaths.entrySet()) {
-            MotionPathProtocol newPath = new MotionPathProtocol(getWaypointsJavax(e.getValue()), path.getLength(), e.getKey());
+            MotionPathProtocol newPath = new MotionPathProtocol(getWaypointsJavax(e.getValue()), e.getValue().getLength(), e.getKey());
 
             motionPathProtocolList.add(newPath);
         }
@@ -82,10 +82,6 @@ public class MotionPaths {
 
 		this.assetManager = am;
 		this.AllAgvNodes = allAgvNodes;
-	//	MotionPath1();
-	//	MotionPath2();
-	//	MotionPath3();
-	//	MotionPath4();
 		StartPoint();
 		CrossingStart();
 		CrossingToSeaCrane();
@@ -110,6 +106,7 @@ public class MotionPaths {
 	  return path;
 
 	 }
+	
 	
 	public void StartPoint()
 	{	float x1 = -470f;
