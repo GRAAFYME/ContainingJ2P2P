@@ -3,21 +3,28 @@ package org.client;
 import com.jme3.app.SimpleApplication;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.cinematic.MotionPath;
+import com.jme3.cinematic.MotionPathListener;
+import com.jme3.cinematic.events.MotionEvent;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState.FaceCullMode;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Spline.SplineType;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.texture.Texture;
+
 import de.lessvoid.nifty.Nifty;
 import jme3tools.optimize.GeometryBatchFactory;
+
 import org.protocol.ClientProtocol;
+import org.protocol.MotionPathProtocol;
 import org.protocol.ProtocolParser;
 import org.protocol.ServerProtocol;
 
@@ -76,6 +83,7 @@ public class Client extends SimpleApplication
 
 	//Motionpaths
     MotionPaths mp;
+    MotionEvent motionControl;
     
     //Crane
     Crane crane;
@@ -171,7 +179,7 @@ public class Client extends SimpleApplication
                 org.protocol.Vehicle networkVehicle = (p.vehicles.size() > 0) ? p.vehicles.get(0) : null;
                 String vehicle = networkVehicle.getClassName();
                 
-                
+
                 
                 init_vehicle(vehicle, networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);

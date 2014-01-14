@@ -202,7 +202,7 @@ public class Server implements Runnable
 
     public void run()
         {
-            boolean ftpDebugOnly = true;
+            boolean ftpDebugOnly = false;
             try {
                 String message = "";
                 xmlParser xmlparser = new xmlParser();
