@@ -389,21 +389,15 @@ public abstract class Crane extends Node
 	
 	public void moveCrane(Vector3f des, float sp)
 	{
-		Vector3f startPosition, desPosition;
+		Vector3f startPosition;
 		startPosition = this.getLocalTranslation();
-		desPosition = des;
 		
 		pathCrane.clearWayPoints();
 		pathCrane.addWayPoint(startPosition);
 		
-		if(startPosition.distance(desPosition) > 0)
+		if(startPosition.distance(des) > 0)
 		{			
-			pathCrane.addWayPoint(desPosition);	
-		}
-		else
-		{
-			Vector3f desPos2 = new Vector3f(des.x+0.001f, des.y, des.z+0.001f);
-			pathCrane.addWayPoint(desPos2);
+			pathCrane.addWayPoint(des);	
 		}
 		
 		//craneControl.setSpeed(sp);
@@ -412,21 +406,15 @@ public abstract class Crane extends Node
 	
 	public void moveSlider(Vector3f des, float sp)
 	{
-		Vector3f startPosition, desPosition;
+		Vector3f startPosition;
 		startPosition = this.sliderNode.getLocalTranslation();
-		desPosition = des;
 		
 		pathSlider.clearWayPoints();
 		pathSlider.addWayPoint(startPosition);
 		
-		if(startPosition.distance(desPosition) > 0)
+		if(startPosition.distance(des) > 0)
 		{			
-			pathSlider.addWayPoint(desPosition);	
-		}
-		else
-		{
-			Vector3f desPos2 = new Vector3f(des.x+0.001f, des.y, des.z+0.001f);
-			pathSlider.addWayPoint(desPos2);
+			pathSlider.addWayPoint(des);	
 		}
 		
 		//sliderControl.setSpeed(sp);
@@ -435,15 +423,14 @@ public abstract class Crane extends Node
 	
 	public void moveHook(Vector3f des, float sp)
 	{
-		Vector3f startPosition, desPosition;
+		Vector3f startPosition;
 		startPosition = this.hookNode.getLocalTranslation();
-		desPosition = des;
 		pathHook.clearWayPoints();
 		
-		if(startPosition.distance(desPosition) > 0)
+		if(startPosition.distance(des) > 0)
 		{	
 			pathHook.addWayPoint(startPosition);
-			pathHook.addWayPoint(desPosition);	
+			pathHook.addWayPoint(des);	
 			pathHook.addWayPoint(startPosition);
 			//hookControl.setSpeed(sp);
 			hookControl.play();
