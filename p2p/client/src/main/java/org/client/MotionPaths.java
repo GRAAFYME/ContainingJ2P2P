@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class MotionPaths {
 	
-	public MotionPath path, path2, path3, path4, StartingPoint, CrossStartPoint, toSeaCrane, CrossingToTrucks, TrucksLoaded, OtherSidePlatform,
+	public MotionPath path, path2, path3, path4, StartingPoint, CrossStartPoint, toSeaCrane, CrossingToTrucks, CrossingToBargeCrane, OtherSidePlatform,
 	SeaCraneToOtherSide, OtherSideToAGV,OtherWayAround, CrossingStartToTruck, AGVStartToOtherSide, CrossingToTrains, CrossingToStorageSide1, 
 	CrossingToStorageCraneSide1,CrossingToStorageSide2 , CrossingToStorageCraneSide2, CrossingToTruckCrane;
 	public MotionEvent motionControl, motionControl2, motionControl3, motionControl4;
@@ -82,14 +82,14 @@ public class MotionPaths {
 
 		this.assetManager = am;
 		this.AllAgvNodes = allAgvNodes;
-		MotionPath1();
+	//	MotionPath1();
 	//	MotionPath2();
 	//	MotionPath3();
 	//	MotionPath4();
 		StartPoint();
 		CrossingStart();
 		CrossingToSeaCrane();
-		CrossingTrucksLoaded();
+		CrossingToBargeCrane();
 		CrossingtoOtherSidePlatform();
 		CrossingSeaCraneToCrossingOtherSide();
 		CrossingOtherSideToAGVs();
@@ -102,7 +102,14 @@ public class MotionPaths {
 		CrossingToStorageCraneSide2();
 		CrossingToTrucks();
 		CrossingToTruckCrane();
+		
 	}
+	public MotionPath getMotionPath(String name)
+	 {  
+	  MotionPath path = hmMotionPaths.get(name);
+	  return path;
+
+	 }
 	
 	public void StartPoint()
 	{	float x1 = -470f;
@@ -170,22 +177,40 @@ public class MotionPaths {
 		toSeaCrane = new MotionPath();
 		toSeaCrane.addWayPoint(new Vector3f (-540, 260f, 117));
 		toSeaCrane.addWayPoint(new Vector3f (-685, 260f, 117));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 200));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 250));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 300));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 350));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 400));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 450));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 500));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 550));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 600));
+		toSeaCrane.addWayPoint(new Vector3f(-685, 260, 650));
 		toSeaCrane.addWayPoint(new Vector3f(-685, 260f, 767f));
 		toSeaCrane.setCurveTension(0.0f);
 		toSeaCrane.enableDebugShape(assetManager, AllAgvNodes);	
 		hmMotionPaths.put("ToSeaCrane", toSeaCrane);
 	}
 	
-	public void CrossingTrucksLoaded()
+	public void CrossingToBargeCrane()
 	{
-		TrucksLoaded = new MotionPath();
-		TrucksLoaded.addWayPoint(new Vector3f (230, 260f, 117));
-		TrucksLoaded.addWayPoint(new Vector3f (230, 260f, 25));
-		TrucksLoaded.addWayPoint(new Vector3f (-540, 260f, 25));
-		TrucksLoaded.addWayPoint(new Vector3f (-540, 260f, 117));
-		TrucksLoaded.setCurveTension(0.0f);
-		TrucksLoaded.enableDebugShape(assetManager, AllAgvNodes);
-		hmMotionPaths.put("TrucksLoaded", TrucksLoaded);
+		CrossingToBargeCrane = new MotionPath();
+		CrossingToBargeCrane.addWayPoint(new Vector3f (230, 260f, 117));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (230, 260f, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (200, 260, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (100, 260, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (0, 260, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (-100, 260, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (-200, 260, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (-300, 260, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (-400, 260, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (-500, 260, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (-540, 260f, 25));
+		CrossingToBargeCrane.addWayPoint(new Vector3f (-540, 260f, 117));
+		CrossingToBargeCrane.setCurveTension(0.0f);
+		CrossingToBargeCrane.enableDebugShape(assetManager, AllAgvNodes);
+		hmMotionPaths.put("TrucksLoaded", CrossingToBargeCrane);
 	}
 	
 	public void CrossingtoOtherSidePlatform()
@@ -418,20 +443,4 @@ public class MotionPaths {
 			x+= 40;
 			}
 			}
-	
-	
-	
-	
-	
-	
-//motionpath die crash tegen houdt?
-	public void MotionPath1() {
-		path = new MotionPath();
-		path.addWayPoint(new Vector3f(778.0f, 260.0f, 152.0f));
-		path.addWayPoint(new Vector3f(778.0f, 260.0f, 131.0f));
-
-		path.setCurveTension(0.0f);
-		path.enableDebugShape(assetManager, AllAgvNodes);
-
-	}
 }
