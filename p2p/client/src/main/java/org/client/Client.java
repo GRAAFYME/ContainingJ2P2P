@@ -436,11 +436,9 @@ public class Client extends SimpleApplication
     	{
     		case "vrachtauto":
     			v = new Truck(String.valueOf(x+1), truck);
-    			Containers cont = new Containers("0", container, false);
-    			cont.setLocalTranslation(v.getLocalTranslation().x-5, v.getLocalTranslation().y+2.5f, v.getLocalTranslation().z+0.5f);
-    			v.attachChild(cont);
+    			v.setContainer(container);
+    			v.setContLocalTranslation(v.getLocalTranslation().x-5, v.getLocalTranslation().y+2.5f, v.getLocalTranslation().z+0.5f);
     			trucks.add(v);
-    			System.out.println(trucks.size());
     			break;
     		case "zeeschip":
     			v = new SeaShip(String.valueOf(x+1), seaShip);
@@ -597,7 +595,7 @@ public class Client extends SimpleApplication
     	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-30); //Destination of the crane
     	    	
     	    	truckCranes[id].setContainer(trucks.get(id).getContainer());
-    	    	trucks.get(id).deleteContainer();
+    	    	//trucks.get(id).deleteContainer();
     	    	System.out.println(truckCranes[id].getContainer());
     	    	
     			if(!direction)
