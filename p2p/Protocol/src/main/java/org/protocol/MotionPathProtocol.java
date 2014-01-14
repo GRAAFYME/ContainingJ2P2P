@@ -40,7 +40,11 @@ public class MotionPathProtocol
         return locationNodeList.size();
     }
 
-
+    public String getName()
+    {
+    	return name;
+    }
+    
     public Vector3f getWayPoint(int index) {
         return locationNodeList.get(index);
     }

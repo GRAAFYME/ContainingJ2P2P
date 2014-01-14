@@ -68,6 +68,7 @@ public class Client extends SimpleApplication
 	private Node allAgvNodes = new Node();
     private boolean active = true;
     private boolean playing = false;
+    private List<AGV> agvlist = new ArrayList<AGV>();
     //private boolean active2 = true;
     private boolean playing2 = false;
 	private MotionPath path;
@@ -170,6 +171,8 @@ public class Client extends SimpleApplication
                 org.protocol.Vehicle networkVehicle = (p.vehicles.size() > 0) ? p.vehicles.get(0) : null;
                 String vehicle = networkVehicle.getClassName();
                 
+                
+                
                 init_vehicle(vehicle, networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
                 Vector3f location = new Vector3f(networkVehicle.location.x, 
@@ -210,6 +213,7 @@ public class Client extends SimpleApplication
         	x1 += 25;
         	rootNode.attachChild(agv1);
         	agv1.setLocalTranslation(location);
+        	agvlist.add(agv1);
         }
         
     	for (int j = 0; j < 50; j++)
@@ -219,6 +223,7 @@ public class Client extends SimpleApplication
     		x2 += 25;
     		rootNode.attachChild(agv2);
         	agv2.setLocalTranslation(location);
+        	agvlist.add(agv2);
     	}    
     }
          
