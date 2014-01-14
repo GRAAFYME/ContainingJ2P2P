@@ -180,12 +180,12 @@ public class Client extends SimpleApplication
                 String vehicle = networkVehicle.getClassName();
                 
                 //AGV route
-                List<MotionPathProtocol> l = p.agvs.get(0).routes;
-                String route = l.get(0).getName();
-                final MotionPath path = mp.getMotionPath(route);
+                //List<MotionPathProtocol> l = p.agvs.get(0).routes;
+                //String route = l.get(0).getName();
+                //final MotionPath path = mp.getMotionPath(route);
 
-                int index = p.agvs.get(0).index;
-                DriveRoute(index, path);
+                //int index = p.agvs.get(0).index;
+                //DriveRoute(index, path);
                 
                 init_vehicle(vehicle, networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
