@@ -180,12 +180,12 @@ public class Client extends SimpleApplication
                 String vehicle = networkVehicle.getClassName();
                 
                 //AGV route
-                //List<MotionPathProtocol> l = p.agvs.get(0).routes;
-                //String route = l.get(0).getName();
-                //final MotionPath path = mp.getMotionPath(route);
+                List<MotionPathProtocol> l = p.agvs.get(0).routes;
+                String route = l.get(0).getName();
+                final MotionPath path = mp.getMotionPath(route);
 
-                //int index = p.agvs.get(0).index;
-                //DriveRoute(index, path);
+                int index = p.agvs.get(0).index;
+                DriveRoute(index, path);
                 
                 init_vehicle(vehicle, networkVehicle.location.x, 
                 		networkVehicle.location.y, networkVehicle.location.z);
@@ -210,20 +210,9 @@ public class Client extends SimpleApplication
     	motionControl = new MotionEvent(agvlist.get(index), path);
         motionControl.setDirectionType(MotionEvent.Direction.Path);
         motionControl.setRotation(new Quaternion().fromAngleNormalAxis(-FastMath.HALF_PI, Vector3f.UNIT_Y));
-        motionControl.setInitialDuration(0.5f);
-        motionControl.setSpeed(0.5f);
+        motionControl.setInitialDuration(0.000005f);
+        motionControl.setSpeed(0.000005f);
         motionControl.play();
-        path.addListener(new MotionPathListener() {
-    
-       public void onWayPointReach(MotionEvent control, int wayPointIndex) 
-        {
-    
-    	   if (path.getNbWayPoints() == wayPointIndex + 1) 
-    	   {
-    		   motionControl.stop();
-           }
-        }
-        });
     }
     
     public void addAllAGVs(Vector3f location)
