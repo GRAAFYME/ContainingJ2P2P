@@ -179,6 +179,13 @@ public class Client extends SimpleApplication
                 org.protocol.Vehicle networkVehicle = (p.vehicles.size() > 0) ? p.vehicles.get(0) : null;
                 String vehicle = networkVehicle.getClassName();
                 
+                
+                init_vehicle(vehicle, networkVehicle.location.x, 
+                		networkVehicle.location.y, networkVehicle.location.z);
+                Vector3f location = new Vector3f(networkVehicle.location.x, 
+                		networkVehicle.location.y, networkVehicle.location.z);
+                getMessage(vehicle, location);
+                
                 //AGV route
                 List<MotionPathProtocol> l = p.agvs.get(0).routes;
                 String route = l.get(0).getName();
@@ -187,11 +194,6 @@ public class Client extends SimpleApplication
                 int index = p.agvs.get(0).index;
                 DriveRoute(index, path);
                 
-                init_vehicle(vehicle, networkVehicle.location.x, 
-                		networkVehicle.location.y, networkVehicle.location.z);
-                Vector3f location = new Vector3f(networkVehicle.location.x, 
-                		networkVehicle.location.y, networkVehicle.location.z);
-                getMessage(vehicle, location);
             }
             catch (Exception e)
             {
@@ -258,7 +260,7 @@ public class Client extends SimpleApplication
     				{
     					String id = String.valueOf(containerCount + 1);
     					Vector3f pos = new Vector3f(xCoord+(x*2.4f),yCoord+(y*2.5f),zCoord-(z*12.3f));
-    					containerList.add(new Containers(id, container, false));
+    					containerList.add(new Containers(id, container));
     					containerList.get(containerCount).container.setLocalTranslation(pos);
     					rootNode.attachChild(containerList.get(containerCount));
     				}

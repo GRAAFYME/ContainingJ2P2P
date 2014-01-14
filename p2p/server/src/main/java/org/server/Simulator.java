@@ -35,7 +35,12 @@ public class Simulator {
         currentDate.add(Calendar.SECOND, secondsPassed);
         mapState.update(currentDate);
         Vehicle vehicle = vehicleQueue.peek();
-
+        try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         //Stil vehicles left in the queue?
         //Is it time to dispatch the vehicle?
         if(vehicle != null && vehicle.getArrivalDate().compareTo(currentDate) >= 0)
@@ -43,6 +48,7 @@ public class Simulator {
             if(mapState.routeList == null)
             {
                 System.out.println("No routes set, cannot command AGVs!");
+                return null;
             }
 
             //Create protocol object, which the server object will send to the client
