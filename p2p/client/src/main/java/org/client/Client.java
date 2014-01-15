@@ -480,6 +480,7 @@ public class Client extends SimpleApplication
     
     private void getMessage(String vehicleName, Vector3f location)
     {
+    	//Choose the crane type
     	int craneType = 0;
     	switch(vehicleName)
     	{
@@ -506,6 +507,7 @@ public class Client extends SimpleApplication
     	
     	Vector3f conVector = location;
     	
+    	//Select the crane that has to be used!
     	switch(craneType)
     	{
     		case 1:
@@ -581,12 +583,12 @@ public class Client extends SimpleApplication
     	    	}
     	    	break;
     		case 5:
-    			//TODO: Check if there is an AGV at the beginning point
     			break;
     	}
 
     	Vector3f [] des = new Vector3f [4];
     	
+    	//Start the animation of the crane
     	switch(craneType)
     	{
     		case 1:
