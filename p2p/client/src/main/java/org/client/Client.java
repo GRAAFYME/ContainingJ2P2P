@@ -151,8 +151,7 @@ public class Client extends SimpleApplication
         c = new networkClient(6666);
     	
         //Cam code
-//	    cam.setLocation(new Vector3f(0f,260f,0f)); 
-        cam.setLocation(new Vector3f(100, 400, 100)); 
+ 
 	    flyCam.setMoveSpeed(300f);
 	    FBC = new FlyByCamera(cam, inputManager);
 	    mp = new MotionPaths(assetManager, allAgvNodes);

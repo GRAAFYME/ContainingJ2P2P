@@ -7,7 +7,8 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
-
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 
@@ -22,11 +23,15 @@ public class FlyByCamera implements AnalogListener, ActionListener {
     private InputManager inputManager;
     private boolean coords = true;
     public static boolean coordtest = false;
-   
+    Quaternion RotateCam = new Quaternion();
+    
     public FlyByCamera(Camera cam, InputManager inputManager){
         this.cam = cam;
         initialUpVec = cam.getUp().clone();
         this.inputManager = inputManager;
+        cam.setLocation(new Vector3f(-1045, 538, 401)); 
+        cam.setRotation((RotateCam.fromAngleAxis(FastMath.HALF_PI, Vector3f.UNIT_Y)));
+        
          registerWithInput();
     }
 
