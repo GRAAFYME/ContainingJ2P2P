@@ -10,6 +10,7 @@ public class Storage
 	public Map<String,Map<String, Vector3f>> storageSpots = new HashMap<String,Map<String,Vector3f>>();
 	private Map<String, Vector3f> spots = new HashMap<String, Vector3f>();
 	private int counter = 0;
+	private boolean empty = false;
 	
 	public Storage()
 	{
@@ -35,5 +36,18 @@ public class Storage
 			}
 			storageSpots.put(String.valueOf(i), spots);
 		}
+	}
+	
+	public boolean isEmpty()
+	{
+		return this.empty;
+	}
+	
+	public void setEmpty()
+	{
+		if(this.empty)
+			this.empty = false;
+		else
+			this.empty = true;
 	}
 }
