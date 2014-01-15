@@ -7,14 +7,16 @@ import java.util.Calendar;
 import java.util.List;
 
 public abstract class ContainerCarrier {
-    @XmlElement
-    public List<Container> containers;
+	@XmlElement
+	public List<Container> containers;
 
-    @XmlTransient
-    public boolean available = true;
+	@XmlTransient
+	public boolean available = true;
 
-    @XmlTransient
-    public Calendar availableAgainDate;
+	@XmlTransient
+	public Calendar availableAgainDate;
 
-    public ContainerCarrier() { containers = new ArrayList<>(); }
+	public ContainerCarrier() {
+		containers = new ArrayList<>();
+	}
 }

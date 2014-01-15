@@ -3,34 +3,23 @@ package org.client;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
-public class Containers extends Node
-{
-	protected Spatial container;	
+public class Containers extends Node {
+	protected Spatial container;
 	private String id;
-	
-	public Containers(String id, Spatial container)
-	{
+
+	public Containers(String id, Spatial container) {
 		super(id);
-		
+
 		this.id = id;
 		this.container = container.clone();
-		
-//		if(last == true)
-//		{
-//			batch();
-//			System.out.println("Batched");
-//		}
-		
 		this.attachChild(this.container);
 	}
-	
-	public String getId()
-	{
+
+	public String getId() {
 		return this.id;
 	}
-	
-	public void detachContainer()
-	{
+
+	public void detachContainer() {
 		this.detachChild(this.container);
 	}
 }
