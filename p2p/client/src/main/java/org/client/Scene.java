@@ -32,7 +32,6 @@ public class Scene {
 
 	// creates and loads the scene
 	public void initScene() {
-		// sceneModel = assetManager.loadModel("/Scenes/PlatformScene.j3o");
 		sceneModel = assetManager
 				.loadModel("/Models/platformmodel/platformmodel.j3o");
 		sceneShape = CollisionShapeFactory.createMeshShape(sceneModel);
