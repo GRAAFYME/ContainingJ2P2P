@@ -193,7 +193,6 @@ public class Client extends SimpleApplication
 
                 int index = p.agvs.get(0).index;
                 DriveRoute(index, path);
-                
             }
             catch (Exception e)
             {
@@ -612,7 +611,6 @@ public class Client extends SimpleApplication
     		}
     		case 2:
     		{
-    			System.out.println("Animation starts");
             	Vector3f startPosCrane = new Vector3f(truckCranes[id].getLocalTranslation());
             	Vector3f startPosHook = new Vector3f(truckCranes[id].hookNode.getLocalTranslation());
             	
@@ -620,14 +618,15 @@ public class Client extends SimpleApplication
     	    	des[1] = new Vector3f(startPosHook.x,startPosHook.y-16,startPosHook.z); //Destination of the hook
     	    	des[2] = new Vector3f(startPosCrane.x,startPosCrane.y,startPosCrane.z-30); //Destination of the crane
     	    	
-    	    	truckCranes[id].setContainer(trucks.get(id).getContainer());
-    	    	trucks.get(id).deleteContainer();
-    	    	System.out.println(truckCranes[id].getContainer());
-    	    	
     			if(!direction)
     				truckCranes[id].animation(3, des, 5);
     			else
     				truckCranes[id].animation(4, des, 5);
+    			
+    			trucks.get(id).deleteContainer();
+    			truckCranes[id].setContainer(trucks.get(id).getContainer());
+    			truckCranes[id].attachContainer();
+    			
     			break;
     		}
     		case 3:

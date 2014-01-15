@@ -4,6 +4,7 @@ import com.jme3.animation.LoopMode;
 import com.jme3.cinematic.MotionPath;
 import com.jme3.cinematic.MotionPathListener;
 import com.jme3.cinematic.events.MotionEvent;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
@@ -84,7 +85,21 @@ public abstract class Crane extends Node
 	public void setContainer(Spatial cont)
 	{
 		this.container = cont.clone();
-		hookNode.attachChild(this.container);
+	}
+	
+	public void attachContainer()
+	{
+		this.container.scale(2);
+		this.container.rotate(0, 90*FastMath.DEG_TO_RAD, 0);
+		this.container.setLocalTranslation(this.container.getLocalTranslation().x+5, 
+										   this.container.getLocalTranslation().y+2.5f, 
+										   this.container.getLocalTranslation().z+0.5f);
+		this.hookNode.attachChild(this.container);
+	}
+	
+	public void deleteContainer()
+	{
+		this.hookNode.detachChild(this.container);
 	}
 	
 	public float distance(String vehicleName, Vector3f location)
