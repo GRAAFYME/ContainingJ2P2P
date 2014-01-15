@@ -17,7 +17,6 @@ public class MotionPaths {
 	SeaCraneToOtherSide, OtherSideToAGV,OtherWayAround, CrossingStartToTruck, AGVStartToOtherSide, CrossingToTrains, CrossingToStorageSide1, 
 	CrossingToStorageCraneSide1,CrossingToStorageSide2 , CrossingToStorageCraneSide2, CrossingToTruckCrane;
 	private AssetManager assetManager;
-	public Node nodeAGV;
 	private Node AllAgvNodes;
 
 
@@ -32,10 +31,8 @@ public class MotionPaths {
             Vector3f v = path.getWayPoint(i);
             float x = v.x, y = v.y, z = v.z;
             javax.vecmath.Vector3f point = new javax.vecmath.Vector3f(x, y, z);
-
             waypointList.add(point);
         }
-
         return waypointList;
     }
 
@@ -48,10 +45,8 @@ public class MotionPaths {
             Vector3f v = path.getWayPoint(i);
             float x = v.x, y = v.y, z = v.z;
             Vector3f point = new Vector3f(x, y, z);
-
             waypointList.add(point);
         }
-
         return waypointList;
     }
 
@@ -100,9 +95,7 @@ public class MotionPaths {
 	 {  
 	  MotionPath path = hmMotionPaths.get(name);
 	  return path;
-
 	 }
-	
 	
 	public void StartPoint()
 	{	float x = -470f;
@@ -203,7 +196,7 @@ public class MotionPaths {
 		CrossingToBargeCrane.addWayPoint(new Vector3f (-540, 260f, 117));
 		CrossingToBargeCrane.setCurveTension(0.0f);
 		CrossingToBargeCrane.enableDebugShape(assetManager, AllAgvNodes);
-		hmMotionPaths.put("TrucksLoaded", CrossingToBargeCrane);
+		hmMotionPaths.put("CrossingToBargeCrane", CrossingToBargeCrane);
 	}
 	
 	public void CrossingtoOtherSidePlatform()
@@ -419,7 +412,7 @@ public class MotionPaths {
 				CrossingToTrucks.addWayPoint(new Vector3f(1050, 260, 117));
 				CrossingToTrucks.setCurveTension(0);
 				CrossingToTrucks.enableDebugShape(assetManager, AllAgvNodes);
-				hmMotionPaths.put("CrossingToTrucks", CrossingToStorageCraneSide2);
+				hmMotionPaths.put("CrossingToTrucks", CrossingToTrucks);
 			}
 			
 			public void CrossingToTruckCrane()
@@ -432,7 +425,7 @@ public class MotionPaths {
 			CrossingToTruckCrane.addWayPoint(new Vector3f(x, 260, 90));
 			CrossingToTruckCrane.setCurveTension(0);
 			CrossingToTruckCrane.enableDebugShape(assetManager, AllAgvNodes);
-			hmMotionPaths.put("CrossingToTruckCranes"+String.valueOf(i), CrossingToStorageCraneSide2);
+			hmMotionPaths.put("CrossingToTruckCranes"+String.valueOf(i), CrossingToTruckCrane);
 			x+= 40;
 			}
 			}
