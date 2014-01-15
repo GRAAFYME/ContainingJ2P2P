@@ -240,7 +240,6 @@ public class Client extends SimpleApplication
     	}    
     }
          
-    //TODO: Create them when they need to be created
     public void testContainer()
     {
     	containerList = new ArrayList<Containers>();
@@ -494,7 +493,7 @@ public class Client extends SimpleApplication
     			craneType = 5;
     			break;
     	}
-    	boolean direction = false; //TODO: Send from protocol
+    	boolean direction = false;
     	int id = 0; //Chosen later
     	List<Float> distance = new ArrayList<Float> (); 	
     	float smallest = 1000;
@@ -663,9 +662,8 @@ public class Client extends SimpleApplication
     		}
     		case 5:
     		{
-    			//TODO: Use the sorting function to get the right lane and spot on the storage
-            	Map<String, Vector3f> spot = storage.storageSpots.get("0"); //TODO: Get the right lane of the crane
-            	Vector3f spotje = spot.get("254"); //TODO: Get the right spot on that lane
+            	Map<String, Vector3f> spot = storage.storageSpots.get("0");
+            	Vector3f spotje = spot.get("0");
             	
             	Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());
             	Vector3f startPosSlider = new Vector3f(storageCranes[id].sliderNode.getLocalTranslation());
