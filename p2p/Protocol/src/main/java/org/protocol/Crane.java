@@ -18,8 +18,8 @@ public class Crane extends ContainerCarrier
 	
 	public Crane(Vector3f _location, int index)
 	{
-		this.Location = _location;
-        this.Location.x = index;
+		this.coordinates = _location;
+        this.Location = new Vector3f(1f, 0f, 0f);
         this.available = true;
 
 	}

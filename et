@@ -1,0 +1,489 @@
+* [31m8ef60d1[m -[33m (HEAD, master)[m Key Enter knop added to FTPLogin [32m(2 weeks ago) [1;34m<Joshua>[m
+*   [31m9549969[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+[32m|[m[33m\[m  
+[32m|[m * [31m9f805ad[m -[33m[m Client: No unseen rendering [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+[32m|[m * [31m3c5d627[m -[33m[m heartbeat quickfix [32m(2 weeks ago) [1;34m<Remco>[m
+* [33m|[m [31m001c9b6[m -[33m[m Documentatie: Tutorgesprek 4 bijgewerkt en afgerond. [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+[33m|[m[33m/[m  
+* [31m1cc573a[m -[33m[m Client: added more batching [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+* [31m97a9b85[m -[33m[m Update analyse [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+*   [31m6424508[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m[35m\[m  
+[34m|[m *   [31me67ca5c[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+[34m|[m [36m|[m[1;31m\[m  
+[34m|[m [36m|[m * [31mfba9220[m -[33m[m Again Again Again.. [32m(2 weeks ago) [1;34m<Joshua>[m
+[34m|[m * [1;31m|[m [31m02843f2[m -[33m[m Analyse: Analyse 2/Protocol 2.asta class diagram aangemaakt en bijgewerkt (geïmporteerd vanuit de code). [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+* [1;31m|[m [1;31m|[m [31m6c251a9[m -[33m[m Variables in logical order [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;31m|[m [1;31m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;31m|[m   
+* [1;31m|[m   [31m4716e11[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m[1;33m\[m [1;31m\[m  
+[1;32m|[m * [1;31m|[m [31mc2ecdad[m -[33m[m Again Server Analyse Update (yeah i know again..) [32m(2 weeks ago) [1;34m<Joshua>[m
+[1;32m|[m * [1;31m|[m [31m78c91a1[m -[33m[m Server Analyse Update [32m(2 weeks ago) [1;34m<Joshua>[m
+[1;32m|[m [1;31m|[m[1;31m/[m  
+* [1;31m|[m [31m40b2751[m -[33m[m AGV aanpassing, via Client aanroepen [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;31m|[m[1;31m/[m  
+*   [31m9ee02be[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [31ma76e5bc[m -[33m[m Client: Container spacing [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+* [1;35m|[m [31m1953240[m -[33m[m Analyse 2.01 [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;35m|[m[1;35m/[m  
+* [31m122729a[m -[33m[m Container fix [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+* [31mfe7f700[m -[33m[m junit fix [32m(2 weeks ago) [1;34m<Remco>[m
+*   [31m5a97cc7[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Remco>[m
+[1;36m|[m[31m\[m  
+[1;36m|[m *   [31m24b7fcc[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m [32m|[m[33m\[m  
+[1;36m|[m [32m|[m *   [31m6951036[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;36m|[m [32m|[m [34m|[m[35m\[m  
+[1;36m|[m [32m|[m * [35m|[m [31m538a385[m -[33m[m Ship + container fix [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;36m|[m * [35m|[m [35m|[m [31m3b3058a[m -[33m[m Documentatie: Testverslag 2.xlsx bijgewerkt (deze versie is gestuurd naar Jos en Fiona). [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m [35m|[m [35m|[m[35m/[m  
+[1;36m|[m [35m|[m[35m/[m[35m|[m   
+[1;36m|[m * [35m|[m   [31m4575114[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m [36m|[m[35m\[m [35m\[m  
+[1;36m|[m [36m|[m [35m|[m[35m/[m  
+[1;36m|[m [36m|[m * [31m42d6327[m -[33m[m Client commit (TestContainer) [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;36m|[m [36m|[m * [31m39ba1de[m -[33m[m Junit Test Update(try catch erbij) [32m(2 weeks ago) [1;34m<Joshua>[m
+[1;36m|[m * [1;31m|[m [31m4b8265b[m -[33m[m Documentatie: Tutorgesprek 4 aangemaakt met korte notities. [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m [1;31m|[m[1;31m/[m  
+[1;36m|[m *   [31m8806233[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m [1;32m|[m[1;33m\[m  
+[1;36m|[m [1;32m|[m * [31me7154ad[m -[33m[m Client: Cleaned code [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+[1;36m|[m [1;32m|[m * [31m273851b[m -[33m[m Test verslag aangepast [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;36m|[m * [1;33m|[m [31m6285b48[m -[33m[m Documentatie: [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+* [1;33m|[m [1;33m|[m [31mdbdc30f[m -[33m[m xml parsing code [32m(2 weeks ago) [1;34m<Remco>[m
+* [1;33m|[m [1;33m|[m   [31mbafa500[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Remco>[m
+[1;34m|[m[1;33m\[m [1;33m\[m [1;33m\[m  
+[1;34m|[m [1;33m|[m [1;33m|[m[1;33m/[m  
+[1;34m|[m [1;33m|[m[1;33m/[m[1;33m|[m   
+[1;34m|[m * [1;33m|[m [31m2869406[m -[33m[m MP class [32m(2 weeks ago) [1;34m<LSIYI>[m
+[1;34m|[m * [1;33m|[m [31m86a992b[m -[33m[m Client: Removed extra light [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m * [1;33m|[m [31mef895bf[m -[33m[m Make protocol equal to client [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m * [1;33m|[m   [31m4b67bb0[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m [1;36m|[m[31m\[m [1;33m\[m  
+[1;34m|[m [1;36m|[m * [1;33m|[m [31mf5a90de[m -[33m[m Client: Early slowmotion/speed version [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m [1;36m|[m [1;33m|[m[1;33m/[m  
+[1;34m|[m * [1;33m|[m [31mf00ffeb[m -[33m[m Deleted not needed variables [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m [1;33m|[m[1;33m/[m  
+[1;34m|[m * [31me3f1f3e[m -[33m[m Extra variable if crane is busy [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m|[m [31m81ecc28[m -[33m[m small refactor [32m(2 weeks ago) [1;34m<Remco>[m
+[31m|[m[31m/[m  
+* [31mbeecab5[m -[33m[m Dijkstra's algorithme in tech doc [32m(2 weeks ago) [1;34m<Remco>[m
+* [31m5f88681[m -[33m[m Documentatie: Logboek [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+* [31m9d4a980[m -[33m[m Client: Removed textures+extra code [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+* [31m2f05a86[m -[33m[m Documentatie: Update Testverslag 2.xlsx [32m(2 weeks ago) [1;34m<Joshua>[m
+* [31m8dfd533[m -[33m[m Documentatie: Testverslag 2.xlsx bijgewerkt (blad: Management Interface). [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+* [31m02fe003[m -[33m[m Documentatie: [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+* [31m0c6d77a[m -[33m[m Client: FlyByCamera.java -> coordtest = true. [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+* [31md3136fd[m -[33m[m Roll back P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+* [31ma35be4c[m -[33m[m ProjectContaining ipv P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+* [31mf6964dd[m -[33m[m Documentatie: Logboek [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+* [31mdd53105[m -[33m[m Naam wijziging [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m638272c[m -[33m[m Documentatie: Logboek [32m(2 weeks ago) [1;34m<commandersatisfied>[m
+* [31m6777419[m -[33m[m MotionPaths [32m(2 weeks ago) [1;34m<LSIYI>[m
+* [31m87c8b95[m -[33m[m Right Storage Crane coordinates [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m7714444[m -[33m[m Train animation added [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+*   [31mc22f763[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[32m|[m[33m\[m  
+[32m|[m * [31m9faac31[m -[33m[m Documentatie: 2013-12-16 Groepsgesprek 2.docx bijgewerkt. [32m(2 weeks ago) [1;34m<GRAAFYME>[m
+* [33m|[m [31m1843fd9[m -[33m[m Alle models [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[33m|[m[33m/[m  
+* [31m245734b[m -[33m[m Alle kranen staan op de juiste plaats [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+*   [31mc1e322a[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m[35m\[m  
+[34m|[m * [31m2702d78[m -[33m[m Kleine Aanpassingen [32m(2 weeks ago) [1;34m<Joshua>[m
+* [35m|[m [31m3b480cd[m -[33m[m Train crane added [32m(2 weeks ago) [1;34m<Melinda de Roo>[m
+[35m|[m[35m/[m  
+* [31m4fb6381[m -[33m[m TruckCrane animation (last update had die niet) [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+*   [31mcbd3d7e[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[36m|[m[1;31m\[m  
+[36m|[m *   [31m315756d[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<Remco>[m
+[36m|[m [1;32m|[m[1;33m\[m  
+[36m|[m * [1;33m|[m [31ma498233[m -[33m[m untested dijkstra implementation [32m(3 weeks ago) [1;34m<Remco>[m
+* [1;33m|[m [1;33m|[m [31m84bce48[m -[33m[m Fixed animations (StorageCrane + TruckCrane) [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;33m|[m [1;33m|[m[1;33m/[m  
+[1;33m|[m[1;33m/[m[1;33m|[m   
+* [1;33m|[m [31mc7d12e7[m -[33m[m Document vergadering [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+* [1;33m|[m [31m2514cd7[m -[33m[m MotionPathPart1 [32m(3 weeks ago) [1;34m<LSIYI>[m
+* [1;33m|[m   [31m85dcedb[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[1;34m|[m[1;35m\[m [1;33m\[m  
+[1;34m|[m * [1;33m|[m [31m25fe4e3[m -[33m[m Final position Storage Crane [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m * [1;33m|[m [31mec97de8[m -[33m[m StorageCrane update [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m * [1;33m|[m [31m7654022[m -[33m[m Client: Deleted old scenes and models [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m * [1;33m|[m   [31m2386048[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m [1;36m|[m[31m\[m [1;33m\[m  
+[1;34m|[m [1;36m|[m * [1;33m|[m [31mf21b7c8[m -[33m[m Storage editted [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m * [31m|[m [1;33m|[m [31m33ceb7f[m -[33m[m Client: Fixed coordinates... again... [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m [31m|[m[31m/[m [1;33m/[m  
+[1;34m|[m * [1;33m|[m [31ma3a26ff[m -[33m[m Client: HUGE performance update [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m [1;33m|[m[1;33m/[m  
+[1;34m|[m *   [31m8110cf9[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m [32m|[m[33m\[m  
+[1;34m|[m * [33m|[m [31ma69a84d[m -[33m[m Documentatie: Logboek [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+* [33m|[m [33m|[m [31m42c4a3a[m -[33m[m Documentatie: [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[33m|[m [33m|[m[33m/[m  
+[33m|[m[33m/[m[33m|[m   
+* [33m|[m   [31m5c9e355[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[34m|[m[33m\[m [33m\[m  
+[34m|[m [33m|[m[33m/[m  
+[34m|[m *   [31m6955239[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+[34m|[m [36m|[m[1;31m\[m  
+[34m|[m [36m|[m * [31m15a218c[m -[33m[m ClassDiagram Server 2! [32m(3 weeks ago) [1;34m<Joshua>[m
+[34m|[m * [1;31m|[m [31m54ff785[m -[33m[m Client: Changed debug paths [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+* [1;31m|[m [1;31m|[m [31mc65ae49[m -[33m[m Management Interface: columnchart.js updated. [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[1;31m|[m [1;31m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;31m|[m   
+* [1;31m|[m [31m18977b6[m -[33m[m Analyse / Documentatie: [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+* [1;31m|[m   [31m7109089[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[1;32m|[m[1;31m\[m [1;31m\[m  
+[1;32m|[m [1;31m|[m[1;31m/[m  
+[1;32m|[m * [31mcad17b5[m -[33m[m UML aangepast [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m * [31mddd7947[m -[33m[m HashMap storage toegevoegd [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m * [31ma1dd538[m -[33m[m heartbeat in client.java [32m(3 weeks ago) [1;34m<Remco>[m
+[1;32m|[m * [31m93d2872[m -[33m[m Client [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m * [31m876da78[m -[33m[m Test plan feedback [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m *   [31m4baa405[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m [1;34m|[m[1;35m\[m  
+[1;32m|[m [1;34m|[m * [31mf49e666[m -[33m[m Client: Cleaned up code [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+[1;32m|[m * [1;35m|[m [31m8493fc3[m -[33m[m Werkende animatie [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m [1;35m|[m[1;35m/[m  
+* [1;35m|[m [31m05ab6a3[m -[33m[m Documentatie: 2013-12-10 Tutor (Fiona) 3.docx aangemaakt en afgerond. [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[1;35m|[m[1;35m/[m  
+* [31m15d3556[m -[33m[m getMessage() function [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+*   [31m76f029f[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m[31m\[m  
+[1;36m|[m * [31m1df4e43[m -[33m[m Client: FINALLY FIXED TEXTURES [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+* [31m|[m [31m4d954a8[m -[33m[m Documentatie: [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[31m|[m[31m/[m  
+* [31m04cfda5[m -[33m[m Heartbeat stuff [32m(3 weeks ago) [1;34m<Remco>[m
+* [31m0afcca2[m -[33m[m Fail in Junit Test fixed [32m(3 weeks ago) [1;34m<Joshua>[m
+* [31m91f9952[m -[33m[m Documentatie: Logboek [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+* [31mf72f9f3[m -[33m[m Animations update [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m95572be[m -[33m[m Containers.java added [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+* [31mb1151e8[m -[33m[m Client: Added coordinate debug function [32m(3 weeks ago) [1;34m<commandersatisfied>[m
+*   [31m3a3c74d[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[32m|[m[33m\[m  
+[32m|[m *   [31m2cdf430[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+[32m|[m [34m|[m[35m\[m  
+[32m|[m * [35m|[m [31m2ca50f7[m -[33m[m Management Interface: styles.css bijgewerkt (scrollbalk bugje gefixt). [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+* [35m|[m [35m|[m [31mf178b6b[m -[33m[m Werkende animatie (Press V) [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+[35m|[m [35m|[m[35m/[m  
+[35m|[m[35m/[m[35m|[m   
+* [35m|[m [31mb6f4e50[m -[33m[m Some Changes to Main/JunitTest [32m(3 weeks ago) [1;34m<Joshua>[m
+[35m|[m[35m/[m  
+* [31m420398c[m -[33m[m Analyse / Documentatie: [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+* [31m66d9ff2[m -[33m[m 2x .~lock.* file verwijderd, Tech doc 3.txt aangepast. [32m(3 weeks ago) [1;34m<GRAAFYME>[m
+* [31m48ddbbb[m -[33m[m Update method added [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m4269522[m -[33m[m Document groepsgesprek + TruckCrane edit [32m(3 weeks ago) [1;34m<Melinda de Roo>[m
+* [31mff3167c[m -[33m[m server.restart will force thread.destroy after 1 second [32m(3 weeks ago) [1;34m<Remco>[m
+* [31m71897ea[m -[33m[m New MenuItems voor Remco :P [32m(3 weeks ago) [1;34m<Joshua>[m
+* [31m523cf69[m -[33m[m server now starts(by itself)  and operates in a new thread [32m(3 weeks ago) [1;34m<Remco>[m
+* [31m91f75d7[m -[33m[m ServerPanel added and deleted unused imports [32m(3 weeks ago) [1;34m<Joshua>[m
+* [31m0b75c1d[m -[33m[m Code wat duidelijker gemaakt (in methode's) [32m(3 weeks ago) [1;34m<Joshua>[m
+* [31m480ffe8[m -[33m[m 10 SeaCranes added [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31me0e1061[m -[33m[m Creating multiple Storage Cranes [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31mbd451ae[m -[33m[m Update Control Panel met Speed!! (wordt nog niks mee gedaan) [32m(4 weeks ago) [1;34m<Joshua>[m
+* [31m55fb795[m -[33m[m Crane class update [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m4a785c5[m -[33m[m Added Crane class [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m8c76168[m -[33m[m Update method [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+*   [31m994b792[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[36m|[m[1;31m\[m  
+[36m|[m * [31mbabb75f[m -[33m[m Unused Test from Junit test deleted [32m(4 weeks ago) [1;34m<Joshua>[m
+* [1;31m|[m [31ma3f21f5[m -[33m[m Storage Crane update [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[1;31m|[m[1;31m/[m  
+*   [31m482f63a[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [31m7c70e3e[m -[33m[m Animation based on input [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m * [31m95a6453[m -[33m[m Animation + movement aanpassing [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [1;33m|[m [31m09e3723[m -[33m[m Documentatie: [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[1;33m|[m[1;33m/[m  
+* [31m6fdb85c[m -[33m[m Reden gebruik algoritme [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31md378081[m -[33m[m Tech doc 2 update [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31mcfb97e6[m -[33m[m Documentatie: [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+* [31m595f0e7[m -[33m[m Android 'basis' project wijziging fix... [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+* [31meffefec[m -[33m[m 1800 Containers + schip aanpassing [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31ma60a983[m -[33m[m 8640 containers! [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m7d5dbf7[m -[33m[m Commit AGVS [32m(4 weeks ago) [1;34m<LSIYI>[m
+* [31m9568c93[m -[33m[m Containers op schip [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m9efa216[m -[33m[m Positie veranderd van XML bestanden [32m(4 weeks ago) [1;34m<Joshua>[m
+*   [31m62ead25[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [31mac0fbc6[m -[33m[m Ship added in client [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m * [31m3916510[m -[33m[m final ftp commit?? removal of containerNr duplicates [32m(4 weeks ago) [1;34m<Remco>[m
+[1;34m|[m *   [31m9f753c8[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m [1;36m|[m[31m\[m  
+[1;34m|[m [1;36m|[m * [31m2a411d6[m -[33m[m Client: Fixed AGV List [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m [1;36m|[m * [31m6412cf9[m -[33m[m FBC [32m(4 weeks ago) [1;34m<LSIYI>[m
+[1;34m|[m * [31m|[m [31m2f0ce4e[m -[33m[m Volledige schip [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m|[m [31m|[m [31m97821f4[m -[33m[m Documentatie: [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[31m|[m [31m|[m[31m/[m  
+[31m|[m[31m/[m[31m|[m   
+* [31m|[m [31m4c08093[m -[33m[m testverslag [32m(4 weeks ago) [1;34m<Remco>[m
+* [31m|[m   [31m0b7adec[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[32m|[m[31m\[m [31m\[m  
+[32m|[m [31m|[m[31m/[m  
+[32m|[m * [31m3c7e42e[m -[33m[m Normals verbeterd SeaShip [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [33m|[m [31mdcf874a[m -[33m[m Documentatie: [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[33m|[m[33m/[m  
+* [31m4ea428a[m -[33m[m Added ship [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31md77fc40[m -[33m[m Testverslag update [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31ma9df58f[m -[33m[m ftp [32m(4 weeks ago) [1;34m<Remco>[m
+* [31md7e1ddb[m -[33m[m TestVerslag v1 [32m(4 weeks ago) [1;34m<Joshua>[m
+* [31m4bde59d[m -[33m[m TruckCrane toegevoegd [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m2053624[m -[33m[m Client: Fixed merge [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+*   [31m5f15460[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[34m|[m[35m\[m  
+[34m|[m * [31me20891b[m -[33m[m Animatie werkend [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m * [31mfb2e7a7[m -[33m[m AGV [32m(4 weeks ago) [1;34m<LSIYI>[m
+[34m|[m * [31m236a8d4[m -[33m[m Fix animations [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m * [31me5283fe[m -[33m[m Crane aanpassing [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m * [31m9345336[m -[33m[m Client: Removed extra lights [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+[34m|[m *   [31mc980099[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<Remco>[m
+[34m|[m [36m|[m[1;31m\[m  
+[34m|[m [36m|[m * [31m269f8b6[m -[33m[m Client [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m * [1;31m|[m [31m4f491bd[m -[33m[m pom [32m(4 weeks ago) [1;34m<Remco>[m
+[34m|[m [1;31m|[m[1;31m/[m  
+[34m|[m * [31m2210f1a[m -[33m[m Client aangepast [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m * [31m45da467[m -[33m[m Working animation [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m * [31mbaeae94[m -[33m[m Client/Documentatie: Added batching + update logboek [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+[34m|[m * [31m593da5d[m -[33m[m Rails & Truck crane [32m(4 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m * [31m5c29619[m -[33m[m Client: Did small performance changes [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+* [1;31m|[m [31mb40346f[m -[33m[m Documentatie: [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[1;31m|[m[1;31m/[m  
+* [31me49d7b4[m -[33m[m Client: Swapped models, added normals [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+* [31m8c46c18[m -[33m[m Client: Removed warnings [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+*   [31m3f77db0[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[1;32m|[m[1;33m\[m  
+[1;32m|[m *   [31mf0f2ec3[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(4 weeks ago) [1;34m<Remco>[m
+[1;32m|[m [1;34m|[m[1;35m\[m  
+[1;32m|[m [1;34m|[m * [31m5555a3a[m -[33m[m Client: Console/FPS fix [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+[1;32m|[m [1;34m|[m * [31mab9a284[m -[33m[m Some Changes to Junit [32m(4 weeks ago) [1;34m<Joshua>[m
+[1;32m|[m [1;34m|[m * [31mf886e3f[m -[33m[m Documentatie: Logboek [32m(4 weeks ago) [1;34m<commandersatisfied>[m
+[1;32m|[m * [1;35m|[m [31m0cc1711[m -[33m[m ftp [32m(4 weeks ago) [1;34m<Remco>[m
+[1;32m|[m * [1;35m|[m   [31m5bd6ef2[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(5 weeks ago) [1;34m<Remco>[m
+[1;32m|[m [1;36m|[m[1;35m\[m [1;35m\[m  
+[1;32m|[m [1;36m|[m [1;35m|[m[1;35m/[m  
+[1;32m|[m * [1;35m|[m [31m2f1ea57[m -[33m[m Initial ftp stuff [32m(5 weeks ago) [1;34m<Remco>[m
+* [31m|[m [1;35m|[m [31m08fb98b[m -[33m[m Documentatie: [32m(4 weeks ago) [1;34m<GRAAFYME>[m
+[1;35m|[m [31m|[m[1;35m/[m  
+[1;35m|[m[1;35m/[m[31m|[m   
+* [31m|[m [31mf97550a[m -[33m[m Aangepaste Models, kloppen nu kwa verhouding [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m|[m [31m53242cf[m -[33m[m Texture voor FreeMovingCrane en Container [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[31m|[m[31m/[m  
+*   [31m68749fa[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[32m|[m[33m\[m  
+[32m|[m * [31m66e9910[m -[33m[m JunitTest [32m(5 weeks ago) [1;34m<Joshua>[m
+[32m|[m * [31mc74ee6d[m -[33m[m Lib voor Junit Testing [32m(5 weeks ago) [1;34m<Joshua>[m
+* [33m|[m [31m6991cf7[m -[33m[m Models toegevoegd [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[33m|[m[33m/[m  
+* [31m34533bf[m -[33m[m Eerste versie JunitTest [32m(5 weeks ago) [1;34m<Joshua>[m
+* [31mc1f83ec[m -[33m[m Documentatie: [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+* [31m95d412c[m -[33m[m Documentatie: TestPlan [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+*   [31m93c5928[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[34m|[m[35m\[m  
+[34m|[m * [31me485f76[m -[33m[m Testplan idee toegevoegd [32m(5 weeks ago) [1;34m<Joshua>[m
+* [35m|[m   [31mf9b6e97[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[36m|[m[35m\[m [35m\[m  
+[36m|[m [35m|[m[35m/[m  
+[36m|[m * [31m43e979b[m -[33m[m Test ideeën [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[36m|[m * [31m9425db3[m -[33m[m Models op ware grootte [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[36m|[m * [31mfcf491c[m -[33m[m Client: Changed measurements [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+[36m|[m * [31m411f216[m -[33m[m Control Panel [32m(5 weeks ago) [1;34m<Joshua>[m
+* [1;31m|[m [31mc030ecd[m -[33m[m Documentatie: [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[1;31m|[m[1;31m/[m  
+*   [31mf46a3db[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [31m3d3af8f[m -[33m[m AGVs [32m(5 weeks ago) [1;34m<LSIYI>[m
+* [1;33m|[m [31m967d34b[m -[33m[m Managment Interface: [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[1;33m|[m[1;33m/[m  
+* [31m658bedd[m -[33m[m Management Interface: [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+*   [31m2cc2119[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [31m4e68163[m -[33m[m Added TODO's [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m * [31ma7506e7[m -[33m[m Client: Updating the TPF to variable [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m * [31m5529f3d[m -[33m[m Kranen toegevoegd [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m * [31mad81dcf[m -[33m[m Fix Protocol classes [32m(5 weeks ago) [1;34m<Joshua>[m
+[1;34m|[m * [31m339663e[m -[33m[m dinges [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m * [31m69b09b5[m -[33m[m Client: Moved more AGV code [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+[1;34m|[m * [31me83cbd0[m -[33m[m Some changes to Protocol classes [32m(5 weeks ago) [1;34m<Joshua>[m
+[1;34m|[m * [31m86e34f0[m -[33m[m AGV [32m(5 weeks ago) [1;34m<LSIYI>[m
+[1;34m|[m * [31m9fb793b[m -[33m[m Documentatie: Logboek [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+* [1;35m|[m [31m7139c38[m -[33m[m Documentatie / Management Interface: [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[1;35m|[m[1;35m/[m  
+*   [31me94c589[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m[31m\[m  
+[1;36m|[m * [31mf1eca26[m -[33m[m Control Panel update [32m(5 weeks ago) [1;34m<Joshua>[m
+[1;36m|[m * [31med89e66[m -[33m[m Client: Moved AGV code [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+[1;36m|[m * [31m3715544[m -[33m[m Models [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[1;36m|[m * [31m23d3217[m -[33m[m AGV [32m(5 weeks ago) [1;34m<LSIYI>[m
+[1;36m|[m * [31m2b0462f[m -[33m[m Client addAGV() [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+[1;36m|[m * [31m77a6910[m -[33m[m Client: Added waypoints [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+[1;36m|[m * [31m3291a5d[m -[33m[m Client: First steps waypoints [32m(5 weeks ago) [1;34m<commandersatisfied>[m
+[1;36m|[m *   [31mfb9be9e[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[1;36m|[m [32m|[m[33m\[m  
+[1;36m|[m [32m|[m * [31mbfd2366[m -[33m[m Classes van Voertuigen ingevuld! [32m(5 weeks ago) [1;34m<Joshua>[m
+[1;36m|[m * [33m|[m [31m8df8312[m -[33m[m Models [32m(5 weeks ago) [1;34m<Melinda de Roo>[m
+[1;36m|[m [33m|[m[33m/[m  
+* [33m|[m [31m6275e10[m -[33m[m Management Interface: [32m(5 weeks ago) [1;34m<GRAAFYME>[m
+[33m|[m[33m/[m  
+* [31m1929ec1[m -[33m[m FlyByCam [32m(5 weeks ago) [1;34m<LSIYI>[m
+* [31mcfc0dc1[m -[33m[m Client: quick fix voor FlyByCamera. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31maf13e06[m -[33m (origin/remco, remco)[m Moving box in client, controlled by server [32m(6 weeks ago) [1;34m<Remco>[m
+*   [31ma68e244[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P into remco [32m(6 weeks ago) [1;34m<Remco>[m
+[34m|[m[35m\[m  
+[34m|[m * [31m0c2e647[m -[33m[m Main Update!! Displayed ID en Owner Name in de Panel! [32m(6 weeks ago) [1;34m<Joshua>[m
+* [35m|[m [31m562279c[m -[33m[m llll [32m(6 weeks ago) [1;34m<Remco>[m
+* [35m|[m [31m8706079[m -[33m[m pom.xml fix? [32m(6 weeks ago) [1;34m<Remco>[m
+* [35m|[m [31mbc5f314[m -[33m[m Basic networking client/server [32m(6 weeks ago) [1;34m<Remco>[m
+* [35m|[m [31m0af763a[m -[33m[m loads of stuff [32m(6 weeks ago) [1;34m<Remco>[m
+* [35m|[m [31mea68e60[m -[33m[m pom.xml protocol dependency fix [32m(6 weeks ago) [1;34m<Remco>[m
+* [35m|[m [31mc2e974b[m -[33m[m added shared classes [32m(6 weeks ago) [1;34m<Remco>[m
+[35m|[m[35m/[m  
+* [31m9b90adc[m -[33m[m server fix, added new maven module: protocol [32m(6 weeks ago) [1;34m<Remco>[m
+*   [31m09be41c[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[36m|[m[1;31m\[m  
+[36m|[m * [31m6a1d739[m -[33m[m Container model [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [1;31m|[m [31me902355[m -[33m[m Server: Main renamed to oldMain, Controlpanel updated + renamed to Main. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;31m|[m[1;31m/[m  
+* [31m424ea55[m -[33m[m removed class files [32m(6 weeks ago) [1;34m<Remco>[m
+*   [31mf304cfc[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [31mcf7bcbd[m -[33m[m Unused Control Panel delete [32m(6 weeks ago) [1;34m<Joshua>[m
+* [1;33m|[m [31md3856d5[m -[33m[m Nifty menu aangepast [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[1;33m|[m[1;33m/[m  
+*   [31m4484404[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [31m6058bfa[m -[33m[m Update ControlPanel [32m(6 weeks ago) [1;34m<Joshua>[m
+* [1;35m|[m [31m9316b05[m -[33m[m Nifty menu toegevoegd [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[1;35m|[m[1;35m/[m  
+* [31m0cc2795[m -[33m[m FlyByCam [32m(6 weeks ago) [1;34m<LSIYI>[m
+*   [31m4c2373d[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+[1;36m|[m[31m\[m  
+[1;36m|[m *   [31m4573f64[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m [32m|[m[33m\[m  
+[1;36m|[m [32m|[m *   [31m8e8bf29[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Remco>[m
+[1;36m|[m [32m|[m [34m|[m[35m\[m  
+[1;36m|[m [32m|[m [34m|[m * [31mb3c5f93[m -[33m[m ControlPanel voor de Controller! [32m(6 weeks ago) [1;34m<Joshua>[m
+[1;36m|[m [32m|[m * [35m|[m [31m12e0510[m -[33m[m Initial networking code for server [32m(6 weeks ago) [1;34m<Remco>[m
+[1;36m|[m * [35m|[m [35m|[m [31m533b529[m -[33m[m Client: networking code for client. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [35m|[m [35m|[m [35m|[m [31m7f7cae4[m -[33m[m Client: Changed water [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+[35m|[m [35m|[m[35m_[m[35m|[m[35m/[m  
+[35m|[m[35m/[m[35m|[m [35m|[m   
+* [35m|[m [35m|[m [31mf222904[m -[33m[m Client: created Scene class [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+* [35m|[m [35m|[m [31mae6552c[m -[33m[m Client: Fixed bad merge [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+[35m|[m[35m/[m [35m/[m  
+* [35m|[m [31m8b4eee0[m -[33m[m Documentatie: [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[35m|[m[35m/[m  
+* [31mfe87ba5[m -[33m[m FlycamSimm [32m(6 weeks ago) [1;34m<LSIYI>[m
+* [31mb9e069b[m -[33m[m .gitignore update. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+*   [31m89c28d0[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[36m|[m[1;31m\[m  
+[36m|[m * [31ma3bb90c[m -[33m[m Algorithmen, Model.dae [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [1;31m|[m [31ma9f1de4[m -[33m[m Documentatie: Tech doc 1.docx aangepast (geupdate). [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;31m|[m[1;31m/[m  
+* [31m60546b0[m -[33m[m xml path change [32m(6 weeks ago) [1;34m<Remco>[m
+* [31mbbd375a[m -[33m[m forgot to commit new dependency [32m(6 weeks ago) [1;34m<Remco>[m
+* [31m1c42e19[m -[33m[m xmlParser rewrite, Container being just the xml representation we probably need to create a Container wrapper class [32m(6 weeks ago) [1;34m<Remco>[m
+* [31m7dd96c6[m -[33m[m Documentatie: [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31mc314135[m -[33m[m Documentatie: Opdrachtomschrijving.docx & Projectplan v1.docx samengevoegd. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31md9f401e[m -[33m[m Opdrachtomschrijving [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+*   [31m521908b[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [31m210f3fa[m -[33m[m Documentatie: [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;32m|[m * [31m3f38f74[m -[33m[m Documentatie: Planning + Taakverdeling + Rolverdeling.xlsx geupdate. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;32m|[m * [31mb50f0a6[m -[33m[m Documentatie: [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [1;33m|[m [31md559f78[m -[33m[m Models [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[1;33m|[m[1;33m/[m  
+* [31mace811e[m -[33m[m Client: fix voor het runnen van de client. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31mc42cfa2[m -[33m[m Modellen [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [31me06c184[m -[33m[m Documentatie: Aantekeningen/Yme.docx toegevoegd. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31m95cb1d6[m -[33m[m 'Planning + Taakverdeling' mapnaam veranderd in 'Planning + Taakverdeling + Rolverdeling' [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31m3c4fc7b[m -[33m[m Documentatie: Planning + Taakverdeling + Rolverdeling.xlsx aangepast. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31mc073d2a[m -[33m[m Modellen [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m67d277a[m -[33m[m Logboek: Datums bewerkt [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+* [31m02c239a[m -[33m[m Logboek: Datums bewerkt [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+* [31m63d1620[m -[33m[m Logboek: bijgewerkt [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+* [31m3d2c61a[m -[33m[m Analyse [32m(6 weeks ago) [1;34m<Joshua>[m
+* [31m6ee4e82[m -[33m[m Analyse [32m(6 weeks ago) [1;34m<Joshua>[m
+* [31m0dc43b1[m -[33m[m Client: Fixed scenes [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+* [31mcfae912[m -[33m[m Analyse [32m(6 weeks ago) [1;34m<Joshua>[m
+*   [31m4ccc3ec[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Joshua>[m
+[1;34m|[m[1;35m\[m  
+[1;34m|[m * [31mba05323[m -[33m[m Models [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [1;35m|[m [31ma4a46ac[m -[33m[m Analyse [32m(6 weeks ago) [1;34m<Joshua>[m
+[1;35m|[m[1;35m/[m  
+* [31m7c8748e[m -[33m[m Analyse [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m9543a71[m -[33m[m Analyse [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m1eaae84[m -[33m[m Client: Added textures [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+* [31m3172672[m -[33m[m Client: Added start scene code. [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+*   [31mb81ac25[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;36m|[m[31m\[m  
+[1;36m|[m * [31mb4f0628[m -[33m (origin/test, test)[m missing file added [32m(6 weeks ago) [1;34m<Remco>[m
+[1;36m|[m *   [31m1c9c958[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Remco>[m
+[1;36m|[m [32m|[m[33m\[m  
+[1;36m|[m [32m|[m * [31m99d86a2[m -[33m[m Analyse [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[1;36m|[m * [33m|[m [31mbf45a85[m -[33m[m XML parser/container class mostly done [32m(6 weeks ago) [1;34m<Remco>[m
+[1;36m|[m [33m|[m[33m/[m  
+* [33m|[m [31m10cc70b[m -[33m[m Management Interface: Test / tutorial [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[33m|[m[33m/[m  
+* [31m7c9c92f[m -[33m[m lll [32m(6 weeks ago) [1;34m<Remco>[m
+*   [31m32cb53e[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[34m|[m[35m\[m  
+[34m|[m * [31md78dc55[m -[33m[m Analyse: Client.asta.lock verwijderd. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [35m|[m [31m4893790[m -[33m[m Analyse [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[35m|[m[35m/[m  
+*   [31m9968061[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[36m|[m[1;31m\[m  
+[36m|[m * [31m9442fa3[m -[33m[m Models [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[36m|[m * [31m8daed39[m -[33m[m Changed basics and added water. [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+[36m|[m * [31m861b326[m -[33m[m Model + analyse update [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[36m|[m * [31md8248a6[m -[33m[m Begin logboek toegevoegd [32m(6 weeks ago) [1;34m<commandersatisfied>[m
+[36m|[m *   [31mbb53e4c[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Remco>[m
+[36m|[m [1;32m|[m[1;33m\[m  
+[36m|[m [1;32m|[m * [31md0c8ad7[m -[33m[m Client analyse aangepast [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[36m|[m * [1;33m|[m [31m4968789[m -[33m[m initial xml loading code [32m(6 weeks ago) [1;34m<Remco>[m
+[36m|[m [1;33m|[m[1;33m/[m  
+[36m|[m * [31m951ba77[m -[33m[m Client aangepast [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [1;33m|[m [31m887c94c[m -[33m[m Documentatie: [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;33m|[m[1;33m/[m  
+* [31ma4c99a1[m -[33m[m Mappenstructuur aangemaakt / aangepast. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31m2ecb9cc[m -[33m[m Planning iets verbeterd. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31m1e11192[m -[33m[m Planning aangepast [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+*   [31m26f2011[m -[33m[m Merge branch 'master' of https://github.com/GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[1;34m|[m[1;35m\[m  
+[1;34m|[m *   [31ma04143e[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;34m|[m [1;36m|[m[31m\[m  
+[1;34m|[m * [31m|[m [31m13a2ac4[m -[33m[m Planning aangepast. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [31m|[m [31m|[m [31m3740dad[m -[33m[m Nog eens commit [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m|[m [31m|[m [31m88a4db2[m -[33m[m Taakverdeling [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [31m|[m [31m|[m [31m0b90bbd[m -[33m[m Taakverdeling [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[31m|[m [31m|[m[31m/[m  
+[31m|[m[31m/[m[31m|[m   
+* [31m|[m [31m8f10764[m -[33m[m Bespreken 18-11-2013 [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+[31m|[m[31m/[m  
+*   [31m10f2b02[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[32m|[m[33m\[m  
+[32m|[m * [31m10ff658[m -[33m[m Analyse files [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [33m|[m [31m0c7e5be[m -[33m[m Planning aangepast, alle BB documenten toegevoegd. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+* [33m|[m   [31m2b91ee8[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[34m|[m[33m\[m [33m\[m  
+[34m|[m [33m|[m[33m/[m  
+[34m|[m * [31m01a9f44[m -[33m[m Authors aangepast [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [35m|[m   [31mfa4db22[m -[33m[m Merge branch 'master' of github.com:GRAAFYME/ContainingJ2P2P [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[36m|[m[35m\[m [35m\[m  
+[36m|[m [35m|[m[35m/[m  
+[36m|[m * [31mf8c7655[m -[33m[m gitignore added, crap removed [32m(6 weeks ago) [1;34m<U-Windows7\Remco>[m
+[36m|[m * [31m2499fdf[m -[33m[m pom.xml fix [32m(6 weeks ago) [1;34m<U-Windows7\Remco>[m
+[36m|[m * [31mfd46ebf[m -[33m[m Android project [32m(6 weeks ago) [1;34m<Melinda de Roo>[m
+* [1;31m|[m [31me05386f[m -[33m[m De planning / taakverdeling en de 'sjablonen' voor de gespreksverslagen toegevoegd. [32m(6 weeks ago) [1;34m<GRAAFYME>[m
+[1;31m|[m[1;31m/[m  
+* [31m11eb8d5[m -[33m[m De twee '.txt' files verwijderd die eerder waren toegevoegd als test. [32m(7 weeks ago) [1;34m<GRAAFYME>[m
+* [31m440a54a[m -[33m[m Update README.md [32m(7 weeks ago) [1;34m<remco138>[m
+* [31mb125e8f[m -[33m[m Update README.md [32m(7 weeks ago) [1;34m<remco138>[m
+* [31med3a903[m -[33m[m Update README.md [32m(7 weeks ago) [1;34m<remco138>[m
+* [31ma7902e3[m -[33m[m Readme and initial directory structure [32m(7 weeks ago) [1;34m<U-Windows7\Remco>[m
+* [31m0180ba6[m -[33m[m commandline git test [32m(7 weeks ago) [1;34m<U-Windows7\Remco>[m
+* [31m7e9da07[m -[33m[m test [32m(7 weeks ago) [1;34m<LSIYI>[m
+* [31m8680ccb[m -[33m[m Delete Werkboek13-14.doc [32m(7 weeks ago) [1;34m<judoka1000>[m
+* [31m8a7c5ed[m -[33m[m Test [32m(7 weeks ago) [1;34m<Joshua>[m

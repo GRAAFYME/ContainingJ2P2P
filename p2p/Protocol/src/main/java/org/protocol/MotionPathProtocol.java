@@ -10,9 +10,9 @@ import java.util.List;
 public class MotionPathProtocol
 {
     @XmlElement
-    private List<Vector3f> locationNodeList;
+    public List<Vector3f> locationNodeList;
     @XmlElement
-    private float length;
+    public float length;
     @XmlElement
     public int driveUntilWaypoint;
     @XmlElement
@@ -34,11 +34,29 @@ public class MotionPathProtocol
         this.driveUntilWaypoint = driveUntilWaypoint;
     }
 
-    public float getLength() { return length; }
+    public float getLength()
+    {
+        float totalDistance = 0f;
+
+        for(int i = 0; i < driveUntilWaypoint - 1; i++)
+        {
+            totalDistance += lengthHelper(locationNodeList.get(i), locationNodeList.get(i + 1));
+        }
+        return totalDistance;
+    }
+
+
+    private float lengthHelper(Vector3f v1, Vector3f v2)
+    {
+        Vector3f temp = new Vector3f(v1.x, v1.y, v1.z);
+        temp.sub(v2);
+        return temp.length();
+    }
 
     public int getNbWayPoints() {
         return locationNodeList.size();
     }
+
 
     public String getName()
     {
