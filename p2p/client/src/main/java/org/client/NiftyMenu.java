@@ -13,6 +13,7 @@ public class NiftyMenu extends AbstractAppState implements ScreenController {
 	private Nifty nifty;
 	private Screen screen;
 	private SimpleApplication app;
+	public int inGameState = 0;
 
 	/** custom methods */
 
@@ -23,6 +24,7 @@ public class NiftyMenu extends AbstractAppState implements ScreenController {
 	/** Nifty GUI ScreenControl methods */
 	public void gameStart() {
 		nifty.exit();
+		inGameState = 1;
 	}
 
 	public void gameEnd() {

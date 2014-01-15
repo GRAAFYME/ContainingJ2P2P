@@ -132,7 +132,7 @@ public class Client extends SimpleApplication {
 	public void simpleInitApp() {
 
 		initInputs();
-		// initNifty();
+		initNifty();
 
 		// agv code
 		GeometryBatchFactory.optimize(allAgvNodes);
@@ -158,11 +158,12 @@ public class Client extends SimpleApplication {
 		protocolParser = new ProtocolParser();
 		protocol.motionPathList = mp.getMotionPathProtocols();
 		c.sendMessage(protocolParser.serialize(protocol));
-
 	}
 
 	@Override
 	public void simpleUpdate(float tpf) {
+				
+		
 		String message = c.getMessages();
 		if (message != "") {
 			System.out.println(message);
