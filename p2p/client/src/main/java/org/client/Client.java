@@ -384,6 +384,7 @@ public class Client extends SimpleApplication
     
     private void init_StorageCrane()
     {
+    	//Create storageCranes
         for (int i = 1; i <= 24; i++) 
         {
             String id = String.valueOf(i);
@@ -397,6 +398,7 @@ public class Client extends SimpleApplication
     
     private void init_SeaShipCrane()
     {
+    	//Create seaShipCranes
     	for(int i = 1; i <= 10; i++)
     	{
     		String id = String.valueOf(i);
@@ -410,6 +412,7 @@ public class Client extends SimpleApplication
     
     private void init_TruckCrane()
     {
+    	//Create truckCranes
     	for(int i = 1; i <= 20; i++)
     	{
     		String id = String.valueOf(i);
@@ -423,6 +426,7 @@ public class Client extends SimpleApplication
     
     private void init_TrainCrane()
     {
+    	//Create trainCranes
     	for(int i = 1; i <= 4; i++)
     	{
     		String id = String.valueOf(i);
@@ -436,6 +440,7 @@ public class Client extends SimpleApplication
     
     private void init_BargeCrane()
     {
+    	//Create bargeCranes
     	for(int i = 1; i <= 8; i++)
     	{
     		String id = String.valueOf(i);
@@ -449,6 +454,7 @@ public class Client extends SimpleApplication
     
     private void init_vehicle(String vehicle, float x, float y, float z)
     {
+    	//Create vehicle and containers on the vehicle
     	Vehicle v = null;
     	switch(vehicle)
     	{
