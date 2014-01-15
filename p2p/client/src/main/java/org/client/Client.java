@@ -670,7 +670,7 @@ public class Client extends SimpleApplication
     		}
     		case 5:
     		{
-            	Map<String, Vector3f> spot = storage.storageSpots.get("0");
+            	Map<String, Vector3f> spot = storage.storageFields.get("0");
             	Vector3f spotje = spot.get("0");
             	
             	Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());
@@ -751,7 +751,7 @@ public class Client extends SimpleApplication
                 	//Vector3f conVector = new Vector3f(200, 264, 802);
                 	int id = 0;
                 	
-                	Map<String, Vector3f> spot = storage.storageSpots.get("0");
+                	Map<String, Vector3f> spot = storage.storageFields.get("0");
                 	Vector3f spotje = spot.get("254");
                 	
                 	Vector3f startPosCrane = new Vector3f(storageCranes[id].getLocalTranslation());

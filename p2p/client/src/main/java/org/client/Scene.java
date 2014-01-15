@@ -50,7 +50,7 @@ import com.jme3.scene.Spatial;
 public class Scene {
 	public Node sceneNode;
 	private BulletAppState bulletAppState;  //Physics machine
-	RigidBodyControl rbc;
+	RigidBodyControl rigidBodyControl;
 	CollisionShape sceneShape;   //gives collisions to the scene
 	Spatial sceneModel;
 	AssetManager assetManager;
@@ -69,10 +69,10 @@ public class Scene {
     	//sceneModel = assetManager.loadModel("/Scenes/PlatformScene.j3o");
     	sceneModel = assetManager.loadModel("/Models/platformmodel/platformmodel.j3o");
         sceneShape = CollisionShapeFactory.createMeshShape(sceneModel);
-        rbc = new RigidBodyControl(sceneShape, 0);
+        rigidBodyControl = new RigidBodyControl(sceneShape, 0);
         sceneNode.attachChild(sceneModel);   //adds the sceneModel to the world
-        sceneModel.addControl(rbc); 
-        bulletAppState.getPhysicsSpace().add(rbc); 
+        sceneModel.addControl(rigidBodyControl); 
+        bulletAppState.getPhysicsSpace().add(rigidBodyControl); 
         initLight();  
     }
     //creates and loads the light

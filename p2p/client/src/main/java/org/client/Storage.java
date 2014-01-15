@@ -7,8 +7,8 @@ import com.jme3.math.Vector3f;
 
 public class Storage 
 {
-	public Map<String,Map<String, Vector3f>> storageSpots = new HashMap<String,Map<String,Vector3f>>();
-	private Map<String, Vector3f> spots = new HashMap<String, Vector3f>();
+	public Map<String,Map<String, Vector3f>> storageFields = new HashMap<String,Map<String,Vector3f>>();
+	private Map<String, Vector3f> fields = new HashMap<String, Vector3f>();
 	private int counter = 0;
 	private boolean empty = false;
 	
@@ -29,12 +29,12 @@ public class Storage
 					for(int z = 0; z < 35; z++)
 					{
 						Vector3f spot = new Vector3f((i*20)-8.75f+(x*2.5f),(y*2.5f),715-7.5f-(z*15));
-						spots.put(String.valueOf(counter+1), spot);
+						fields.put(String.valueOf(counter+1), spot);
 						counter++;
 					}
 				}
 			}
-			storageSpots.put(String.valueOf(i), spots);
+			storageFields.put(String.valueOf(i), fields);
 		}
 	}
 	
