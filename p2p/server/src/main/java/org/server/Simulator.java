@@ -69,8 +69,7 @@ public class Simulator {
 					// Agv stuff
 					List<AGV> agvList = mapState.getAvailableAgvs();
 					AGV chosenAgv = agvList.get(0);
-					chosenAgv.routes.add(new MotionPathProtocol("ToSeaCrane",
-							-1));
+					chosenAgv.routes.add(new MotionPathProtocol("ToSeaCrane",	-1)); //,	CrossStartPoint"CrossingToTrucks", "CrossingToTruckCrane"
 					// JAVA PLS
 					MotionPathProtocol[] routeArray = mapState.routeList
 							.toArray(new MotionPathProtocol[0]);

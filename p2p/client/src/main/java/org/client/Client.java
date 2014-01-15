@@ -53,8 +53,6 @@ public class Client extends SimpleApplication {
 	// Scene
 	Spatial sceneModel;
 	public Node waterNode; // Different nodes have different physics
-	// private RigidBodyControl rbc;
-	// private CollisionShape sceneShape; //gives collisions to the scene
 	private BulletAppState bulletAppState; // Physics machine
 	FlyByCamera FBC;
 
@@ -66,11 +64,7 @@ public class Client extends SimpleApplication {
 	private Spatial AGV, AGV2;
 	private AGV agv1, agv2;
 	Vector3f location;
-	float x1 = -470f;
-	float z1 = 150f;
-	float x2 = -470f;
-	float z2 = 735f;
-	private int j;
+
 	private Node allAgvNodes = new Node();
 	private boolean active = true;
 	private boolean playing = false;
@@ -140,7 +134,6 @@ public class Client extends SimpleApplication {
 		GeometryBatchFactory.optimize(rootNode);
 		initScene();
 		loadAssets();
-		testContainer();
 
 		addAllAGVs(location);
 
@@ -206,12 +199,14 @@ public class Client extends SimpleApplication {
 		motionControl.setDirectionType(MotionEvent.Direction.Path);
 		motionControl.setRotation(new Quaternion().fromAngleNormalAxis(
 				-FastMath.HALF_PI, Vector3f.UNIT_Y));
-		motionControl.setInitialDuration(0.000005f);
-		motionControl.setSpeed(0.000005f);
 		motionControl.play();
 	}
 
 	public void addAllAGVs(Vector3f location) {
+		float x1 = -470f;
+		float z1 = 150f;
+		float x2 = -470f;
+		float z2 = 735f;
 		for (int i = 0; i < 50; i++) {
 			location = new Vector3f(x1, 260, z1);
 			agv1 = new AGV(String.valueOf(i), location, AGV, "AGV" + i);
@@ -231,31 +226,7 @@ public class Client extends SimpleApplication {
 		}
 	}
 
-	public void testContainer() {
-		containerList = new ArrayList<Containers>();
-		float xCoord, yCoord, zCoord;
-		xCoord = seaShip.getLocalTranslation().x - 367;
-		yCoord = seaShip.getLocalTranslation().y + 220;
-		zCoord = seaShip.getLocalTranslation().z + 310;
 
-		int containerCount = 0;
-		for (int y = 0; y < 6; y++) {
-			for (int x = 0; x < 15; x++) {
-				for (int z = 0; z < 20; z++) {
-					if (containerCount < 1800) {
-						String id = String.valueOf(containerCount + 1);
-						Vector3f pos = new Vector3f(xCoord + (x * 2.4f), yCoord
-								+ (y * 2.5f), zCoord - (z * 12.3f));
-						containerList.add(new Containers(id, container));
-						containerList.get(containerCount).container
-								.setLocalTranslation(pos);
-						rootNode.attachChild(containerList.get(containerCount));
-					}
-					containerCount++;
-				}
-			}
-		}
-	}
 
 	// creates most of the physics and scene logic
 	public void initScene() {
@@ -735,36 +706,12 @@ public class Client extends SimpleApplication {
 	}
 
 	private void initInputs() {
-		inputManager.addMapping("display_hidePath", new KeyTrigger(
-				KeyInput.KEY_P));
-		inputManager.addMapping("SwitchPathInterpolation", new KeyTrigger(
-				KeyInput.KEY_I));
-		if (!FlyByCamera.coordtest) {
-			inputManager
-					.addMapping("tensionUp", new KeyTrigger(KeyInput.KEY_U));
-			inputManager.addMapping("tensionDown", new KeyTrigger(
-					KeyInput.KEY_J));
-		}
-		inputManager.addMapping("play_stop", new KeyTrigger(KeyInput.KEY_N));
-		inputManager.addMapping("play_stop2", new KeyTrigger(KeyInput.KEY_M));
-		inputManager.addMapping("SetWireFrame", new KeyTrigger(KeyInput.KEY_L));
-		inputManager.addMapping("startAnimation",
-				new KeyTrigger(KeyInput.KEY_V));
 		inputManager.addMapping("speedDown", new KeyTrigger(KeyInput.KEY_E));
 		inputManager.addMapping("speedUp", new KeyTrigger(KeyInput.KEY_T));
 		inputManager.addMapping("speedReset", new KeyTrigger(KeyInput.KEY_R));
 		ActionListener acl = new ActionListener() {
 
 			public void onAction(String name, boolean keyPressed, float tpf) {
-				if (name.equals("display_hidePath") && keyPressed) {
-					if (active) {
-						active = false;
-						path.disableDebugShape();
-					} else {
-						active = true;
-						path.enableDebugShape(assetManager, rootNode);
-					}
-				}
 
 				if (name.equals("speedDown") && keyPressed) {
 					speed = speed / 2;
@@ -783,97 +730,9 @@ public class Client extends SimpleApplication {
 						}
 					}
 				}
-
-				if (name.equals("startAnimation") && keyPressed) {
-					Vector3f[] des = new Vector3f[6];
-					// Vector3f conVector = new Vector3f(200, 264, 802);
-					int id = 0;
-
-					Map<String, Vector3f> spot = storage.storageSpots.get("0");
-					Vector3f spotje = spot.get("254");
-
-					Vector3f startPosCrane = new Vector3f(
-							storageCranes[id].getLocalTranslation());
-					Vector3f startPosSlider = new Vector3f(
-							storageCranes[id].sliderNode.getLocalTranslation());
-					Vector3f startPosHook = new Vector3f(
-							storageCranes[id].hookNode.getLocalTranslation());
-
-					if (spotje.z > 395) // Destination of the crane
-					{
-						des[3] = new Vector3f(startPosCrane.x, startPosCrane.y,
-								startPosCrane.z);
-						System.out.println("> 370");
-					} else {
-						des[3] = new Vector3f(startPosCrane.x, startPosCrane.y,
-								startPosCrane.z - 465);
-						System.out.println("< 370");
-					}
-					des[1] = new Vector3f(startPosSlider.x + spotje.x,
-							startPosSlider.y, startPosSlider.z); // Destination
-																	// of the
-																	// slider
-					des[2] = new Vector3f(startPosHook.x, startPosHook.y - 33,
-							startPosHook.z); // Destination of the hook
-					des[0] = new Vector3f(startPosCrane.x, startPosCrane.y,
-							spotje.z); // Destination of the crane
-					des[4] = new Vector3f(startPosSlider.x, startPosSlider.y,
-							startPosSlider.z); // Destination of the slider
-					des[5] = new Vector3f(startPosHook.x, startPosHook.y - 33
-							+ spotje.y, startPosHook.z); // Destination of the
-															// hook
-
-					storageCranes[id].animation(1, des, 0.5f);
-				}
-
-				if (name.equals("play_stop") && keyPressed) {
-					if (playing) {
-						playing = false;
-						// AGVList.get(0).motionControl.stop();
-						System.out.println("AGV Index2 : " + j);
-					} else {
-						playing = true;
-						// AGVList.get(j).motionControl.play();
-						System.out.println("AGV Index : " + j);
-						j++;
-					}
-				}
-
-				if (name.equals("play_stop2") && keyPressed) {
-					if (playing2) {
-						playing2 = false;
-						// AGVList.get(0).motionControl2.stop();
-						// agv1.motionControl2.stop();
-					} else {
-						playing2 = true;
-						// AGVList.get(0).motionControl2.play();
-						// agv1.motionControl2.play();
-					}
-				}
-				if (name.equals("SwitchPathInterpolation") && keyPressed) {
-					if (path.getPathSplineType() == SplineType.CatmullRom) {
-						path.setPathSplineType(SplineType.Linear);
-					} else {
-						path.setPathSplineType(SplineType.CatmullRom);
-					}
-				}
-
-				if (name.equals("tensionUp") && keyPressed) {
-					path.setCurveTension(path.getCurveTension() + 0.1f);
-					System.err.println("Tension : " + path.getCurveTension());
-				}
-				if (name.equals("tensionDown") && keyPressed) {
-					path.setCurveTension(path.getCurveTension() - 0.1f);
-					System.err.println("Tension : " + path.getCurveTension());
-				}
-
 			}
 		};
-
-		inputManager.addListener(acl, "startAnimation", "display_hidePath",
-				"play_stop", "play_stop2", "SwitchPathInterpolation",
-				"tensionUp", "tensionDown", "speedUp", "speedDown",
-				"speedReset");
+		inputManager.addListener(acl, "speedUp", "speedDown", "speedReset");
 
 	}
 

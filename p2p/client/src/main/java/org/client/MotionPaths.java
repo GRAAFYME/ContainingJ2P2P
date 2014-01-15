@@ -120,16 +120,18 @@ public class MotionPaths {
 
 	public void CrossingStart() {
 		float x = -470f;
+		CrossStartPoint = new MotionPath();
+		CrossStartPoint.addWayPoint(new Vector3f(-540f, 260f, 117));
 		for (int i = 0; i < 31; i++) {
-			CrossStartPoint = new MotionPath();
-			CrossStartPoint.addWayPoint(new Vector3f(-540f, 260f, 117));
+
 			CrossStartPoint.addWayPoint(new Vector3f(x, 260f, 117));
-			CrossStartPoint.addWayPoint(new Vector3f(-445, 260f, 117));
-			CrossStartPoint.enableDebugShape(assetManager, AllAgvNodes);
-			hmMotionPaths.put("CrossStartPoint" + String.valueOf(i),
-					CrossStartPoint);
+
 			x += 25;
 		}
+		CrossStartPoint.addWayPoint(new Vector3f(-445, 260f, 117));
+		CrossStartPoint.enableDebugShape(assetManager, AllAgvNodes);
+		hmMotionPaths.put("CrossStartPoint",
+				CrossStartPoint);
 		x = -470f;
 		for (int j = 0; j < 50; j++) {
 			CrossStartPoint = new MotionPath();
