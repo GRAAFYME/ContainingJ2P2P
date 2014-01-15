@@ -259,7 +259,7 @@ public class MotionPaths {
 	{
 		CrossingToTrains = new MotionPath();
 		CrossingToTrains.addWayPoint(new Vector3f(-540, 260, 767));
-		CrossingToTrains.addWayPoint (new Vector3f(-540, 260, 786));
+		CrossingToTrains.addWayPoint(new Vector3f(-540, 260, 786));
 		CrossingToTrains.addWayPoint(new Vector3f(-100, 260, 786));
 		CrossingToTrains.addWayPoint(new Vector3f(150, 260, 786));
 		CrossingToTrains.addWayPoint(new Vector3f(400, 260, 786));
