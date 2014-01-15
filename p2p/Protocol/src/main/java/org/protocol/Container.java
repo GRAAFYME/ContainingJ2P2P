@@ -9,150 +9,137 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Remco
- * Date: 22/11/13
- * Time: 14:43
- * To change this template use File | Settings | File Templates.
- */
 public class Container {
-    @XmlAttribute
-    public String id;
+	@XmlAttribute
+	public String id;
 
-    @XmlElement
-    public int arrivalDay;
-    @XmlElement
-    public int arrivalMonth;
-    @XmlElement
-    public int arrivalYear;
-    @XmlElement
-    public String arrivalTill;
-    @XmlElement
-    public String arrivalFrom;
+	@XmlElement
+	public int arrivalDay;
+	@XmlElement
+	public int arrivalMonth;
+	@XmlElement
+	public int arrivalYear;
+	@XmlElement
+	public String arrivalTill;
+	@XmlElement
+	public String arrivalFrom;
 
-    @XmlElement
-    public int leaveDay;
-    @XmlElement
-    public int leaveMonth;
-    @XmlElement
-    public int leaveYear;
-    @XmlElement
-    public String leaveFrom;
-    @XmlElement
-    public String leaveTill;
-    @XmlElement
-    public int arrivalPosX;
-    @XmlElement
-    public int arrivalPosY;
-    @XmlElement
-    public int arrivalPosZ;
-    @XmlElement
-    public String ownerName;
-    @XmlElement
-    public int nr;
-    @XmlElement
-    public String arrivalTransportType;
-    @XmlElement
-    public String leaveTransportType;
-    @XmlElement
-    public String arrivalCompany;
-    @XmlElement
-    public String leaveCompany;
-    @XmlElement
-    public int emptyWeight;
-    @XmlElement
-    public int fullWeight;
-    @XmlElement
-    public String contentName;
-    @XmlElement
-    public String contentType;
-    @XmlElement
-    public String dangerType;
-    @XmlElement(name="ISO")
-    public String iso;
-    
-    public Point3d location = new Point3d(0,0,0);
+	@XmlElement
+	public int leaveDay;
+	@XmlElement
+	public int leaveMonth;
+	@XmlElement
+	public int leaveYear;
+	@XmlElement
+	public String leaveFrom;
+	@XmlElement
+	public String leaveTill;
+	@XmlElement
+	public int arrivalPosX;
+	@XmlElement
+	public int arrivalPosY;
+	@XmlElement
+	public int arrivalPosZ;
+	@XmlElement
+	public String ownerName;
+	@XmlElement
+	public int nr;
+	@XmlElement
+	public String arrivalTransportType;
+	@XmlElement
+	public String leaveTransportType;
+	@XmlElement
+	public String arrivalCompany;
+	@XmlElement
+	public String leaveCompany;
+	@XmlElement
+	public int emptyWeight;
+	@XmlElement
+	public int fullWeight;
+	@XmlElement
+	public String contentName;
+	@XmlElement
+	public String contentType;
+	@XmlElement
+	public String dangerType;
+	@XmlElement(name = "ISO")
+	public String iso;
 
-    public Point3d getLocation()
-    {
-    	return location;
-    }
+	public Point3d location = new Point3d(0, 0, 0);
 
-    public Calendar getArrivalDate()
-    {
-        Calendar calendar = new GregorianCalendar();
+	public Point3d getLocation() {
+		return location;
+	}
 
-        try {
-            Date date = new SimpleDateFormat("hh.mm").parse(arrivalFrom);
-            date.setYear(arrivalYear);
-            date.setMonth(arrivalMonth);
-            date.setDate(arrivalDay);
+	public Calendar getArrivalDate() {
+		Calendar calendar = new GregorianCalendar();
 
-            calendar.setTime(date);
-            System.out.println(calendar.get(Calendar.MONTH));
-            System.out.println(calendar.get(Calendar.YEAR));
-            System.out.println(calendar.get(Calendar.MINUTE));
+		try {
+			Date date = new SimpleDateFormat("hh.mm").parse(arrivalFrom);
+			date.setYear(arrivalYear);
+			date.setMonth(arrivalMonth);
+			date.setDate(arrivalDay);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+			calendar.setTime(date);
+			System.out.println(calendar.get(Calendar.MONTH));
+			System.out.println(calendar.get(Calendar.YEAR));
+			System.out.println(calendar.get(Calendar.MINUTE));
 
-        return calendar;
-    }
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
-    public GregorianCalendar getLeaveDate()
-    {
-        GregorianCalendar calendar = new GregorianCalendar();
+		return calendar;
+	}
 
-        try {
-            Date date = new SimpleDateFormat("hh.mm").parse(leaveFrom);
-            calendar.setTime(date);
-            calendar.set(leaveYear, leaveMonth, leaveDay);
+	public GregorianCalendar getLeaveDate() {
+		GregorianCalendar calendar = new GregorianCalendar();
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+		try {
+			Date date = new SimpleDateFormat("hh.mm").parse(leaveFrom);
+			calendar.setTime(date);
+			calendar.set(leaveYear, leaveMonth, leaveDay);
 
-        return calendar;
-    }
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
+		return calendar;
+	}
 
-    public Calendar getArrivalBusyTillDate()
-    {
-        Calendar calendar = new GregorianCalendar();
+	public Calendar getArrivalBusyTillDate() {
+		Calendar calendar = new GregorianCalendar();
 
-        try {
-            Date date = new SimpleDateFormat("hh.mm").parse(arrivalTill);
-            date.setYear(arrivalYear);
-            date.setMonth(arrivalMonth);
-            date.setDate(arrivalDay);
+		try {
+			Date date = new SimpleDateFormat("hh.mm").parse(arrivalTill);
+			date.setYear(arrivalYear);
+			date.setMonth(arrivalMonth);
+			date.setDate(arrivalDay);
 
-            calendar.setTime(date);
-            System.out.println(calendar.get(Calendar.MONTH));
-            System.out.println(calendar.get(Calendar.YEAR));
-            System.out.println(calendar.get(Calendar.MINUTE));
+			calendar.setTime(date);
+			System.out.println(calendar.get(Calendar.MONTH));
+			System.out.println(calendar.get(Calendar.YEAR));
+			System.out.println(calendar.get(Calendar.MINUTE));
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
-        return calendar;
-    }
+		return calendar;
+	}
 
-    public GregorianCalendar getLeaveBusyTillDate()
-    {
-        GregorianCalendar calendar = new GregorianCalendar();
+	public GregorianCalendar getLeaveBusyTillDate() {
+		GregorianCalendar calendar = new GregorianCalendar();
 
-        try {
-            Date date = new SimpleDateFormat("hh.mm").parse(leaveTill);
-            calendar.setTime(date);
-            calendar.set(leaveYear, leaveMonth, leaveDay);
+		try {
+			Date date = new SimpleDateFormat("hh.mm").parse(leaveTill);
+			calendar.setTime(date);
+			calendar.set(leaveYear, leaveMonth, leaveDay);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
-        return calendar;
-    }
+		return calendar;
+	}
 }

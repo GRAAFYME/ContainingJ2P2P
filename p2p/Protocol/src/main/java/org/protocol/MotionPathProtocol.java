@@ -4,48 +4,46 @@ import javax.vecmath.Vector3f;
 import javax.xml.bind.annotation.XmlElement;
 import java.util.List;
 
-/**
- * Created by Remco on 06/01/14.
- */
-public class MotionPathProtocol
-{
-    @XmlElement
-    private List<Vector3f> locationNodeList;
-    @XmlElement
-    private float length;
-    @XmlElement
-    public int driveUntilWaypoint;
-    @XmlElement
-    public String name;
+public class MotionPathProtocol {
+	@XmlElement
+	private List<Vector3f> locationNodeList;
+	@XmlElement
+	private float length;
+	@XmlElement
+	public int driveUntilWaypoint;
+	@XmlElement
+	public String name;
 
-    public MotionPathProtocol() {};
-    //use for client->server
-    public MotionPathProtocol(List<Vector3f> locationNodeList, float length, String name)
-    {
-        this.locationNodeList = locationNodeList;
-        this.length = length;
-        this.name = name;
-    }
+	public MotionPathProtocol() {
+	};
 
-    //user for server->client, giving Agvs commands
-    public MotionPathProtocol(String name, int driveUntilWaypoint)
-    {
-        this.name = name;
-        this.driveUntilWaypoint = driveUntilWaypoint;
-    }
+	// use for client->server
+	public MotionPathProtocol(List<Vector3f> locationNodeList, float length,
+			String name) {
+		this.locationNodeList = locationNodeList;
+		this.length = length;
+		this.name = name;
+	}
 
-    public float getLength() { return length; }
+	// user for server->client, giving Agvs commands
+	public MotionPathProtocol(String name, int driveUntilWaypoint) {
+		this.name = name;
+		this.driveUntilWaypoint = driveUntilWaypoint;
+	}
 
-    public int getNbWayPoints() {
-        return locationNodeList.size();
-    }
+	public float getLength() {
+		return length;
+	}
 
-    public String getName()
-    {
-    	return name;
-    }
-    
-    public Vector3f getWayPoint(int index) {
-        return locationNodeList.get(index);
-    }
+	public int getNbWayPoints() {
+		return locationNodeList.size();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Vector3f getWayPoint(int index) {
+		return locationNodeList.get(index);
+	}
 }
