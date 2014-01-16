@@ -209,7 +209,8 @@ public class Main {
 					// Parse XML
 					xmlParser parser = new xmlParser();
 					final ContainerSetXml containers;
-
+					server.setXMLPath(FileLocation);
+					
 					try {
 						long time = System.nanoTime();
 						containers = parser.load(FileLocation);

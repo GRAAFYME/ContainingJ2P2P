@@ -30,7 +30,8 @@ public class Server implements Runnable {
 	private Statistics statistics;
 	private Thread thread;
 	private boolean isRunning;
-
+	
+	private String xmlfile;
 	public boolean enableHeartbeat;
 	public int heartBeatTimeout;
 	private java.util.Scanner scanner;
@@ -52,6 +53,10 @@ public class Server implements Runnable {
 		}
 	}
 
+	public void setXMLPath(String file)
+	{
+		xmlfile = file;
+	}
 	public Server() {
 		ftpClient = new FTPClient();
 		ftpClient.setBufferSize(1024 * 1024);
@@ -187,7 +192,7 @@ public class Server implements Runnable {
 		try {
 			String message = "";
 			xmlParser xmlparser = new xmlParser();
-			ContainerSetXml containerset = xmlparser.load("data/xml1.xml");
+			ContainerSetXml containerset = xmlparser.load(xmlfile);
 			PriorityQueue<Vehicle> queue = xmlparser.parse(containerset);
 			Simulator simulator = new Simulator(queue);
 
